@@ -177,7 +177,29 @@ DNSレコードと証書は Cloudflare 側が自動作成した。
 | canonical / og:url | `https://sunpou.nexeed-lab.com/coolerbox/500ml-honsuu/`（一致） |
 | `/robots.txt`・`/sitemap.xml` | 配信されている |
 
-### ⚠️ robots.txt に Cloudflare が Managed content を差し込んでいる
+### robots.txt と AIクローラの方針（2026-08-24 変更）
+
+**Cloudflare の「Managed robots.txt」をオフにしたので、`build.mjs` が出力するものが本番の
+robots.txt そのものになった。** 内容は `content/site.json` の `robots` で管理する。
+
+| | 対象 |
+|---|---|
+| **許可** | **Amazonbot のみ** |
+| 拒否 | Applebot-Extended／Bytespider／CCBot／ClaudeBot／Claude-User／Google-Extended／GPTBot／meta-externalagent／PetalBot／Timpibot |
+
+**Amazonbot を許可している理由：** Amazon Content Partners の条件が
+「robots.txt で Amazonbot を許可していること」で、見返りが**紹介料 +1%**。
+料率2〜8%のこのサイトでは収益が25〜50%変わる。
+Amazon は学習にも使う可能性があると明記しており、それを承知のうえでの許可。
+
+⚠️ `Applebot-Extended` と `Google-Extended` は **robots.txt でしか表現できない**オプトアウト表記。
+実体のあるクローラではないので Cloudflare の AI Crawl Control には出てこない。ここに書かないと消える。
+
+**実際のブロック（enforcement）は Cloudflare の AI Crawl Control 側**で、ゾーン `nexeed-lab.com` に対して
+AI Crawler カテゴリ15件をブロック、Amazonbot のみ許可、という設定になっている。
+robots.txt は宣言、AI Crawl Control は強制、という二層構成。
+
+### ⚠️ 旧：robots.txt に Cloudflare が Managed content を差し込んでいた（解消済み）
 
 `/robots.txt` を実際に見ると、**こちらが書いた内容の前に Cloudflare 管理のブロックが挿入されている。**
 その中に **`User-agent: Amazonbot` / `Disallow: /`** が含まれている。

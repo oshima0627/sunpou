@@ -32,5 +32,24 @@
   "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb",
 
   "//defaultOgImage": "og:image の既定値。記事の front matter に eyecatch があればそちらを使う。",
-  "defaultOgImage": "/img/coolerbox-500ml-eyecatch.svg"
+  "defaultOgImage": "/img/coolerbox-500ml-eyecatch.svg",
+
+  "//robots": "robots.txt のAIクローラ方針。2026-08-24 に Cloudflare の Managed robots.txt をオフにしたため、ここが唯一の robots.txt になった。allowAI に入れたものだけ明示的に許可し、denyAI は拒否する。",
+  "robots": {
+    "//allowAI": "Amazonbot は Amazon Content Partners（紹介料+1%）の条件として許可している。Amazon は学習にも使う可能性があると明記しており、それを承知のうえでの許可。",
+    "allowAI": ["Amazonbot"],
+    "//denyAI": "AI学習目的のクローラ。Applebot-Extended と Google-Extended は robots.txt でしか表現できないオプトアウト表記（実体のあるクローラではないので Cloudflare の AI Crawl Control には出てこない）。",
+    "denyAI": [
+      "Applebot-Extended",
+      "Bytespider",
+      "CCBot",
+      "ClaudeBot",
+      "Claude-User",
+      "Google-Extended",
+      "GPTBot",
+      "meta-externalagent",
+      "PetalBot",
+      "Timpibot"
+    ]
+  }
 }

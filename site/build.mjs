@@ -496,7 +496,30 @@ writeFile(
     .join('\n')}\n</urlset>\n`,
 );
 
-writeFile('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
+// robots.txt
+//
+// 2026-08-24 に Cloudflare の「Managed robots.txt」をオフにしたので、
+// ここで出力するものが本番の robots.txt そのものになる
+// （以前は Cloudflare が管理ブロックをこの上に差し込んでいた）。
+//
+// Amazonbot だけを明示的に許可しているのは、Amazon Content Partners の条件が
+// 「robots.txt で Amazonbot を許可していること」だから。見返りは紹介料 +1%。
+// Amazon は学習にも使う可能性があると明記しており、それを承知のうえでの許可。
+// 他のAI学習クローラは従来どおり拒否する。
+const robotsLines = [
+  '# AI学習クローラは既定で拒否。Amazonbot だけ許可している。',
+  '# 理由は content/site.json の robots.allowAI のコメントを参照。',
+  '',
+  ...site.robots.allowAI.flatMap((ua) => [`User-agent: ${ua}`, 'Allow: /', '']),
+  ...site.robots.denyAI.flatMap((ua) => [`User-agent: ${ua}`, 'Disallow: /', '']),
+  'User-agent: *',
+  'Allow: /',
+  '',
+  `Sitemap: ${ORIGIN}/sitemap.xml`,
+  '',
+];
+
+writeFile('robots.txt', robotsLines.join('\n'));
 
 // ---- 静的ファイル
 
