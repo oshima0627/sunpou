@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "jissun",
+  "name": "sunpou",
   "compatibility_date": "2026-08-24",
 
   // Worker のコードは無い（アセット配信のみ）。

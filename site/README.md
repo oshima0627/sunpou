@@ -1,4 +1,4 @@
-# site — 「実寸で選ぶ」（Cloudflare Workers Static Assets）
+# site — 「寸法で選ぶ」（Cloudflare Workers Static Assets）
 
 `content/articles/*.md` を HTML に変換して `dist/` に出し、Cloudflare Workers の
 Static Assets として配信する。**Worker のコードは無く、アセット配信だけ**の構成。
@@ -78,7 +78,7 @@ updated: 2026-08-24
 1. **Cloudflare アカウントの作成**
 2. **`npx wrangler login`** — ブラウザでの OAuth 認可が必要
 3. **`content/site.json` の `origin` を実際の公開URLに書き換える**
-   → 現在は `https://jissun.example.workers.dev` というプレースホルダ。
+   → 現在は `https://sunpou.example.workers.dev` というプレースホルダ。
    **canonical と sitemap がこの値を使うので、書き換えないまま公開すると
    Google に間違ったURLを伝えることになる**
 4. （任意）独自ドメインの取得と紐付け
@@ -87,7 +87,7 @@ updated: 2026-08-24
 
 ## 未確定
 
-- **サイト名「実寸で選ぶ」と Worker 名 `jissun` は仮。** 変えるなら
+- **サイト名「寸法で選ぶ」と Worker 名 `sunpou` は仮。** 変えるなら
   `content/site.json` の `name` と `wrangler.jsonc` の `name` の両方
 - アクセス解析を入れていない。**クリック率と購入率の実測が収益モデルの鍵**
   （`../docs/serp-check.md`）なので、公開前に何か入れる必要がある
