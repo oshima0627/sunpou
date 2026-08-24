@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="クーラーボックスの容量Lと内寸の関係。外寸の体積のうち中身に使えるのは28.9から40.0パーセント。アイリスオーヤマ15Lは外寸で46Lの箱で、中身に使えるのは13.4L">
+  <style>
+    .bg     { fill: #fcfcfc; }
+    .ink    { fill: #434347; }
+    .mute   { fill: #6f7680; }
+    .navy   { fill: #014172; }
+    .h      { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s      { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n      { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .outer  { fill: #e3e7ec; stroke: #9aa3ad; stroke-width: 2; }
+    .inner  { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+  </style>
+
+  <style>
+    .t   { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st  { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big { font: 700 60px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cap { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="88">「20L」は何の20L？</text>
+  <text class="st mute" x="80" y="132">外寸の体積のうち、中身に使えるのは 28.9〜40.0%</text>
+
+  <rect class="outer" x="80" y="180" width="450" height="308"/>
+  <rect class="inner" x="154" y="243" width="302" height="182"/>
+  <text class="cap ink" x="80" y="530">アイリスオーヤマ HUGEL 15L を上から見た床面</text>
+  <text class="st mute" x="80" y="566">外寸 45.0 × 30.8cm　／　内寸 30.2 × 18.2cm　（縮尺 10px = 1cm）</text>
+
+  <text class="cap ink"  x="640" y="212">外寸で測ると</text>
+  <text class="big navy" x="640" y="278">46 L の箱</text>
+  <text class="cap ink"  x="640" y="348">中身に使えるのは</text>
+  <text class="big navy" x="640" y="414">13.4 L</text>
+  <text class="st mute"  x="640" y="466">公表容量は 15L</text>
+
+  <text class="st mute" x="640" y="530">メーカー公表の内寸・外寸からの計算（実測ではありません）</text>
+  <text class="st mute" x="640" y="566">寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>
