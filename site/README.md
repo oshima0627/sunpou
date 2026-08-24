@@ -189,8 +189,17 @@ robots.txt そのものになった。** 内容は `content/site.json` の `robo
 
 **Amazonbot を許可している理由：** Amazon Content Partners の条件が
 「robots.txt で Amazonbot を許可していること」で、見返りが**紹介料 +1%**。
-料率2〜8%のこのサイトでは収益が25〜50%変わる。
+
+⚠️ **ただし、このプログラムは現在アメリカ在住者限定で、日本からは登録できない。**
+登録ページに「You're based in the United States / We are starting with US-based partners.
+Stay tuned as we continue to expand.」と明記されている。
+**+1% は当面得られない。** 許可を維持しているのは、将来日本に拡大したときに
+robots.txt 側の条件を満たしておくため。
+
 Amazon は学習にも使う可能性があると明記しており、それを承知のうえでの許可。
+**対価が無い状態で学習を許すことになるので、方針を変えたければ
+`content/site.json` の `robots.allowAI` から Amazonbot を外し、
+Cloudflare の AI Crawl Control でも Amazonbot をブロックに戻す。**
 
 ⚠️ `Applebot-Extended` と `Google-Extended` は **robots.txt でしか表現できない**オプトアウト表記。
 実体のあるクローラではないので Cloudflare の AI Crawl Control には出てこない。ここに書かないと消える。
