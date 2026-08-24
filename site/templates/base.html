@@ -20,21 +20,32 @@
 </head>
 <body>
 <header class="site-header">
-  <a class="site-name" href="/">{{siteName}}</a>
+  <div class="site-header__inner">
+    <a class="site-name" href="/">{{siteName}}</a>
+    <span class="site-tagline">{{tagline}}</span>
+  </div>
 </header>
 
-<main>
-  {{breadcrumb}}
-  {{content}}
-</main>
+<div class="l-wrap">
+  <main class="l-main">
+    {{breadcrumb}}
+    {{content}}
+  </main>
+
+  <aside class="l-side">
+    {{sidebar}}
+  </aside>
+</div>
 
 <footer class="site-footer">
-  {{disclosure}}
-  <p class="note">
-    掲載している寸法・仕様はメーカー公式サイトの公表値です。計算値は公表寸法から算出したもので、実測値ではありません。
-    最新の仕様は各メーカーの公式ページでご確認ください。
-  </p>
-  <p class="copy">&copy; {{year}} {{siteName}}</p>
+  <div class="site-footer__inner">
+    {{disclosure}}
+    <p class="note">
+      掲載している寸法・仕様はメーカー公式サイトの公表値です。計算値は公表寸法から算出したもので、実測値ではありません。
+      最新の仕様は各メーカーの公式ページでご確認ください。
+    </p>
+    <p class="copy">&copy; {{year}} {{siteName}}</p>
+  </div>
 </footer>
 {{analytics}}
 </body>

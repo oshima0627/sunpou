@@ -45,7 +45,6 @@ function render(tpl, vars) {
  *
  * affiliateEnabled=false のうちは出さない。リンクが1本も無いのに
  * 「適格販売により収入を得ています」と書くのは事実に反するため。
- * 審査に合格してリンクを貼る時点で true にする。
  */
 const disclosureHtml = site.affiliateEnabled
   ? `<p class="disclosure">${esc(site.affiliateDisclosure)}</p>`
@@ -54,11 +53,9 @@ const disclosureHtml = site.affiliateEnabled
 /**
  * Cloudflare Web Analytics のビーコン。
  *
- * 収益モデルの鍵は「リンククリック率」と「購入率」で、
- * クリック数と注文数はアソシエイト・セントラルのレポートから取れる。
- * 足りないのは分母になる「ページのセッション数」なので、それをここで測る。
- *
- * トークンはクライアント側HTMLに出る公開値。秘密情報ではない。
+ * 収益モデルの鍵は「リンククリック率」と「購入率」。クリック数と注文数は
+ * アソシエイト・セントラルのレポートから取れるので、ここで測るのは分母の
+ * セッション数だけ。トークンはHTMLに出る公開値で、秘密情報ではない。
  */
 const analyticsHtml = site.webAnalyticsToken
   ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${site.webAnalyticsToken}"}'></script>`
@@ -68,15 +65,14 @@ const analyticsHtml = site.webAnalyticsToken
  * 本文中の [[LINK:商品名]] を処理する。
  *
  * 審査に合格するまで（affiliateEnabled=false）はリンクを出さない。
- * 未承認のうちにタグ付きリンクを貼っても計測されないうえ、
- * 「Amazonのアソシエイトとして…」の開示文言だけが先に出ている状態を避けたい。
+ * true にしただけでリンクが空のまま公開されるのを防ぐため、
+ * 実装前に true になっていたら意図的に例外を投げる。
  */
-function resolveLinks(html, opts) {
+function resolveLinks(html) {
   return html.replace(/\[\[LINK:([^\]]+)\]\]/g, (_, label) => {
-    if (!opts.affiliateEnabled) {
+    if (!site.affiliateEnabled) {
       return `<span class="link-todo" title="Amazonアソシエイトの審査合格後にリンクへ差し替え">${esc(label)}</span>`;
     }
-    // 合格後はここで実リンクに差し替える。URL は content/links.json 等に外出しする想定。
     throw new Error(`affiliateEnabled=true だがリンクの実体が未実装: ${label}`);
   });
 }
@@ -84,6 +80,50 @@ function resolveLinks(html, opts) {
 /** 表は横スクロールできる箱に入れる（スマホで本文が横に伸びるのを防ぐ）。 */
 const wrapTables = (html) =>
   html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
+
+/**
+ * h2 / h3 に id を振り、目次の材料を集める。
+ * marked v15 は見出しに id を付けないので、ここで採番する。
+ * 日本語見出しからスラッグを作ると読めないURLになるため連番にしている。
+ */
+function addHeadingIds(html) {
+  const headings = [];
+  let n = 0;
+  const out = html.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (_, lvl, inner) => {
+    n += 1;
+    const id = `s${n}`;
+    headings.push({ level: Number(lvl), id, text: inner.replace(/<[^>]+>/g, '').trim() });
+    return `<h${lvl} id="${id}">${inner}</h${lvl}>`;
+  });
+  return { html: out, headings };
+}
+
+/** 目次。h2 を親、h3 を子にした入れ子リストにする。 */
+function renderToc(headings) {
+  // 見出しが少ない記事に目次を出しても邪魔なだけなので出さない
+  if (headings.filter((h) => h.level === 2).length < 3) return '';
+
+  const parts = ['<nav class="toc"><p class="toc__title">目次</p><ol>'];
+  let subOpen = false;
+
+  for (const h of headings) {
+    if (h.level === 2) {
+      if (subOpen) { parts.push('</ol></li>'); subOpen = false; }
+      parts.push(`<li><a href="#${h.id}">${esc(h.text)}</a></li>`);
+    } else {
+      if (!subOpen) {
+        // 直前の h2 の </li> を開き直して、その中に子リストを作る
+        const last = parts.pop();
+        parts.push(last.replace(/<\/li>$/, ''), '<ol>');
+        subOpen = true;
+      }
+      parts.push(`<li><a href="#${h.id}">${esc(h.text)}</a></li>`);
+    }
+  }
+  if (subOpen) parts.push('</ol></li>');
+  parts.push('</ol></nav>');
+  return parts.join('');
+}
 
 function writeFile(rel, contents) {
   const full = path.join(DIST, rel);
@@ -98,10 +138,8 @@ function copyDir(from, to) {
 
 // ---------------------------------------------------------------- build
 
-// dist ごと削除せず、中身だけ消す。
-// wrangler dev が dist を監視している間、Windows ではディレクトリ自体の削除が
-// EPERM/EBUSY で失敗する（dev を起動したまま再ビルドすると必ず踏む）。
-// 個別の削除が失敗しても、後続の書き込みで上書きされるので続行してよい。
+// dist ごと削除せず中身だけ消す。wrangler dev が監視している間、
+// Windows ではディレクトリ自体の削除が EPERM で失敗する。
 fs.mkdirSync(DIST, { recursive: true });
 for (const entry of fs.readdirSync(DIST)) {
   try {
@@ -113,79 +151,104 @@ for (const entry of fs.readdirSync(DIST)) {
 
 marked.setOptions({ gfm: true, breaks: false });
 
+// ---- 1) 全記事を先に読む（サイドバーの「ほかの記事」に全件必要なため）
+
 const articleDir = path.join(ROOT, 'content/articles');
 const files = fs.existsSync(articleDir)
   ? fs.readdirSync(articleDir).filter((f) => f.endsWith('.md')).sort()
   : [];
 
-const articles = [];
-
-for (const file of files) {
-  const raw = fs.readFileSync(path.join(articleDir, file), 'utf8');
-  const { meta, body } = parseFrontMatter(raw);
-
+const articles = files.map((file) => {
+  const { meta, body } = parseFrontMatter(fs.readFileSync(path.join(articleDir, file), 'utf8'));
   for (const key of ['title', 'description', 'slug', 'published', 'updated']) {
     if (!meta[key]) throw new Error(`${file}: front matter に ${key} がありません`);
   }
-
   const slug = meta.slug.replace(/^\/|\/$/g, '');
-  const url = `${ORIGIN}/${slug}/`;
+  return { ...meta, file, slug, body, url: `${ORIGIN}/${slug}/` };
+});
 
-  let html = wrapTables(marked.parse(body));
-  html = resolveLinks(html, site);
+const byRecent = [...articles].sort((a, b) => (a.updated < b.updated ? 1 : -1));
+
+// ---- 2) サイドバー
+
+function buildSidebar(currentSlug) {
+  const others = byRecent.filter((a) => a.slug !== currentSlug);
+  const list = others.length
+    ? `<ul>${others
+        .map(
+          (a) =>
+            `<li><a href="/${a.slug}/">${esc(a.title)}</a><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
+        )
+        .join('')}</ul>`
+    : '<p>いまはこの記事だけです。</p>';
+
+  return `<div class="widget">
+      <p class="widget__title">このサイトについて</p>
+      <p>${esc(site.description)}</p>
+    </div>
+    <div class="widget">
+      <p class="widget__title">ほかの記事</p>
+      ${list}
+    </div>`;
+}
+
+const common = {
+  lang: site.lang,
+  siteName: esc(site.name),
+  tagline: esc(site.tagline),
+  disclosure: disclosureHtml,
+  analytics: analyticsHtml,
+};
+
+// ---- 3) 記事ページ
+
+for (const a of articles) {
+  const parsed = addHeadingIds(wrapTables(marked.parse(a.body)));
+  const html = resolveLinks(parsed.html);
+  const toc = renderToc(parsed.headings);
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
-    headline: meta.title,
-    description: meta.description,
-    datePublished: meta.published,
-    dateModified: meta.updated,
+    headline: a.title,
+    description: a.description,
+    datePublished: a.published,
+    dateModified: a.updated,
     inLanguage: site.lang,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },
     publisher: { '@type': 'Organization', name: site.name },
   };
 
-  // PR表記は「広告が実際に含まれるとき」に出す。リンクが無い状態で
-  // 「広告が含まれます」と書くのは事実に反する。
+  // PR表記は広告が実際に含まれるときだけ出す
   const prNotice = site.affiliateEnabled
     ? `<p class="pr-notice">${esc(site.prLabel)}</p>`
     : `<p class="pr-notice pr-notice--pending">現在このページに広告リンクはありません（Amazonアソシエイト審査前）。</p>`;
 
+  const dates = `<p class="dates"><time datetime="${esc(a.published)}">公開 ${esc(a.published)}</time>${
+    a.updated !== a.published ? ` ／ <time datetime="${esc(a.updated)}">更新 ${esc(a.updated)}</time>` : ''
+  }</p>`;
+
   writeFile(
-    `${slug}/index.html`,
+    `${a.slug}/index.html`,
     render(baseTpl, {
-      lang: site.lang,
-      title: `${esc(meta.title)} | ${esc(site.name)}`,
-      description: esc(meta.description),
-      canonical: url,
-      siteName: esc(site.name),
+      ...common,
+      title: `${esc(a.title)} | ${esc(site.name)}`,
+      description: esc(a.description),
+      canonical: a.url,
       ogType: 'article',
       jsonLd: JSON.stringify(jsonLd),
-      breadcrumb: `<nav class="crumbs"><a href="/">${esc(site.name)}</a> › <span>${esc(meta.title)}</span></nav>`,
-      content: `
-        <article>
-          <h1>${esc(meta.title)}</h1>
-          <p class="dates">
-            <time datetime="${esc(meta.published)}">公開 ${esc(meta.published)}</time>
-            ${meta.updated !== meta.published ? ` ／ <time datetime="${esc(meta.updated)}">更新 ${esc(meta.updated)}</time>` : ''}
-          </p>
-          ${prNotice}
-          ${html}
-        </article>`,
-      disclosure: disclosureHtml,
-      analytics: analyticsHtml,
-      year: String(new Date(meta.updated).getFullYear()),
+      breadcrumb: `<nav class="crumbs"><a href="/">${esc(site.name)}</a> › <span>${esc(a.title)}</span></nav>`,
+      sidebar: buildSidebar(a.slug),
+      content: `<article class="post"><h1>${esc(a.title)}</h1>${dates}${prNotice}${toc}${html}</article>`,
+      year: String(new Date(a.updated).getFullYear()),
     }),
   );
-
-  articles.push({ ...meta, slug, url });
 }
 
-// ---- トップページ
+// ---- 4) トップページ
 
-const list = articles.length
-  ? `<ul class="article-list">${articles
+const list = byRecent.length
+  ? `<ul class="article-list">${byRecent
       .map(
         (a) =>
           `<li><a href="/${a.slug}/">${esc(a.title)}</a><p>${esc(a.description)}</p><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
@@ -196,11 +259,10 @@ const list = articles.length
 writeFile(
   'index.html',
   render(baseTpl, {
-    lang: site.lang,
+    ...common,
     title: `${esc(site.name)} — ${esc(site.tagline)}`,
     description: esc(site.description),
     canonical: `${ORIGIN}/`,
-    siteName: esc(site.name),
     ogType: 'website',
     jsonLd: JSON.stringify({
       '@context': 'https://schema.org',
@@ -211,36 +273,36 @@ writeFile(
       inLanguage: site.lang,
     }),
     breadcrumb: '',
+    sidebar: `<div class="widget"><p class="widget__title">このサイトについて</p><p>${esc(site.description)}</p></div>`,
     content: `<h1>${esc(site.name)}</h1><p class="lead">${esc(site.description)}</p>${list}`,
-    disclosure: disclosureHtml,
-    analytics: analyticsHtml,
     year: String(new Date().getFullYear()),
   }),
 );
 
-// ---- 404
+// ---- 5) 404
 
 writeFile(
   '404.html',
   render(baseTpl, {
-    lang: site.lang,
+    ...common,
     title: `ページが見つかりません | ${esc(site.name)}`,
     description: 'お探しのページは見つかりませんでした。',
     canonical: '',
-    siteName: esc(site.name),
     ogType: 'website',
     jsonLd: '',
     breadcrumb: '',
+    sidebar: '',
     content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p>',
-    disclosure: disclosureHtml,
-    analytics: analyticsHtml,
     year: String(new Date().getFullYear()),
   }),
 );
 
-// ---- sitemap / robots
+// ---- 6) sitemap / robots
 
-const urls = [{ loc: `${ORIGIN}/`, lastmod: articles[0]?.updated }, ...articles.map((a) => ({ loc: a.url, lastmod: a.updated }))];
+const urls = [
+  { loc: `${ORIGIN}/`, lastmod: byRecent[0]?.updated },
+  ...byRecent.map((a) => ({ loc: a.url, lastmod: a.updated })),
+];
 
 writeFile(
   'sitemap.xml',
@@ -251,7 +313,7 @@ writeFile(
 
 writeFile('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 
-// ---- 静的ファイル
+// ---- 7) 静的ファイル
 
 copyDir(path.join(ROOT, 'public'), DIST);
 

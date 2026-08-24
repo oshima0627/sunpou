@@ -55,7 +55,7 @@ updated: 2026-08-24
 | 丸耐熱 | 68.5φ | 205.58mm |
 | **丸** | **70.5φ** ← 最も太い | 184.5mm |
 
-出典：料材開発株式会社「飲料用ボトル 500ml〜」／小林硝子株式会社「飲料500ml丸耐熱」
+出典：[料材開発株式会社「飲料用ボトル 500ml〜」](https://www.ryozai.com/buisiness/pet-original/water-bottle/detail-water500)／[小林硝子株式会社「飲料500ml丸耐熱」](https://www.kgk-knet.co.jp/product/ms-05-0046/)
 
 ```
 胴径  59mm 〜 70.5mm （1cm以上の差）
@@ -173,6 +173,6 @@ updated: 2026-08-24
 
 ## この記事で使った数字の出どころ
 
-- ペットボトルの寸法：料材開発株式会社「飲料用ボトル 500ml〜」／小林硝子株式会社「飲料500ml丸耐熱」
-- クーラーボックスの内寸・公表本数：ダイワ／ロゴス／キャプテンスタッグ／アイリスオーヤマ の各公式製品ページ
+- ペットボトルの寸法：[料材開発株式会社「飲料用ボトル 500ml〜」](https://www.ryozai.com/buisiness/pet-original/water-bottle/detail-water500)／[小林硝子株式会社「飲料500ml丸耐熱」](https://www.kgk-knet.co.jp/product/ms-05-0046/)
+- クーラーボックスの内寸・公表本数：[ダイワ クールラインα3](https://www.daiwa.com/jp/product/9nfwu18)／[ロゴス ハイパー氷点下クーラーL](https://www.logos.ne.jp/products/info/951)／[キャプテンスタッグ CS＋コールドクーラーボックス20](https://www.captainstag.net/products/UE-113.html)／[アイリスオーヤマ HUGEL 真空断熱クーラーボックス](https://www.irisohyama.co.jp/hugel/cooler-box/15l/)
 - 計算値は上記の公表内寸から筆者が算出したもので、実測ではありません
