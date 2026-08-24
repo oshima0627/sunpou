@@ -7,6 +7,18 @@
   "//origin": "本番の公開URL。canonical と sitemap がこの値を使うので、変更したら必ず再ビルドすること。",
   "origin": "https://sunpou.nexeed-lab.com",
 
+  "//categories": "記事の front matter の category は、この slug のどれかでなければビルドが落ちる。",
+  "categories": [
+    { "slug": "coolerbox", "name": "クーラーボックス" }
+  ],
+
+  "//nav": "ヘッダーとフッターのナビ。カテゴリは自動で先頭に入るので、ここには固定ページだけ書く。",
+  "nav": [
+    { "path": "/about/", "label": "運営者情報" },
+    { "path": "/privacy/", "label": "プライバシーポリシー" },
+    { "path": "/sitemap/", "label": "サイトマップ" }
+  ],
+
   "//affiliateDisclosure": "Amazonアソシエイト運営規約が求める開示文言。正確な文言は規約の該当条項で確認してから確定させること（現状は一般に使われている形）。",
   "affiliateDisclosure": "Amazonのアソシエイトとして、寸法で選ぶは適格販売により収入を得ています。",
 
@@ -17,5 +29,8 @@
   "affiliateEnabled": false,
 
   "//webAnalyticsToken": "Cloudflare Web Analytics のビーコントークン。クライアント側HTMLに出るので秘密情報ではない（リポジトリに置いてよい）。空にすると計測タグを出力しない。",
-  "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb"
+  "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb",
+
+  "//defaultOgImage": "og:image の既定値。記事の front matter に eyecatch があればそちらを使う。",
+  "defaultOgImage": "/img/coolerbox-500ml-eyecatch.svg"
 }

@@ -314,26 +314,6 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 .lead { font-size: 1.0625rem; color: var(--muted); margin-bottom: 2.2rem; }
 
-.article-list { list-style: none; padding: 0; margin: 0; }
-
-.article-list li {
-  padding: 1.4rem 0;
-  border-top: 1px solid var(--line);
-}
-.article-list li:last-child { border-bottom: 1px solid var(--line); }
-
-.article-list a {
-  display: block;
-  font-size: 1.1rem;
-  font-weight: 700;
-  line-height: 1.5;
-  text-decoration: none;
-  color: var(--fg);
-}
-.article-list a:hover { color: var(--link); text-decoration: underline; }
-
-.article-list p { margin: .45rem 0 .3rem; font-size: .9rem; color: var(--muted); }
-.article-list time { font-size: .76rem; color: var(--muted); }
 
 /* ---------------------------------------------------------------- フッター */
 
@@ -351,3 +331,184 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 .disclosure { font-size: .82rem; margin: 0 0 .7rem; }
 .note, .copy { font-size: .78rem; color: var(--muted); margin: 0 0 .5rem; }
+
+/* ================================================================
+ * 参考サイトと同じ構成にするために追加したパーツ
+ * （グローバルナビ／アイキャッチ／図版／シェア／関連記事／
+ *   カテゴリラベル／記事カード／ページトップ／サイドバー目次）
+ * ================================================================ */
+
+/* ---- ヘッダーのグローバルナビ */
+
+.site-header__inner {
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.site-header__brand { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; }
+
+.gnav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+
+.gnav a {
+  font-size: .86rem;
+  font-weight: 700;
+  color: var(--fg);
+  text-decoration: none;
+  padding: .15rem 0;
+  border-bottom: 2px solid transparent;
+}
+.gnav a:hover { color: var(--navy); border-bottom-color: var(--navy); }
+
+@media (max-width: 640px) {
+  .site-header__inner { gap: .6rem; }
+  .site-tagline { display: none; }
+  .gnav { gap: .85rem; }
+  .gnav a { font-size: .8rem; }
+}
+
+/* ---- カテゴリラベル */
+
+.cat-label { margin: 0 0 .7rem; }
+.cat-label a {
+  display: inline-block;
+  font-size: .76rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  padding: .22rem .7rem;
+  text-decoration: none;
+  border-radius: 2px;
+}
+.cat-label a:hover { opacity: .85; }
+
+/* ---- アイキャッチ・図版 */
+
+.eyecatch { margin: 0 0 1.6rem; }
+.eyecatch img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+
+.fig { margin: 1.8rem 0; }
+.fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+.fig figcaption {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: .5rem;
+}
+
+/* ---- シェアボタン */
+
+.share { margin: 3.5rem 0 0; padding-top: 1.4rem; border-top: 1px solid var(--line); }
+.share__title { font-size: .82rem; font-weight: 700; color: var(--muted); margin: 0 0 .7rem; }
+.share ul { display: flex; gap: .5rem; flex-wrap: wrap; list-style: none; margin: 0; padding: 0; }
+.share li { margin: 0; }
+.share a {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  padding: .35rem 1rem;
+}
+.share a:hover { background: var(--navy); color: #fff; }
+
+/* ---- 関連記事 */
+
+.related { margin-top: 3rem; }
+.related__title {
+  font-size: 1.05rem !important;
+  font-weight: 700;
+  margin: 0 0 1rem !important;
+  padding: 0 0 .5rem !important;
+  border: 0 !important;
+  border-bottom: 2px solid var(--navy) !important;
+  background: transparent !important;
+}
+.related__list { list-style: none; margin: 0; padding: 0; }
+.related__list li { padding: .8rem 0; border-bottom: 1px solid var(--line); }
+.related__list a { font-size: .95rem; font-weight: 700; text-decoration: none; color: var(--fg); }
+.related__list a:hover { color: var(--link); text-decoration: underline; }
+.related__list time { display: block; font-size: .74rem; color: var(--muted); margin-top: .15rem; }
+
+/* ---- 記事カード（トップ・カテゴリー） */
+
+.article-list { list-style: none; padding: 0; margin: 0; }
+.article-list li { border-top: 1px solid var(--line); }
+.article-list li:last-child { border-bottom: 1px solid var(--line); }
+
+.article-list__link {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 1.2rem;
+  align-items: start;
+  padding: 1.3rem 0;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 400;
+}
+.article-list__link:hover .article-list__title { color: var(--link); text-decoration: underline; }
+
+.article-list__thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--line);
+}
+
+.article-list__cat {
+  display: inline-block;
+  font-size: .7rem;
+  font-weight: 700;
+  color: #fff;
+  background: var(--navy);
+  padding: .15rem .55rem;
+  margin-bottom: .4rem;
+  border-radius: 2px;
+}
+
+.article-list__title { display: block; font-size: 1.08rem; font-weight: 700; line-height: 1.5; color: var(--fg); }
+.article-list__desc  { display: block; font-size: .88rem; color: var(--muted); margin: .35rem 0 .3rem; }
+.article-list time   { font-size: .76rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .article-list__link { grid-template-columns: minmax(0, 1fr); gap: .7rem; }
+}
+
+/* ---- サイドバーの目次 */
+
+.toc--side { border: 0; padding: 0; margin: 0; }
+.toc--side ol { padding-left: 1.2rem; font-size: .84rem; }
+.toc--side li { margin-bottom: .35rem; }
+.toc--side ol ol { font-size: .8rem; }
+
+.widget__more { margin-top: .6rem; }
+.widget__more a { font-size: .82rem; }
+.widget time { display: block; font-size: .74rem; color: var(--muted); margin-top: .15rem; }
+
+/* ---- フッターナビ */
+
+.fnav { display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 1.2rem; }
+.fnav a { font-size: .84rem; font-weight: 700; color: var(--fg); text-decoration: none; }
+.fnav a:hover { color: var(--navy); text-decoration: underline; }
+
+/* ---- ページトップ */
+
+.pagetop {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  z-index: 20;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--navy);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 2px;
+  opacity: .82;
+}
+.pagetop:hover { opacity: 1; text-decoration: none; }
