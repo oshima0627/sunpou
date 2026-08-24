@@ -95,6 +95,9 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
   - 検証済み：デスクトップ1280pxで2カラム＋サイドバーsticky／**375pxで1カラムに落ちサイドバーは下**／
     横スクロールなし／表5つは箱内でスクロール／本文リンクは太字下線・目次リンクはプレーン
   - 記事の出典に**メーカー公式ページへのリンク**を追加（Amazonリンクではないので規約と無関係）
+- 2026-08-24: **GitHub と Cloudflare を Git 連携。** `main` に push すると自動でビルド＆デプロイされる。
+  リポジトリ `oshima0627/amazon-affiliate` ／ Root directory **`/site`** ／ ビルド `npm run build` ／
+  デプロイ `npx wrangler deploy`。非本番ブランチは `versions upload`（本番に出ない）
 - 2026-08-24: **本番公開。** https://sunpou.nexeed-lab.com/ （Worker `sunpou` ＋ カスタムドメイン）
   - 本番で curl 検証済み：トップ200／記事は末尾スラッシュへ301→200／存在しないURLは404／
     canonical と og:url が実URLと一致
