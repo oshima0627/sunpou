@@ -205,8 +205,16 @@ const byRecent = [...articles].sort((a, b) => (a.updated < b.updated ? 1 : -1));
 
 // ---- 共通パーツ
 
+/**
+ * カテゴリが1つしかない間は、ナビにもサイドバーにもカテゴリを出さない。
+ *
+ * 「寸法で選ぶ」の中に「クーラーボックス」しか無い状態では、カテゴリ名はサイト名と
+ * ほぼ同義で情報量がゼロになる。2つ目のカテゴリを site.json に足した時点で自動的に出る。
+ */
+const showCategoryNav = site.categories.length >= 2;
+
 const navHtml = [
-  ...site.categories.map((c) => ({ path: `/${c.slug}/`, label: c.name })),
+  ...(showCategoryNav ? site.categories.map((c) => ({ path: `/${c.slug}/`, label: c.name })) : []),
   ...site.nav,
 ]
   .map((n) => `<a href="${n.path}">${esc(n.label)}</a>`)
@@ -226,15 +234,17 @@ function postListHtml(list, cls = '') {
     .join('')}</ul>`;
 }
 
-const categoryWidget = widget(
-  'カテゴリー',
-  `<ul>${site.categories
-    .map((c) => {
-      const n = articles.filter((a) => a.category === c.slug).length;
-      return `<li><a href="/${c.slug}/">${esc(c.name)}</a><time>${n}記事</time></li>`;
-    })
-    .join('')}</ul>`,
-);
+const categoryWidget = showCategoryNav
+  ? widget(
+      'カテゴリー',
+      `<ul>${site.categories
+        .map((c) => {
+          const n = articles.filter((a) => a.category === c.slug).length;
+          return `<li><a href="/${c.slug}/">${esc(c.name)}</a><time>${n}記事</time></li>`;
+        })
+        .join('')}</ul>`,
+    )
+  : '';
 
 const aboutWidget = widget('このサイトについて', `<p>${esc(site.description)}</p><p class="widget__more"><a href="/about/">運営者情報と数値の作り方 →</a></p>`);
 
@@ -243,6 +253,7 @@ const common = {
   siteName: esc(site.name),
   tagline: esc(site.tagline),
   nav: navHtml,
+  robots: '',
   disclosure: disclosureHtml,
   analytics: analyticsHtml,
   ogImage: ORIGIN + site.defaultOgImage,
@@ -378,6 +389,10 @@ for (const c of site.categories) {
         inLanguage: site.lang,
       }),
       breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: c.name }]),
+      // カテゴリが1つの間、このページはトップページと中身がほぼ同じになる。
+      // 重複コンテンツとして competing させたくないので noindex にしておく
+      // （follow なので記事へのリンクはたどられる）。2つ目のカテゴリができたら自動で index される。
+      robots: showCategoryNav ? '' : '<meta name="robots" content="noindex,follow">',
       sidebar: aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget,
       content:
         `<h1>${esc(c.name)}の記事一覧</h1>` +
@@ -483,7 +498,8 @@ writeFile(
 
 const urls = [
   { loc: `${ORIGIN}/`, lastmod: byRecent[0]?.updated },
-  ...site.categories.map((c) => ({ loc: `${ORIGIN}/${c.slug}/`, lastmod: byRecent[0]?.updated })),
+  // noindex のカテゴリページは sitemap に載せない
+  ...(showCategoryNav ? site.categories.map((c) => ({ loc: `${ORIGIN}/${c.slug}/`, lastmod: byRecent[0]?.updated })) : []),
   ...byRecent.map((a) => ({ loc: a.url, lastmod: a.updated })),
   ...pages.map((p) => ({ loc: p.url, lastmod: p.updated })),
   { loc: `${ORIGIN}/sitemap/`, lastmod: byRecent[0]?.updated },
