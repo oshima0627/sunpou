@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="大型ペットボトルの全高とクーラーボックスの内寸の深さを比べた図。1.5Lは305〜307.5mmで2Lの305〜306mmとほぼ同じ高さ。深さ255mm以下のクーラーボックスにはどちらも立たない">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .h    { font: 700 19px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s    { font: 400 14px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .lbl  { font: 400 12px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 12px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .dep  { font: 700 12px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; fill: #b5561e; }
+    .bar  { fill: #cfe0ef; stroke: #014172; stroke-width: 1.5; }
+    .bar2 { fill: #9dc2e0; stroke: #014172; stroke-width: 1.5; }
+    .line { stroke: #b5561e; stroke-width: 1.5; stroke-dasharray: 6 4; }
+    .axis { stroke: #c9cfd6; stroke-width: 1; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="34">大型ペットボトルの全高 と クーラーボックスの深さ</text>
+  <text class="s mute" x="30" y="58">縦軸 = mm ／ 棒がボトルの全高、破線がクーラーボックスの内寸の深さ。破線より高い棒は立たない。</text>
+
+  <!-- 目盛り -->
+  <line class="axis" x1="60" y1="420" x2="700" y2="420"/>
+  <line class="axis" x1="60" y1="90"  x2="700" y2="90"/>
+  <text class="lbl mute" x="34" y="424">200</text>
+  <text class="lbl mute" x="34" y="94">240</text>
+
+  <!-- クーラーボックスの深さ（破線） -->
+  <line class="line" x1="60" y1="360" x2="700" y2="360"/>
+  <text class="dep" x="706" y="356">220mm ダイワ 10L・20L</text>
+  <line class="line" x1="60" y1="330" x2="700" y2="330"/>
+  <text class="dep" x="706" y="326">230mm ダイワ 15L</text>
+  <line class="line" x1="60" y1="300" x2="700" y2="300"/>
+  <text class="dep" x="706" y="296">240mm ロゴス20L・アイリス20L</text>
+  <line class="line" x1="60" y1="291" x2="700" y2="291"/>
+  <text class="dep" x="706" y="287">243mm アイリス15L</text>
+  <line class="line" x1="60" y1="255" x2="700" y2="255"/>
+  <text class="dep" x="706" y="251">255mm ダイワ 25L</text>
+  <line class="line" x1="60" y1="90" x2="700" y2="90"/>
+  <text class="dep" x="706" y="86">310mm アイリス40L</text>
+
+  <!-- ボトル（棒） -->
+  <!-- y = 420 - (h-200)*3 -->
+  <g class="bar">
+    <rect x="74"  y="348"   width="52" height="72"/>
+    <rect x="154" y="276"   width="52" height="144"/>
+    <rect x="234" y="270"   width="52" height="150"/>
+    <rect x="314" y="238.2" width="52" height="181.8"/>
+  </g>
+  <g class="bar2">
+    <rect x="394" y="105"  width="52" height="315"/>
+    <rect x="474" y="97.5" width="52" height="322.5"/>
+    <rect x="554" y="105"  width="52" height="315"/>
+    <rect x="634" y="102"  width="52" height="318"/>
+  </g>
+
+  <g class="val navy" text-anchor="middle">
+    <text x="100" y="342">224</text>
+    <text x="180" y="270">248</text>
+    <text x="260" y="264">250</text>
+    <text x="340" y="232">260.6</text>
+    <text x="420" y="99">305</text>
+    <text x="500" y="91.5">307.5</text>
+    <text x="580" y="99">305</text>
+    <text x="660" y="96">306</text>
+  </g>
+
+  <g class="lbl ink" text-anchor="middle">
+    <text x="100" y="440">1L角リブ</text>
+    <text x="180" y="440">1L長角</text>
+    <text x="260" y="440">1L平角</text>
+    <text x="340" y="440">1L炭酸</text>
+    <text x="420" y="440">1.5L炭酸</text>
+    <text x="500" y="440">1.5L角</text>
+    <text x="580" y="440">2L角(B)</text>
+    <text x="660" y="440">2L角(A)</text>
+  </g>
+
+  <text class="s ink" x="30" y="480">★ 1.5L（305〜307.5mm）は 2L（305〜306mm）とほぼ同じ高さ。「1.5Lなら入る」は成り立たない。</text>
+  <text class="s mute" x="30" y="502">出典：ボトル＝料材開発「飲料用ボトル 1L〜」／深さ＝各メーカー公式の内寸</text>
+</svg>
