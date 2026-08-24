@@ -84,25 +84,44 @@ updated: 2026-08-24
 
 → **`npm run deploy` は今すぐ通る状態。**
 
-### ⚠️ ただしデプロイ前に必ず直すこと
+## 本番稼働中（2026-08-24 デプロイ）
 
-**`content/site.json` の `origin` が `https://sunpou.example.workers.dev` のままになっている。**
-**canonical と sitemap.xml がこの値を使う**ため、書き換えずに公開すると
-Google に存在しないURLを正規URLとして伝えることになる。SEO目的が最初から崩れる。
+**https://sunpou.nexeed-lab.com/**
 
-公開URLの候補：
+`wrangler.jsonc` の `routes` に `custom_domain: true` で指定しているため、
+DNSレコードと証書は Cloudflare 側が自動作成した。
 
-| 選択肢 | URL | 評価 |
-|---|---|---|
-| サブドメイン | `sunpou.nexeed-lab.com` | **SEOで最も有利**（既存ドメインの評価を一部引き継げる）。追加費用0円 |
-| workers.dev | `sunpou.<subdomain>.workers.dev` | 0円で即公開。共有ドメインなのでSEOは不利 |
-| 新規ドメイン | 例 `sunpou.jp` | ブランドを分離できる。年1,500円前後 |
+### 本番で確認した結果（curl で実際に叩いた）
 
-**未決定。** 決まったら `origin` を書き換えてからデプロイする。
+| 項目 | 結果 |
+|---|---|
+| トップ | 200 |
+| 記事 `/coolerbox/500ml-honsuu` | 301 で `/` 付きへ正規化 → 200 |
+| 存在しないURL | **404** |
+| `<html lang>` | `ja` |
+| canonical / og:url | `https://sunpou.nexeed-lab.com/coolerbox/500ml-honsuu/`（一致） |
+| `/robots.txt`・`/sitemap.xml` | 配信されている |
+
+### ⚠️ robots.txt に Cloudflare が Managed content を差し込んでいる
+
+`/robots.txt` を実際に見ると、**こちらが書いた内容の前に Cloudflare 管理のブロックが挿入されている。**
+その中に **`User-agent: Amazonbot` / `Disallow: /`** が含まれている。
+
+```
+User-agent: Amazonbot
+Disallow: /
+```
+
+**Amazonアフィリエイトのサイトで Amazonbot を拒否している状態。**
+これは zone（`nexeed-lab.com`）側の Cloudflare 設定（AI Crawl Control / Managed robots.txt）由来で、
+このリポジトリの `robots.txt` では上書きできない。
+
+→ **ダッシュボードで Amazonbot を許可に変えるか検討すること**（zone 設定の変更なので未実施）。
+なお `Content-Signal: search=yes` と `User-agent: *  Allow: /` は入っているので、
+**Googlebot は通る**（検索流入そのものは妨げていない）。
 
 ## 未確定
 
-- **公開URL（上表）。** これが決まらないとデプロイできない
 - **アクセス解析が未導入。** クリック率と購入率の実測が収益モデルの鍵
   （`../docs/serp-check.md`）なので、公開と同時に入れる。
   このアカウントで Cloudflare Web Analytics が使える

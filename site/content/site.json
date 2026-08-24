@@ -4,8 +4,8 @@
   "description": "メーカー公式の寸法をもとに、カタログには書いていない「何本入るか」「本当に収まるのか」を計算して比べるサイトです。実測ではなく、公表寸法からの計算です。",
   "lang": "ja",
 
-  "//origin": "本番の公開URL。独自ドメインを取ったらここを書き換える。canonical と sitemap がこの値を使う。",
-  "origin": "https://sunpou.example.workers.dev",
+  "//origin": "本番の公開URL。canonical と sitemap がこの値を使うので、変更したら必ず再ビルドすること。",
+  "origin": "https://sunpou.nexeed-lab.com",
 
   "//affiliateDisclosure": "Amazonアソシエイト運営規約が求める開示文言。正確な文言は規約の該当条項で確認してから確定させること（現状は一般に使われている形）。",
   "affiliateDisclosure": "Amazonのアソシエイトとして、寸法で選ぶは適格販売により収入を得ています。",

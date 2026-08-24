@@ -88,9 +88,15 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
     375px でページ自体は横スクロールしない／存在しないURLは **HTTP 404**／sitemap・robots 配信／コンソールエラーなし
   - ⚠️ **`affiliateEnabled=false` のうちはリンクも開示文言も出力しない。**
     リンクが無いのに「適格販売により収入を得ています」と書くのは事実に反するため
-  - ⚠️ **公開には利用者側の作業が3つ必要**：Cloudflare アカウント作成 ／ `npx wrangler login`（OAuth）／
-    `site/content/site.json` の `origin` を実URLに書き換え（canonical と sitemap がこの値を使う）
-  - ⚠️ **アクセス解析が未導入。** クリック率と購入率の実測が収益モデルの鍵なので、公開前に入れる必要がある
+- 2026-08-24: **本番公開。** https://sunpou.nexeed-lab.com/ （Worker `sunpou` ＋ カスタムドメイン）
+  - 本番で curl 検証済み：トップ200／記事は末尾スラッシュへ301→200／存在しないURLは404／
+    canonical と og:url が実URLと一致
+  - ⚠️ **robots.txt に Cloudflare の Managed content が差し込まれており、`Amazonbot` が Disallow になっている。**
+    Amazonアフィリエイトのサイトで Amazon のクローラを拒否している状態。zone 設定由来なので
+    リポジトリ側では直せない。**要判断**（Googlebot は通っているので検索流入は妨げていない）
+  - ⚠️ **アクセス解析が未導入。** クリック率と購入率の実測が収益モデルの鍵。
+    クリック数と注文数はアソシエイト・セントラルのレポートで取れるので、
+    足りないのは**ページのセッション数**。Cloudflare Web Analytics で入れられる
 - 2026-08-24: アソシエイトの料率・審査・規約を一次情報で確認（`docs/affiliate-program-facts.md`）。
   記事構成に効く確定事項が3つ出た：
   1. **価格は手打ちで書けない**（リンク／API 経由のみ・日時と免責の併記が必須）。

@@ -19,6 +19,12 @@
     "html_handling": "auto-trailing-slash"
   },
 
+  // カスタムドメイン。custom_domain: true にすると、
+  // DNSレコードと証書は Cloudflare 側で自動作成される（zone は同一アカウント内）。
+  "routes": [
+    { "pattern": "sunpou.nexeed-lab.com", "custom_domain": true }
+  ],
+
   "observability": {
     "enabled": true
   }
