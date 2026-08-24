@@ -1,0 +1,16 @@
+{
+  "name": "sunpou-site",
+  "private": true,
+  "type": "module",
+  "description": "寸法で選ぶ — Amazon商品比較記事サイト（Cloudflare Workers Static Assets）",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs && wrangler dev",
+    "deploy": "node build.mjs && wrangler deploy",
+    "clean": "node -e \"import('node:fs').then(fs=>fs.rmSync('dist',{recursive:true,force:true}))\""
+  },
+  "devDependencies": {
+    "marked": "^15.0.0",
+    "wrangler": "^4.125.0"
+  }
+}
