@@ -95,10 +95,18 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
   - 検証済み：デスクトップ1280pxで2カラム＋サイドバーsticky／**375pxで1カラムに落ちサイドバーは下**／
     横スクロールなし／表5つは箱内でスクロール／本文リンクは太字下線・目次リンクはプレーン
   - 記事の出典に**メーカー公式ページへのリンク**を追加（Amazonリンクではないので規約と無関係）
-- 2026-08-24: **Amazonbot を許可した。** 根拠は Amazon 公式の記載
-  「If you allow Amazonbot on your robots.txt, you may be eligible for benefits with
-  Amazon Content Partners」＝**紹介料 +1%**（＋AWSクレジット月$100、トラフィック下限なし）。
-  料率2〜8%のこのサイトでは**収益が25〜50%変わる**ため、ジャンル選定やSERP分析より効果が大きい。
+- 2026-08-24: **Amazonbot を許可した。**
+  > ⚠️ **2026-08-24 訂正。** 当初の根拠は Amazon Content Partners の**紹介料 +1%** だったが、
+  > **このプログラムは現在アメリカ在住者限定**で、日本からは登録できない。
+  > 登録ページの要件に「**You're based in the United States** / We are starting with US-based
+  > partners. Stay tuned as we continue to expand.」と明記されている。
+  > **地域要件を確認せずに「収益が25〜50%変わる」と推奨したのは誤りだった。**
+  >
+  > ただし設定変更自体は残す価値がある：①**「Block AI bots」は9月15日に廃止予定**で、
+  > いずれ個別管理への移行が必要だった ②廃止に伴い「mixed purpose crawlers をブロックする」
+  > 設定が有効になっており、**検索インデックスに影響する恐れ**があった ③将来プログラムが
+  > 日本に拡大したとき、robots.txt 側の条件は既に満たしている
+  > **→ +1% は当面得られない。** 得られるのは①②の解消と③の先回りだけ。
   - ⚠️ **1トグルでは済まなかった。** ゾーン設定「Block AI bots」が個別トグルを上書きしており、
     スコープ選択肢に**ホスト単位の除外が無い**ため、`nexeed-lab.com` 全体の設定を組み替えた：
     ①「Block AI bots」を `Do not block` に ②AI Crawl Control で **AI Crawler 15件を個別ブロック**
