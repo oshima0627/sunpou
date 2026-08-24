@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="ダイワのKEEPとシマノのCOOLは、どちらもJIS S 2048の簡便法で氷が溶け切るまでの時間に換算した同じ物差しであることを示した図">
+  <style>
+    .bg     { fill: #fcfcfc; }
+    .ink    { fill: #434347; }
+    .mute   { fill: #6f7680; }
+    .navy   { fill: #014172; }
+    .h      { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s      { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n      { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .bottle { fill: #cfe0ef; stroke: #014172; stroke-width: 1.5; }
+    .box    { fill: none; stroke: #014172; stroke-width: 3; }
+    .waste  { fill: #e3e7ec; }
+  </style>
+
+  <style>
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .brand{ font: 700 40px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cap  { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .card { fill: #eef3f8; stroke: #014172; stroke-width: 2; }
+    .band { fill: rgba(33,53,85,.06); }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="86">ダイワ「KEEP」と シマノ「COOL」</text>
+  <text class="st mute" x="80" y="130">名前は違っても、同じ物差しでした</text>
+
+  <rect class="card" x="80"  y="170" width="480" height="150"/>
+  <text class="brand navy" x="112" y="228">KEEP 26 〜 90</text>
+  <text class="st ink"     x="112" y="278">ダイワ クールラインα3</text>
+
+  <rect class="card" x="640" y="170" width="480" height="150"/>
+  <text class="brand navy" x="672" y="228">COOL 32 〜 140</text>
+  <text class="st ink"     x="672" y="278">シマノ フィクセル</text>
+
+  <rect class="band" x="80" y="360" width="1040" height="150"/>
+  <text class="cap ink" x="112" y="404">どちらも JIS S 2048：2006 の簡便法</text>
+  <text class="st mute" x="112" y="446">外気40℃ ／ 本体容量の25%の角氷 ／ 氷が溶け切るまでの時間に換算</text>
+  <text class="st mute" x="112" y="484">両社とも「目安であり保証値ではない」と明記しています</text>
+
+  <text class="st mute" x="80" y="566">寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>
