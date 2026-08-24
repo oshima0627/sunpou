@@ -52,6 +52,19 @@ const disclosureHtml = site.affiliateEnabled
   : '';
 
 /**
+ * Cloudflare Web Analytics のビーコン。
+ *
+ * 収益モデルの鍵は「リンククリック率」と「購入率」で、
+ * クリック数と注文数はアソシエイト・セントラルのレポートから取れる。
+ * 足りないのは分母になる「ページのセッション数」なので、それをここで測る。
+ *
+ * トークンはクライアント側HTMLに出る公開値。秘密情報ではない。
+ */
+const analyticsHtml = site.webAnalyticsToken
+  ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${site.webAnalyticsToken}"}'></script>`
+  : '';
+
+/**
  * 本文中の [[LINK:商品名]] を処理する。
  *
  * 審査に合格するまで（affiliateEnabled=false）はリンクを出さない。
@@ -161,6 +174,7 @@ for (const file of files) {
           ${html}
         </article>`,
       disclosure: disclosureHtml,
+      analytics: analyticsHtml,
       year: String(new Date(meta.updated).getFullYear()),
     }),
   );
@@ -199,6 +213,7 @@ writeFile(
     breadcrumb: '',
     content: `<h1>${esc(site.name)}</h1><p class="lead">${esc(site.description)}</p>${list}`,
     disclosure: disclosureHtml,
+    analytics: analyticsHtml,
     year: String(new Date().getFullYear()),
   }),
 );
@@ -218,6 +233,7 @@ writeFile(
     breadcrumb: '',
     content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p>',
     disclosure: disclosureHtml,
+    analytics: analyticsHtml,
     year: String(new Date().getFullYear()),
   }),
 );
