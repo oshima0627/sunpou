@@ -77,6 +77,25 @@ function resolveLinks(html) {
   });
 }
 
+/**
+ * 強調記法が解釈されずに残っていないか検査する。
+ *
+ * CommonMark の flanking ルールは約物（「」。、）を punctuation として扱うため、
+ * 「**〜「深さ」**です」のように閉じ側が約物の直後にあると太字にならず、
+ * ** がそのまま本文に出てしまう。日本語では踏みやすいので、黙って公開されないよう
+ * ビルドを落とす。回避策は「です。」を強調の内側に入れること。
+ */
+function assertNoRawEmphasis(html, file) {
+  const m = html.match(/.{0,40}\*\*.{0,40}/);
+  if (m) {
+    throw new Error(
+      `${file}: 太字記法が解釈されずに残っています（CommonMark の flanking ルール）。` +
+        ` 該当箇所: ${m[0]}` +
+        ' / 対処: 閉じの ** が約物（」。、）の直後に来ないよう、「です。」等を強調の内側に入れる',
+    );
+  }
+}
+
 /** 表は横スクロールできる箱に入れる（スマホで本文が横に伸びるのを防ぐ）。 */
 const wrapTables = (html) =>
   html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
@@ -204,6 +223,7 @@ const common = {
 
 for (const a of articles) {
   const parsed = addHeadingIds(wrapTables(marked.parse(a.body)));
+  assertNoRawEmphasis(parsed.html, a.file);
   const html = resolveLinks(parsed.html);
   const toc = renderToc(parsed.headings);
 
