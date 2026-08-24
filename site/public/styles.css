@@ -54,37 +54,40 @@ a:hover { text-decoration: none; }
 
 /* ---------------------------------------------------------------- ヘッダー */
 
+/* 参考サイト（tsuzukiblog.org）のヘッダーを実測して合わせている。
+ *   高さ 94px ／ 背景 #fdfdfd ／ 罫線は無く box-shadow で区切る
+ *   ロゴ 24px・700・#333 を左、ナビ 16px・400・#333 を右寄せ
+ *   ナビ項目の padding は左右 12px、letter-spacing 0.4px
+ * 参考サイトはデスクトップで position: relative、モバイルで sticky。
+ * こちらは追従の実用性を取って両方 sticky にしている。 */
 .site-header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 100;
   background: var(--bg-chrome);
-  border-bottom: 1px solid var(--line);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .12);
 }
 
 .site-header__inner {
   max-width: calc(var(--content) + var(--side) + 40px);
   margin-inline: auto;
-  padding: 1.1rem 1.15rem;
+  min-height: 94px;
+  padding: 0 1.15rem;
   display: flex;
-  align-items: baseline;
-  gap: .8rem;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 .site-name {
-  font-size: 1.1rem;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--fg);
+  color: var(--fg-strong);
   text-decoration: none;
   letter-spacing: .01em;
+  white-space: nowrap;
 }
-.site-name:hover { text-decoration: none; }
-
-.site-tagline {
-  font-size: .78rem;
-  color: var(--muted);
-  font-weight: 400;
-}
+.site-name:hover { text-decoration: none; color: var(--navy); }
 
 /* ---------------------------------------------------------------- レイアウト */
 
@@ -340,30 +343,48 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 /* ---- ヘッダーのグローバルナビ */
 
-.site-header__inner {
+.gnav {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
+  margin-right: -12px;
 }
-
-.site-header__brand { display: flex; align-items: baseline; gap: .7rem; flex-wrap: wrap; }
-
-.gnav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
 
 .gnav a {
-  font-size: .86rem;
-  font-weight: 700;
-  color: var(--fg);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--fg-strong);
   text-decoration: none;
-  padding: .15rem 0;
-  border-bottom: 2px solid transparent;
+  padding: .35rem 12px;
+  letter-spacing: .4px;
+  line-height: 1.4;
 }
-.gnav a:hover { color: var(--navy); border-bottom-color: var(--navy); }
+.gnav a:hover { color: var(--navy); text-decoration: underline; }
 
-@media (max-width: 640px) {
-  .site-header__inner { gap: .6rem; }
-  .site-tagline { display: none; }
-  .gnav { gap: .85rem; }
-  .gnav a { font-size: .8rem; }
+/* モバイル。参考サイトはハンバーガーメニューだが、こちらは JS を持たない方針なので
+ * ナビを横スクロールの1行にして高さを抑えている（2行に折り返すとヘッダーが113pxになり、
+ * sticky で画面を圧迫するため）。ページ自体は横スクロールしない。 */
+@media (max-width: 820px) {
+  .site-header__inner {
+    min-height: 84px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-block: .6rem;
+    gap: .1rem 1rem;
+  }
+  .site-name { font-size: 20px; }
+  .gnav {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    margin-left: -12px;
+    margin-right: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .gnav::-webkit-scrollbar { display: none; }
+  .gnav a { font-size: 13px; padding: .3rem 12px; white-space: nowrap; }
 }
 
 /* ---- カテゴリラベル */
