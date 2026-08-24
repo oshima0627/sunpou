@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="ダイワ トランクマスターHD III 8000（80L）とHD II 6000（60L）の内寸を横から見て比べた図。長辺はどちらも85センチで、深さが31.5センチと23.5センチで違う">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .box   { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .diag  { stroke: #a8410f; stroke-width: 4; fill: none; }
+  </style>
+
+  <style>
+    .t   { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st  { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cap { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big { font: 700 34px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="84">80L と 60L。長さは同じ 85cm</text>
+  <text class="st mute" x="80" y="126">内寸を横から見た図 ／ ダイワ トランクマスター ／ 縮尺 6px = 1cm</text>
+
+  <text class="cap ink" x="80" y="170">80L　トランクマスターHD III 8000</text>
+  <rect class="box" x="80" y="184" width="510" height="189"/>
+  <text class="big navy" x="640" y="252">長辺 85cm</text>
+  <text class="st ink"   x="640" y="296">深さ 31.5cm</text>
+
+  <text class="cap ink" x="80" y="416">60L　トランクマスターHD II 6000</text>
+  <rect class="box" x="80" y="430" width="510" height="141"/>
+  <text class="big navy" x="640" y="490">長辺 85cm（同じ）</text>
+  <text class="st ink"   x="640" y="534">深さ 23.5cm</text>
+
+  <text class="st mute" x="80" y="612">メーカー公表の内寸からの作図　寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>
