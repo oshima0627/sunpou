@@ -73,21 +73,40 @@ updated: 2026-08-24
 | `main` | **無し** | 動的処理が無いため。必要になったら `main` を足し、`assets.run_worker_first` で対象パスだけ Worker に通す（全部通すと無料枠の10万リクエスト/日を無駄に消費する） |
 | `dist` のクリーン | ディレクトリごと消さず中身だけ | `wrangler dev` 起動中に再ビルドすると、Windows ではディレクトリ削除が EPERM で失敗する |
 
-## ⚠️ 公開する前に必要なこと（こちらでは実行できない作業）
+## 公開の前提（2026-08-24 に実際に確認済み）
 
-1. **Cloudflare アカウントの作成**
-2. **`npx wrangler login`** — ブラウザでの OAuth 認可が必要
-3. **`content/site.json` の `origin` を実際の公開URLに書き換える**
-   → 現在は `https://sunpou.example.workers.dev` というプレースホルダ。
-   **canonical と sitemap がこの値を使うので、書き換えないまま公開すると
-   Google に間違ったURLを伝えることになる**
-4. （任意）独自ドメインの取得と紐付け
+| 項目 | 状態 |
+|---|---|
+| Cloudflare アカウント | **あり** — `Oshima6.27@gmail.com's Account` / ID `7f78c5fbb2ed33d229d8b09b1d872fa1` |
+| `wrangler login` | **完了済み。** OAuth トークンあり（`workers_scripts (write)` を含む）。`npx wrangler whoami` で確認 |
+| 独自ドメイン | **`nexeed-lab.com` を保有**（Cloudflare にゾーン登録済み） |
+| Worker 名 `sunpou` の衝突 | **なし**（既存23個と重複していない） |
 
-`npm run deploy` は 2 が済んでいないと失敗する。
+→ **`npm run deploy` は今すぐ通る状態。**
+
+### ⚠️ ただしデプロイ前に必ず直すこと
+
+**`content/site.json` の `origin` が `https://sunpou.example.workers.dev` のままになっている。**
+**canonical と sitemap.xml がこの値を使う**ため、書き換えずに公開すると
+Google に存在しないURLを正規URLとして伝えることになる。SEO目的が最初から崩れる。
+
+公開URLの候補：
+
+| 選択肢 | URL | 評価 |
+|---|---|---|
+| サブドメイン | `sunpou.nexeed-lab.com` | **SEOで最も有利**（既存ドメインの評価を一部引き継げる）。追加費用0円 |
+| workers.dev | `sunpou.<subdomain>.workers.dev` | 0円で即公開。共有ドメインなのでSEOは不利 |
+| 新規ドメイン | 例 `sunpou.jp` | ブランドを分離できる。年1,500円前後 |
+
+**未決定。** 決まったら `origin` を書き換えてからデプロイする。
 
 ## 未確定
 
-- **サイト名「寸法で選ぶ」と Worker 名 `sunpou` は仮。** 変えるなら
-  `content/site.json` の `name` と `wrangler.jsonc` の `name` の両方
-- アクセス解析を入れていない。**クリック率と購入率の実測が収益モデルの鍵**
-  （`../docs/serp-check.md`）なので、公開前に何か入れる必要がある
+- **公開URL（上表）。** これが決まらないとデプロイできない
+- **アクセス解析が未導入。** クリック率と購入率の実測が収益モデルの鍵
+  （`../docs/serp-check.md`）なので、公開と同時に入れる。
+  このアカウントで Cloudflare Web Analytics が使える
+- サイト名「寸法で選ぶ」／Worker 名 `sunpou` は、寸法で決まるジャンル専門という前提で付けた。
+  ⚠️ **ランニングコスト系（おむつ用ゴミ箱・ラベルライター）は名前の射程外。**
+  当面は価格制約でそもそも書けないジャンルなので問題にならないが、
+  将来広げるなら別サイトにするほうが専門性を保てる
