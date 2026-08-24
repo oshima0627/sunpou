@@ -3,13 +3,28 @@
 `content/articles/*.md` を HTML に変換して `dist/` に出し、Cloudflare Workers の
 Static Assets として配信する。**Worker のコードは無く、アセット配信だけ**の構成。
 
-## コマンド
+## デプロイは Git 連携で自動（2026-08-24 設定）
+
+**`main` に push すると Cloudflare Workers Builds がビルドしてデプロイする。**
+手元から `npm run deploy` を叩く必要はない（叩いても動くが、Git の履歴とズレるので普段は使わない）。
+
+| 設定 | 値 |
+|---|---|
+| リポジトリ | `oshima0627/amazon-affiliate` |
+| 本番ブランチ | `main` |
+| **Root directory（Path）** | **`/site`** ← これを指定しないと `package.json` を見つけられない |
+| ビルドコマンド | `npm run build`（依存のインストールは Workers Builds が自動でやる） |
+| デプロイコマンド | `npx wrangler deploy` |
+| 非本番ブランチ | `npx wrangler versions upload`（プレビュー版を作るだけで本番には出ない） |
+| Preview builds | 有効 |
+
+## コマンド（ローカル開発）
 
 ```bash
 npm install                # 初回のみ
 npm run build              # content/ → dist/
 npm run dev                # build してから wrangler dev（http://localhost:8787）
-npm run deploy             # build してから wrangler deploy
+npm run deploy             # 手動デプロイ。通常は Git 連携に任せる
 ```
 
 ## デザイン
