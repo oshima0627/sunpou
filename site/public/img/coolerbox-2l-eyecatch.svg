@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
-     aria-label="2Lペットボトルは全高306mm。内寸の深さ255mmのクーラーボックスには立たないことを示した断面図">
+     aria-label="2Lペットボトルは全高306mm。内寸の深さ255mmのクーラーボックスには51mmはみ出して立たないことを示した断面図">
   <style>
     .bg   { fill: #fcfcfc; }
     .navy { fill: #014172; }
@@ -7,10 +7,10 @@
     .mute { fill: #6f7680; }
     .warn { fill: #b5561e; }
     .ttl  { font: 700 58px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
-    .sub  { font: 400 29px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 28px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
     .tag  { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; letter-spacing:.14em; }
     .note { font: 400 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
-    .big  { font: 700 30px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big  { font: 700 26px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
     .box  { fill: none; stroke: #014172; stroke-width: 4; }
     .btl  { fill: #cfe0ef; stroke: #014172; stroke-width: 2.5; }
     .over { fill: #f3d6c6; stroke: #b5561e; stroke-width: 2.5; }
@@ -20,25 +20,24 @@
   <rect class="bg" width="1200" height="630"/>
   <rect class="navy" x="0" y="0" width="14" height="630"/>
 
-  <text class="tag navy" x="70" y="118">寸法で選ぶ</text>
-  <text class="ttl ink"  x="70" y="212">2Lペットボトルは</text>
-  <text class="ttl ink"  x="70" y="284">立てて入る？</text>
-  <text class="sub mute" x="70" y="352">10〜25Lのクーラーボックスには、まず立ちません</text>
-  <rect class="navy" x="70" y="392" width="120" height="4"/>
-  <text class="note ink"  x="70" y="448">1.5L も 2L とほぼ同じ高さです</text>
-  <text class="note mute" x="70" y="486">メーカー公表の寸法から判定</text>
+  <!-- 左：テキスト。58px の見出しは行間 85px 取らないと字面が重なる -->
+  <text class="tag navy" x="70" y="112">寸法で選ぶ</text>
+  <text class="ttl ink"  x="70" y="205">2Lペットボトルは</text>
+  <text class="ttl ink"  x="70" y="290">立てて入る？</text>
+  <text class="sub mute" x="70" y="356">10〜25Lには、まず立ちません</text>
+  <rect class="navy" x="70" y="396" width="120" height="4"/>
+  <text class="note ink"  x="70" y="452">1.5L も 2L とほぼ同じ高さです</text>
+  <text class="note mute" x="70" y="492">メーカー公表の寸法から判定</text>
 
-  <!-- 右：断面図。縮尺 1mm = 1.15px -->
-  <!-- クーラーボックス内寸の深さ 255mm → 293px。上端 y=470-293=177 -->
+  <!-- 右：断面図。縮尺 1mm ≒ 1.15px、底辺 y=470 -->
+  <text class="note mute" x="720" y="160">内寸の深さ 255mm</text>
   <rect class="box" x="720" y="177" width="230" height="293"/>
-  <text class="note mute" x="720" y="162">クーラーボックス 内寸の深さ 255mm</text>
 
-  <!-- 2Lボトル 306mm → 352px。底 y=470 なので上端 y=118 -->
+  <!-- 2Lボトル 306mm ≒ 352px。うち 51mm ≒ 59px がはみ出す -->
   <rect class="btl"  x="800" y="177" width="86" height="293"/>
   <rect class="over" x="800" y="118" width="86" height="59"/>
-  <line class="dash" x1="700" y1="177" x2="990" y2="177"/>
+  <line class="dash" x1="700" y1="177" x2="944" y2="177"/>
 
-  <text class="big warn" x="1000" y="132">51mm</text>
-  <text class="note warn" x="1000" y="162">はみ出す</text>
-  <text class="note ink"  x="770" y="510">2Lボトル 全高 306mm</text>
+  <text class="big warn"  x="962" y="155">51mm はみ出す</text>
+  <text class="note ink"  x="720" y="512">2Lボトル 全高 306mm</text>
 </svg>
