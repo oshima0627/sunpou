@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" role="img"
+     aria-label="クーラーボックスの床を上から見た図。長辺59.2センチに対して床の対角線は64.3センチ、深さを含めた立体の対角線は68.3センチになる">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .box   { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .diag  { stroke: #a8410f; stroke-width: 4; fill: none; }
+  </style>
+
+  <rect class="bg" width="900" height="480"/>
+
+  <text class="h ink"  x="30" y="38">斜めに置くと、長辺より長いものが入る</text>
+  <text class="s mute" x="30" y="64">例：シマノ スペーザ 350（内寸 25.2 × 59.2 × 深さ 23.0cm）／ 上から見た床 ／ 縮尺 8px = 1cm</text>
+
+  <rect class="box" x="60" y="150" width="474" height="202"/>
+  <line class="diag" x1="60" y1="352" x2="534" y2="150"/>
+
+  <text class="s ink"  x="60"  y="378">短辺 25.2cm　×　長辺 59.2cm</text>
+  <text class="n navy" x="60"  y="418">床の対角 64.3cm（＋5.1cm）</text>
+  <text class="n navy" x="60"  y="454">立体の対角 68.3cm（＋9.1cm）</text>
+
+  <text class="s ink"  x="600" y="196">床の対角線</text>
+  <text class="s mute" x="600" y="226">√(25.2² ＋ 59.2²) ＝ 64.3</text>
+  <text class="s ink"  x="600" y="276">立体の対角線</text>
+  <text class="s mute" x="600" y="306">√(25.2² ＋ 59.2² ＋ 23.0²) ＝ 68.3</text>
+  <text class="s mute" x="600" y="360">角の丸みや水栓の出っ張りは</text>
+  <text class="s mute" x="600" y="384">計算に入っていません</text>
+</svg>
