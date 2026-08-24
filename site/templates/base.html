@@ -12,17 +12,22 @@
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="{{canonical}}">
 <meta property="og:site_name" content="{{siteName}}">
+<meta property="og:image" content="{{ogImage}}">
 <meta property="og:locale" content="ja_JP">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/styles.css">
 <script type="application/ld+json">{{jsonLd}}</script>
 </head>
 <body>
 <header class="site-header">
   <div class="site-header__inner">
-    <a class="site-name" href="/">{{siteName}}</a>
-    <span class="site-tagline">{{tagline}}</span>
+    <div class="site-header__brand">
+      <a class="site-name" href="/">{{siteName}}</a>
+      <span class="site-tagline">{{tagline}}</span>
+    </div>
+    <nav class="gnav" aria-label="サイト内メニュー">{{nav}}</nav>
   </div>
 </header>
 
@@ -39,6 +44,7 @@
 
 <footer class="site-footer">
   <div class="site-footer__inner">
+    <nav class="fnav" aria-label="フッターメニュー">{{nav}}</nav>
     {{disclosure}}
     <p class="note">
       掲載している寸法・仕様はメーカー公式サイトの公表値です。計算値は公表寸法から算出したもので、実測値ではありません。
@@ -47,6 +53,8 @@
     <p class="copy">&copy; {{year}} {{siteName}}</p>
   </div>
 </footer>
+
+<a class="pagetop" href="#" aria-label="ページの先頭へ戻る">↑</a>
 {{analytics}}
 </body>
 </html>

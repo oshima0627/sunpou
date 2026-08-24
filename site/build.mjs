@@ -1,8 +1,7 @@
 // content/articles/*.md → dist/<slug>/index.html
+// content/pages/*.md    → dist/<slug>/index.html（運営者情報などの固定ページ）
 //
 // 依存は marked のみ。フレームワークは入れていない。
-// 記事が増えて手に負えなくなったら Astro などに移すが、現状は必要ない。
-//
 // 実行: node build.mjs   （出力先 dist/ は .gitignore 済み）
 
 import fs from 'node:fs';
@@ -16,6 +15,7 @@ const site = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/site.json'), 'u
 const baseTpl = fs.readFileSync(path.join(ROOT, 'templates/base.html'), 'utf8');
 
 const ORIGIN = site.origin.replace(/\/$/, '');
+const catName = (slug) => site.categories.find((c) => c.slug === slug)?.name;
 
 // ---------------------------------------------------------------- utilities
 
@@ -36,37 +36,28 @@ function parseFrontMatter(raw) {
   return { meta, body: raw.slice(m[0].length) };
 }
 
-function render(tpl, vars) {
-  return tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => (k in vars ? vars[k] : ''));
-}
+const render = (tpl, vars) => tpl.replace(/\{\{(\w+)\}\}/g, (_, k) => (k in vars ? vars[k] : ''));
 
 /**
- * フッターの開示文言。
- *
- * affiliateEnabled=false のうちは出さない。リンクが1本も無いのに
- * 「適格販売により収入を得ています」と書くのは事実に反するため。
+ * フッターの開示文言。affiliateEnabled=false のうちは出さない。
+ * リンクが1本も無いのに「適格販売により収入を得ています」と書くのは事実に反するため。
  */
 const disclosureHtml = site.affiliateEnabled
   ? `<p class="disclosure">${esc(site.affiliateDisclosure)}</p>`
   : '';
 
 /**
- * Cloudflare Web Analytics のビーコン。
- *
- * 収益モデルの鍵は「リンククリック率」と「購入率」。クリック数と注文数は
- * アソシエイト・セントラルのレポートから取れるので、ここで測るのは分母の
- * セッション数だけ。トークンはHTMLに出る公開値で、秘密情報ではない。
+ * Cloudflare Web Analytics のビーコン。ここで測るのは分母のセッション数だけで、
+ * クリック数と注文数はアソシエイト・セントラルのレポートから取る。
+ * トークンはHTMLに出る公開値で、秘密情報ではない。
  */
 const analyticsHtml = site.webAnalyticsToken
   ? `<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"${site.webAnalyticsToken}"}'></script>`
   : '';
 
 /**
- * 本文中の [[LINK:商品名]] を処理する。
- *
- * 審査に合格するまで（affiliateEnabled=false）はリンクを出さない。
- * true にしただけでリンクが空のまま公開されるのを防ぐため、
- * 実装前に true になっていたら意図的に例外を投げる。
+ * 本文中の [[LINK:商品名]] を処理する。審査に合格するまではリンクを出さない。
+ * true にしただけでリンクが空のまま公開されるのを防ぐため、実装前に true なら例外を投げる。
  */
 function resolveLinks(html) {
   return html.replace(/\[\[LINK:([^\]]+)\]\]/g, (_, label) => {
@@ -79,11 +70,9 @@ function resolveLinks(html) {
 
 /**
  * 強調記法が解釈されずに残っていないか検査する。
- *
  * CommonMark の flanking ルールは約物（「」。、）を punctuation として扱うため、
- * 「**〜「深さ」**です」のように閉じ側が約物の直後にあると太字にならず、
- * ** がそのまま本文に出てしまう。日本語では踏みやすいので、黙って公開されないよう
- * ビルドを落とす。回避策は「です。」を強調の内側に入れること。
+ * 「**〜「深さ」**です」のように閉じ側が約物の直後にあると太字にならず ** が本文に出る。
+ * 日本語では踏みやすいので、黙って公開されないようビルドを落とす。
  */
 function assertNoRawEmphasis(html, file) {
   const m = html.match(/.{0,40}\*\*.{0,40}/);
@@ -100,48 +89,65 @@ function assertNoRawEmphasis(html, file) {
 const wrapTables = (html) =>
   html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
 
-/**
- * h2 / h3 に id を振り、目次の材料を集める。
- * marked v15 は見出しに id を付けないので、ここで採番する。
- * 日本語見出しからスラッグを作ると読めないURLになるため連番にしている。
- */
+/** 本文中の画像を figure にして、alt をキャプションとして見せる。 */
+const wrapFigures = (html) =>
+  html.replace(
+    /<p>(<img src="([^"]+)" alt="([^"]*)"[^>]*>)<\/p>/g,
+    (_, img, src, alt) =>
+      `<figure class="fig"><img src="${src}" alt="${alt}" loading="lazy" decoding="async">` +
+      (alt ? `<figcaption>${alt}</figcaption>` : '') +
+      '</figure>',
+  );
+
+/** h2 / h3 に id を振り、目次の材料を集める。marked v15 は id を付けないので採番する。 */
 function addHeadingIds(html) {
   const headings = [];
   let n = 0;
   const out = html.replace(/<h([23])>([\s\S]*?)<\/h\1>/g, (_, lvl, inner) => {
     n += 1;
-    const id = `s${n}`;
-    headings.push({ level: Number(lvl), id, text: inner.replace(/<[^>]+>/g, '').trim() });
-    return `<h${lvl} id="${id}">${inner}</h${lvl}>`;
+    headings.push({ level: Number(lvl), id: `s${n}`, text: inner.replace(/<[^>]+>/g, '').trim() });
+    return `<h${lvl} id="s${n}">${inner}</h${lvl}>`;
   });
   return { html: out, headings };
 }
 
 /** 目次。h2 を親、h3 を子にした入れ子リストにする。 */
-function renderToc(headings) {
-  // 見出しが少ない記事に目次を出しても邪魔なだけなので出さない
-  if (headings.filter((h) => h.level === 2).length < 3) return '';
-
-  const parts = ['<nav class="toc"><p class="toc__title">目次</p><ol>'];
+function tocList(headings) {
+  const parts = ['<ol>'];
   let subOpen = false;
-
   for (const h of headings) {
     if (h.level === 2) {
       if (subOpen) { parts.push('</ol></li>'); subOpen = false; }
       parts.push(`<li><a href="#${h.id}">${esc(h.text)}</a></li>`);
     } else {
       if (!subOpen) {
-        // 直前の h2 の </li> を開き直して、その中に子リストを作る
-        const last = parts.pop();
-        parts.push(last.replace(/<\/li>$/, ''), '<ol>');
+        parts.push(parts.pop().replace(/<\/li>$/, ''), '<ol>');
         subOpen = true;
       }
       parts.push(`<li><a href="#${h.id}">${esc(h.text)}</a></li>`);
     }
   }
   if (subOpen) parts.push('</ol></li>');
-  parts.push('</ol></nav>');
+  parts.push('</ol>');
   return parts.join('');
+}
+
+/** 見出しが少ない記事に目次を出しても邪魔なだけなので出さない。 */
+const hasToc = (headings) => headings.filter((h) => h.level === 2).length >= 3;
+
+/** SNSシェア。JS を使わず、各サービスの共有URLへのリンクだけを置く。 */
+function shareButtons(title, url) {
+  const t = encodeURIComponent(title);
+  const u = encodeURIComponent(url);
+  const items = [
+    ['X', `https://x.com/intent/tweet?text=${t}&url=${u}`],
+    ['Facebook', `https://www.facebook.com/sharer/sharer.php?u=${u}`],
+    ['はてブ', `https://b.hatena.ne.jp/entry/panel/?url=${u}&title=${t}`],
+    ['LINE', `https://social-plugins.line.me/lineit/share?url=${u}`],
+  ];
+  return `<div class="share"><p class="share__title">この記事をシェア</p><ul>${items
+    .map(([label, href]) => `<li><a href="${href}" target="_blank" rel="noopener nofollow">${label}</a></li>`)
+    .join('')}</ul></div>`;
 }
 
 function writeFile(rel, contents) {
@@ -153,6 +159,23 @@ function writeFile(rel, contents) {
 function copyDir(from, to) {
   if (!fs.existsSync(from)) return;
   fs.cpSync(from, to, { recursive: true });
+}
+
+function readDocs(dir) {
+  const full = path.join(ROOT, dir);
+  if (!fs.existsSync(full)) return [];
+  return fs
+    .readdirSync(full)
+    .filter((f) => f.endsWith('.md'))
+    .sort()
+    .map((file) => {
+      const { meta, body } = parseFrontMatter(fs.readFileSync(path.join(full, file), 'utf8'));
+      for (const key of ['title', 'description', 'slug', 'published', 'updated']) {
+        if (!meta[key]) throw new Error(`${file}: front matter に ${key} がありません`);
+      }
+      const slug = meta.slug.replace(/^\/|\/$/g, '');
+      return { ...meta, file, slug, body, url: `${ORIGIN}/${slug}/` };
+    });
 }
 
 // ---------------------------------------------------------------- build
@@ -170,83 +193,85 @@ for (const entry of fs.readdirSync(DIST)) {
 
 marked.setOptions({ gfm: true, breaks: false });
 
-// ---- 1) 全記事を先に読む（サイドバーの「ほかの記事」に全件必要なため）
+const articles = readDocs('content/articles');
+const pages = readDocs('content/pages');
 
-const articleDir = path.join(ROOT, 'content/articles');
-const files = fs.existsSync(articleDir)
-  ? fs.readdirSync(articleDir).filter((f) => f.endsWith('.md')).sort()
-  : [];
-
-const articles = files.map((file) => {
-  const { meta, body } = parseFrontMatter(fs.readFileSync(path.join(articleDir, file), 'utf8'));
-  for (const key of ['title', 'description', 'slug', 'published', 'updated']) {
-    if (!meta[key]) throw new Error(`${file}: front matter に ${key} がありません`);
-  }
-  const slug = meta.slug.replace(/^\/|\/$/g, '');
-  return { ...meta, file, slug, body, url: `${ORIGIN}/${slug}/` };
-});
+for (const a of articles) {
+  if (!a.category) throw new Error(`${a.file}: front matter に category がありません`);
+  if (!catName(a.category)) throw new Error(`${a.file}: 未定義のカテゴリ「${a.category}」（site.json の categories に追加してください）`);
+}
 
 const byRecent = [...articles].sort((a, b) => (a.updated < b.updated ? 1 : -1));
 
-// ---- 2) サイドバー
+// ---- 共通パーツ
 
-function buildSidebar(currentSlug) {
-  const others = byRecent.filter((a) => a.slug !== currentSlug);
-  const list = others.length
-    ? `<ul>${others
-        .map(
-          (a) =>
-            `<li><a href="/${a.slug}/">${esc(a.title)}</a><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
-        )
-        .join('')}</ul>`
-    : '<p>いまはこの記事だけです。</p>';
+const navHtml = [
+  ...site.categories.map((c) => ({ path: `/${c.slug}/`, label: c.name })),
+  ...site.nav,
+]
+  .map((n) => `<a href="${n.path}">${esc(n.label)}</a>`)
+  .join('');
 
-  return `<div class="widget">
-      <p class="widget__title">このサイトについて</p>
-      <p>${esc(site.description)}</p>
-    </div>
-    <div class="widget">
-      <p class="widget__title">ほかの記事</p>
-      ${list}
-    </div>`;
+function widget(title, inner) {
+  return `<div class="widget"><p class="widget__title">${esc(title)}</p>${inner}</div>`;
 }
+
+function postListHtml(list, cls = '') {
+  if (!list.length) return '<p>まだありません。</p>';
+  return `<ul class="${cls}">${list
+    .map(
+      (a) =>
+        `<li><a href="/${a.slug}/">${esc(a.title)}</a><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
+    )
+    .join('')}</ul>`;
+}
+
+const categoryWidget = widget(
+  'カテゴリー',
+  `<ul>${site.categories
+    .map((c) => {
+      const n = articles.filter((a) => a.category === c.slug).length;
+      return `<li><a href="/${c.slug}/">${esc(c.name)}</a><time>${n}記事</time></li>`;
+    })
+    .join('')}</ul>`,
+);
+
+const aboutWidget = widget('このサイトについて', `<p>${esc(site.description)}</p><p class="widget__more"><a href="/about/">運営者情報と数値の作り方 →</a></p>`);
 
 const common = {
   lang: site.lang,
   siteName: esc(site.name),
   tagline: esc(site.tagline),
+  nav: navHtml,
   disclosure: disclosureHtml,
   analytics: analyticsHtml,
+  ogImage: ORIGIN + site.defaultOgImage,
 };
 
-// ---- 3) 記事ページ
+function crumbs(items) {
+  const parts = items.map((it, i) =>
+    i === items.length - 1 ? `<span>${esc(it.label)}</span>` : `<a href="${it.path}">${esc(it.label)}</a>`,
+  );
+  return `<nav class="crumbs" aria-label="パンくずリスト">${parts.join(' › ')}</nav>`;
+}
+
+// ---- 記事ページ
 
 for (const a of articles) {
-  const parsed = addHeadingIds(wrapTables(marked.parse(a.body)));
+  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(a.body))));
   assertNoRawEmphasis(parsed.html, a.file);
   const html = resolveLinks(parsed.html);
-  const toc = renderToc(parsed.headings);
+  const cname = catName(a.category);
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    headline: a.title,
-    description: a.description,
-    datePublished: a.published,
-    dateModified: a.updated,
-    inLanguage: site.lang,
-    mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },
-    publisher: { '@type': 'Organization', name: site.name },
-  };
+  const related = byRecent.filter((x) => x.slug !== a.slug).slice(0, 5);
 
-  // PR表記は広告が実際に含まれるときだけ出す
   const prNotice = site.affiliateEnabled
     ? `<p class="pr-notice">${esc(site.prLabel)}</p>`
     : `<p class="pr-notice pr-notice--pending">現在このページに広告リンクはありません（Amazonアソシエイト審査前）。</p>`;
 
-  const dates = `<p class="dates"><time datetime="${esc(a.published)}">公開 ${esc(a.published)}</time>${
-    a.updated !== a.published ? ` ／ <time datetime="${esc(a.updated)}">更新 ${esc(a.updated)}</time>` : ''
-  }</p>`;
+  const eyecatch = a.eyecatch
+    ? `<p class="eyecatch"><img src="${a.eyecatch}" alt="${esc(a.title)}" width="1200" height="630" decoding="async"></p>`
+    : '';
 
   writeFile(
     `${a.slug}/index.html`,
@@ -256,25 +281,133 @@ for (const a of articles) {
       description: esc(a.description),
       canonical: a.url,
       ogType: 'article',
-      jsonLd: JSON.stringify(jsonLd),
-      breadcrumb: `<nav class="crumbs"><a href="/">${esc(site.name)}</a> › <span>${esc(a.title)}</span></nav>`,
-      sidebar: buildSidebar(a.slug),
-      content: `<article class="post"><h1>${esc(a.title)}</h1>${dates}${prNotice}${toc}${html}</article>`,
+      ogImage: ORIGIN + (a.eyecatch || site.defaultOgImage),
+      jsonLd: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: a.title,
+        description: a.description,
+        image: ORIGIN + (a.eyecatch || site.defaultOgImage),
+        datePublished: a.published,
+        dateModified: a.updated,
+        articleSection: cname,
+        inLanguage: site.lang,
+        mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },
+        publisher: { '@type': 'Organization', name: site.name },
+      }),
+      breadcrumb: crumbs([
+        { path: '/', label: 'ホーム' },
+        { path: `/${a.category}/`, label: cname },
+        { label: a.title },
+      ]),
+      sidebar:
+        (hasToc(parsed.headings) ? widget('目次', `<div class="toc toc--side">${tocList(parsed.headings)}</div>`) : '') +
+        aboutWidget +
+        widget('新着記事', postListHtml(byRecent.slice(0, 5))) +
+        categoryWidget,
+      content:
+        `<article class="post">` +
+        `<p class="cat-label"><a href="/${a.category}/">${esc(cname)}</a></p>` +
+        `<h1>${esc(a.title)}</h1>` +
+        `<p class="dates"><time datetime="${esc(a.published)}">公開 ${esc(a.published)}</time>${
+          a.updated !== a.published ? ` ／ <time datetime="${esc(a.updated)}">更新 ${esc(a.updated)}</time>` : ''
+        }</p>` +
+        eyecatch +
+        prNotice +
+        (hasToc(parsed.headings) ? `<nav class="toc"><p class="toc__title">目次</p>${tocList(parsed.headings)}</nav>` : '') +
+        html +
+        shareButtons(a.title, a.url) +
+        // 記事が1本しかないうちは「関連記事」の枠だけ出しても意味がないので省く
+        (related.length
+          ? `<section class="related"><h2 class="related__title">関連記事</h2>${postListHtml(related, 'related__list')}</section>`
+          : '') +
+        `</article>`,
       year: String(new Date(a.updated).getFullYear()),
     }),
   );
 }
 
-// ---- 4) トップページ
+// ---- 固定ページ
 
-const list = byRecent.length
-  ? `<ul class="article-list">${byRecent
-      .map(
-        (a) =>
-          `<li><a href="/${a.slug}/">${esc(a.title)}</a><p>${esc(a.description)}</p><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
-      )
-      .join('')}</ul>`
-  : '<p>記事はまだありません。</p>';
+for (const p of pages) {
+  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(p.body))));
+  assertNoRawEmphasis(parsed.html, p.file);
+
+  writeFile(
+    `${p.slug}/index.html`,
+    render(baseTpl, {
+      ...common,
+      title: `${esc(p.title)} | ${esc(site.name)}`,
+      description: esc(p.description),
+      canonical: p.url,
+      ogType: 'website',
+      jsonLd: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebPage',
+        name: p.title,
+        description: p.description,
+        url: p.url,
+        inLanguage: site.lang,
+      }),
+      breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: p.title }]),
+      sidebar: aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget,
+      content: `<article class="post"><h1>${esc(p.title)}</h1><p class="dates"><time datetime="${esc(p.updated)}">更新 ${esc(p.updated)}</time></p>${resolveLinks(parsed.html)}</article>`,
+      year: String(new Date(p.updated).getFullYear()),
+    }),
+  );
+}
+
+// ---- カテゴリーページ
+
+for (const c of site.categories) {
+  const list = byRecent.filter((a) => a.category === c.slug);
+  const url = `${ORIGIN}/${c.slug}/`;
+  writeFile(
+    `${c.slug}/index.html`,
+    render(baseTpl, {
+      ...common,
+      title: `${esc(c.name)}の記事一覧 | ${esc(site.name)}`,
+      description: `${c.name}について、メーカー公式の寸法から計算して比べた記事の一覧です。`,
+      canonical: url,
+      ogType: 'website',
+      jsonLd: JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'CollectionPage',
+        name: `${c.name}の記事一覧`,
+        url,
+        inLanguage: site.lang,
+      }),
+      breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: c.name }]),
+      sidebar: aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget,
+      content:
+        `<h1>${esc(c.name)}の記事一覧</h1>` +
+        `<p class="lead">${esc(c.name)}について、メーカー公式の寸法から計算して比べた記事です。</p>` +
+        articleCards(list),
+      year: String(new Date().getFullYear()),
+    }),
+  );
+}
+
+// ---- 記事カード（トップ・カテゴリー共通）
+
+function articleCards(list) {
+  if (!list.length) return '<p>記事はまだありません。</p>';
+  return `<ul class="article-list">${list
+    .map(
+      (a) =>
+        `<li><a class="article-list__link" href="/${a.slug}/">` +
+        (a.eyecatch ? `<img class="article-list__thumb" src="${a.eyecatch}" alt="" width="1200" height="630" loading="lazy" decoding="async">` : '') +
+        `<span class="article-list__body">` +
+        `<span class="article-list__cat">${esc(catName(a.category))}</span>` +
+        `<span class="article-list__title">${esc(a.title)}</span>` +
+        `<span class="article-list__desc">${esc(a.description)}</span>` +
+        `<time datetime="${esc(a.updated)}">${esc(a.updated)}</time>` +
+        `</span></a></li>`,
+    )
+    .join('')}</ul>`;
+}
+
+// ---- トップページ
 
 writeFile(
   'index.html',
@@ -293,13 +426,42 @@ writeFile(
       inLanguage: site.lang,
     }),
     breadcrumb: '',
-    sidebar: `<div class="widget"><p class="widget__title">このサイトについて</p><p>${esc(site.description)}</p></div>`,
-    content: `<h1>${esc(site.name)}</h1><p class="lead">${esc(site.description)}</p>${list}`,
+    sidebar: aboutWidget + categoryWidget,
+    content: `<h1>${esc(site.name)}</h1><p class="lead">${esc(site.description)}</p>${articleCards(byRecent)}`,
     year: String(new Date().getFullYear()),
   }),
 );
 
-// ---- 5) 404
+// ---- サイトマップ（HTML）
+
+writeFile(
+  'sitemap/index.html',
+  render(baseTpl, {
+    ...common,
+    title: `サイトマップ | ${esc(site.name)}`,
+    description: '「寸法で選ぶ」の全ページ一覧です。',
+    canonical: `${ORIGIN}/sitemap/`,
+    ogType: 'website',
+    jsonLd: '',
+    breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: 'サイトマップ' }]),
+    sidebar: aboutWidget + categoryWidget,
+    content:
+      '<article class="post"><h1>サイトマップ</h1>' +
+      site.categories
+        .map(
+          (c) =>
+            `<h2>${esc(c.name)}</h2>` +
+            postListHtml(byRecent.filter((a) => a.category === c.slug)),
+        )
+        .join('') +
+      '<h2>このサイトについて</h2><ul>' +
+      site.nav.map((n) => `<li><a href="${n.path}">${esc(n.label)}</a></li>`).join('') +
+      '</ul></article>',
+    year: String(new Date().getFullYear()),
+  }),
+);
+
+// ---- 404
 
 writeFile(
   '404.html',
@@ -312,16 +474,19 @@ writeFile(
     jsonLd: '',
     breadcrumb: '',
     sidebar: '',
-    content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p>',
+    content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p><p><a href="/sitemap/">サイトマップから探す</a></p>',
     year: String(new Date().getFullYear()),
   }),
 );
 
-// ---- 6) sitemap / robots
+// ---- sitemap.xml / robots.txt
 
 const urls = [
   { loc: `${ORIGIN}/`, lastmod: byRecent[0]?.updated },
+  ...site.categories.map((c) => ({ loc: `${ORIGIN}/${c.slug}/`, lastmod: byRecent[0]?.updated })),
   ...byRecent.map((a) => ({ loc: a.url, lastmod: a.updated })),
+  ...pages.map((p) => ({ loc: p.url, lastmod: p.updated })),
+  { loc: `${ORIGIN}/sitemap/`, lastmod: byRecent[0]?.updated },
 ];
 
 writeFile(
@@ -333,10 +498,10 @@ writeFile(
 
 writeFile('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`);
 
-// ---- 7) 静的ファイル
+// ---- 静的ファイル
 
 copyDir(path.join(ROOT, 'public'), DIST);
 
-console.log(`built ${articles.length} article(s) → dist/`);
+console.log(`built: ${articles.length} article(s), ${pages.length} page(s), ${site.categories.length} category page(s)`);
 for (const a of articles) console.log(`  /${a.slug}/  ${a.title}`);
 if (!site.affiliateEnabled) console.log('\n注意: affiliateEnabled=false のため、リンク位置はプレースホルダで出力しています。');
