@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" role="img"
+     aria-label="ダイワ20Lとシマノ22Lの床を同じ縮尺で並べた図。どちらも直径66ミリの500mlペットボトルが3列5行で15本入る">
+  <style>
+    .bg     { fill: #fcfcfc; }
+    .ink    { fill: #434347; }
+    .mute   { fill: #6f7680; }
+    .navy   { fill: #014172; }
+    .h      { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s      { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n      { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .bottle { fill: #cfe0ef; stroke: #014172; stroke-width: 1.5; }
+    .box    { fill: none; stroke: #014172; stroke-width: 3; }
+    .waste  { fill: #e3e7ec; }
+  </style>
+
+  <rect class="bg" width="900" height="480"/>
+
+  <text class="h ink"  x="30" y="38">公表容量は 20L と 22L。どちらも 15本</text>
+  <text class="s mute" x="30" y="64">縮尺 10px = 1cm ／ ボトルはシマノが公表している前提 Φ66 × 全高207mm ／ 灰色は使えない余り</text>
+
+  <text class="s ink" x="30" y="110">ダイワ クールラインα3 2000（20L）　内寸 22 × 39cm</text>
+  <rect class="waste" x="360" y="130" width="60" height="220"/>
+  <rect class="waste" x="30"  y="328" width="330" height="22"/>
+  <g class="bottle">
+    <circle cx="63" cy="163" r="32"/><circle cx="129" cy="163" r="32"/><circle cx="195" cy="163" r="32"/><circle cx="261" cy="163" r="32"/><circle cx="327" cy="163" r="32"/>
+    <circle cx="63" cy="229" r="32"/><circle cx="129" cy="229" r="32"/><circle cx="195" cy="229" r="32"/><circle cx="261" cy="229" r="32"/><circle cx="327" cy="229" r="32"/>
+    <circle cx="63" cy="295" r="32"/><circle cx="129" cy="295" r="32"/><circle cx="195" cy="295" r="32"/><circle cx="261" cy="295" r="32"/><circle cx="327" cy="295" r="32"/>
+  </g>
+  <rect class="box" x="30" y="130" width="390" height="220"/>
+  <text class="n navy" x="30" y="395">3列 × 5行 ＝ 15本</text>
+  <text class="s mute" x="30" y="424">メーカーの公表は18本（前提にしたボトルが違う）</text>
+
+  <text class="s ink" x="470" y="110">シマノ フィクセル 22L　内寸（底部）21.1 × 39.1cm</text>
+  <rect class="waste" x="800" y="130" width="61" height="211"/>
+  <rect class="waste" x="470" y="328" width="330" height="13"/>
+  <g class="bottle">
+    <circle cx="503" cy="163" r="32"/><circle cx="569" cy="163" r="32"/><circle cx="635" cy="163" r="32"/><circle cx="701" cy="163" r="32"/><circle cx="767" cy="163" r="32"/>
+    <circle cx="503" cy="229" r="32"/><circle cx="569" cy="229" r="32"/><circle cx="635" cy="229" r="32"/><circle cx="701" cy="229" r="32"/><circle cx="767" cy="229" r="32"/>
+    <circle cx="503" cy="295" r="32"/><circle cx="569" cy="295" r="32"/><circle cx="635" cy="295" r="32"/><circle cx="701" cy="295" r="32"/><circle cx="767" cy="295" r="32"/>
+  </g>
+  <rect class="box" x="470" y="130" width="391" height="211"/>
+  <text class="n navy" x="470" y="395">3列 × 5行 ＝ 15本</text>
+  <text class="s mute" x="470" y="424">本数の公表なし。内寸は「底部」の値を使った</text>
+</svg>
