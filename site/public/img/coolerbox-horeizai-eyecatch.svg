@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="クーラーボックスに保冷剤を入れると500mlは何本減るか。20Lの内寸22かける39センチで、保冷剤を床に寝かせると6本、壁に立てかけると18本">
+  <style>
+    .bg     { fill: #fcfcfc; }
+    .ink    { fill: #434347; }
+    .mute   { fill: #6f7680; }
+    .navy   { fill: #014172; }
+    .h      { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s      { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n      { font: 700 26px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .bottle { fill: #cfe0ef; stroke: #014172; stroke-width: 1.5; }
+    .box    { fill: none; stroke: #014172; stroke-width: 3; }
+    .waste  { fill: #e3e7ec; }
+    .pack   { fill: #f3ddc0; stroke: #9a6a11; stroke-width: 2; }
+  </style>
+
+  <style>
+    .t  { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big { font: 700 54px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cap { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="90" y="86">保冷剤を入れると 500ml は何本減る？</text>
+  <text class="st mute" x="90" y="130">ダイワ S2000（20L）内寸 22 × 39cm ／ 500ml角型 ／ 保冷剤なら18本のところ</text>
+
+  <text class="cap ink" x="90" y="186">床に寝かせる</text>
+  <rect class="waste" x="90" y="369" width="255" height="56"/>
+  <rect class="waste" x="465" y="205" width="15" height="220"/>
+  <rect class="waste" x="345" y="385" width="135" height="40"/>
+  <rect class="pack"  x="90" y="205" width="255" height="164"/>
+  <g class="bottle">
+    <rect x="347" y="207" width="56" height="56" rx="7"/><rect x="407" y="207" width="56" height="56" rx="7"/>
+    <rect x="347" y="267" width="56" height="56" rx="7"/><rect x="407" y="267" width="56" height="56" rx="7"/>
+    <rect x="347" y="327" width="56" height="56" rx="7"/><rect x="407" y="327" width="56" height="56" rx="7"/>
+  </g>
+  <rect class="box" x="90" y="205" width="390" height="220"/>
+  <text class="big navy" x="90" y="500">6本</text>
+
+  <text class="cap ink" x="690" y="186">壁に立てかける</text>
+  <rect class="waste" x="716" y="385" width="364" height="40"/>
+  <rect class="waste" x="1076" y="205" width="4" height="220"/>
+  <rect class="waste" x="690" y="401" width="26" height="24"/>
+  <rect class="pack"  x="690" y="205" width="26" height="196"/>
+  <g class="bottle">
+    <rect x="718" y="207" width="56" height="56" rx="7"/><rect x="778" y="207" width="56" height="56" rx="7"/><rect x="838" y="207" width="56" height="56" rx="7"/><rect x="898" y="207" width="56" height="56" rx="7"/><rect x="958" y="207" width="56" height="56" rx="7"/><rect x="1018" y="207" width="56" height="56" rx="7"/>
+    <rect x="718" y="267" width="56" height="56" rx="7"/><rect x="778" y="267" width="56" height="56" rx="7"/><rect x="838" y="267" width="56" height="56" rx="7"/><rect x="898" y="267" width="56" height="56" rx="7"/><rect x="958" y="267" width="56" height="56" rx="7"/><rect x="1018" y="267" width="56" height="56" rx="7"/>
+    <rect x="718" y="327" width="56" height="56" rx="7"/><rect x="778" y="327" width="56" height="56" rx="7"/><rect x="838" y="327" width="56" height="56" rx="7"/><rect x="898" y="327" width="56" height="56" rx="7"/><rect x="958" y="327" width="56" height="56" rx="7"/><rect x="1018" y="327" width="56" height="56" rx="7"/>
+  </g>
+  <rect class="box" x="690" y="205" width="390" height="220"/>
+  <text class="big navy" x="690" y="500">18本</text>
+
+  <text class="st mute" x="90" y="560">メーカー公表の内寸と保冷剤11製品の公表寸法から計算（実測ではありません）</text>
+  <text class="st mute" x="90" y="596">寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" role="img"
+     aria-label="内寸22かける39センチのクーラーボックスの床。氷点下パックLを床に寝かせると500ml角型は6本しか立たず、氷点下パックMを壁に立てかけると18本のまま入る図">
+  <style>
+    .bg     { fill: #fcfcfc; }
+    .ink    { fill: #434347; }
+    .mute   { fill: #6f7680; }
+    .navy   { fill: #014172; }
+    .h      { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s      { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n      { font: 700 26px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .bottle { fill: #cfe0ef; stroke: #014172; stroke-width: 1.5; }
+    .box    { fill: none; stroke: #014172; stroke-width: 3; }
+    .waste  { fill: #e3e7ec; }
+    .pack   { fill: #f3ddc0; stroke: #9a6a11; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="900" height="480"/>
+
+  <text class="h ink"  x="30" y="38">同じ箱・同じ1枚。置き方だけで 6本 と 18本</text>
+  <text class="s mute" x="30" y="64">ダイワ S2000（20L）内寸 22 × 39cm ／ 500ml角型 胴径60mm ／ 縮尺 10px = 1cm ／ 灰色は使えない余り</text>
+
+  <text class="s ink" x="30" y="105">氷点下パックL（25.5 × 16.4 × 厚2.5cm）を床に寝かせる</text>
+  <rect class="waste" x="30" y="284" width="255" height="56"/>
+  <rect class="waste" x="405" y="120" width="15" height="220"/>
+  <rect class="waste" x="285" y="300" width="135" height="40"/>
+  <rect class="pack"  x="30" y="120" width="255" height="164"/>
+  <g class="bottle">
+    <rect x="287" y="122" width="56" height="56" rx="7"/><rect x="347" y="122" width="56" height="56" rx="7"/>
+    <rect x="287" y="182" width="56" height="56" rx="7"/><rect x="347" y="182" width="56" height="56" rx="7"/>
+    <rect x="287" y="242" width="56" height="56" rx="7"/><rect x="347" y="242" width="56" height="56" rx="7"/>
+  </g>
+  <rect class="box" x="30" y="120" width="390" height="220"/>
+  <text class="n navy" x="30" y="385">6本（12本ぶん減る）</text>
+  <text class="s mute" x="30" y="412">残る帯は 22 − 16.4 ＝ 5.6cm。胴径6cmに4mm足りず丸ごと死ぬ</text>
+
+  <text class="s ink" x="470" y="105">氷点下パックM（19.6 × 13.8 × 厚2.6cm）を壁に立てかける</text>
+  <rect class="waste" x="496" y="300" width="364" height="40"/>
+  <rect class="waste" x="856" y="120" width="4" height="220"/>
+  <rect class="waste" x="470" y="316" width="26" height="24"/>
+  <rect class="pack"  x="470" y="120" width="26" height="196"/>
+  <g class="bottle">
+    <rect x="498" y="122" width="56" height="56" rx="7"/><rect x="558" y="122" width="56" height="56" rx="7"/><rect x="618" y="122" width="56" height="56" rx="7"/><rect x="678" y="122" width="56" height="56" rx="7"/><rect x="738" y="122" width="56" height="56" rx="7"/><rect x="798" y="122" width="56" height="56" rx="7"/>
+    <rect x="498" y="182" width="56" height="56" rx="7"/><rect x="558" y="182" width="56" height="56" rx="7"/><rect x="618" y="182" width="56" height="56" rx="7"/><rect x="678" y="182" width="56" height="56" rx="7"/><rect x="738" y="182" width="56" height="56" rx="7"/><rect x="798" y="182" width="56" height="56" rx="7"/>
+    <rect x="498" y="242" width="56" height="56" rx="7"/><rect x="558" y="242" width="56" height="56" rx="7"/><rect x="618" y="242" width="56" height="56" rx="7"/><rect x="678" y="242" width="56" height="56" rx="7"/><rect x="738" y="242" width="56" height="56" rx="7"/><rect x="798" y="242" width="56" height="56" rx="7"/>
+  </g>
+  <rect class="box" x="470" y="120" width="390" height="220"/>
+  <text class="n navy" x="470" y="385">18本（減らない）</text>
+  <text class="s mute" x="470" y="412">床の余り 4cm と 3cm に、厚さ2.6cmがそのまま収まる</text>
+</svg>
