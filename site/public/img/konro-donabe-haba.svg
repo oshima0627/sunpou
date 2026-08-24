@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" role="img"
+     aria-label="カセットコンロを上から見た図に10号土鍋を重ねたもの。本体幅33.4センチに対し土鍋は取手込み36センチで、左右に1.3センチずつはみ出す">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .konro { fill: #e3e7ec; stroke: #6f7680; stroke-width: 3; }
+    .pot   { fill: #f3ddc0; stroke: #9a6a11; stroke-width: 3; }
+    .bar   { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .rule  { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+  </style>
+
+  <rect class="bg" width="900" height="480"/>
+
+  <text class="h ink"  x="30" y="38">「10号まで」の機種より、10号土鍋のほうが幅がある</text>
+  <text class="s mute" x="30" y="64">上から見た図 ／ 縮尺 1px = 1mm ／ 灰色＝コンロ本体、橙＝土鍋（口径31cm＋取手）</text>
+
+  <rect class="konro" x="113" y="128" width="334" height="274"/>
+  <rect class="pot" x="100" y="235" width="25" height="60"/>
+  <rect class="pot" x="435" y="235" width="25" height="60"/>
+  <circle class="pot" cx="280" cy="265" r="155"/>
+
+  <text class="s ink"  x="520" y="150">イワタニ エコプレミアムIII</text>
+  <text class="n navy" x="520" y="186">本体 33.4 × 27.4cm</text>
+  <text class="s ink"  x="520" y="242">墨貫入 10号</text>
+  <text class="n navy" x="520" y="278">幅（取手込）36cm</text>
+  <text class="n ink"  x="520" y="334">左右に 1.3cm ずつはみ出す</text>
+  <text class="s mute" x="520" y="382">はみ出しても五徳に乗れば使えます。</text>
+  <text class="s mute" x="520" y="406">効くのは「卓上で必要な幅」のほうです。</text>
+</svg>

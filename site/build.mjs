@@ -274,7 +274,13 @@ for (const a of articles) {
   const html = resolveLinks(parsed.html);
   const cname = catName(a.category);
 
-  const related = byRecent.filter((x) => x.slug !== a.slug).slice(0, 5);
+  // 関連記事は同じカテゴリを優先し、足りない分だけ他カテゴリで埋める。
+  // カテゴリが2件以上になると、そうしないと無関係な記事が並ぶ。
+  const others = byRecent.filter((x) => x.slug !== a.slug);
+  const related = [
+    ...others.filter((x) => x.category === a.category),
+    ...others.filter((x) => x.category !== a.category),
+  ].slice(0, 5);
 
   const prNotice = site.affiliateEnabled
     ? `<p class="pr-notice">${esc(site.prLabel)}</p>`

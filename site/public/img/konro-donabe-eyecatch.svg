@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="土鍋の号数ごとの取手込みの幅。6号は21から22センチ、9号は31から32.5センチ、10号は34から36センチ。カセットコンロの本体幅33.4センチより10号のほうが大きい">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .konro { fill: #e3e7ec; stroke: #6f7680; stroke-width: 3; }
+    .pot   { fill: #f3ddc0; stroke: #9a6a11; stroke-width: 3; }
+    .bar   { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .rule  { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+  </style>
+
+  <style>
+    .t  { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="84">土鍋の「号数」は、幅を決めていません</text>
+  <text class="st mute" x="80" y="126">銀峯陶器の公表寸法。同じ号数でもシリーズで幅が違う（幅は取手込み）</text>
+
+  <line class="rule" x1="926.8" y1="186" x2="926.8" y2="530"/>
+  <text class="s ink" x="620" y="176">カセットコンロの本体幅 33.4cm（イワタニ エコプレミアムIII）</text>
+
+  <rect class="bar" x="406.0" y="200" width="42.0" height="44"/>
+  <rect class="bar" x="532.0" y="268" width="105.0" height="44"/>
+  <rect class="bar" x="658.0" y="336" width="105.0" height="44"/>
+  <rect class="bar" x="826.0" y="404" width="63.0" height="44"/>
+  <rect class="bar" x="952.0" y="472" width="84.0" height="44"/>
+  <text class="n ink" x="180" y="231">6号</text>
+  <text class="s mute" x="462.0" y="229">21〜22cm</text>
+  <text class="n ink" x="180" y="299">7号</text>
+  <text class="s mute" x="651.0" y="297">24〜26.5cm</text>
+  <text class="n ink" x="180" y="367">8号</text>
+  <text class="s mute" x="777.0" y="365">27〜29.5cm</text>
+  <text class="n ink" x="180" y="435">9号</text>
+  <text class="s mute" x="903.0" y="433">31〜32.5cm</text>
+  <text class="n ink" x="180" y="503">10号</text>
+  <text class="s mute" x="1050.0" y="501">34〜36cm</text>
+
+  <text class="st mute" x="80" y="596">メーカー公表寸法からの作図　寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>
