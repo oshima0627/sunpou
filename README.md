@@ -27,6 +27,7 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
 | `docs/serp-check.md` | 13キーワードのSERP目視／サジェストによる需要確認／収益モデルの試算 |
 | `docs/article-01-coolerbox-500ml.md` | 記事01のリサーチ。一次情報のデータ・計算の検証・構成案 |
 | `drafts/01-coolerbox-500ml.md` | 記事01の**初稿**（未公開）。価格に触れない構成 |
+| `site/` | 公開用サイト。**Cloudflare Workers Static Assets**。手順は `site/README.md` |
 
 ## 記録のルール
 
@@ -81,6 +82,15 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
     **深さ22cmだと全高230mmの細長い銘柄が立たない**／
     **床面積が同じ858cm²でも本数が違い、ボトルの型で優劣が逆転する**
   - ⚠️ 残る未検証：市販銘柄と型の対応／内寸の測り方の統一性／格子以外の詰め方
+- 2026-08-24: **公開用サイトを構築**（`site/`）。Cloudflare Workers Static Assets、Worker コードなし。
+  Markdown を HTML に変換する自作ビルド（依存は marked のみ）。
+  - **ローカル `wrangler dev` で検証済み**：canonical・OG・JSON-LD 出力／表5つが全て箱内で横スクロール／
+    375px でページ自体は横スクロールしない／存在しないURLは **HTTP 404**／sitemap・robots 配信／コンソールエラーなし
+  - ⚠️ **`affiliateEnabled=false` のうちはリンクも開示文言も出力しない。**
+    リンクが無いのに「適格販売により収入を得ています」と書くのは事実に反するため
+  - ⚠️ **公開には利用者側の作業が3つ必要**：Cloudflare アカウント作成 ／ `npx wrangler login`（OAuth）／
+    `site/content/site.json` の `origin` を実URLに書き換え（canonical と sitemap がこの値を使う）
+  - ⚠️ **アクセス解析が未導入。** クリック率と購入率の実測が収益モデルの鍵なので、公開前に入れる必要がある
 - 2026-08-24: アソシエイトの料率・審査・規約を一次情報で確認（`docs/affiliate-program-facts.md`）。
   記事構成に効く確定事項が3つ出た：
   1. **価格は手打ちで書けない**（リンク／API 経由のみ・日時と免責の併記が必須）。

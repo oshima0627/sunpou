@@ -1,0 +1,25 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jissun",
+  "compatibility_date": "2026-08-24",
+
+  // Worker のコードは無い（アセット配信のみ）。
+  // 動的なルートが必要になったら "main": "src/index.ts" を足し、
+  // assets.run_worker_first で対象パスだけ Worker に通す。
+  "assets": {
+    "directory": "./dist",
+
+    // 404 は dist/404.html を返す。SPA ではないので
+    // "single-page-application" にしてはいけない（存在しないURLが200を返し、
+    // Google に重複コンテンツとして拾われる）。
+    "not_found_handling": "404-page",
+
+    // /coolerbox/500ml-honsuu → /coolerbox/500ml-honsuu/ に正規化。
+    // canonical と URL を一致させるため既定のまま使う。
+    "html_handling": "auto-trailing-slash"
+  },
+
+  "observability": {
+    "enabled": true
+  }
+}

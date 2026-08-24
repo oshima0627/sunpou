@@ -1,0 +1,239 @@
+/* 実寸で選ぶ — 比較表が読めることを最優先にした最小限のスタイル */
+
+:root {
+  --bg: #ffffff;
+  --fg: #1c1f23;
+  --muted: #5c6570;
+  --line: #e3e7ec;
+  --accent: #0b5cad;
+  --surface: #f6f8fa;
+  --warn-bg: #fff8e6;
+  --warn-line: #e8c96a;
+  --max: 46rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14171a;
+    --fg: #e6e9ec;
+    --muted: #9aa4af;
+    --line: #2c3238;
+    --accent: #74b3ef;
+    --surface: #1c2126;
+    --warn-bg: #2a2415;
+    --warn-line: #6b5a24;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Noto Sans JP", Meiryo, sans-serif;
+  font-size: 17px;
+  line-height: 1.85;
+  overflow-wrap: break-word;
+}
+
+a { color: var(--accent); }
+
+/* ---- layout */
+
+.site-header,
+main,
+.site-footer {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: 1.15rem;
+}
+
+.site-header {
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 1.6rem;
+}
+
+.site-name {
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--fg);
+  letter-spacing: .02em;
+}
+
+main { padding-bottom: 3.5rem; }
+
+.crumbs {
+  font-size: .84rem;
+  color: var(--muted);
+  margin-bottom: 1.1rem;
+}
+.crumbs a { color: var(--muted); }
+
+/* ---- typography */
+
+h1 {
+  font-size: 1.72rem;
+  line-height: 1.45;
+  margin: 0 0 .7rem;
+}
+
+h2 {
+  font-size: 1.28rem;
+  line-height: 1.5;
+  margin: 2.8rem 0 .9rem;
+  padding-bottom: .4rem;
+  border-bottom: 2px solid var(--line);
+}
+
+h3 { font-size: 1.08rem; margin: 2rem 0 .6rem; }
+
+p, ul, ol { margin: 0 0 1.15rem; }
+li { margin-bottom: .35rem; }
+
+.dates, .note, .copy {
+  font-size: .82rem;
+  color: var(--muted);
+}
+.dates { margin-bottom: 1.2rem; }
+
+.lead { font-size: 1.05rem; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 2.6rem 0;
+}
+
+blockquote {
+  margin: 1.3rem 0;
+  padding: .1rem 0 .1rem 1rem;
+  border-left: 3px solid var(--line);
+  color: var(--muted);
+}
+
+/* ---- 表：本文からはみ出させず、箱の中で横スクロールさせる */
+
+.table-wrap {
+  overflow-x: auto;
+  margin: 1.3rem 0;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: .9rem;
+  line-height: 1.6;
+}
+
+th, td {
+  padding: .55rem .7rem;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  white-space: nowrap;
+}
+
+thead th {
+  background: var(--surface);
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+}
+
+tbody tr:last-child td { border-bottom: 0; }
+
+/* ---- コードブロック（計算式の提示に使っている） */
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: .85rem 1rem;
+  overflow-x: auto;
+  font-size: .86rem;
+  line-height: 1.7;
+  margin: 1.3rem 0;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .92em;
+}
+
+p code, li code, td code {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: .05em .35em;
+}
+
+/* ---- PR表記・開示 */
+
+.pr-notice {
+  font-size: .84rem;
+  margin: 0 0 1.6rem;
+  padding: .55rem .8rem;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 6px;
+}
+
+.pr-notice--pending {
+  background: var(--surface);
+  border-color: var(--line);
+  color: var(--muted);
+}
+
+/* 審査合格までのリンク位置。読者には目立たせない */
+.link-todo {
+  color: var(--muted);
+  border-bottom: 1px dotted var(--muted);
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding-block: 1.4rem 2.6rem;
+}
+
+.disclosure {
+  font-size: .84rem;
+  margin: 0 0 .7rem;
+}
+
+/* ---- トップの記事一覧 */
+
+.article-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.article-list li {
+  padding: 1.1rem 0;
+  border-top: 1px solid var(--line);
+}
+
+.article-list li:last-child { border-bottom: 1px solid var(--line); }
+
+.article-list a {
+  font-size: 1.06rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+.article-list a:hover { text-decoration: underline; }
+
+.article-list p {
+  margin: .35rem 0 .2rem;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+.article-list time {
+  font-size: .78rem;
+  color: var(--muted);
+}

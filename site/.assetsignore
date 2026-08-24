@@ -1,0 +1,4 @@
+# Worker のアセットにアップロードしないもの
+*.md
+*.map
+.DS_Store

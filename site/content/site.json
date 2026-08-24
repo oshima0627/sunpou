@@ -1,0 +1,18 @@
+{
+  "name": "実寸で選ぶ",
+  "tagline": "カタログに載っていない数値で、モノを比べる",
+  "description": "メーカー公式の寸法をもとに、カタログには載っていない「実際に何本入るか」「本当に入るのか」を計算して比べるサイトです。",
+  "lang": "ja",
+
+  "//origin": "本番の公開URL。独自ドメインを取ったらここを書き換える。canonical と sitemap がこの値を使う。",
+  "origin": "https://jissun.example.workers.dev",
+
+  "//affiliateDisclosure": "Amazonアソシエイト運営規約が求める開示文言。正確な文言は規約の該当条項で確認してから確定させること（現状は一般に使われている形）。",
+  "affiliateDisclosure": "Amazonのアソシエイトとして、実寸で選ぶは適格販売により収入を得ています。",
+
+  "//prLabel": "景品表示法のステマ規制（2023-10-01 施行）向けの表記。Amazon の開示文言とは別物で、両方必要。",
+  "prLabel": "この記事には広告（アフィリエイトリンク）が含まれます。",
+
+  "//affiliateEnabled": "Amazonアソシエイトの審査に合格するまで false。false の間は本文のリンク位置がプレースホルダのまま出力され、PR表記も出さない。",
+  "affiliateEnabled": false
+}
