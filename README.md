@@ -95,6 +95,18 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
   - 検証済み：デスクトップ1280pxで2カラム＋サイドバーsticky／**375pxで1カラムに落ちサイドバーは下**／
     横スクロールなし／表5つは箱内でスクロール／本文リンクは太字下線・目次リンクはプレーン
   - 記事の出典に**メーカー公式ページへのリンク**を追加（Amazonリンクではないので規約と無関係）
+- 2026-08-24: **Amazonbot を許可した。** 根拠は Amazon 公式の記載
+  「If you allow Amazonbot on your robots.txt, you may be eligible for benefits with
+  Amazon Content Partners」＝**紹介料 +1%**（＋AWSクレジット月$100、トラフィック下限なし）。
+  料率2〜8%のこのサイトでは**収益が25〜50%変わる**ため、ジャンル選定やSERP分析より効果が大きい。
+  - ⚠️ **1トグルでは済まなかった。** ゾーン設定「Block AI bots」が個別トグルを上書きしており、
+    スコープ選択肢に**ホスト単位の除外が無い**ため、`nexeed-lab.com` 全体の設定を組み替えた：
+    ①「Block AI bots」を `Do not block` に ②AI Crawl Control で **AI Crawler 15件を個別ブロック**
+    ③Amazonbot のみ許可 ④「Managed robots.txt」をオフにして robots.txt を自前管理に
+  - 検証済み：`AI Crawler で許可は Amazonbot のみ` ／ `AI Crawler 以外のブロックは0件`
+    （検索エンジン・AI Search・AI Assistant は元のまま）／本番 robots.txt から Amazonbot の Disallow が消えた
+  - ⚠️ **副作用：`nexeed-lab.com` の他22ホストも同じ設定になる。** 強制ブロックは AI Crawl Control 側で
+    残るが、**Managed robots.txt による「宣言」は全ホストで消えた**
 - 2026-08-24: **参考サイトと同じ構成に拡張**（`site/README.md` に機能一覧）。
   グローバルナビ／パンくず／アイキャッチ／目次（本文＋サイドバーの2箇所）／図版キャプション／
   SNSシェア／関連記事／カテゴリーページ／記事カード／フッターナビ／ページトップ／
@@ -111,9 +123,7 @@ Amazon の商品比較記事を作るためのリサーチ・原稿置き場。
 - 2026-08-24: **本番公開。** https://sunpou.nexeed-lab.com/ （Worker `sunpou` ＋ カスタムドメイン）
   - 本番で curl 検証済み：トップ200／記事は末尾スラッシュへ301→200／存在しないURLは404／
     canonical と og:url が実URLと一致
-  - ⚠️ **robots.txt に Cloudflare の Managed content が差し込まれており、`Amazonbot` が Disallow になっている。**
-    Amazonアフィリエイトのサイトで Amazon のクローラを拒否している状態。zone 設定由来なので
-    リポジトリ側では直せない。**要判断**（Googlebot は通っているので検索流入は妨げていない）
+  - ~~robots.txt で Amazonbot が Disallow~~ → **2026-08-24 に解消**（下記）
   - **アクセス解析：Cloudflare Web Analytics を導入済み。** ビーコンが実際に
     `cloudflareinsights.com/cdn-cgi/rum` へ送信されるところまで確認。
     測っているのは**分母（セッション数）**で、クリック数と注文数はアソシエイト・セントラル側から取る
