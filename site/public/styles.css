@@ -332,6 +332,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
   padding: 1.8rem 1.15rem 3rem;
 }
 
+.sns { font-size: .82rem; margin: 0 0 .7rem; }
 .disclosure { font-size: .82rem; margin: 0 0 .7rem; }
 .note, .copy { font-size: .78rem; color: var(--muted); margin: 0 0 .5rem; }
 

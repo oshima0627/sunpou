@@ -29,6 +29,9 @@
   "//associateTag": "AmazonアソシエイトのトラッキングID。2026-08-25 に申請して発行された。リンクの tag= に入る。",
   "associateTag": "sunpou-22",
 
+  "//xHandle": "X（旧Twitter）のハンドル。@ は付けない。空にするとフッターのリンクを出力しない。2026-08-25 開設。",
+  "xHandle": "sunpou_lab",
+
   "//affiliateEnabled": "false の間は本文のリンク位置がプレースホルダのまま出力され、開示文言もPR表記も出さない。2026-08-25 に申請が完了しリンクを掲載できるようになったので true にした（本審査は3件の適格販売のあと）。",
   "affiliateEnabled": true,
 
