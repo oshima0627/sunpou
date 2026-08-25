@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="踏面15センチ蹴上げ23センチの階段に設置奥行55.2センチの脚立を置いた断面図。前脚と後脚は3段離れ、高低差は69センチになるが、伸縮脚で調整できるのは31センチしかない">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .rust  { fill: #a8410f; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .stair { fill: #e3e7ec; stroke: #6f7680; stroke-width: 3; }
+    .leg   { stroke: #014172; stroke-width: 7; stroke-linecap: round; fill: none; }
+    .plate { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .lead  { stroke: #a8410f; stroke-width: 2; stroke-dasharray: 7 6; }
+    .dim   { stroke: #a8410f; stroke-width: 3; }
+    .barR  { fill: #f3d2be; stroke: #a8410f; stroke-width: 3; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="38">階段では、前脚と後脚が3段離れます</text>
+  <text class="s mute" x="30" y="64">縮尺 2px = 1cm ／ 踏面15cm・蹴上げ23cm（住宅の法定の限界値）／ 脚立の設置奥行 55.2cm</text>
+
+  <!-- 階段の断面（踏面30px=15cm、蹴上げ46px=23cm） -->
+  <polygon class="stair" points="90,476 90,430 120,430 120,384 150,384 150,338 180,338 180,292 210,292 210,246 240,246 240,200 270,200 270,476"/>
+
+  <!-- 脚立（天板は水平。後脚が3段ぶん長くなる） -->
+  <path class="leg" d="M139 188 L95 430"/>
+  <path class="leg" d="M161 188 L205 292"/>
+  <rect class="plate" x="128" y="176" width="44" height="12"/>
+
+  <!-- 高低差の寸法 -->
+  <line class="lead" x1="95"  y1="430" x2="336" y2="430"/>
+  <line class="lead" x1="205" y1="292" x2="336" y2="292"/>
+  <line class="dim"  x1="330" y1="292" x2="330" y2="430"/>
+  <polygon fill="#a8410f" points="330,292 324,306 336,306"/>
+  <polygon fill="#a8410f" points="330,430 324,416 336,416"/>
+  <text class="n rust" x="346" y="368">69cm</text>
+
+  <!-- 調整できる量 -->
+  <rect class="barR" x="404" y="368" width="26" height="62"/>
+  <text class="n navy" x="404" y="352">31cm</text>
+
+  <text class="n rust" x="470" y="242">必要な高低差 69cm</text>
+  <text class="s mute" x="470" y="268">3段離れる × 蹴上げ23cm</text>
+
+  <text class="n navy" x="470" y="330">伸縮脚で調整できるのは 31cm</text>
+  <text class="s mute" x="470" y="356">ピカ スタッピー SXJ-90A の公表値</text>
+
+  <text class="n ink"  x="470" y="424">38cm 足りません</text>
+  <text class="s mute" x="470" y="450">踏面が広い階段でも2段離れるので、</text>
+  <text class="s mute" x="470" y="474">必要なのは32cm以上でした</text>
+</svg>

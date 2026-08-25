@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="脚立の伸縮脚の調整量の比較。長谷川工業RZSは21センチ、RYZBは31センチ、ピカのスタッピーは31センチ、アルインコPRT-FXは44センチ、ピカの階段用かるノビは45センチ。住宅の階段で必要な高低差は69センチ">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .barN { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .barR { fill: #f3d2be; stroke: #a8410f; stroke-width: 2; }
+    .rule { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+    .div  { stroke: #d7dbe0; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="76">伸縮脚は21〜45cm。階段には届きません</text>
+  <text class="st mute" x="80" y="118">3社5シリーズの公表値。目盛りは 1cm = 9px</text>
+
+  <text class="sub rust" x="470" y="152">住宅の階段の1段（蹴上げ23cm以下）</text>
+  <line class="rule" x1="607" y1="164" x2="607" y2="566"/>
+
+  <rect class="barN" x="400" y="180" width="189" height="40"/>
+  <text class="nm ink"   x="80" y="200">長谷川工業 RZS</text>
+  <text class="sub mute" x="80" y="224">脚軽伸縮タイプ／専用脚立</text>
+  <text class="val navy" x="1060" y="209">21cm</text>
+
+  <rect class="barN" x="400" y="244" width="279" height="40"/>
+  <text class="nm ink"   x="80" y="264">長谷川工業 RYZB</text>
+  <text class="sub mute" x="80" y="288">はしご兼用伸縮脚立</text>
+  <text class="val navy" x="1060" y="273">31cm</text>
+
+  <rect class="barN" x="400" y="308" width="279" height="40"/>
+  <text class="nm ink"   x="80" y="328">ピカ スタッピー SXJ</text>
+  <text class="sub mute" x="80" y="352">四脚アジャスト式</text>
+  <text class="val navy" x="1060" y="337">31cm</text>
+
+  <rect class="barN" x="400" y="372" width="396" height="40"/>
+  <text class="nm ink"   x="80" y="392">アルインコ PRT-FX</text>
+  <text class="sub mute" x="80" y="416">伸縮脚付専用脚立</text>
+  <text class="val navy" x="1060" y="401">44cm</text>
+
+  <rect class="barN" x="400" y="436" width="405" height="40"/>
+  <text class="nm ink"   x="80" y="456">ピカ かるノビ SCL</text>
+  <text class="sub mute" x="80" y="480">階段用／前後の脚の長さが違う</text>
+  <text class="val navy" x="1060" y="465">45cm</text>
+
+  <line class="div" x1="80" y1="500" x2="1120" y2="500"/>
+
+  <rect class="barR" x="400" y="516" width="621" height="40"/>
+  <text class="nm rust"  x="80" y="536">階段で必要な高低差</text>
+  <text class="sub mute" x="80" y="560">踏面15cm・蹴上げ23cm・3段ぶん</text>
+  <text class="val rust" x="1060" y="545">69cm</text>
+
+  <text class="st mute" x="80" y="606">前脚と後脚は3段離れます。1段で済ませるには踏面が28cm近く必要でした。</text>
+</svg>
