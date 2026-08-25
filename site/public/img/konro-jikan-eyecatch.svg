@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="イワタニのカセットこんろ機種別の連続燃焼時間。BOは55分、スマートとウィンドシールドは78分、達人スリムVは68分、スリムほかは70分、エコプレミアム3は72分、ミニは112分。ガス消費量からの割り算では全機種とも短く出る">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 42px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .real { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .calc { fill: #014172; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="72">ボンベ1本は55〜78分。割り算では出ません</text>
+  <text class="st mute" x="80" y="114">濃い部分が「250g ÷ ガス消費量」、薄い部分まで伸びると公表の連続燃焼時間</text>
+  <text class="st mute" x="80" y="150">目盛りは 1分 = 6.5px ／ 気温20〜25℃・強火連続</text>
+
+  <rect class="real" x="360" y="190" width="358" height="50"/>
+  <rect class="calc" x="360" y="190" width="338" height="50"/>
+  <text class="nm ink"   x="80" y="212">BO</text>
+  <text class="sub mute" x="80" y="238">286g/h ／ ＋3分</text>
+  <text class="val navy" x="732" y="224">55分</text>
+
+  <rect class="real" x="360" y="258" width="507" height="50"/>
+  <rect class="calc" x="360" y="258" width="384" height="50"/>
+  <text class="nm ink"   x="80" y="280">スマート／ウィンドシールド</text>
+  <text class="sub mute" x="80" y="306">254g/h ／ ＋19分</text>
+  <text class="val navy" x="881" y="292">78分</text>
+
+  <rect class="real" x="360" y="326" width="442" height="50"/>
+  <rect class="calc" x="360" y="326" width="397" height="50"/>
+  <text class="nm ink"   x="80" y="348">達人スリムV</text>
+  <text class="sub mute" x="80" y="374">245g/h ／ ＋7分</text>
+  <text class="val navy" x="816" y="360">68分</text>
+
+  <rect class="real" x="360" y="394" width="455" height="50"/>
+  <rect class="calc" x="360" y="394" width="416" height="50"/>
+  <text class="nm ink"   x="80" y="416">スリム ほか2機種</text>
+  <text class="sub mute" x="80" y="442">236g/h ／ ＋6分</text>
+  <text class="val navy" x="829" y="428">70分</text>
+
+  <rect class="real" x="360" y="462" width="468" height="50"/>
+  <rect class="calc" x="360" y="462" width="462" height="50"/>
+  <text class="nm ink"   x="80" y="484">エコプレミアムIII</text>
+  <text class="sub mute" x="80" y="510">210g/h ／ ＋1分</text>
+  <text class="val navy" x="842" y="496">72分</text>
+
+  <rect class="real" x="360" y="530" width="728" height="50"/>
+  <rect class="calc" x="360" y="530" width="722" height="50"/>
+  <text class="nm rust"  x="80" y="552">ミニ</text>
+  <text class="sub mute" x="80" y="578">135g/h ／ ＋1分</text>
+  <text class="val rust" x="1102" y="564">112分</text>
+
+  <text class="st mute" x="80" y="614">火力が強い機種ほど、早く使い切ります。</text>
+</svg>
