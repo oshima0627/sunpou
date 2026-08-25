@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="長谷川工業RHB-18aを上から見た図。しまうときは幅62センチ奥行17センチだが、広げると幅は変わらず奥行だけ108センチになる">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .h    { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s    { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n    { font: 700 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .shut { fill: #014172; stroke: #014172; stroke-width: 2; }
+    .open { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .dim  { stroke: #a8410f; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="38">広げても幅は変わりません。伸びるのは奥行だけです</text>
+  <text class="s mute" x="30" y="64">長谷川工業 RHB-18a を上から見た図 ／ 縮尺 2px = 1cm</text>
+
+  <!-- しまうとき 62 × 17cm -->
+  <rect class="shut" x="80" y="120" width="124" height="34"/>
+  <text class="n navy" x="80" y="196">しまうとき</text>
+  <text class="s mute" x="80" y="222">幅 62cm × 奥行 17cm</text>
+
+  <!-- 広げたとき 62 × 108cm -->
+  <rect class="open" x="330" y="120" width="124" height="216"/>
+  <text class="n navy" x="330" y="378">広げたとき</text>
+  <text class="s mute" x="330" y="404">幅 62cm × 奥行 108cm</text>
+
+  <!-- 奥行の寸法線 -->
+  <line class="dim" x1="240" y1="120" x2="240" y2="154"/>
+  <line class="dim" x1="232" y1="120" x2="248" y2="120"/>
+  <line class="dim" x1="232" y1="154" x2="248" y2="154"/>
+  <line class="dim" x1="490" y1="120" x2="490" y2="336"/>
+  <line class="dim" x1="482" y1="120" x2="498" y2="120"/>
+  <line class="dim" x1="482" y1="336" x2="498" y2="336"/>
+
+  <text class="n ink"  x="560" y="180">奥行が 6.4倍</text>
+  <text class="s mute" x="560" y="206">17cm → 108cm</text>
+  <text class="s mute" x="560" y="230">幅は 62cm のまま変わりません</text>
+
+  <text class="n ink"  x="560" y="300">いちばん差が大きいのは</text>
+  <text class="s mute" x="560" y="326">アルインコ PRT-360FX</text>
+  <text class="s mute" x="560" y="350">17.2cm → 250cm（14.5倍）</text>
+
+  <text class="s mute" x="30" y="470">しまう場所と広げる場所は、別々に測ってください。</text>
+  <text class="s mute" x="30" y="494">薄くしまえることと、狭い場所で使えることは別の話です。</text>
+</svg>
