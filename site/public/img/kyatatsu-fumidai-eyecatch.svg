@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="天板高さの範囲の比較。上わくなしの踏台は0.30から0.79メートル、上わく付きの踏台は0.51から1.61メートル、脚立は0.51から2.70メートルで、範囲が重なっている">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .ax   { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .barN { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .barR { fill: #f3d2be; stroke: #a8410f; stroke-width: 2; }
+    .rule { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+    .axis { stroke: #6f7680; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="76">「踏台」の天板は0.30mから1.61mまで</text>
+  <text class="st mute" x="80" y="118">メーカーが呼び分けている天板高さの範囲。目盛りは 1m = 280px</text>
+
+  <text class="sub rust" x="450" y="172">天板高さ 80cm</text>
+  <line class="rule" x1="604" y1="182" x2="604" y2="462"/>
+
+  <rect class="barN" x="464" y="210" width="137" height="56"/>
+  <text class="nm ink"   x="80" y="234">踏台（上わくなし）</text>
+  <text class="sub mute" x="80" y="258">0.30 〜 0.79m</text>
+
+  <rect class="barN" x="523" y="300" width="308" height="56"/>
+  <text class="nm ink"   x="80" y="324">踏台（上わく付き）</text>
+  <text class="sub mute" x="80" y="348">0.51 〜 1.61m</text>
+
+  <rect class="barR" x="523" y="390" width="613" height="56"/>
+  <text class="nm ink"   x="80" y="414">脚立</text>
+  <text class="sub mute" x="80" y="438">0.51 〜 2.70m</text>
+
+  <line class="axis" x1="380" y1="474" x2="1160" y2="474"/>
+  <line class="axis" x1="380" y1="474" x2="380" y2="484"/>
+  <line class="axis" x1="660" y1="474" x2="660" y2="484"/>
+  <line class="axis" x1="940" y1="474" x2="940" y2="484"/>
+  <text class="ax mute" x="374" y="504">0</text>
+  <text class="ax mute" x="646" y="504">1m</text>
+  <text class="ax mute" x="926" y="504">2m</text>
+
+  <text class="st mute" x="80" y="562">同じ0.51mに踏台と脚立の両方があります。</text>
+  <text class="st mute" x="80" y="598">上わくが付くと、80cmを超えても「踏台」と呼ばれていました。</text>
+</svg>

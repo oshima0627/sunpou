@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="上わく付き踏台と脚立を横から比べた図。踏台は天板0.79メートルの上に61センチの上わくがあり全高1.40メートル。脚立は天板0.81メートルだが足を置ける使用最大高さは0.50メートルで、天板より31センチ低い">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .rust  { fill: #a8410f; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm    { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .legN  { stroke: #014172; stroke-width: 6; stroke-linecap: round; fill: none; }
+    .legR  { stroke: #a8410f; stroke-width: 6; stroke-linecap: round; fill: none; }
+    .plateN{ fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .plateR{ fill: #f3d2be; stroke: #a8410f; stroke-width: 3; }
+    .gl    { stroke: #6f7680; stroke-width: 2; stroke-dasharray: 6 5; }
+    .gnd   { stroke: #434347; stroke-width: 3; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="38">上わくは天板の60cm上。脚立は天板の30cm下までです</text>
+  <text class="s mute" x="30" y="64">横から見た図 ／ 縮尺 1.4px = 1cm ／ 同じ0.8m前後の2製品を並べています</text>
+
+  <!-- 地面 -->
+  <line class="gnd" x1="60" y1="400" x2="860" y2="400"/>
+
+  <!-- 左：上わく付き踏台 EFA-08（天板0.79m／全高1.40m／設置奥行83cm） -->
+  <path class="legN" d="M230 289 L192 398"/>
+  <path class="legN" d="M270 289 L308 398"/>
+  <rect class="plateN" x="228" y="285" width="44" height="9"/>
+  <path class="legN" d="M234 283 L234 210"/>
+  <path class="legN" d="M266 283 L266 210"/>
+  <rect class="plateN" x="228" y="199" width="44" height="10"/>
+
+  <line class="gl" x1="272" y1="204" x2="332" y2="204"/>
+  <line class="gl" x1="272" y1="289" x2="332" y2="289"/>
+  <text class="s navy" x="340" y="210">全高 1.40m</text>
+  <text class="s mute" x="340" y="252">上わく ＋61cm</text>
+  <text class="s navy" x="340" y="294">天板 0.79m</text>
+
+  <text class="nm ink"  x="150" y="444">踏台（上わく付き）</text>
+  <text class="s mute"  x="150" y="468">長谷川工業 EFA-08</text>
+
+  <!-- 右：はしご兼用脚立 RHB-09a（天板0.81m／使用最大0.50m／設置奥行60cm） -->
+  <path class="legR" d="M629 287 L608 398"/>
+  <path class="legR" d="M671 287 L692 398"/>
+  <rect class="plateR" x="627" y="282" width="46" height="9"/>
+  <rect class="plateR" x="620" y="325" width="60" height="9"/>
+
+  <line class="gl" x1="673" y1="287" x2="712" y2="287"/>
+  <line class="gl" x1="680" y1="330" x2="712" y2="330"/>
+  <text class="s rust" x="720" y="292">天板 0.81m</text>
+  <text class="s rust" x="720" y="336">使用最大 0.50m</text>
+
+  <text class="nm ink"  x="580" y="444">はしご兼用脚立</text>
+  <text class="s mute"  x="580" y="468">長谷川工業 RHB-09a</text>
+
+  <text class="s mute" x="30" y="506">天板の高さは0.79mと0.81m。ほぼ同じですが、足を置ける高さは0.79mと0.50mに分かれます。</text>
+</svg>
