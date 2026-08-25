@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="はしご兼用脚立を横から見た図。型番の数字180は開いた状態のどの高さでもなく、天板の高さは1.70メートル、足を置ける使用最大高さは1.40メートルであることを3本の水平線で示している">
+  <style>
+    .bg    { fill: #fcfcfc; }
+    .ink   { fill: #434347; }
+    .mute  { fill: #6f7680; }
+    .navy  { fill: #014172; }
+    .rust  { fill: #a8410f; }
+    .h     { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s     { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .n     { font: 700 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .leg   { stroke: #6f7680; stroke-width: 7; stroke-linecap: round; fill: none; }
+    .plate { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .step  { fill: #f3d2be; stroke: #a8410f; stroke-width: 3; }
+    .gnd   { stroke: #434347; stroke-width: 3; }
+    .gl    { stroke: #6f7680; stroke-width: 2; stroke-dasharray: 7 6; }
+    .glN   { stroke: #014172; stroke-width: 2; }
+    .glR   { stroke: #a8410f; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="38">「180」の脚立で、足を置けるのは 1.40m です</text>
+  <text class="s mute" x="30" y="64">長谷川工業 RHB-18a ／ 横から見た図 ／ 縮尺 2px = 1cm ／ 踏ざんは省略</text>
+
+  <!-- 脚立本体（前脚・後脚・天板） -->
+  <path class="leg" d="M252 124 L172 458"/>
+  <path class="leg" d="M308 124 L388 458"/>
+  <rect class="plate" x="248" y="114" width="64" height="12"/>
+  <rect class="step"  x="236" y="174" width="88" height="11"/>
+
+  <!-- 地面 -->
+  <line class="gnd" x1="120" y1="460" x2="560" y2="460"/>
+
+  <!-- 3本の基準線 -->
+  <line class="gl"  x1="140" y1="100" x2="556" y2="100"/>
+  <line class="glN" x1="140" y1="120" x2="556" y2="120"/>
+  <line class="glR" x1="140" y1="180" x2="556" y2="180"/>
+
+  <text class="n mute" x="580" y="94">型番の数字 180</text>
+  <text class="s mute" x="580" y="118">開いた状態の高さではありません</text>
+
+  <text class="n navy" x="580" y="172">天板の高さ 1.70m</text>
+  <text class="s mute" x="580" y="196">乗ることは禁止されています</text>
+
+  <text class="n rust" x="580" y="250">使用最大高さ 1.40m</text>
+  <text class="s mute" x="580" y="274">足を置けるのはここまで</text>
+
+  <text class="n ink"  x="580" y="336">型番の数字より 40cm 低い</text>
+  <text class="s mute" x="580" y="362">RHB は5サイズすべてこの差でした</text>
+  <text class="s mute" x="580" y="386">アルインコとピカは使用最大高さを</text>
+  <text class="s mute" x="580" y="410">仕様表に載せていません</text>
+</svg>
