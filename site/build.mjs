@@ -264,6 +264,14 @@ const categoryWidget = showCategoryNav
 
 const aboutWidget = widget('このサイトについて', `<p>${esc(site.description)}</p><p class="widget__more"><a href="/about/">運営者情報と数値の作り方 →</a></p>`);
 
+/**
+ * フッターの X へのリンク。site.json の xHandle を空にすると出力しない。
+ * 外部リンクなので rel="me" を付けて、サイトとアカウントが同一運営であることを示す。
+ */
+const snsHtml = site.xHandle
+  ? `<p class="sns"><a href="https://x.com/${encodeURIComponent(site.xHandle)}" rel="me noopener" target="_blank">X @${esc(site.xHandle)}</a></p>`
+  : '';
+
 const common = {
   lang: site.lang,
   siteName: esc(site.name),
@@ -271,6 +279,7 @@ const common = {
   nav: navHtml,
   robots: '',
   disclosure: disclosureHtml,
+  sns: snsHtml,
   analytics: analyticsHtml,
   ogImage: ORIGIN + site.defaultOgImage,
 };
