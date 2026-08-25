@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="クーラーボックスは入れたいものから内寸を逆に引いて選ぶ。500mlは内寸の辺と胴径、2Lは内寸の深さ306mm、保冷剤は深さの余り25mm、魚は内寸の長辺、持ち運びは自重で決まる">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .row  { fill: rgba(33,53,85,.05); }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .lbl  { font: 700 26px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 18px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .arw  { font: 700 30px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="86">入れたいものから、内寸を逆に引く</text>
+  <text class="st mute" x="80" y="128">容量Lは「何が入るか」を教えてくれない</text>
+
+  <rect class="row" x="70" y="150" width="1060" height="72"/>
+  <text class="lbl ink"  x="100" y="180">500ml ペットボトル</text>
+  <text class="sub mute" x="100" y="208">全高 207mm</text>
+  <text class="arw mute" x="470" y="186">→</text>
+  <text class="lbl navy" x="540" y="180">内寸の辺 ÷ 胴径</text>
+  <text class="sub mute" x="540" y="208">同じ20Lでも 15〜18本</text>
+  <text class="lbl ink"  x="100" y="266">2L ペットボトル</text>
+  <text class="sub mute" x="100" y="294">全高 306mm</text>
+  <text class="arw mute" x="470" y="272">→</text>
+  <text class="lbl navy" x="540" y="266">内寸の深さ</text>
+  <text class="sub mute" x="540" y="294">306mm以上は 26製品中3つ</text>
+  <rect class="row" x="70" y="322" width="1060" height="72"/>
+  <text class="lbl ink"  x="100" y="352">保冷剤</text>
+  <text class="sub mute" x="100" y="380">厚さ 25〜35mm</text>
+  <text class="arw mute" x="470" y="358">→</text>
+  <text class="lbl navy" x="540" y="352">深さの余り</text>
+  <text class="sub mute" x="540" y="380">25mm未満なら床を食う</text>
+  <text class="lbl ink"  x="100" y="438">大きい魚</text>
+  <text class="sub mute" x="100" y="466">まっすぐ入る長さ</text>
+  <text class="arw mute" x="470" y="444">→</text>
+  <text class="lbl navy" x="540" y="438">内寸の長辺</text>
+  <text class="sub mute" x="540" y="466">80cm以上は 3製品</text>
+  <rect class="row" x="70" y="494" width="1060" height="72"/>
+  <text class="lbl ink"  x="100" y="524">持ち運び</text>
+  <text class="sub mute" x="100" y="552">空のときの重さ</text>
+  <text class="arw mute" x="470" y="530">→</text>
+  <text class="lbl navy" x="540" y="524">自重</text>
+  <text class="sub mute" x="540" y="552">1.5kg 〜 13.2kg</text>
+
+  <text class="st mute" x="80" y="612">メーカー公表の内寸から計算（実測ではありません）　寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>

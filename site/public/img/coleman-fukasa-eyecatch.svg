@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="同じ26Lクラスでも内寸の深さが違う。コールマン28QTは350mm、ダイワPV-REX2800は235mm。2Lペットボトルの全高306mmが立つのはコールマンだけ">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .box  { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .pet  { fill: #f3ddc0; stroke: #9a6a11; stroke-width: 3; }
+    .line { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cap  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big  { font: 700 30px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="84">同じ26Lクラス。深さが1.5倍ちがう</text>
+  <text class="st mute" x="80" y="126">内寸を横から見た図 ／ 縮尺 1px = 1mm ／ 橙は2Lペットボトル（全高306mm）</text>
+
+  <text class="cap ink" x="120" y="196">コールマン 28QT（約26L）</text>
+  <rect class="box" x="120" y="210" width="240" height="350"/>
+  <rect class="pet" x="150" y="254" width="80" height="306"/>
+  <text class="big navy" x="120" y="600">深さ 350mm ／ 2Lが立つ</text>
+
+  <text class="cap ink" x="620" y="196">ダイワ PV-REX 2800（28L）</text>
+  <rect class="box" x="620" y="325" width="240" height="235"/>
+  <line class="line" x1="600" y1="254" x2="900" y2="254"/>
+  <text class="st ink" x="910" y="248">2Lの高さ 306mm</text>
+  <text class="st mute" x="910" y="284">ここまで届かない</text>
+  <text class="big navy" x="620" y="600">深さ 235mm ／ 2Lは立たない</text>
+</svg>
