@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="届きたい高さ2.4メートルから身長1.6メートルを引くと必要な足場は0.8メートル。その高さに立てるのは踏台のアルインコCCA-80K2.5キログラム、上わく付き踏台のTBF-4が3.8キログラム、はしご兼用脚立のRHB-12aが4.5キログラム">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 42px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .lbl  { font: 400 18px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .big  { font: 700 40px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .op   { font: 700 40px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .ty   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .pd   { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .box  { fill: #eef3f8; stroke: #6f7680; stroke-width: 2; }
+    .boxA { fill: #cfe0ef; stroke: #014172; stroke-width: 3; }
+    .ty1  { fill: #f7fafc; stroke: #014172; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="72">届きたい高さ − 身長 ＝ 必要な足場</text>
+  <text class="st mute" x="80" y="114">長谷川工業の「身長＋天板高さ＝作業高さ」を逆に使っています（身長160cm基準）</text>
+
+  <rect class="box"  x="80"  y="170" width="300" height="108"/>
+  <text class="lbl mute" x="230" y="200" text-anchor="middle">届きたい高さ</text>
+  <text class="big ink"  x="230" y="262" text-anchor="middle">2.4m</text>
+
+  <text class="op mute" x="420" y="244" text-anchor="middle">−</text>
+
+  <rect class="box"  x="460" y="170" width="300" height="108"/>
+  <text class="lbl mute" x="610" y="200" text-anchor="middle">身長</text>
+  <text class="big ink"  x="610" y="262" text-anchor="middle">1.6m</text>
+
+  <text class="op mute" x="800" y="244" text-anchor="middle">＝</text>
+
+  <rect class="boxA" x="840" y="170" width="300" height="108"/>
+  <text class="lbl navy" x="990" y="200" text-anchor="middle">必要な足場の高さ</text>
+  <text class="big navy" x="990" y="262" text-anchor="middle">0.8m</text>
+
+  <text class="st ink" x="80" y="342">0.8m に足を置ける3つの選び方</text>
+
+  <rect class="ty1" x="80"  y="374" width="350" height="150"/>
+  <text class="ty navy"  x="104" y="414">踏台</text>
+  <text class="pd ink"   x="104" y="446">アルインコ CCA-80K</text>
+  <text class="pd ink"   x="104" y="474">0.79m ／ 2.5kg</text>
+  <text class="pd mute"  x="104" y="502">いちばん軽く、短くしまえる</text>
+
+  <rect class="ty1" x="450" y="374" width="340" height="150"/>
+  <text class="ty navy"  x="474" y="414">踏台（上わく付き）</text>
+  <text class="pd ink"   x="474" y="446">アルインコ TBF-4</text>
+  <text class="pd ink"   x="474" y="474">0.77m ／ 3.8kg</text>
+  <text class="pd mute"  x="474" y="502">手すりが天板の60cm上にある</text>
+
+  <rect class="ty1" x="810" y="374" width="330" height="150"/>
+  <text class="ty rust"  x="834" y="414">はしご兼用脚立</text>
+  <text class="pd ink"   x="834" y="446">長谷川工業 RHB-12a</text>
+  <text class="pd ink"   x="834" y="474">0.80m ／ 4.5kg</text>
+  <text class="pd mute"  x="834" y="502">天板には乗れない</text>
+
+  <text class="st mute" x="80" y="588">脚立の「足を置ける高さ」は天板高さではなく、使用最大高さです。</text>
+</svg>
