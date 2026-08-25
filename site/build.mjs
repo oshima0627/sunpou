@@ -56,15 +56,31 @@ const analyticsHtml = site.webAnalyticsToken
   : '';
 
 /**
- * 本文中の [[LINK:商品名]] を処理する。審査に合格するまではリンクを出さない。
- * true にしただけでリンクが空のまま公開されるのを防ぐため、実装前に true なら例外を投げる。
+ * 本文中の [[LINK:商品名]] を、Amazon の検索結果へのアソシエイトリンクに変換する。
+ *
+ * なぜ ASIN 直リンクではなく検索リンクなのか（2026-08-25 の判断）:
+ *   - 型番違い・色違い・生産終了で、ASIN は「別物を指す」事故を起こす。
+ *     このサイトは寸法の正確さが売りなので、指す先がずれるのは致命的
+ *   - 検索リンクなら常に現行品を指し、リンク切れにならない
+ *
+ * 規約上の根拠（アソシエイト・プログラム・ポリシー / 2026-08-25 に本文を確認）:
+ *   「商品リスト（検索結果、イベント…を含みます。）と乙サイトのページをリンクした場合、
+ *     乙は、特別リンクと関連させた乙のサイト上に追加のオリジナルコンテンツも含めなければなりません。」
+ *   → 本サイトは全リンクの隣に自前の計算結果（内寸・本数・自重）を置いているので条件を満たす。
+ *
+ * affiliateEnabled が false の間はリンクを出さない（リンクが無いのに開示文言を出さないため）。
  */
 function resolveLinks(html) {
   return html.replace(/\[\[LINK:([^\]]+)\]\]/g, (_, label) => {
     if (!site.affiliateEnabled) {
       return `<span class="link-todo" title="Amazonアソシエイトの審査合格後にリンクへ差し替え">${esc(label)}</span>`;
     }
-    throw new Error(`affiliateEnabled=true だがリンクの実体が未実装: ${label}`);
+    if (!site.associateTag) {
+      throw new Error('affiliateEnabled=true だが site.json の associateTag が未設定');
+    }
+    const url = `https://www.amazon.co.jp/s?k=${encodeURIComponent(label)}&tag=${encodeURIComponent(site.associateTag)}`;
+    // rel: nofollow は規約側、sponsored は Google 側の要請。noopener は target=_blank の安全対策。
+    return `<a class="buy" href="${url}" rel="nofollow sponsored noopener" target="_blank">${esc(label)}をAmazonで見る</a>`;
   });
 }
 
