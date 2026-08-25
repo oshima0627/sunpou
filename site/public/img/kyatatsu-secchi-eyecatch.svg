@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="設置時の奥行と収納時の奥行の比較。長谷川SE-3aは18センチが31センチで1.7倍、SE-8aは18が66で3.7倍、RHB-18aは17が108で6.4倍、EFA-11は9.6が104で10.8倍、アルインコPRT-360FXは17.2が250で14.5倍">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .open { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .shut { fill: #014172; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="76">広げると、奥行が最大14.5倍になります</text>
+  <text class="st mute" x="80" y="118">濃い部分がしまうとき、薄い部分まで広げたとき ／ 目盛りは 1cm = 2.8px</text>
+
+  <rect class="open" x="330" y="200" width="87" height="52"/>
+  <rect class="shut" x="330" y="200" width="50" height="52"/>
+  <text class="nm ink"   x="80" y="222">長谷川 SE-3a</text>
+  <text class="sub mute" x="80" y="246">18cm → 31cm</text>
+  <text class="val navy" x="431" y="234">1.7倍</text>
+
+  <rect class="open" x="330" y="280" width="185" height="52"/>
+  <rect class="shut" x="330" y="280" width="50" height="52"/>
+  <text class="nm ink"   x="80" y="302">長谷川 SE-8a</text>
+  <text class="sub mute" x="80" y="326">18cm → 66cm</text>
+  <text class="val navy" x="529" y="314">3.7倍</text>
+
+  <rect class="open" x="330" y="360" width="302" height="52"/>
+  <rect class="shut" x="330" y="360" width="48" height="52"/>
+  <text class="nm ink"   x="80" y="382">長谷川 RHB-18a</text>
+  <text class="sub mute" x="80" y="406">17cm → 108cm</text>
+  <text class="val navy" x="646" y="394">6.4倍</text>
+
+  <rect class="open" x="330" y="440" width="291" height="52"/>
+  <rect class="shut" x="330" y="440" width="27" height="52"/>
+  <text class="nm ink"   x="80" y="462">長谷川 EFA-11</text>
+  <text class="sub mute" x="80" y="486">9.6cm → 104cm</text>
+  <text class="val navy" x="635" y="474">10.8倍</text>
+
+  <rect class="open" x="330" y="520" width="700" height="52"/>
+  <rect class="shut" x="330" y="520" width="48" height="52"/>
+  <text class="nm ink"   x="80" y="542">アルインコ PRT-360FX</text>
+  <text class="sub mute" x="80" y="566">17.2cm → 250cm</text>
+  <text class="val navy" x="1044" y="554">14.5倍</text>
+
+  <text class="st mute" x="80" y="614">薄くしまえるものほど、広げたときの差が大きくなります。</text>
+</svg>

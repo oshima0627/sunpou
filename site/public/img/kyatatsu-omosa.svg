@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" role="img"
+     aria-label="足を置ける高さが0.8メートル前後の6製品の質量。アルインコCCA-80Kが2.5キログラム、長谷川SE-8aが2.6キログラム、TBF-4が3.8キログラム、EFA-08が4.4キログラム、RHB-12aが4.5キログラム、SWH-12が7.6キログラム">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .h    { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .s    { font: 400 15px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 13px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 18px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .barN { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .barR { fill: #f3d2be; stroke: #a8410f; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="900" height="520"/>
+
+  <text class="h ink"  x="30" y="38">0.8m前後に立つ6製品。2.5kg から 7.6kg まで</text>
+  <text class="s mute" x="30" y="64">踏台は天板高さ、脚立は使用最大高さ ／ 目盛りは 1kg = 70px</text>
+
+  <rect class="barN" x="280" y="100" width="175" height="36"/>
+  <text class="nm ink"   x="30" y="116">アルインコ CCA-80K</text>
+  <text class="sub mute" x="30" y="137">踏台 ／ 0.79m</text>
+  <text class="val navy" x="467" y="124">2.5kg</text>
+
+  <rect class="barN" x="280" y="162" width="182" height="36"/>
+  <text class="nm ink"   x="30" y="178">長谷川 SE-8a</text>
+  <text class="sub mute" x="30" y="199">踏台 ／ 0.79m</text>
+  <text class="val navy" x="474" y="186">2.6kg</text>
+
+  <rect class="barN" x="280" y="224" width="266" height="36"/>
+  <text class="nm ink"   x="30" y="240">アルインコ TBF-4</text>
+  <text class="sub mute" x="30" y="261">踏台（上わく付き）／ 0.77m</text>
+  <text class="val navy" x="558" y="248">3.8kg</text>
+
+  <rect class="barN" x="280" y="286" width="308" height="36"/>
+  <text class="nm ink"   x="30" y="302">長谷川 EFA-08</text>
+  <text class="sub mute" x="30" y="323">踏台（上わく付き）／ 0.79m</text>
+  <text class="val navy" x="600" y="310">4.4kg</text>
+
+  <rect class="barR" x="280" y="348" width="315" height="36"/>
+  <text class="nm ink"   x="30" y="364">長谷川 RHB-12a</text>
+  <text class="sub mute" x="30" y="385">はしご兼用脚立 ／ 0.80m</text>
+  <text class="val rust" x="607" y="372">4.5kg</text>
+
+  <rect class="barR" x="280" y="410" width="532" height="36"/>
+  <text class="nm ink"   x="30" y="426">長谷川 SWH-12</text>
+  <text class="sub mute" x="30" y="447">強力型脚立 ／ 0.90m</text>
+  <text class="val rust" x="824" y="434">7.6kg</text>
+
+  <text class="s mute" x="30" y="490">いちばん軽い2.5kgと、いちばん重い7.6kgで3.0倍の差があります。</text>
+</svg>

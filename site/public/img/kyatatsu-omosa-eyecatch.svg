@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="足を置ける高さが0.5から0.6メートルの製品の質量の比較。アルインコCCA-60Kは1.7キログラム、長谷川工業SE-6aは1.8キログラム、EFA-05は3.5キログラム、RHB-09aは3.6キログラム、SWH-09は6.3キログラム">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .barN { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .barR { fill: #f3d2be; stroke: #a8410f; stroke-width: 2; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="76">同じ高さに立つのに 1.7kg と 6.3kg</text>
+  <text class="st mute" x="80" y="118">足を置ける高さが0.5〜0.6mの5製品。目盛りは 1kg = 115px</text>
+
+  <rect class="barN" x="380" y="200" width="196" height="52"/>
+  <text class="nm ink"   x="80" y="222">アルインコ CCA-60K</text>
+  <text class="sub mute" x="80" y="246">踏台 ／ 0.56m</text>
+  <text class="val navy" x="590" y="234">1.7kg</text>
+
+  <rect class="barN" x="380" y="280" width="207" height="52"/>
+  <text class="nm ink"   x="80" y="302">長谷川工業 SE-6a</text>
+  <text class="sub mute" x="80" y="326">踏台 ／ 0.56m</text>
+  <text class="val navy" x="601" y="314">1.8kg</text>
+
+  <rect class="barN" x="380" y="360" width="403" height="52"/>
+  <text class="nm ink"   x="80" y="382">長谷川工業 EFA-05</text>
+  <text class="sub mute" x="80" y="406">踏台（上わく付き）／ 0.51m</text>
+  <text class="val navy" x="797" y="394">3.5kg</text>
+
+  <rect class="barR" x="380" y="440" width="414" height="52"/>
+  <text class="nm ink"   x="80" y="462">長谷川工業 RHB-09a</text>
+  <text class="sub mute" x="80" y="486">はしご兼用脚立 ／ 0.50m</text>
+  <text class="val rust" x="808" y="474">3.6kg</text>
+
+  <rect class="barR" x="380" y="520" width="725" height="52"/>
+  <text class="nm ink"   x="80" y="542">長谷川工業 SWH-09</text>
+  <text class="sub mute" x="80" y="566">強力型脚立 ／ 0.60m</text>
+  <text class="val rust" x="1119" y="554">6.3kg</text>
+
+  <text class="st mute" x="80" y="614">踏台は天板高さ、脚立は使用最大高さでそろえています。</text>
+</svg>
