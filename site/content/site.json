@@ -10,7 +10,8 @@
   "//categories": "記事の front matter の category は、この slug のどれかでなければビルドが落ちる。",
   "categories": [
     { "slug": "coolerbox", "name": "クーラーボックス" },
-    { "slug": "cassette-konro", "name": "カセットコンロ" }
+    { "slug": "cassette-konro", "name": "カセットコンロ" },
+    { "slug": "kyatatsu", "name": "脚立・踏み台" }
   ],
 
   "//nav": "ヘッダーとフッターのナビ。カテゴリは自動で先頭に入るので、ここには固定ページだけ書く。",
