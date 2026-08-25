@@ -5,8 +5,8 @@
 # ⚠️ アフィリエイトリンクは貼らない。貼るのは記事URLだけ
 #
 # 添える画像:
-#   [1] site/public/img/og/site.png
-#   [2] site/public/img/og/site.png
+#   [1] site/public/img/og/site.png        ← 2026-08-25 投稿済み
+#   [2] site/public/img/og/sns-rules.png   ← 2026-08-25 投稿済み
 #   [3] site/public/img/og/donabe-nangou.png
 #   [4] site/public/img/og/sns-konro-kw.png
 #   [5] site/public/img/og/sns-konro-haba.png
