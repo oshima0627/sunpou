@@ -12,9 +12,13 @@
 #   [5] site/public/img/og/sns-konro-haba.png    ← 2026-08-30 21:00 予約済み
 #   [6] site/public/img/og/kyatatsu-takasa.png   ← 2026-09-02 21:00 予約済み
 #   [7] site/public/img/og/kyatatsu-kaidan.png   ← 2026-09-04 21:00 予約済み
-#   [8] site/public/img/og/kyatatsu-fumidai.png  ← 2026-09-06 21:00 予約済み
+#   [8]  site/public/img/og/kyatatsu-fumidai.png   ← 2026-09-06 21:00 予約済み
+#   [9]  site/public/img/og/kyatatsu-omosa.png     ← 2026-09-08 21:00 予約済み
+#   [10] site/public/img/og/kyatatsu-secchi.png    ← 2026-09-10 21:00 予約済み
+#   [11] site/public/img/og/kyatatsu-erabikata.png ← 2026-09-12 21:00 予約済み
 #
-# 状況: 1・2 は投稿済み。3〜7 は 21:00 JST で予約済み（下記）。次に書いた下書きはここに足す。
+# 状況: 1・2 は投稿済み。3〜11 は 21:00 JST で予約済み（下記、2026-09-12 まで）。
+# 次に書いた下書きはここに足す。予約は 9/12 で切れる。
 # ⚠️ 予約の手順と踏んだ罠は docs/sns-plan.md 第8節。
 # ------------------------------------------------------------------
 ---
@@ -89,3 +93,30 @@ https://sunpou.nexeed-lab.com/kyatatsu/kaidan/
 同じ0.51mに、踏台と脚立の両方がありました。
 
 https://sunpou.nexeed-lab.com/kyatatsu/fumidai-kyatatsu/
+---
+同じ高さに立つのに、1.7kgと6.3kgの差がありました。
+
+カタログは天板高さ順に並んでいます。
+でも天板高さは、足を置ける高さではありません。
+
+そろえ直すと、0.5〜0.6mで3.7倍の開きでした。
+
+https://sunpou.nexeed-lab.com/kyatatsu/omosa/
+---
+脚立を広げると、奥行がしまうときの14.5倍になりました。
+
+幅は変わりません。伸びるのは奥行だけです。
+
+17cmが108cm。9.6cmが104cm。
+薄くしまえるものほど、広げたときの差が大きくなります。
+
+https://sunpou.nexeed-lab.com/kyatatsu/secchi/
+---
+脚立と踏み台の42製品を、1枚の早見表にしました。
+
+届きたい高さ − 身長 ＝ 必要な足場の高さ。
+
+天井2.4m・身長160cmなら80cm。
+そこに立てるのは2.5kgの踏台から7.6kgの脚立までありました。
+
+https://sunpou.nexeed-lab.com/kyatatsu/erabikata/
