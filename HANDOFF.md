@@ -79,18 +79,23 @@ Amazon の商品比較サイト「**寸法で選ぶ**」を運営している。
 
 ---
 
-## 公開済みの記事（8本）
+## 公開済みの記事（10本）
 
 | URL | 役割 | 内容 |
 |---|---|---|
-| `/coolerbox/erabikata/` | **収益記事** | **26製品の早見表。** 用途（500ml／2L／保冷剤／魚の長さ／自重）から内寸を逆に引く。リンク37箇所 |
+| `/coolerbox/erabikata/` | **収益記事** | **33製品の早見表。** 用途（500ml／2L／保冷剤／魚の長さ／自重）から内寸を逆に引く。**リンク51箇所** |
 | `/coolerbox/500ml-honsuu/` | 集客 | 500mlが何本入るか。同じ20Lで15〜18本 |
-| `/coolerbox/2l-tateru/` | 集客 | 2Lは立つか。**26製品中3つだけ**。1.5Lは2Lとほぼ同じ高さ |
+| `/coolerbox/2l-tateru/` | 集客 | 2Lは立つか。深さ310mmが分かれ目。1.5Lは2Lとほぼ同じ高さ |
 | `/coolerbox/horeizai-honsuu/` | 集客 | 保冷剤で何本減るか。同じ20Lに1枚で6本と18本 |
+| `/coolerbox/horeizai-maisuu/` | 集客 | 保冷剤は何枚入るか。減らさずに入るのは**1〜7枚**で製品によって7倍違う |
 | `/coolerbox/yoryo-uchinori/` | 集客 | 容量Lの正体。外寸の体積の28.9〜40.0%しか中に使えない |
 | `/coolerbox/daiwa-shimano/` | 集客 | **KEEPとCOOLは同じJIS簡便法の「時間」で比較できる** |
 | `/coolerbox/uchinori-nagasa/` | 集客 | 大型15製品を内寸の長辺順に。80Lと60Lは長辺が同じ85cm |
+| `/coolerbox/coleman-uchinori/` | 集客 | **コールマンは内寸を「範囲」で公表。** 26Lクラスで深さ350mm、**7製品中6つで2Lが立つ** |
 | `/cassette-konro/donabe-nangou/` | 集客 | 同じ9号でも幅31〜32.5cm。「10号まで」の機種より10号土鍋が大きい |
+
+**内部リンクの構造**：集客9本 → 収益記事 `/coolerbox/erabikata/`。
+**全記事で、最初のリンクか収益記事への導線が本文の20%以内**にある（クッキー24時間対策）。
 
 ---
 
@@ -209,5 +214,6 @@ cd site && npm run build    # dist/ に出力
 | `docs/affiliate-program-facts.md` | 料率・審査・規約・PA-API・ステマ規制。**一次情報で確認済み** |
 | `docs/serp-check.md` | 13キーワードのSERP目視／需要確認／**収益モデル** |
 | `docs/genre-candidates.md` | 候補ジャンル15件（**全件未検証**） |
-| `docs/article-01-…` 〜 `article-07-…` | 各記事のリサーチ記録と未検証事項 |
+| `docs/article-01-…` 〜 `article-07-…` | 記事01〜07のリサーチ記録と未検証事項 |
+| `docs/article-08-10-notes.md` | **記事08〜10のデータ源と計算の前提**（収益記事・コールマン・保冷剤の枚数） |
 | `site/README.md` | サイトの実装。デザインの実測値、設定の理由、罠 |
