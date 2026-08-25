@@ -4,6 +4,7 @@ description: 同じ銀峯陶器の9号でも幅は31〜32.5cm。10号は34〜36c
 slug: cassette-konro/donabe-nangou
 category: cassette-konro
 eyecatch: /img/konro-donabe-eyecatch.svg
+ogImage: /img/og/donabe-nangou.png
 published: 2026-08-25
 updated: 2026-08-25
 ---

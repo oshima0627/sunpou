@@ -4,6 +4,7 @@ description: ダイワのKEEPとシマノのCOOLは、どちらもJIS S 2048の�
 slug: coolerbox/daiwa-shimano
 category: coolerbox
 eyecatch: /img/coolerbox-daiwa-shimano-eyecatch.svg
+ogImage: /img/og/daiwa-shimano.png
 published: 2026-08-24
 updated: 2026-08-24
 ---

@@ -4,6 +4,7 @@ description: 20Lに氷点下パックLを寝かせると18本が6本に。同じ
 slug: coolerbox/horeizai-honsuu
 category: coolerbox
 eyecatch: /img/coolerbox-horeizai-eyecatch.svg
+ogImage: /img/og/horeizai-honsuu.png
 published: 2026-08-24
 updated: 2026-08-24
 ---

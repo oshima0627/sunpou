@@ -4,6 +4,7 @@ description: 80Lと60Lは内寸の長辺が同じ85cmでした。容量Lと長�
 slug: coolerbox/uchinori-nagasa
 category: coolerbox
 eyecatch: /img/coolerbox-nagasa-eyecatch.svg
+ogImage: /img/og/uchinori-nagasa.png
 published: 2026-08-24
 updated: 2026-08-24
 ---
