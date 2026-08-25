@@ -1,0 +1,61 @@
+# X の投稿下書き（2026-08-25）
+#
+# ⚠️ 投稿の前に必ず文字数を確認する:  python tools/x-count.py docs/x-drafts.txt
+# ⚠️ 各投稿にはカードPNGを添付する（OGPカードはXのキャッシュに阻まれる。docs/sns-plan.md）
+# ⚠️ アフィリエイトリンクは貼らない。貼るのは記事URLだけ
+#
+# 添える画像:
+#   [1] site/public/img/og/site.png
+#   [2] site/public/img/og/site.png
+#   [3] site/public/img/og/donabe-nangou.png
+#   [4] site/public/img/og/sns-konro-kw.png
+#   [5] site/public/img/og/sns-konro-haba.png
+#
+# 投稿順: 1 → 2 を先に出して「方法の看板」を見せる。3〜5 は冬に向けたカセットコンロ。
+# ------------------------------------------------------------------
+---
+カタログの数字が、知りたいことを教えてくれない例を集めています。
+
+クーラーボックスの「容量L」
+土鍋の「号数」
+コールマンの「QT」
+
+どれも、何が入るかは別の数字で決まっていました。
+
+https://sunpou.nexeed-lab.com/
+---
+このサイトのルールは3つです。
+
+・一次情報だけを使う（通販の商品説明は根拠にしない）
+・計算式を記事に書く（読者が検算できる形にする）
+・数字には出典URLを付ける
+
+実測ではなく計算値だ、とも必ず書きます。
+
+https://sunpou.nexeed-lab.com/about/
+---
+「9号土鍋まで」と書かれたカセットコンロ。
+
+ところが同じ銀峯陶器の9号でも、幅（取手込）は31〜32.5cmありました。
+
+号数は寸法を決めていません。買う前に測るのは取手込みの幅です。
+
+https://sunpou.nexeed-lab.com/cassette-konro/donabe-nangou/
+---
+イワタニのカセットこんろ10機種を並べたら、火力と乗る鍋の大きさは無関係でした。
+
+最大4.1kWの機種が9号まで。
+最小2.9kWの機種だけが10号まで。
+
+大きい鍋を乗せたいときに見るのはkWではありません。
+
+https://sunpou.nexeed-lab.com/cassette-konro/donabe-nangou/
+---
+メーカーの公表値どうしが食い違っていることもあります。
+
+イワタニは「10号土鍋まで」と書いています。
+でもその機種の本体幅は33.4cm。10号土鍋の幅は34〜36cm。
+
+鍋のほうが大きい。どちらも公表値です。
+
+https://sunpou.nexeed-lab.com/cassette-konro/donabe-nangou/
