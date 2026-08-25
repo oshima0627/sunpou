@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="用途の組み合わせ別に計算した1人1週間あたりのカセットボンベの本数。全部まかなうと25度で4.0本、10度で5.8本。食事だけなら2.0本から2.5本。農林水産省の目安は6本">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .rust { fill: #a8410f; }
+    .t    { font: 700 44px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 22px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .nm   { font: 700 20px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .sub  { font: 400 16px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .val  { font: 700 24px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .cold { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .warm { fill: #014172; }
+    .rule { stroke: #a8410f; stroke-width: 3; stroke-dasharray: 8 6; }
+  </style>
+
+  <rect class="bg" width="1200" height="630"/>
+
+  <text class="t ink"   x="80" y="76">6本に届くのは「10℃で全部」のときでした</text>
+  <text class="st mute" x="80" y="118">1人・1週間あたり ／ 濃い部分が25℃、薄い部分まで伸びると10℃ ／ 1本 = 115px</text>
+
+  <text class="sub rust" x="790" y="178">農林水産省の目安 6本</text>
+  <line class="rule" x1="1050" y1="190" x2="1050" y2="556"/>
+
+  <rect class="cold" x="360" y="210" width="668" height="56"/>
+  <rect class="warm" x="360" y="210" width="466" height="56"/>
+  <text class="nm ink"   x="80" y="234">食事＋カップ麺＋飲み物＋お湯</text>
+  <text class="sub mute" x="80" y="258">全部まかなう</text>
+  <text class="val navy" x="1080" y="248">5.8本</text>
+
+  <rect class="cold" x="360" y="300" width="516" height="56"/>
+  <rect class="warm" x="360" y="300" width="370" height="56"/>
+  <text class="nm ink"   x="80" y="324">食事＋飲み物＋お湯</text>
+  <text class="sub mute" x="80" y="348">カップ麺なし</text>
+  <text class="val navy" x="1080" y="338">4.5本</text>
+
+  <rect class="cold" x="360" y="390" width="365" height="56"/>
+  <rect class="warm" x="360" y="390" width="275" height="56"/>
+  <text class="nm ink"   x="80" y="414">食事＋飲み物</text>
+  <text class="sub mute" x="80" y="438">お湯を沸かさない</text>
+  <text class="val navy" x="1080" y="428">3.2本</text>
+
+  <rect class="cold" x="360" y="480" width="289" height="56"/>
+  <rect class="warm" x="360" y="480" width="228" height="56"/>
+  <text class="nm ink"   x="80" y="504">食事だけ</text>
+  <text class="sub mute" x="80" y="528">1日3回のレトルト</text>
+  <text class="val navy" x="1080" y="518">2.5本</text>
+
+  <text class="st mute" x="80" y="600">農水省とイワタニの公表値からの計算です。実測ではありません。</text>
+</svg>
