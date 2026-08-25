@@ -38,8 +38,8 @@
   "//webAnalyticsToken": "Cloudflare Web Analytics のビーコントークン。クライアント側HTMLに出るので秘密情報ではない（リポジトリに置いてよい）。空にすると計測タグを出力しない。",
   "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb",
 
-  "//defaultOgImage": "og:image の既定値。記事の front matter に eyecatch があればそちらを使う。",
-  "defaultOgImage": "/img/coolerbox-500ml-eyecatch.svg",
+  "//defaultOgImage": "og:image の既定値。記事は front matter の ogImage を優先する。SNSのカードはSVGを受け付けないので、ここは必ずPNGにする。",
+  "defaultOgImage": "/img/og/site.png",
 
   "//robots": "robots.txt のAIクローラ方針。2026-08-24 に Cloudflare の Managed robots.txt をオフにしたため、ここが唯一の robots.txt になった。allowAI に入れたものだけ明示的に許可し、denyAI は拒否する。",
   "robots": {

@@ -118,8 +118,31 @@ t.flatMap((a,i) => t.slice(i+1).filter(b =>
 | `coolerbox-floorplan.svg` | 本文の図版。**床面積が同じ858cm²でも15本と12本に分かれる**ことを示す図 |
 | `favicon.svg` | 寸法線のアイコン |
 
-⚠️ **og:image が SVG なので、X や Facebook のカード画像は表示されない可能性がある。**
-（多くのSNSは og:image に SVG を受け付けない）。必要になったら同じ図を PNG に書き出して差し替える。
+### ⚠️ og:image は必ず PNG（2026-08-25 に対応済み）
+
+**X に投稿したらカード画像が表示されなかった。原因は og:image が SVG だったこと。**
+多くのSNSは og:image に SVG を受け付けない。
+
+**対応：記事ごとに「OGPカード」PNG（1200×630）を用意し、`og:image` はそちらを指す。**
+本文の図版（`eyecatch`）は **SVGのまま**でよい。
+
+| | |
+|---|---|
+| 生成スクリプト | **`tools/make-og-cards.py`**（Pillow／Windowsの游ゴシックを使用） |
+| 出力先 | `site/public/img/og/*.png` |
+| 実行 | `python tools/make-og-cards.py site/public/img/og` |
+| front matter | `ogImage: /img/og/<name>.png`（`eyecatch` とは別のキー） |
+| 既定値 | `site.json` の `defaultOgImage`（`/img/og/site.png`） |
+| 優先順 | `ogImage` → `eyecatch` → `defaultOgImage` |
+
+⚠️ **Cloudflare Workers Builds は Python を実行しない。生成した PNG は必ずコミットする。**
+
+**カードは図版の縮小版にしない。** SNSのカードは横500px程度に縮むので、
+内寸や凡例を描き込んだ図版は読めなくなる。**「大きい数字ひとつ＋説明1行」**に絞ってある。
+スクリプトは**文字の重なりと枠外を実測で検査**してから保存する。
+
+⚠️ **Xはカードをキャッシュする。** og:image を直しても**既存の投稿のカードは更新されないことがある。**
+その場合は投稿し直しになる（ピン留めも付け直し）。**カードを直してから投稿する**のが手戻りがない。
 
 ## 検証済みの動作（2026-08-24・ローカル `wrangler dev` で確認）
 

@@ -323,13 +323,15 @@ for (const a of articles) {
       description: esc(a.description),
       canonical: a.url,
       ogType: 'article',
-      ogImage: ORIGIN + (a.eyecatch || site.defaultOgImage),
+      // og:image は PNG（front matter の ogImage）を優先する。
+      // 本文の図版（eyecatch）は SVG のままでよいが、SNS のカードは SVG を受け付けない。
+      ogImage: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),
       jsonLd: JSON.stringify({
         '@context': 'https://schema.org',
         '@type': 'Article',
         headline: a.title,
         description: a.description,
-        image: ORIGIN + (a.eyecatch || site.defaultOgImage),
+        image: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),
         datePublished: a.published,
         dateModified: a.updated,
         articleSection: cname,
