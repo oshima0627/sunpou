@@ -12,6 +12,7 @@
 #   [5] site/public/img/og/sns-konro-haba.png    ← 2026-08-30 21:00 予約済み
 #   [6] site/public/img/og/kyatatsu-takasa.png   ← 2026-09-02 21:00 予約済み
 #   [7] site/public/img/og/kyatatsu-kaidan.png   ← 2026-09-04 21:00 予約済み
+#   [8] site/public/img/og/kyatatsu-fumidai.png  ← 2026-09-06 21:00 予約済み
 #
 # 状況: 1・2 は投稿済み。3〜7 は 21:00 JST で予約済み（下記）。次に書いた下書きはここに足す。
 # ⚠️ 予約の手順と踏んだ罠は docs/sns-plan.md 第8節。
@@ -80,3 +81,11 @@ https://sunpou.nexeed-lab.com/kyatatsu/tenban-takasa/
 「階段用」は前後の脚の長さが違う、別の製品でした。
 
 https://sunpou.nexeed-lab.com/kyatatsu/kaidan/
+---
+「踏み台」と呼ばれる商品の天板は、0.30mから1.61mまでありました。
+
+分かれ目は天板高さ80cm。ただし上わくが付くと、80cmを超えても踏台です。
+
+同じ0.51mに、踏台と脚立の両方がありました。
+
+https://sunpou.nexeed-lab.com/kyatatsu/fumidai-kyatatsu/
