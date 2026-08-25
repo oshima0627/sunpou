@@ -25,6 +25,9 @@ CARDS=[
  ("uchinori-nagasa",  "80Lも60Lも85cm", "内寸の長辺は、容量Lでは決まらない"),
  ("coleman-uchinori", "深さ350mm",      "コールマンは26Lクラスでも2Lが立つ"),
  ("donabe-nangou",    "31〜32.5cm",     "同じ9号の土鍋でも、幅がこれだけ違う"),
+ # ここから下は og:image ではなく SNS 投稿に添える用（記事に1対1で対応しない）
+ ("sns-konro-kw",     "2.9kW が 10号",   "最大4.1kWの機種は9号まで。火力と鍋の大きさは無関係"),
+ ("sns-konro-haba",   "33.4cm ＜ 36cm",  "「10号まで」の機種より、10号土鍋のほうが幅がある"),
 ]
 
 def fit(draw, text, path, start, maxw):
