@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630" role="img"
+     aria-label="500mlの本数を減らさずに入る保冷剤の枚数。ダイワ10Lは1枚、アイリスオーヤマ40Lは7枚で、製品によって7倍違う">
+  <style>
+    .bg   { fill: #fcfcfc; }
+    .ink  { fill: #434347; }
+    .mute { fill: #6f7680; }
+    .navy { fill: #014172; }
+    .bar  { fill: #cfe0ef; stroke: #014172; stroke-width: 2; }
+    .t    { font: 700 42px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .st   { font: 400 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+    .lb   { font: 700 21px "Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif; }
+  </style>
+  <rect class="bg" width="1200" height="630"/>
+  <text class="t ink"   x="80" y="82">保冷剤は何枚まで、本数を減らさずに入るか</text>
+  <text class="st mute" x="80" y="124">氷点下パックM（196×138×厚26mm）／500ml角型を減らさない枚数</text>
+  <text class="lb ink" x="80" y="198">ダイワ S1000X（10L）</text>
+  <rect class="bar" x="520" y="178" width="88" height="28"/>
+  <text class="lb navy" x="622" y="199">1枚</text>
+  <text class="lb ink" x="80" y="242">アイリスオーヤマ HUGEL 15L</text>
+  <rect class="bar" x="520" y="222" width="88" height="28"/>
+  <text class="lb navy" x="622" y="243">1枚</text>
+  <text class="lb ink" x="80" y="286">ダイワ S1500（15L）</text>
+  <rect class="bar" x="520" y="266" width="176" height="28"/>
+  <text class="lb navy" x="710" y="287">2枚</text>
+  <text class="lb ink" x="80" y="330">ダイワ S2000（20L）</text>
+  <rect class="bar" x="520" y="310" width="176" height="28"/>
+  <text class="lb navy" x="710" y="331">2枚</text>
+  <text class="lb ink" x="80" y="374">ロゴス ハイパーL（20L）</text>
+  <rect class="bar" x="520" y="354" width="264" height="28"/>
+  <text class="lb navy" x="798" y="375">3枚</text>
+  <text class="lb ink" x="80" y="418">アイリスオーヤマ HUGEL 20L</text>
+  <rect class="bar" x="520" y="398" width="352" height="28"/>
+  <text class="lb navy" x="886" y="419">4枚</text>
+  <text class="lb ink" x="80" y="462">コールマン 28QT（約26L）</text>
+  <rect class="bar" x="520" y="442" width="352" height="28"/>
+  <text class="lb navy" x="886" y="463">4枚</text>
+  <text class="lb ink" x="80" y="506">ダイワ S2500（25L）</text>
+  <rect class="bar" x="520" y="486" width="528" height="28"/>
+  <text class="lb navy" x="1062" y="507">6枚</text>
+  <text class="lb ink" x="80" y="550">アイリスオーヤマ HUGEL 40L</text>
+  <rect class="bar" x="520" y="530" width="616" height="28"/>
+  <text class="lb navy" x="1150" y="551">7枚</text>
+  <text class="st mute" x="80" y="602">メーカー公表の内寸から計算（実測ではありません）　寸法で選ぶ　sunpou.nexeed-lab.com</text>
+</svg>
