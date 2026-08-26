@@ -118,6 +118,82 @@ function assertNoRawEmphasis(html, file) {
   }
 }
 
+/**
+ * 製品カード。```card のフェンスを HTML に変える。**marked に渡す前**に走らせる。
+ *
+ * なぜ要るか: リンクの99%が早見表のセルの中にあり、押せる場所が表の外に無かった。
+ * 表は一覧するための形で、決めた人が押す形ではない。
+ *
+ * 画像も価格も載せない（規約上 Creators API が要る）。**載せるのは自前の計算値だけ。**
+ * それがそのまま「特別リンクと関連させた追加のオリジナルコンテンツ」の要件も満たす。
+ *
+ * 書き方:
+ *   ```card
+ *   product: ダイワ クールラインα3 S1000X
+ *   lead: 500mlを6本、床にきれいに並ぶ最小サイズ
+ *   内寸の床: 170×260mm
+ *   自重: 2.1kg
+ *   ```
+ * product と lead 以外の行は、そのまま数字の欄になる。
+ */
+function renderCards(body, file) {
+  return body.replace(/^```card\r?\n([\s\S]*?)^```[ \t]*$/gm, (_, block) => {
+    const spec = [];
+    let product = '';
+    let lead = '';
+    for (const line of block.split(/\r?\n/)) {
+      if (!line.trim()) continue;
+      const i = line.indexOf(':');
+      if (i < 0) throw new Error(`${file}: card の行に : がありません → ${line}`);
+      const k = line.slice(0, i).trim();
+      const v = line.slice(i + 1).trim();
+      if (k === 'product') product = v;
+      else if (k === 'lead') lead = v;
+      else spec.push([k, v]);
+    }
+    if (!product) throw new Error(`${file}: card に product がありません`);
+    if (!spec.length) throw new Error(`${file}: card に数字が1つもありません（${product}）`);
+    assertCardNumbers(product, spec, body, file);
+    const dl = spec.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
+    return (
+      `<aside class="pcard">` +
+      (lead ? `<p class="pcard__lead">${esc(lead)}</p>` : '') +
+      `<p class="pcard__name">${esc(product)}</p>` +
+      `<dl class="pcard__spec">${dl}</dl>` +
+      `<p class="pcard__go">[[LINK:${product}::Amazonで見る]]</p>` +
+      `<p class="pcard__note">数字はメーカー公表値と、そこからの当サイトの計算です。価格は扱っていません。</p>` +
+      `</aside>\n`
+    );
+  });
+}
+
+/**
+ * **カードの数字が、その記事の表と食い違っていないかを検査する。**
+ *
+ * このサイトは「メーカー公表値から計算する」ことが売りなので、
+ * カードにだけ古い数字が残る事故は起こしてはいけない。転記ミスはビルドで落とす。
+ * 判定は「カードの数字（数値トークン）が、その商品の表の行にすべて現れるか」。
+ */
+function assertCardNumbers(product, spec, body, file) {
+  const rows = body
+    .split(/\r?\n/)
+    .filter((l) => l.trimStart().startsWith('|') && l.includes(product));
+  if (!rows.length) {
+    throw new Error(`${file}: カードの商品「${product}」が、この記事のどの表にもありません`);
+  }
+  const hay = rows.join(' ').replace(/[\s,]/g, '');
+  for (const [k, v] of spec) {
+    for (const num of v.match(/\d+(?:\.\d+)?/g) || []) {
+      if (!hay.includes(num)) {
+        throw new Error(
+          `${file}: カードの数字が表にありません → ${product} の「${k}: ${v}」の ${num}` +
+            ' / 対処: 表の値と合わせるか、表のほうを直す',
+        );
+      }
+    }
+  }
+}
+
 /** 表は横スクロールできる箱に入れる（スマホで本文が横に伸びるのを防ぐ）。 */
 const wrapTables = (html) =>
   html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
@@ -311,7 +387,7 @@ function crumbs(items) {
 // ---- 記事ページ
 
 for (const a of articles) {
-  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(a.body))));
+  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(renderCards(a.body, a.file)))));
   assertNoRawEmphasis(parsed.html, a.file);
   const html = resolveLinks(parsed.html);
   const cname = catName(a.category);

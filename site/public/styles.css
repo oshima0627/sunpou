@@ -21,6 +21,7 @@
   --fg: #434347;            /* 本文（黒ではない） */
   --fg-strong: #333333;     /* フッターなど */
   --muted: #6f7680;
+  --muted-on-surface: #5c636e;   /* --surface の上で AA を満たす濃さ（5.6:1）。--muted は 4.24:1 で足りない */
   --accent: #213555;        /* H2 の縦棒 */
   --accent-weak: rgba(33, 53, 85, 0.035);
   --navy: #014172;          /* 表ヘッダ・サイドバー見出し・目次の上罫 */
@@ -324,6 +325,64 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 /* 表の外（本文中）に置かれたリンクは、行の中で少し浮かせる */
 .post p > .buy,
 .post li > .buy { margin: 0 .15em; }
+
+/* ---------------------------------------------------------------- 製品カード */
+
+/* 早見表の外に置く「決めた人が押す場所」。build.mjs の renderCards が出力する。
+ *
+ * ⚠️ **画像も価格も無い。** 規約上 Creators API が要り、その条件は「過去30日間に適格販売10件」
+ * （docs/link-appearance-2026-08-26.md）。だから主役は**自前の計算値**にしてある。
+ * 表と同じ数字であることはビルド時に検査している（assertCardNumbers）。 */
+.pcard {
+  margin: 1.8rem 0;
+  padding: 1rem 1.15rem 0.9rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);   /* H2 の縦棒と同じ主色。本文の一部だと分かる */
+  border-radius: 3px;
+}
+
+/* ⚠️ --muted (#6f7680) をカードの背景 (--surface) に載せるとコントラストが 4.24:1 で
+ * AA(4.5:1) に届かない（2026-08-26 に計測）。カードの中だけ濃いグレーを使う。 */
+.pcard__lead {
+  margin: 0 0 .35rem;
+  font-size: .84rem;
+  color: var(--muted-on-surface);
+}
+
+.pcard__name {
+  margin: 0 0 .7rem;
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--fg-strong);
+  line-height: 1.45;
+}
+
+/* 数字は「項目 → 値」を2列で。値だけ拾い読みできるように右を揃えない */
+.pcard__spec {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .3rem .9rem;
+  margin: 0 0 .9rem;
+  font-size: .88rem;
+}
+.pcard__spec dt { color: var(--muted-on-surface); }
+.pcard__spec dd { margin: 0; font-weight: 700; color: var(--fg-strong); }
+
+.pcard__go { margin: 0 0 .55rem; }
+
+/* カードの中のボタンは、表の中より大きくする（ここは横幅の制約が無い） */
+.pcard .buy {
+  padding: .45em 1.1em;
+  font-size: .95rem;
+}
+
+.pcard__note {
+  margin: 0;
+  font-size: .76rem;
+  color: var(--muted-on-surface);
+  line-height: 1.6;
+}
 
 /* ---------------------------------------------------------------- サイドバー */
 
