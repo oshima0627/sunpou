@@ -71,16 +71,33 @@ const analyticsHtml = site.webAnalyticsToken
  * affiliateEnabled が false の間はリンクを出さない（リンクが無いのに開示文言を出さないため）。
  */
 function resolveLinks(html) {
-  return html.replace(/\[\[LINK:([^\]]+)\]\]/g, (_, label) => {
+  return html.replace(/\[\[LINK:([^\]]+)\]\]/g, (_, raw) => {
+    // 書き方は2つ:
+    //   [[LINK:商品名]]         … 「<商品名>をAmazonで見る」と出す
+    //   [[LINK:商品名::表示]]   … 「表示」だけを出す。検索語は商品名のまま
+    //
+    // 2つ目が要る理由: 表のセルにすでに商品名が書いてあるのに、リンク文言でも
+    // フルネームを繰り返していた（2026-08-26 時点で 324本中 139本）。
+    // セルは white-space: nowrap なので、繰り返しがそのまま表の横幅になる。
+    //
+    // ⚠️ 区切りは `|` ではなく `::`。**resolveLinks は Markdown → HTML の後に走る**ので、
+    // 表の行に `|` を書くとセルの区切りとして先に解釈され、表が壊れる
+    // （2026-08-26 に `|` で実装して実際に壊した。URLが表のHTMLを飲み込んだ）。
+    const [term, label] = raw.split('::').map((s) => s.trim());
+    if (!term) throw new Error(`[[LINK:...]] の検索語が空です: ${raw}`);
     if (!site.affiliateEnabled) {
-      return `<span class="link-todo" title="Amazonアソシエイトの審査合格後にリンクへ差し替え">${esc(label)}</span>`;
+      return `<span class="link-todo" title="Amazonアソシエイトの審査合格後にリンクへ差し替え">${esc(label || term)}</span>`;
     }
     if (!site.associateTag) {
       throw new Error('affiliateEnabled=true だが site.json の associateTag が未設定');
     }
-    const url = `https://www.amazon.co.jp/s?k=${encodeURIComponent(label)}&tag=${encodeURIComponent(site.associateTag)}`;
+    const url = `https://www.amazon.co.jp/s?k=${encodeURIComponent(term)}&tag=${encodeURIComponent(site.associateTag)}`;
+    const text = label || `${term}をAmazonで見る`;
+    // 短いラベルにすると「Amazonで見る」が何十個も並ぶ。読み上げでは区別が付かないので、
+    // 商品名を aria-label で補う（見た目は短いまま、リンクの名前は一意になる）。
+    const aria = label ? ` aria-label="${esc(`${term}をAmazonで見る`)}"` : '';
     // rel: nofollow は規約側、sponsored は Google 側の要請。noopener は target=_blank の安全対策。
-    return `<a class="buy" href="${url}" rel="nofollow sponsored noopener" target="_blank">${esc(label)}をAmazonで見る</a>`;
+    return `<a class="buy" href="${url}"${aria} rel="nofollow sponsored noopener" target="_blank">${esc(text)}</a>`;
   });
 }
 
