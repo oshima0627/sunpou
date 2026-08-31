@@ -51,7 +51,7 @@ specs/article-rubric.md               品質の段階評価
 | 読む spec | `specs/article-contract.md` のみ | **契約とルーブリックの両方** |
 | 入力 | テーマ（何を計算して答えるか） | 記事のパス**だけ** |
 | tools | `Read, Write, Edit, Bash, Glob, Grep, WebFetch, WebSearch` | `Read, Grep, Glob, Bash, WebFetch` |
-| 完了条件 | ビルドが通り、契約の8項目を自分で通してある（reviewer はそれを信用せず再実行する） |
+| 完了条件 | ビルドが通り、契約の8項目を自分で通してある | 契約8項目を**自分で再実行**し、不合格は file:line と引用つきで挙げてある |
 | メインに返すもの | 記事パス／使った一次情報URL一覧／計算の要点／未解決点。**1,000〜2,000トークン** | 二値チェックの合否表／落第項目／段階評価。**1,000〜2,000トークン** |
 
 ### ★ reviewer から Write/Edit を外す。ただし完全な強制ではない
