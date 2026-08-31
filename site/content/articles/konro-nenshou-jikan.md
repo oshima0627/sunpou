@@ -3,7 +3,7 @@ title: カセットボンベ1本で何分使える？ 55〜78分で、割り算�
 description: イワタニは機種ごとにガス消費量と連続燃焼時間を両方公表しています。250gを消費量で割ると全機種で実測より短く出ました。差は1分から19分。注記を読むと、消費量は最初の30分を換算した値でした。
 slug: cassette-konro/nenshou-jikan
 category: cassette-konro
-eyecatch: /img/konro-jikan-eyecatch.svg
+eyecatch: /img/konro-jikan-eyecatch.png
 ogImage: /img/og/konro-jikan.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -39,7 +39,7 @@ updated: 2026-08-25
 
 **割り算では出ません。仕様表の「連続燃焼時間」のほうを見ることになります。**
 
-![機種ごとのガス消費量から計算した時間と、公表されている連続燃焼時間を比べた図](/img/konro-jikan-eyecatch.svg)
+![機種ごとのガス消費量から計算した時間と、公表されている連続燃焼時間を比べた図](/img/konro-jikan-eyecatch.png)
 
 ## 注記を読むと、2つの数字は測り方が違いました
 

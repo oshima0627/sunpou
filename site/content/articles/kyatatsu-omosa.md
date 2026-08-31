@@ -3,7 +3,7 @@ title: 同じ高さに立つのに、脚立と踏み台の重さは1.7kgと6.3kg
 description: 踏台は天板高さ、脚立は使用最大高さ。足を置ける高さでそろえ直すと、0.5〜0.6mに立つのに1.7kgから6.3kgまでありました。長谷川工業とアルインコの9シリーズの公表値で比べています。
 slug: kyatatsu/omosa
 category: kyatatsu
-eyecatch: /img/kyatatsu-omosa-eyecatch.svg
+eyecatch: /img/kyatatsu-omosa-eyecatch.png
 ogImage: /img/og/kyatatsu-omosa.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -35,7 +35,7 @@ updated: 2026-08-25
 
 **いちばん軽い踏台と、いちばん重い脚立で4.6kgの差。** 米袋1袋ぶんです。
 
-![足を置ける高さ0.5から0.6メートルの製品で、質量が1.7キログラムから6.3キログラムまで3.7倍違うことを示した図](/img/kyatatsu-omosa.svg)
+![足を置ける高さ0.5から0.6メートルの製品で、質量が1.7キログラムから6.3キログラムまで3.7倍違うことを示した図](/img/kyatatsu-omosa.png)
 
 ## 「足を置ける高さ」のそろえ方
 

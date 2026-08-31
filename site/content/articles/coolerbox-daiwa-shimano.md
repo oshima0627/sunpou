@@ -3,7 +3,7 @@ title: ダイワとシマノのクーラーボックス、どっち？ 保冷力
 description: ダイワのKEEPとシマノのCOOLは、どちらもJIS S 2048の簡便法で「氷が溶け切るまでの時間」に換算した値です。だから並べて比べられます。内寸・外寸・自重・500mlの本数も同じ条件で計算しました。
 slug: coolerbox/daiwa-shimano
 category: coolerbox
-eyecatch: /img/coolerbox-daiwa-shimano-eyecatch.svg
+eyecatch: /img/coolerbox-daiwa-shimano-eyecatch.png
 ogImage: /img/og/daiwa-shimano.png
 published: 2026-08-24
 updated: 2026-08-24
@@ -92,7 +92,7 @@ KEEP 46 はおよそ46時間、COOL 60 はおよそ60時間、という意味に
 **ダイワ20L と シマノ22L は、どちらも15本。**
 内寸は 22×39cm と 21.1×39.1cm で、ほとんど同じ床だからです。
 
-![ダイワ20Lとシマノ22Lの床を同じ縮尺で並べた図。どちらも直径66mmのボトルが3列5行で15本入る](/img/coolerbox-daiwa-shimano-yuka.svg)
+![ダイワ20Lとシマノ22Lの床を同じ縮尺で並べた図。どちらも直径66mmのボトルが3列5行で15本入る](/img/coolerbox-daiwa-shimano-yuka.png)
 
 **ダイワ25L と シマノ30L も、どちらも18本です。** 公表容量は5L違うのに、立つ本数は同じでした。
 

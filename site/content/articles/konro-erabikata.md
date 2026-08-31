@@ -3,7 +3,7 @@ title: カセットコンロの選び方｜使いたい鍋の幅と「1本で何
 description: カタログの「9号土鍋まで」は号数の目安で、寸法ではありません。イワタニ11機種の火力・使える鍋・本体サイズ・重量・ガス消費量・連続燃焼時間を1枚にまとめ、銀峯陶器の土鍋18製品の実寸と突き合わせました。卓上に要る幅と、ボンベ1本でもつ時間から逆に引けます。
 slug: cassette-konro/erabikata
 category: cassette-konro
-eyecatch: /img/konro-erabikata-eyecatch.svg
+eyecatch: /img/konro-erabikata-eyecatch.png
 ogImage: /img/og/konro-erabikata.png
 published: 2026-08-29
 updated: 2026-08-29

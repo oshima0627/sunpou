@@ -3,7 +3,7 @@ title: クーラーボックスに保冷剤を入れると500mlは何本減る�
 description: 20Lに氷点下パックLを寝かせると18本が6本に。同じ箱でもMを壁に立てれば18本のままです。メーカー公表の内寸と保冷剤11製品の寸法から計算しました。
 slug: coolerbox/horeizai-honsuu
 category: coolerbox
-eyecatch: /img/coolerbox-horeizai-eyecatch.svg
+eyecatch: /img/coolerbox-horeizai-eyecatch.png
 ogImage: /img/og/horeizai-honsuu.png
 published: 2026-08-24
 updated: 2026-08-24
@@ -37,7 +37,7 @@ updated: 2026-08-24
 
 理由は保冷剤の面積ではありません。**箱のどこに「余り」があるかです。**
 
-![保冷剤の置き方で500mlの本数が変わることを示した図。20Lの内寸22×39cmに、保冷剤Lを寝かせると6本、Mを壁に立てかけると18本入る](/img/coolerbox-horeizai-oki.svg)
+![保冷剤の置き方で500mlの本数が変わることを示した図。20Lの内寸22×39cmに、保冷剤Lを寝かせると6本、Mを壁に立てかけると18本入る](/img/coolerbox-horeizai-oki.png)
 
 ```card
 product: ダイワ クールラインα3 S2000

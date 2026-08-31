@@ -790,6 +790,23 @@ writeFile('robots.txt', robotsLines.join('\n'));
 
 copyDir(path.join(ROOT, 'public'), DIST);
 
+/**
+ * 図版の SVG は**原稿ではなく素材**なので配信しない。
+ *
+ * 記事が参照するのは PNG（`tools/svg-to-png.py` が SVG から焼く）。SVG も一緒に配信すると
+ * 同じ図が2つのURLで公開され、どの記事からも参照されていない SVG のほうが
+ * Google 画像検索に載りうる。favicon.svg は img/ の外なので残る。
+ *
+ * ⚠️ .assetsignore ではできない。あれは assets.directory（= dist）直下に無いと読まれず、
+ * build.mjs は public/ しかコピーしないので dist に置かれない。
+ */
+{
+  const imgDir = path.join(DIST, 'img');
+  const dropped = fs.readdirSync(imgDir).filter((f) => f.endsWith('.svg'));
+  for (const f of dropped) fs.rmSync(path.join(imgDir, f));
+  if (dropped.length) console.log(`  dist/img から SVG ${dropped.length} 枚を除外（PNG が配信対象）`);
+}
+
 console.log(`built: ${articles.length} article(s), ${pages.length} page(s), ${site.categories.length} category page(s)`);
 for (const a of articles) console.log(`  /${a.slug}/  ${a.title}`);
 if (!site.affiliateEnabled) console.log('\n注意: affiliateEnabled=false のため、リンク位置はプレースホルダで出力しています。');

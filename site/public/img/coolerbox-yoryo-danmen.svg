@@ -20,12 +20,14 @@
   <text class="s ink" x="30" y="100">アイリスオーヤマ HUGEL 15L（真空断熱パネル）</text>
   <rect class="outer" x="30" y="120" width="360" height="246"/>
   <rect class="inner" x="89" y="170" width="242" height="146"/>
-  <text class="n navy" x="30" y="404">外寸 45.0 × 30.8cm　→　内寸 30.2 × 18.2cm</text>
-  <text class="s mute" x="30" y="432">外寸と内寸の差は 長辺で片側7.4cm ／ 短辺で片側6.3cm</text>
+  <text class="n navy" x="30" y="396">外寸 45.0 × 30.8cm</text>
+  <text class="n navy" x="30" y="424">→ 内寸 30.2 × 18.2cm</text>
+  <text class="s mute" x="30" y="452">外寸と内寸の差は 長辺で片側7.4cm ／ 短辺で片側6.3cm</text>
 
   <text class="s ink" x="470" y="100">ダイワ クールラインα3 S1500（発泡スチロール）</text>
   <rect class="outer" x="470" y="120" width="380" height="200"/>
   <rect class="inner" x="516" y="152" width="288" height="136"/>
-  <text class="n navy" x="470" y="404">外寸 47.5 × 25.0cm　→　内寸 36.0 × 17.0cm</text>
-  <text class="s mute" x="470" y="432">外寸と内寸の差は 長辺で片側5.75cm ／ 短辺で片側4.0cm</text>
+  <text class="n navy" x="470" y="396">外寸 47.5 × 25.0cm</text>
+  <text class="n navy" x="470" y="424">→ 内寸 36.0 × 17.0cm</text>
+  <text class="s mute" x="470" y="452">外寸と内寸の差は 長辺で片側5.75cm ／ 短辺で片側4.0cm</text>
 </svg>

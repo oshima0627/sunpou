@@ -3,7 +3,7 @@ title: 脚立を広げると床は何cm要る？ 奥行はしまうときの最�
 description: 設置奥行は28.9cmから250cmまで。しまうときの奥行と比べると1.7〜14.5倍に広がります。奥行は天板高さの0.6〜1.2倍で、踏台のほうが相対的に広く場所を取りました。長谷川工業・アルインコ・ピカの公表寸法で計算しています。
 slug: kyatatsu/secchi
 category: kyatatsu
-eyecatch: /img/kyatatsu-secchi-eyecatch.svg
+eyecatch: /img/kyatatsu-secchi-eyecatch.png
 ogImage: /img/og/kyatatsu-secchi.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -35,7 +35,7 @@ updated: 2026-08-25
 
 **薄くしまえるものほど、広げたときの差が大きくなります。**
 
-![脚立と踏み台を上から見た図。収納時は奥行9.6から30センチだが、広げると28.9から250センチに広がることを示している](/img/kyatatsu-secchi.svg)
+![脚立と踏み台を上から見た図。収納時は奥行9.6から30センチだが、広げると28.9から250センチに広がることを示している](/img/kyatatsu-secchi.png)
 
 ## 設置奥行の一覧
 

@@ -3,7 +3,7 @@ title: クーラーボックスに500mlペットボトルは何本入る？ 容�
 description: 同じ20Lでも15本と18本。メーカー公式の内寸から、500mlペットボトルが何本入るかを計算して比べました。ダイワの公表値で計算式の答え合わせもしています。
 slug: coolerbox/500ml-honsuu
 category: coolerbox
-eyecatch: /img/coolerbox-500ml-eyecatch.svg
+eyecatch: /img/coolerbox-500ml-eyecatch.png
 ogImage: /img/og/500ml-honsuu.png
 published: 2026-08-24
 updated: 2026-08-24
@@ -141,7 +141,7 @@ updated: 2026-08-24
 
 丸型68.5mmで並べたときの床面を図にすると、こうなります。
 
-![床面積は同じ858cm²でも、内寸22×39cmは5列3行で15本、内寸33×26cmは4列3行で12本にしかならない](/img/coolerbox-floorplan.svg)
+![床面積は同じ858cm²でも、内寸22×39cmは5列3行で15本、内寸33×26cmは4列3行で12本にしかならない](/img/coolerbox-floorplan.png)
 
 理由は**割り切れ方**です。丸型68.5mmだと、S2000 は 22÷6.85＝3列・39÷6.85＝5列 で15本。ロゴスは 33÷6.85＝4列・26÷6.85＝3列 で12本。**端数として捨てられる幅が違う**だけで、3本の差が出ます。
 

@@ -3,7 +3,7 @@ title: クーラーボックスの選び方｜容量Lではなく「入れたい
 description: 2Lが立つのは33製品中9つ。しかも6つはコールマンです。500mlの本数・2Lの可否・保冷剤の置き場所・魚の長さ・自重を、メーカー公表の内寸から1枚にまとめました。用途から逆に引ける早見表です。
 slug: coolerbox/erabikata
 category: coolerbox
-eyecatch: /img/coolerbox-erabikata-eyecatch.svg
+eyecatch: /img/coolerbox-erabikata-eyecatch.png
 ogImage: /img/og/erabikata.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -27,7 +27,7 @@ updated: 2026-08-25
 | **釣りで大きい魚** | 内寸の**長辺** | ダイワ トランクマスターHD III 8000 [[LINK:ダイワ トランクマスターHD III 8000::Amazonで見る]]／シマノ スペーザ ホエール 650 [[LINK:シマノ スペーザ ホエール 650::Amazonで見る]] |
 | **とにかく軽いもの** | 自重 | ロゴス ハイパー氷点下クーラーL（**1.5kg**）[[LINK:ロゴス ハイパー氷点下クーラーL::Amazonで見る]] |
 
-![用途から必要な内寸を逆に引くための図。500mlの本数・2Lの高さ306mm・保冷剤の厚さ25mm・魚の長さ・自重の5つの分岐](/img/coolerbox-erabikata-eyecatch.svg)
+![用途から必要な内寸を逆に引くための図。500mlの本数・2Lの高さ306mm・保冷剤の厚さ25mm・魚の長さ・自重の5つの分岐](/img/coolerbox-erabikata-eyecatch.png)
 
 以下、それぞれの根拠です。
 

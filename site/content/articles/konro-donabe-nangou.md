@@ -3,7 +3,7 @@ title: カセットコンロに9号土鍋は乗る？ 「9号まで」は号数�
 description: 同じ銀峯陶器の9号でも幅は31〜32.5cm。10号は34〜36cmで、10号対応をうたう機種の本体幅33.4cmより大きい数字です。イワタニ10機種と土鍋18製品の公表寸法から計算しました。
 slug: cassette-konro/donabe-nangou
 category: cassette-konro
-eyecatch: /img/konro-donabe-eyecatch.svg
+eyecatch: /img/konro-donabe-eyecatch.png
 ogImage: /img/og/donabe-nangou.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -110,7 +110,7 @@ lead: イワタニ10機種で唯一、10号土鍋まで対応
 | 花三島 10号 | 34cm | **0.6cmはみ出す** |
 | 墨貫入 10号 | 36cm | **2.6cmはみ出す** |
 
-![カセットコンロの本体幅33.4cmに対して、10号土鍋の幅は34cmから36cmで、鍋のほうが大きくなることを示した図](/img/konro-donabe-haba.svg)
+![カセットコンロの本体幅33.4cmに対して、10号土鍋の幅は34cmから36cmで、鍋のほうが大きくなることを示した図](/img/konro-donabe-haba.png)
 
 ⚠️ **これは「使えない」という意味ではありません。** メーカーが言っているのは五徳に乗るかどうかで、鍋がコンロ本体からはみ出すこと自体は普通に起こります。
 

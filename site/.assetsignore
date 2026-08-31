@@ -1,4 +1,9 @@
 # Worker のアセットにアップロードしないもの
+#
+# ⚠️ **このファイルは効いていない。** wrangler.jsonc の assets.directory は ./dist で、
+# .assetsignore は**そのディレクトリ直下**に無いと読まれない。build.mjs が public/ しか
+# コピーしないため dist/.assetsignore は生成されない（2026-08-31 に判明）。
+# いま dist から除きたいものは build.mjs の copyDir の後で消している。
 *.md
 *.map
 .DS_Store

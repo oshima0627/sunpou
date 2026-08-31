@@ -3,7 +3,7 @@ title: 脚立・踏み台の選び方｜天井の高さから「足を置ける�
 description: カタログの天板高さは足を置ける高さではありません。踏台は天板高さ、脚立は使用最大高さでそろえ直し、質量・設置奥行・収納寸法まで1枚にまとめました。長谷川工業・アルインコ・ピカの42製品を、届きたい高さから逆に引けます。
 slug: kyatatsu/erabikata
 category: kyatatsu
-eyecatch: /img/kyatatsu-erabikata-eyecatch.svg
+eyecatch: /img/kyatatsu-erabikata-eyecatch.png
 ogImage: /img/og/kyatatsu-erabikata.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -37,7 +37,7 @@ updated: 2026-08-25
 | **とにかく軽いもの** | — | — | アルインコ CCA-30K（**1.0kg**） |
 | **とにかく薄くしまいたい** | — | — | 長谷川 EFA（**奥行9.6cm**）／[[LINK:長谷川工業 上わく付き踏台 SRA-5a]]（10cm） |
 
-![届きたい高さから身長を引いて必要な足場の高さを出し、踏台と脚立の種類を選ぶ流れの図](/img/kyatatsu-erabikata-eyecatch.svg)
+![届きたい高さから身長を引いて必要な足場の高さを出し、踏台と脚立の種類を選ぶ流れの図](/img/kyatatsu-erabikata-eyecatch.png)
 
 ⚠️ **身長が違えば、その差がそのまま動きます。** 身長170cmなら必要な足場は10cm低く、150cmなら10cm高くなります。
 

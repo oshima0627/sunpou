@@ -3,7 +3,7 @@ title: カセットボンベは何本備える？ 農水省の「1人6本」の�
 description: 農林水産省は1人1週間で約6本と書いています。岩谷産業は用途別の試算表を出していますが合計は書いていません。足して1人あたりに直すと、6本に届くのは気温10℃で食事もお湯も全部まかなうときでした。
 slug: cassette-konro/bombe-honsuu
 category: cassette-konro
-eyecatch: /img/konro-bombe-eyecatch.svg
+eyecatch: /img/konro-bombe-eyecatch.png
 ogImage: /img/og/konro-bombe.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -43,7 +43,7 @@ updated: 2026-08-25
 
 ⚠️ **ボンベはコンロの適合品を使ってください。** メーカーが指定していない組み合わせは使えません。
 
-![用途の組み合わせ別に1人1週間あたりの必要本数を計算し、農林水産省の6本と比べた図](/img/konro-bombe-eyecatch.svg)
+![用途の組み合わせ別に1人1週間あたりの必要本数を計算し、農林水産省の6本と比べた図](/img/konro-bombe-eyecatch.png)
 
 ## 農林水産省は「1人／1週間で約6本」
 

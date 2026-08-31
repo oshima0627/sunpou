@@ -3,7 +3,7 @@ title: 脚立の「6尺」は何cm？ 同じ180でも天板の高さは10cm違�
 description: 脚立の型番の数字は天板高さとは限りません。長谷川工業・アルインコ・ピカの公表寸法を突き合わせると、はしご兼用脚立は型番より天板が9〜12cm低く、実際に立てる「使用最大高さ」は型番より40cm低い値でした。
 slug: kyatatsu/tenban-takasa
 category: kyatatsu
-eyecatch: /img/kyatatsu-takasa-eyecatch.svg
+eyecatch: /img/kyatatsu-takasa-eyecatch.png
 ogImage: /img/og/kyatatsu-takasa.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -91,7 +91,7 @@ updated: 2026-08-25
 
 **5サイズすべて、ちょうど40cmです。**
 
-![脚立の「180」という型番に対して、天板の高さは1.70m、実際に立てる使用最大高さは1.40mであることを示した図](/img/kyatatsu-takasa.svg)
+![脚立の「180」という型番に対して、天板の高さは1.70m、実際に立てる使用最大高さは1.40mであることを示した図](/img/kyatatsu-takasa.png)
 
 つまり「180の脚立」を買っても、**足を置ける高さは1.40mです。**
 

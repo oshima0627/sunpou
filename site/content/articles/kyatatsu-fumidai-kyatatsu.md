@@ -3,7 +3,7 @@ title: 踏み台と脚立は何が違う？ 天板高さ1.61mでも「踏台」�
 description: 分かれ目は天板高さ80cm。ただし上わくが付くと1.61mでも踏台と呼ばれます。長谷川工業とアルインコの踏台7シリーズと脚立の公表寸法を並べると、同じ0.51mでも呼び方が違い、上わくは天板から60cm上でした。
 slug: kyatatsu/fumidai-kyatatsu
 category: kyatatsu
-eyecatch: /img/kyatatsu-fumidai-eyecatch.svg
+eyecatch: /img/kyatatsu-fumidai-eyecatch.png
 ogImage: /img/og/kyatatsu-fumidai.png
 published: 2026-08-25
 updated: 2026-08-25
@@ -98,7 +98,7 @@ updated: 2026-08-25
 
 **2社とも60〜62cm。サイズが変わっても一定です。**
 
-![上わく付き踏台は天板から60cm上に上わくがあり、脚立は天板より30cm低い使用最大高さが公表されていることを比べた図](/img/kyatatsu-fumidai.svg)
+![上わく付き踏台は天板から60cm上に上わくがあり、脚立は天板より30cm低い使用最大高さが公表されていることを比べた図](/img/kyatatsu-fumidai.png)
 
 腰から胸のあたりに手すりが来る高さです。**これがあるから、天板高さが80cmを超えても「踏台」と呼べます。**
 

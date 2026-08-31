@@ -3,7 +3,7 @@ title: クーラーボックスの「20L」は何の20L？ 外寸の3〜4割し�
 description: 外寸の体積のうち中身に使えるのは28.9〜40.0%。公表20Lでも内寸の掛け算は18.9Lでした。カタログの保冷日数は容量の4割を氷で埋めた数字です。メーカー公表の内寸・外寸から計算しました。
 slug: coolerbox/yoryo-uchinori
 category: coolerbox
-eyecatch: /img/coolerbox-yoryo-eyecatch.svg
+eyecatch: /img/coolerbox-yoryo-eyecatch.png
 ogImage: /img/og/yoryo-uchinori.png
 published: 2026-08-24
 updated: 2026-08-24
@@ -36,7 +36,7 @@ updated: 2026-08-24
 
 > 容量Lではなく内寸で選びたい方へ。[26製品の内寸を1枚にまとめた早見表があります](/coolerbox/erabikata/)。
 
-![クーラーボックスの外寸と内寸の差を上から見た図。アイリスオーヤマ15Lは外寸45.0cmに対して内寸30.2cm、ダイワS1500は外寸25.0cmに対して内寸17.0cm](/img/coolerbox-yoryo-danmen.svg)
+![クーラーボックスの外寸と内寸の差を上から見た図。アイリスオーヤマ15Lは外寸45.0cmに対して内寸30.2cm、ダイワS1500は外寸25.0cmに対して内寸17.0cm](/img/coolerbox-yoryo-danmen.png)
 
 真空断熱のほうが壁が厚く、そのぶん外が大きくなります。**保冷力と持ち運びやすさは、寸法の上でトレードオフになっています。**
 
