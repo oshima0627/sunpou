@@ -571,8 +571,17 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 /* ---- アイキャッチ・図版 */
 
+/* eyecatch は <p> か <figure>。本文に同じ画像が書いてあった記事では、その alt を
+ * 回収してここのキャプションにしている（build.mjs の liftEyecatchFromBody）。 */
 .eyecatch { margin: 0 0 1.6rem; }
 .eyecatch img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }
+figure.eyecatch { margin-inline: 0; }
+.eyecatch figcaption {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: .5rem;
+}
 
 .fig { margin: 1.8rem 0; }
 .fig img { width: 100%; height: auto; display: block; border: 1px solid var(--line); }

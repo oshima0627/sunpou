@@ -22,7 +22,9 @@ LIMIT = 20.0  # %
 
 
 def strip_chrome(art):
-    art = re.sub(r'(?is)<nav class="toc".*?</nav>', '', art)
+    # class は "toc" 単独とは限らない（2026-08-31 に "toc toc--inline" になった）。
+    # 完全一致で書いていたせいで目次が除外されなくなり、割合が数ポイント水増しされていた。
+    art = re.sub(r'(?is)<nav class="toc[^"]*".*?</nav>', '', art)
     art = re.sub(r'(?is)<p class="(cat-label|dates|pr-notice)">.*?</p>', '', art)
     art = re.sub(r'(?is)<figcaption>.*?</figcaption>', '', art)
     return art

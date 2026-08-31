@@ -194,6 +194,28 @@ function assertCardNumbers(product, spec, body, file) {
   }
 }
 
+/**
+ * **引用の直後に空行なしで本文を書くと、その行が引用に飲み込まれる**（Markdown の遅延継続）。
+ *
+ * 2026-08-31 に `/coolerbox/daiwa-shimano/` で実際に起きていた。
+ * 「KEEP 46 はおよそ46時間、COOL 60 はおよそ60時間、という意味になります。」という
+ * 記事の要点が、灰色の引用ボックスの中に入って本文から降格していた。
+ * 原稿を目で見ても引用に見えないので、ビルドで落とす。
+ */
+function assertNoLazyBlockquote(body, file) {
+  const lines = body.split(/\r?\n/);
+  for (let i = 0; i < lines.length - 1; i += 1) {
+    const cur = lines[i].trimStart();
+    const next = lines[i + 1].trimStart();
+    if (!cur.startsWith('>')) continue;
+    if (!next || next.startsWith('>') || next.startsWith('#') || next.startsWith('|') || next.startsWith('```')) continue;
+    throw new Error(
+      `${file}:${i + 2}: 引用の直後に空行がないので、この行が引用の中に入ってしまう → ${next.slice(0, 40)}` +
+        ' / 対処: 引用と本文のあいだに空行を1つ入れる',
+    );
+  }
+}
+
 /** 表は横スクロールできる箱に入れる（スマホで本文が横に伸びるのを防ぐ）。 */
 const wrapTables = (html) =>
   html.replace(/<table>/g, '<div class="table-wrap"><table>').replace(/<\/table>/g, '</table></div>');
@@ -425,10 +447,46 @@ function crumbs(items) {
 
 // ---- 記事ページ
 
+/**
+ * front matter の `eyecatch` と同じ画像が本文にも書いてある記事がある。
+ * build.mjs は eyecatch を必ず記事の先頭に出すので、**同じ図が1ページに2回出ていた**
+ * （2026-08-31 時点で6本。`/coolerbox/coleman-uchinori/`・`/coolerbox/erabikata/`・
+ * `/coolerbox/horeizai-maisuu/`・`/cassette-konro/bombe-honsuu/`・
+ * `/cassette-konro/nenshou-jikan/`・`/kyatatsu/erabikata/`）。
+ *
+ * 本文側を消すだけだと、本文側が持っていた**説明的な alt（＝figure のキャプション）が失われる。**
+ * 先頭の eyecatch は alt に記事タイトルを入れており、これは「画像の説明」ではないので
+ * 代わりにならない。そこで本文側の alt を回収して先頭の eyecatch に移し、
+ * キャプションも先頭側に出す。**原稿は書き換えない**（正は content/articles/）。
+ */
+function liftEyecatchFromBody(a) {
+  if (!a.eyecatch) return { body: a.body, alt: '' };
+  const lines = a.body.split('\n');
+  const tail = '](' + a.eyecatch + ')';
+  const i = lines.findIndex((l) => l.startsWith('![') && l.trimEnd().endsWith(tail));
+  if (i < 0) return { body: a.body, alt: '' };
+  const alt = lines[i].slice(2, lines[i].lastIndexOf(tail));
+  lines.splice(i, 1);
+  // 画像を抜くと前後の空行が連続して残るので、片方だけ詰める
+  if (lines[i] === '' && lines[i - 1] === '') lines.splice(i, 1);
+  return { body: lines.join('\n'), alt };
+}
+
 for (const a of articles) {
-  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(renderCards(a.body, a.file)))));
+  assertNoLazyBlockquote(a.body, a.file);
+  const lifted = liftEyecatchFromBody(a);
+  a.eyecatchAlt = lifted.alt;
+  const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(renderCards(lifted.body, a.file)))));
   assertNoRawEmphasis(parsed.html, a.file);
   const html = resolveLinks(parsed.html);
+
+  // 回収しそこねた重複を黙って公開しない。ここで落とす。
+  if (a.eyecatch && html.includes(`src="${a.eyecatch}"`)) {
+    throw new Error(
+      `${a.file}: eyecatch と同じ画像が本文にも残っている（${a.eyecatch}）` +
+        ' / 対処: 本文の ![...](画像) を独立した1行にするか、front matter の eyecatch を別画像にする',
+    );
+  }
   const cname = catName(a.category);
 
   // 関連記事は同じカテゴリを優先し、足りない分だけ他カテゴリで埋める。
@@ -443,8 +501,13 @@ for (const a of articles) {
     ? `<p class="pr-notice">${esc(site.prLabel)}</p>`
     : `<p class="pr-notice pr-notice--pending">現在このページに広告リンクはありません（Amazonアソシエイト審査前）。</p>`;
 
+  // 本文から alt を回収できたときは、それを alt に使い、キャプションとしても見せる。
+  // 回収できなかった記事は従来どおり（alt は記事タイトル・キャプションなし）。
   const eyecatch = a.eyecatch
-    ? `<p class="eyecatch"><img src="${a.eyecatch}" alt="${esc(a.title)}" width="1200" height="630" decoding="async"></p>`
+    ? a.eyecatchAlt
+      ? `<figure class="eyecatch"><img src="${a.eyecatch}" alt="${esc(a.eyecatchAlt)}" width="1200" height="630" decoding="async">` +
+        `<figcaption>${esc(a.eyecatchAlt)}</figcaption></figure>`
+      : `<p class="eyecatch"><img src="${a.eyecatch}" alt="${esc(a.title)}" width="1200" height="630" decoding="async"></p>`
     : '';
 
   writeFile(
