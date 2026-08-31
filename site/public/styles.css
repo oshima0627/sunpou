@@ -20,7 +20,10 @@
   --bg-chrome: #fdfdfd;     /* ヘッダー・フッター（body よりわずかに明るい） */
   --fg: #434347;            /* 本文（黒ではない） */
   --fg-strong: #333333;     /* フッターなど */
-  --muted: #6f7680;
+  /* 2026-08-31 計測：#6f7680 は --bg (#fcfcfc) の上で 4.47:1 と、AA(4.5:1) にわずかに
+   * 届いていなかった。パンくず・日付・キャプションが全部この色。色相はそのままに
+   * 暗くして 4.80:1（--surface の上でも 4.56:1）にした。 */
+  --muted: #6a717b;
   --muted-on-surface: #5c636e;   /* --surface の上で AA を満たす濃さ（5.6:1）。--muted は 4.24:1 で足りない */
   --accent: #213555;        /* H2 の縦棒 */
   --accent-weak: rgba(33, 53, 85, 0.035);
@@ -92,30 +95,51 @@ a:hover { text-decoration: none; }
 
 /* ---------------------------------------------------------------- レイアウト */
 
+/* 既定は1カラム。サイドバー（.l-side）が実際に出力されたページだけ2カラムにする。
+ * トップと404はサイドバーの中身が本文の複製しか無かったので、build 側で <aside> ごと
+ * 出さないようにした。固定トラックの grid のままだと中身が無くても304px分の空白が
+ * 残るので、:has() で「aside があるとき」に限って2カラムに切り替える。 */
 .l-wrap {
   max-width: calc(var(--content) + var(--side) + 40px);
   margin-inline: auto;
   padding: 2rem 1.15rem 4rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) var(--side);
-  gap: 40px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem;
   align-items: start;
 }
 
-@media (max-width: 900px) {
-  .l-wrap {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2.5rem;
+@media (min-width: 901px) {
+  .l-wrap:has(> .l-side) {
+    grid-template-columns: minmax(0, 1fr) var(--side);
+    gap: 40px;
   }
+}
+
+/* サイドバーが無いページは1カラムのまま横に伸びてしまうので、読める行長で止める。
+ * ⚠️ width: 100% を外さないこと。grid の子に margin-inline: auto を付けると
+ * stretch が効かなくなって max-content 幅に縮む（404ページが260pxまで痩せた）。
+ * 先に 100% で伸ばしてから max-width で止める。 */
+.l-wrap:not(:has(> .l-side)) .l-main {
+  width: 100%;
+  max-width: 860px;
+  margin-inline: auto;
 }
 
 .l-main { min-width: 0; }
 
+/* 記事タイトルがそのまま入るので、放っておくと2行に折り返してページの頭が濁る。
+ * 1行に切って、末尾は省略記号にする（現在地なのでリンクでもない）。 */
 .crumbs {
   font-size: .8rem;
   color: var(--muted);
   margin-bottom: 1rem;
+  display: flex;
+  gap: .35em;
+  align-items: baseline;
+  white-space: nowrap;
 }
+.crumbs > span:last-child { overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .crumbs a { color: var(--muted); font-weight: 400; text-decoration: none; }
 .crumbs a:hover { text-decoration: underline; }
 
@@ -178,12 +202,13 @@ h1 {
 
 /* ---------------------------------------------------------------- 目次 */
 
+/* 上が紺・下が黒の二重罫は色が食い違っていて落ち着かない。紺で揃える。 */
 .toc {
   margin: 0 0 2.6rem;
   padding: 1.5rem .5rem 1.3rem;
   border: 0;
   border-top: 2px solid var(--navy);
-  border-bottom: 2px solid var(--fg);
+  border-bottom: 1px solid var(--line);
   background: transparent;
 }
 
@@ -204,10 +229,25 @@ h1 {
 
 /* ---------------------------------------------------------------- 表 */
 
+/* 表は本文（716px）に収まらないものが多く、ほぼ必ず横スクロールになる。
+ * NN/g "Mobile Tables" の指針を2点入れている：
+ *   1. **先頭列（行の見出し）を固定する。** 横に送っても「どの製品の行か」が消えない
+ *   2. **スクロールできることを見た目で示す。** スクロールバーだけでは気づかれない
+ * 2 は背景画像4枚の重ね合わせで作る（不透明の帯2枚＋影2枚を background-attachment: local /
+ * scroll で切り替える定番の手）。JS を持たない方針なので CSS だけで完結させる。 */
 .table-wrap {
   overflow-x: auto;
   margin: 1.6rem 0;
   border: 1px solid var(--cell-line);
+
+  background:
+    linear-gradient(to right, var(--bg) 30%, rgba(252, 252, 252, 0)) left center,
+    linear-gradient(to left,  var(--bg) 30%, rgba(252, 252, 252, 0)) right center,
+    radial-gradient(farthest-side at 0 50%, rgba(0, 0, 0, .16), rgba(0, 0, 0, 0)) left center,
+    radial-gradient(farthest-side at 100% 50%, rgba(0, 0, 0, .16), rgba(0, 0, 0, 0)) right center;
+  background-repeat: no-repeat;
+  background-size: 28px 100%, 28px 100%, 14px 100%, 14px 100%;
+  background-attachment: local, local, scroll, scroll;
 }
 
 .post table {
@@ -227,6 +267,24 @@ h1 {
 }
 .post th:last-child, .post td:last-child { border-right: 0; }
 
+/* 先頭列を固定。背景を敷かないと、下を流れる列が透けて重なる */
+.post tbody td:first-child,
+.post tbody th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--bg);
+  font-weight: 700;
+  border-right: 1px solid var(--cell-line);
+}
+.post tbody tr:nth-child(even) td:first-child { background: var(--bg); }
+
+.post thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;   /* 固定列（1）と固定ヘッダ（2）の交点なので、いちばん上に置く */
+}
+
 .post thead th {
   background: var(--navy);
   color: #fff;
@@ -235,6 +293,7 @@ h1 {
   border-bottom-color: var(--navy);
   position: sticky;
   top: 0;
+  z-index: 2;
 }
 .post thead th:last-child { border-right: 0; }
 
@@ -399,13 +458,17 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 }
 .widget:last-child { border-bottom: 0; }
 
+/* 見出しは紺ベタの帯だった。サイドバーには枠が4つ並ぶので、帯が4本積み上がって
+ * ここだけが画面のいちばん強い要素になり、本文より目立っていた。
+ * 面をやめて「小さい文字＋紺の細い下罫」にする。並べても静かで、順番は読める。 */
 .widget__title {
-  font-size: .95rem;
+  font-size: .82rem;
   font-weight: 700;
-  color: #fff;
-  background: var(--navy);
-  padding: 8px 12px;
+  color: var(--navy);
+  letter-spacing: .06em;
+  padding: 0 0 .45rem;
   margin: 0 0 .9rem;
+  border-bottom: 2px solid var(--navy);
 }
 
 .widget p { margin: 0 0 .7rem; font-size: .88rem; color: var(--muted); }
@@ -564,7 +627,9 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 .article-list__link {
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
+  /* サムネは 1200x630 のグラフ（棒＋数値）で、190px では線の束にしか見えなかった。
+   * 240px で棒の並びと差の向きが読める。中の文字までは読めないが、そこは本文の役目。 */
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 1.2rem;
   align-items: start;
   padding: 1.3rem 0;
@@ -602,6 +667,13 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 
 /* ---- サイドバーの目次 */
 
+/* 目次は本文中とサイドバーの2か所に出力されている。**同時に出さない。**
+ * 901px 以上 = サイドバーが横に並ぶので追従する側だけ、
+ * 900px 以下 = サイドバーが本文の下に落ちるので本文中の側だけ。
+ * 出し分ける前は、スマホで同じ目次が記事の頭と足に2回出ていた。 */
+@media (min-width: 901px) { .toc--inline { display: none; } }
+@media (max-width: 900px) { .widget--toc { display: none; } }
+
 .toc--side { border: 0; padding: 0; margin: 0; }
 .toc--side ol { padding-left: 1.2rem; font-size: .84rem; }
 .toc--side li { margin-bottom: .35rem; }
@@ -637,3 +709,64 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
   opacity: .82;
 }
 .pagetop:hover { opacity: 1; text-decoration: none; }
+
+
+/* ================================================================
+ * トップページの入口
+ * ================================================================ */
+
+/* 見出し（トップの「新着記事」など）。.post の外なので .post h2 は当たらない */
+.section-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--fg-strong);
+  margin: 2.6rem 0 .3rem;
+  padding: 0 0 .5rem;
+  border-bottom: 2px solid var(--navy);
+}
+
+/* カテゴリの入口。
+ * これまでカテゴリへの導線はサイドバーにしか無く、900px 以下ではサイドバーが本文の下に
+ * 落ちるため、スマホでは記事19本を通り過ぎるまでカテゴリが現れなかった。 */
+.cat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .8rem;
+  margin: 0 0 .5rem;
+}
+
+.cat-card {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  padding: .9rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 3px;
+  text-decoration: none;
+  font-weight: 400;
+}
+.cat-card:hover {
+  border-color: var(--navy);
+  border-left-color: var(--navy);
+  background: #eef2f7;
+  text-decoration: none;
+}
+
+.cat-card__name  { font-size: 1rem; font-weight: 700; color: var(--fg-strong); line-height: 1.4; }
+.cat-card__count { font-size: .78rem; color: var(--muted-on-surface); }
+
+/* ---- サイトマップ（全ページの索引） */
+
+/* postListHtml の <time> は、サイドバーと関連記事では block 指定があるのに、
+ * サイトマップの裸の <ul> にだけ指定が無く、リンクの直後に日付が地続きで
+ * くっついていた（「…早見表）2026-08-29」）。ここで受け止める。 */
+.link-list { list-style: none; margin: 0 0 .5rem; padding: 0; }
+.link-list li { margin: 0; padding: .55rem 0; border-bottom: 1px solid var(--line); }
+.link-list a { font-size: .95rem; font-weight: 700; color: var(--fg); text-decoration: none; }
+.link-list a:hover { color: var(--link); text-decoration: underline; }
+.link-list time { display: block; font-size: .74rem; color: var(--muted); margin-top: .15rem; }
+
+/* 索引の見出しは記事本文の h2 より詰める */
+.sitemap .section-title { margin-top: 2.2rem; }

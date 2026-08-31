@@ -322,15 +322,32 @@ const byRecent = [...articles].sort((a, b) => (a.updated < b.updated ? 1 : -1));
  */
 const showCategoryNav = site.categories.length >= 2;
 
-const navHtml = [
-  ...(showCategoryNav ? site.categories.map((c) => ({ path: `/${c.slug}/`, label: c.name })) : []),
-  ...site.nav,
-]
-  .map((n) => `<a href="${n.path}">${esc(n.label)}</a>`)
-  .join('');
+const catNavItems = showCategoryNav
+  ? site.categories.map((c) => ({ path: `/${c.slug}/`, label: c.name }))
+  : [];
 
-function widget(title, inner) {
-  return `<div class="widget"><p class="widget__title">${esc(title)}</p>${inner}</div>`;
+const linkList = (items) => items.map((n) => `<a href="${n.path}">${esc(n.label)}</a>`).join('');
+
+/**
+ * ヘッダーのナビは**カテゴリだけ**にする。運営者情報・プライバシーポリシー・サイトマップは
+ * 「ユーティリティリンク」で、置き場所はフッター（NN/g "Web Page Footers 101"）。
+ * 上部に残してよいのは検索・ログイン・言語切替のような「道具」だけ、とされている。
+ *
+ * 実測（2026-08-31・375px）：6項目のナビは scrollWidth 706px に対して表示幅 338px しかなく、
+ * **368px ぶん（後ろ3項目＝ユーティリティ3件そのもの）が画面外**に出ていた。
+ * スクロールバーも非表示にしてあるので、そこに項目があること自体が読者に見えない。
+ * カテゴリ3件だけならこの溢れが無くなる。
+ */
+const navHtml = linkList(catNavItems);
+
+/** フッターは全部載せる（カテゴリ＋ユーティリティ）。読者はここを見に来る。 */
+const fnavHtml = linkList([...catNavItems, ...site.nav]);
+
+/** サイドバー。中身が無いときは <aside> ごと出さない（レイアウトが1カラムに畳まれる）。 */
+const side = (inner) => (inner ? `<aside class="l-side">${inner}</aside>` : '');
+
+function widget(title, inner, cls = '') {
+  return `<div class="widget${cls ? ' ' + cls : ''}"><p class="widget__title">${esc(title)}</p>${inner}</div>`;
 }
 
 function postListHtml(list, cls = '') {
@@ -355,6 +372,27 @@ const categoryWidget = showCategoryNav
     )
   : '';
 
+/**
+ * トップページ本文に置くカテゴリの入口。
+ *
+ * これまでカテゴリへの導線は**サイドバーにしか無かった**。サイドバーは 900px 以下で
+ * 本文の下に落ちるので、スマホでは記事19本を全部スクロールし切るまでカテゴリが現れない。
+ * 本文の先頭に置き直すと、どの幅でも最初の画面で「何を扱う site か」と分岐が見える。
+ */
+const categoryCards = showCategoryNav
+  ? `<nav class="cat-cards" aria-label="カテゴリー">${site.categories
+      .map((c) => {
+        const n = articles.filter((a) => a.category === c.slug).length;
+        return (
+          `<a class="cat-card" href="/${c.slug}/">` +
+          `<span class="cat-card__name">${esc(c.name)}</span>` +
+          `<span class="cat-card__count">${n}記事</span>` +
+          `</a>`
+        );
+      })
+      .join('')}</nav>`
+  : '';
+
 const aboutWidget = widget('このサイトについて', `<p>${esc(site.description)}</p><p class="widget__more"><a href="/about/">運営者情報と数値の作り方 →</a></p>`);
 
 /**
@@ -370,6 +408,7 @@ const common = {
   siteName: esc(site.name),
   tagline: esc(site.tagline),
   nav: navHtml,
+  fnav: fnavHtml,
   robots: '',
   disclosure: disclosureHtml,
   sns: snsHtml,
@@ -437,11 +476,15 @@ for (const a of articles) {
         { path: `/${a.category}/`, label: cname },
         { label: a.title },
       ]),
-      sidebar:
-        (hasToc(parsed.headings) ? widget('目次', `<div class="toc toc--side">${tocList(parsed.headings)}</div>`) : '') +
+      sidebar: side(
+        // 目次は本文中とサイドバーの2か所に出力しているが、**同時に見えるのは片方だけ**。
+        // 901px 以上は追従するサイドバー版、900px 以下（サイドバーが本文の下に落ちる幅）は
+        // 本文中の版を CSS で出し分ける。両方見えていたときは同じリストが2回並んでいた。
+        (hasToc(parsed.headings) ? widget('目次', `<div class="toc toc--side">${tocList(parsed.headings)}</div>`, 'widget--toc') : '') +
         aboutWidget +
         widget('新着記事', postListHtml(byRecent.slice(0, 5))) +
-        categoryWidget,
+        categoryWidget
+      ),
       content:
         `<article class="post">` +
         `<p class="cat-label"><a href="/${a.category}/">${esc(cname)}</a></p>` +
@@ -451,7 +494,7 @@ for (const a of articles) {
         }</p>` +
         eyecatch +
         prNotice +
-        (hasToc(parsed.headings) ? `<nav class="toc"><p class="toc__title">目次</p>${tocList(parsed.headings)}</nav>` : '') +
+        (hasToc(parsed.headings) ? `<nav class="toc toc--inline"><p class="toc__title">目次</p>${tocList(parsed.headings)}</nav>` : '') +
         html +
         shareButtons(a.title, a.url) +
         // 記事が1本しかないうちは「関連記事」の枠だけ出しても意味がないので省く
@@ -487,7 +530,9 @@ for (const p of pages) {
         inLanguage: site.lang,
       }),
       breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: p.title }]),
-      sidebar: aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget,
+      sidebar: side(
+        aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget
+      ),
       content: `<article class="post"><h1>${esc(p.title)}</h1><p class="dates"><time datetime="${esc(p.updated)}">更新 ${esc(p.updated)}</time></p>${resolveLinks(parsed.html)}</article>`,
       year: String(new Date(p.updated).getFullYear()),
     }),
@@ -519,7 +564,9 @@ for (const c of site.categories) {
       // 重複コンテンツとして competing させたくないので noindex にしておく
       // （follow なので記事へのリンクはたどられる）。2つ目のカテゴリができたら自動で index される。
       robots: showCategoryNav ? '' : '<meta name="robots" content="noindex,follow">',
-      sidebar: aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget,
+      sidebar: side(
+        aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget
+      ),
       content:
         `<h1>${esc(c.name)}の記事一覧</h1>` +
         `<p class="lead">${esc(c.name)}について、メーカー公式の寸法から計算して比べた記事です。</p>` +
@@ -567,8 +614,18 @@ writeFile(
       inLanguage: site.lang,
     }),
     breadcrumb: '',
-    sidebar: aboutWidget + categoryWidget,
-    content: `<h1>${esc(site.name)}</h1><p class="lead">${esc(site.description)}</p>${articleCards(byRecent)}`,
+    // トップだけサイドバーを外す。
+    // 「このサイトについて」は site.description をそのまま出しており、これは本文の
+    // リード文と**一字一句同じ**だった。「カテゴリー」も本文のカテゴリカードと同じ中身。
+    // つまりトップのサイドバーは全部が本文の複製で、読者に新しい情報が1つも無かった。
+    sidebar: side(''),
+    // h1 はサイト名を繰り返さない（ヘッダーのロゴが40px上で同じ文字列を出している）。
+    // ここはサイトが何をする場所かを言う一行にする。
+    content:
+      `<h1>${esc(site.tagline)}</h1><p class="lead">${esc(site.description)}</p>` +
+      categoryCards +
+      `<h2 class="section-title">新着記事</h2>` +
+      articleCards(byRecent),
     year: String(new Date().getFullYear()),
   }),
 );
@@ -585,19 +642,22 @@ writeFile(
     ogType: 'website',
     jsonLd: '',
     breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: 'サイトマップ' }]),
-    sidebar: aboutWidget + categoryWidget,
+    sidebar: side(aboutWidget + categoryWidget),
+    // 見出しは .post h2（紺の縦棒＋上に5.6remの余白）を使わない。
+    // 全ページの索引なのに、区切りごとに記事本文と同じ大きさの見出しと余白が入って、
+    // 19本のリストが縦に間延びしていた。索引は詰めて一覧できるほうがいい。
     content:
-      '<article class="post"><h1>サイトマップ</h1>' +
+      '<div class="sitemap"><h1>サイトマップ</h1>' +
       site.categories
         .map(
           (c) =>
-            `<h2>${esc(c.name)}</h2>` +
-            postListHtml(byRecent.filter((a) => a.category === c.slug)),
+            `<h2 class="section-title">${esc(c.name)}</h2>` +
+            postListHtml(byRecent.filter((a) => a.category === c.slug), 'link-list'),
         )
         .join('') +
-      '<h2>このサイトについて</h2><ul>' +
+      '<h2 class="section-title">このサイトについて</h2><ul class="link-list">' +
       site.nav.map((n) => `<li><a href="${n.path}">${esc(n.label)}</a></li>`).join('') +
-      '</ul></article>',
+      '</ul></div>',
     year: String(new Date().getFullYear()),
   }),
 );
@@ -614,7 +674,7 @@ writeFile(
     ogType: 'website',
     jsonLd: '',
     breadcrumb: '',
-    sidebar: '',
+    sidebar: side(''),
     content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p><p><a href="/sitemap/">サイトマップから探す</a></p>',
     year: String(new Date().getFullYear()),
   }),
