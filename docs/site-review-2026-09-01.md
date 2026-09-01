@@ -275,8 +275,21 @@ HTML だけでなく `/styles.css` と `/img/*.png` にも付いている（Work
 
 `未検証`
 
-- **`_headers` が本番で効くか。** Workers Assets に置いただけで、**レスポンスヘッダはまだ確認していない**。
-  デプロイ後に `curl -I https://sunpou.nexeed-lab.com/styles.css` で見ること
 - **これらが表示回数・クリック・適格販売を動かすか。** 何ひとつ確認できていない。
   効くかどうかは 9/3〜9/5 の `/measure` 以降でしか分からない
+
+### デプロイ後に本番で確認した（2026-09-01）　`検証済み`
+
+```
+/styles.css              Cache-Control: public, max-age=86400
+/img/thumb/*.png         Cache-Control: public, max-age=86400
+/coolerbox/（HTML）      Cache-Control: public, max-age=0, must-revalidate  ← 既定のまま（意図どおり）
+/coolerbox/erabikata/    BreadcrumbList 1件
+/（トップ）              「用途から選ぶ」が出ている
+/_headers                404（設定ファイルとして扱われ、公開されていない）
+```
+
+→ **`_headers` は Workers Assets で効いている。**
+⚠️ **画像に1日のキャッシュが付いたので、図版を直したら最大1日は古いものが出る。**
+数字を直したときはそれを見込むこと。
 
