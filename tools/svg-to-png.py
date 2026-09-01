@@ -101,10 +101,35 @@ def convert(chrome, path, outdir):
     return name, w, h, os.path.getsize(out), raw
 
 
+def powerpoint_managed():
+    """PowerPoint 版に移行済みの図の名前。
+
+    ⚠️ **ここにある図を SVG から焼き直してはいけない。** PowerPoint で作った PNG を
+    古い SVG の見た目で上書きしてしまう。正は `tools/figures/figures.py`。
+    """
+    fig = os.path.join(ROOT, "tools", "figures", "figures.py")
+    if not os.path.isfile(fig):
+        return set()
+    src = open(fig, encoding="utf-8").read()
+    body = src[src.index("ORDER = ["):src.index("FIGURES = {")]
+    return set(re.findall(r'"([a-z0-9-]+)"', body))
+
+
 def main():
     chrome = find_chrome()
     only = set(sys.argv[1:])
     paths = sorted(glob.glob(os.path.join(IMG, "*.svg")))
+    managed = powerpoint_managed()
+    blocked = [p for p in paths
+               if os.path.splitext(os.path.basename(p))[0] in managed
+               and (not only or os.path.splitext(os.path.basename(p))[0] in only)]
+    if blocked:
+        names = ", ".join(sorted(os.path.splitext(os.path.basename(p))[0] for p in blocked))
+        raise SystemExit(
+            f"この図は PowerPoint 版に移行済みです: {names}"
+            " / SVG から焼くと PowerPoint で作った PNG を上書きします。"
+            " 対処: 直すなら tools/figures/figures.py を直して"
+            " `python tools/figures/build.py <名前>` を実行してください")
     if only:
         paths = [p for p in paths if os.path.splitext(os.path.basename(p))[0] in only]
     if not paths:

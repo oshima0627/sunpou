@@ -90,6 +90,12 @@ def check_layout(f):
     """
     out = []
     bs = f.boxes
+    # 脚注の罫線（y=556）が通る帯には文字を置かない。
+    # ⚠️ 文字同士の当たり判定だけでは拾えない（罫線は図形なので）。
+    # 2026-09-01 に kyatatsu-fumidai で製品名が罫線に乗った。
+    for x, y, w, h, t in bs:
+        if y < 560 and y + h > 552:
+            out.append(f"脚注の罫線に重なる「{t[:18]}」 y={y:.0f}..{y + h:.0f}")
     for i, (x, y, w, h, t) in enumerate(bs):
         if x < 0 or y < 0 or x + w > deck.W + 1 or y + h > deck.H + 1:
             out.append(f"はみ出し「{t[:18]}」 x={x:.0f}..{x + w:.0f} y={y:.0f}..{y + h:.0f}")
@@ -135,6 +141,9 @@ def main():
             bad = check_numbers(name, used)
             if bad:
                 problems.append((name, f"元のSVGに無い数値 {bad}"))
+            if svg_numbers(name) is None:
+                # 新規に起こした図は照合相手がいない。黙って通さず、書き手に知らせる
+                print(f"  ⚠ {name}: 元の SVG が無いので数値の自動照合はできていません")
             lay = check_layout(f)
             if lay:
                 problems.append((name, "; ".join(lay[:3])))

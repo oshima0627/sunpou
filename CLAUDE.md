@@ -43,5 +43,11 @@ git add -A && git commit -m "<何を変えたか>" && git push
 
 1. **価格・在庫に触れない**（Amazon規約。PA-APIが使えるまで）
 2. **日本語の太字は閉じの `**` が約物の直後に来ないようにする**（ビルドが検出して落とす）
-3. **SVGの文字は `getBBox()` で重なりを検査する**（目視では見落とす）
+3. **図版は PowerPoint で作る。SVG を手書きしない**（2026-09-01 に全31枚を移行済み）
+   - `tools/figures/figures.py` に1関数＝1図版で書き、`python tools/figures/build.py <名前>` で焼く
+   - 正は `figures.py`。**PNG を直接いじらない。** `site/public/img/figures.pptx` は
+     PowerPoint で手直しでき、そのときは `build.py --from-pptx` で PNG だけ焼き直す
+   - **紺のベタ帯に白抜きの見出し＋右に「言いたい数字ひとつ」**が決めごと。
+     図だけ見て記事の結論が分かる状態にする
+   - ⚠️ **ビルドが3つ検査して落とす**（数値が元図にあるか／見出しが枠に収まるか／文字の重なり）
 4. 原稿の正は **`site/content/articles/`**。別の場所に下書きを置かない

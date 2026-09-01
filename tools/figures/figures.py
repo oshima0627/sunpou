@@ -129,7 +129,7 @@ def coolerbox_2l_eyecatch(f):
              "10〜25Lには、まず立ちません",
              key="51", key_label="はみ出す", key_unit="mm")
 
-    base = 520                                  # 床の位置
+    base = 500                                  # 床の位置
     depth, bottle = 255, 306                    # mm。1px = 1mm で描く
     bxx = 470
     f.rect(bxx - 20, base - depth, 240, depth, BAND, PALE, 2)
@@ -644,6 +644,160 @@ def coolerbox_yoryo_danmen(f):
 
     f.footer("外寸が大きくても、断熱が厚ければ中は狭くなります。")
 
+def coolerbox_erabikata_eyecatch(f):
+    """入れたいものから内寸を逆に引く。容量Lは何が入るかを教えない。"""
+    f.header("入れたいものから内寸を逆に引く",
+             "容量Lは「何が入るか」を教えてくれない",
+             key="26", key_label="内寸を並べた", key_unit="製品")
+
+    data = [("500ml ペットボトル", "全高 207mm", "内寸の辺 ÷ 胴径", "同じ20Lでも 15〜18本"),
+            ("2L ペットボトル", "全高 306mm", "内寸の深さ", "306mm以上は 26製品中3つ"),
+            ("保冷剤", "厚さ 25〜35mm", "深さの余り", "25mm未満なら床を食う"),
+            ("大きい魚", "まっすぐ入る長さ", "内寸の長辺", "80cm以上は 3製品"),
+            ("持ち運び", "空のときの重さ", "自重", "1.5kg 〜 13.2kg")]
+    ys = f.rows(len(data), top=178, rh=72)
+    for (want, spec, key_, ans), y in zip(data, ys):
+        f.text(74, y + 10, 300, 24, want, 17, INK, bold=True)
+        f.text(74, y + 36, 300, 22, spec, 14, MUTE)
+        f.text(392, y + 18, 50, 28, "→", 20, NAVY, bold=True)
+        f.text(456, y + 10, 300, 24, key_, 17, NAVY, bold=True)
+        f.text(790, y + 18, 340, 28, ans, 17, INK, bold=True)
+
+    f.footer("容量Lではなく、入れたいものから内寸を決めます。")
+
+
+def konro_donabe_haba(f):
+    """「10号まで」の機種より、10号土鍋のほうが幅がある。"""
+    f.header("「10号まで」でも土鍋のほうが広い",
+             "上から見た図 ／ 灰色＝コンロ本体、橙＝土鍋（口径31cm＋取手）",
+             key="1.3", key_label="左右にはみ出す", key_unit="cm")
+
+    sc = 7.2
+    kx, ky = 110, 240
+    kw, kh = 33.4 * sc, 27.4 * sc
+    f.rect(kx, ky, kw, kh, BAND, PALE, 2)
+    pw = 36 * sc
+    f.oval(kx + (kw - pw) / 2, ky + (kh - pw / 1.35) / 2, pw, pw / 1.35, WARNB, WARN, 3)
+
+    px = 640
+    f.text(px, 214, 460, 26, "イワタニ エコプレミアムIII", 18, INK, bold=True)
+    f.text(px, 244, 460, 26, "本体 33.4 × 27.4cm", 18, NAVY, bold=True)
+    f.text(px, 296, 460, 26, "墨貫入 10号", 18, INK, bold=True)
+    f.text(px, 326, 460, 26, "幅（取手込）36cm", 18, WARN, bold=True)
+    f.rect(px - 20, 366, 480, 66, WARNB, WARN, 2, radius=0.06)
+    f.text(px, 386, 440, 26, "左右に 1.3cm ずつはみ出す", 19, WARN, bold=True)
+    f.text(px, 452, 480, 24, "はみ出しても五徳に乗れば使えます。", 15, MUTE)
+    f.text(px, 480, 480, 24, "効くのは「卓上で必要な幅」のほうです。", 15, MUTE)
+
+    f.footer("号数ではなく、取手込みの幅で決まります。")
+
+
+def kyatatsu_takasa(f):
+    """「180」の脚立で足を置けるのは1.40m。型番より40cm低い。"""
+    f.header("「180」でも足を置けるのは 1.40m",
+             "長谷川工業 RHB-18a ／ 横から見た図 ／ 踏ざんは省略",
+             key="40", key_label="型番より低い", key_unit="cm")
+
+    sc = 148.0
+    x, base = 150, 520
+    f.bar(x, base - 1.70 * sc, 200, 1.70 * sc, PALE2, PALE, NAVY, 2, radius=0.03)
+    f.rect(x - 20, base - 1.40 * sc, 240, 4, WARN)
+
+    px = 500
+    for y, big, note, warn in (
+            (200, "型番の数字 180", "開いた状態の高さではありません", False),
+            (272, "天板の高さ 1.70m", "乗ることは禁止されています", False),
+            (344, "使用最大高さ 1.40m", "足を置けるのはここまで", True)):
+        f.rect(px - 20, y - 16, 500, 62, WARNB if warn else BAND, WARN if warn else None,
+               2, radius=0.06)
+        f.text(px, y - 4, 460, 26, big, 20, WARN if warn else INK, bold=True)
+        f.text(px, y + 24, 460, 24, note, 15, MUTE)
+
+    f.text(px, 434, 500, 26, "型番の数字より 40cm 低い", 19, NAVY, bold=True)
+    f.text(px, 464, 500, 24, "RHB は5サイズすべてこの差でした", 15, MUTE)
+    f.text(px, 492, 520, 24, "BSA-A と SEC-S の仕様表にはこの欄がありません", 15, MUTE)
+
+    f.footer("型番の数字は、足を置ける高さではありません。")
+
+
+def kyatatsu_omosa(f):
+    """0.8m前後に立つ6製品。2.5kgから7.6kgまで3.0倍。"""
+    f.header("0.8m前後に立つのに 2.5kg と 7.6kg",
+             "踏台は天板高さ、脚立は使用最大高さでそろえています",
+             key="3.0", key_label="重さの差は", key_unit="倍")
+
+    data = [("アルインコ CCA-80K", "踏台 ／ 0.79m", 2.5), ("長谷川 SE-8a", "踏台 ／ 0.79m", 2.6),
+            ("アルインコ TBF-4", "踏台（上わく付き）／ 0.77m", 3.8),
+            ("長谷川 EFA-08", "踏台（上わく付き）／ 0.79m", 4.4),
+            ("長谷川 RHB-12a", "はしご兼用脚立 ／ 0.80m", 4.5),
+            ("長谷川 SWH-12", "強力型脚立 ／ 0.90m", 7.6)]
+    x0, sc, top, rh = 430, 78.0, 176, 62
+    ys = f.rows(len(data), top=top, rh=rh, highlight=5)
+    for (name, note, kg), y in zip(data, ys):
+        f.bar(x0, y + 14, kg * sc, 28, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 8, 350, 24, name, 16, INK, bold=True)
+        f.text(74, y + 32, 350, 22, note, 14, MUTE)
+        f.text(x0 + kg * sc + 12, y + 14, 110, 28, f"{kg}kg", 18, NAVY, bold=True)
+
+    f.footer("いちばん軽い2.5kgと、いちばん重い7.6kgで3.0倍の差があります。")
+
+
+def kyatatsu_kaidan(f):
+    """階段では前脚と後脚が3段離れ、必要な高低差は69cm。伸縮脚は31cm。"""
+    f.header("階段では前脚と後脚が3段離れます",
+             "踏面15cm・蹴上げ23cm（住宅の法定の限界値）／ 脚立の設置奥行 55.2cm",
+             key="38", key_label="足りない分", key_unit="cm")
+
+    sc = 3.2
+    x, base = 110, 480
+    for i in range(4):
+        f.rect(x + i * 15 * sc, base - (i + 1) * 23 * sc, 15 * sc + 2, 23 * sc + 2, BAND, PALE, 2)
+    f.rect(x - 14, base - 69 * sc, 5, 69 * sc, WARN)
+    f.text(x - 6, base - 69 * sc - 32, 200, 26, "69cm", 19, WARN, bold=True)
+    f.rect(x + 230, base - 31 * sc, 5, 31 * sc, NAVY)
+    f.text(x + 242, base - 31 * sc - 32, 200, 26, "31cm", 19, NAVY, bold=True)
+
+    px = 560
+    f.rect(px - 20, 196, 500, 78, WARNB, WARN, 2, radius=0.06)
+    f.text(px, 214, 460, 26, "必要な高低差 69cm", 20, WARN, bold=True)
+    f.text(px, 244, 460, 24, "3段離れる × 蹴上げ23cm", 15, MUTE)
+    f.rect(px - 20, 292, 500, 78, BAND, radius=0.06)
+    f.text(px, 310, 460, 26, "伸縮脚で調整できるのは 31cm", 20, INK, bold=True)
+    f.text(px, 340, 460, 24, "ピカ スタッピー SXJ-90A の公表値", 15, MUTE)
+    f.text(px, 400, 460, 30, "38cm 足りません", 24, WARN, bold=True)
+    f.text(px, 440, 520, 24, "踏面が広い階段でも2段離れるので、", 15, MUTE)
+    f.text(px, 468, 520, 24, "必要なのは32cm以上でした", 15, MUTE)
+
+    f.footer("伸縮脚では、住宅の階段の高低差に届きません。")
+
+
+def kyatatsu_fumidai(f):
+    """天板は0.79mと0.81mでほぼ同じ。足を置ける高さは0.79mと0.50mに分かれる。"""
+    f.header("天板は同じでも足場の高さが違う",
+             "横から見た図 ／ 同じ0.8m前後の2製品を並べています",
+             key="0.50", key_label="脚立で立てるのは", key_unit="m")
+
+    sc = 185.0
+    base = 500
+    x = 150
+    f.bar(x, base - 0.79 * sc, 170, 0.79 * sc, PALE2, PALE, NAVY, 2, radius=0.03)
+    f.ghost(x + 20, base - 1.40 * sc, 130, (1.40 - 0.79) * sc, NAVY)
+    f.text(x, base - 1.40 * sc - 32, 300, 26, "全高 1.40m", 17, MUTE)
+    f.text(x + 190, base - 1.06 * sc, 250, 26, "上わく ＋61cm", 17, NAVY, bold=True)
+    f.text(x + 190, base - 0.79 * sc, 250, 26, "天板 0.79m", 17, INK, bold=True)
+    f.text(x, base + 10, 320, 24, "踏台（上わく付き）", 16, INK, bold=True)
+    f.text(x, base + 32, 320, 22, "長谷川工業 EFA-08", 15, MUTE)
+
+    x = 700
+    f.bar(x, base - 0.81 * sc, 170, 0.81 * sc, BAND, BAND, MUTE, 2, radius=0.03)
+    f.bar(x, base - 0.50 * sc, 170, 0.50 * sc, PALE2, PALE, NAVY, 2, radius=0.03)
+    f.text(x + 190, base - 0.81 * sc, 250, 26, "天板 0.81m", 17, MUTE, bold=True)
+    f.text(x + 190, base - 0.50 * sc, 250, 26, "使用最大 0.50m", 17, NAVY, bold=True)
+    f.text(x, base + 10, 320, 24, "はしご兼用脚立", 16, INK, bold=True)
+    f.text(x, base + 32, 320, 22, "長谷川工業 RHB-09a", 15, MUTE)
+
+    f.footer("天板は0.79mと0.81m。足を置ける高さは0.79mと0.50mに分かれます。")
+
 ORDER = [
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
@@ -670,6 +824,12 @@ ORDER = [
     "coolerbox-horeizai-oki",
     "coolerbox-nagasa-diagonal",
     "coolerbox-yoryo-danmen",
+    "coolerbox-erabikata-eyecatch",
+    "konro-donabe-haba",
+    "kyatatsu-takasa",
+    "kyatatsu-omosa",
+    "kyatatsu-kaidan",
+    "kyatatsu-fumidai",
 ]
 
 FIGURES = {
@@ -698,4 +858,10 @@ FIGURES = {
     "coolerbox-horeizai-oki": coolerbox_horeizai_oki,
     "coolerbox-nagasa-diagonal": coolerbox_nagasa_diagonal,
     "coolerbox-yoryo-danmen": coolerbox_yoryo_danmen,
+    "coolerbox-erabikata-eyecatch": coolerbox_erabikata_eyecatch,
+    "konro-donabe-haba": konro_donabe_haba,
+    "kyatatsu-takasa": kyatatsu_takasa,
+    "kyatatsu-omosa": kyatatsu_omosa,
+    "kyatatsu-kaidan": kyatatsu_kaidan,
+    "kyatatsu-fumidai": kyatatsu_fumidai,
 }
