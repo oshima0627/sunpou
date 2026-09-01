@@ -6,7 +6,7 @@ category: cassette-konro
 eyecatch: /img/konro-jikan-eyecatch.png
 ogImage: /img/og/konro-jikan.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 カセットボンベ1本で、どれだけ使えるのか。

@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-nagasa-eyecatch.png
 ogImage: /img/og/uchinori-nagasa.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 「60cmの魚をまっすぐ入れたい」「80cm入る箱はどれか」。

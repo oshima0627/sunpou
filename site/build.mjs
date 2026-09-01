@@ -347,7 +347,22 @@ for (const a of articles) {
   if (!catName(a.category)) throw new Error(`${a.file}: 未定義のカテゴリ「${a.category}」（site.json の categories に追加してください）`);
 }
 
-const byRecent = [...articles].sort((a, b) => (a.updated < b.updated ? 1 : -1));
+/**
+ * 「新着」の並びは **`published`（公開日）** で決める。`updated` ではない。
+ *
+ * ⚠️ **2026-09-01 まで `updated` で並べていた。** 全記事に製品カードを足した日、
+ * 20本の `updated` が同じ日に揃い、「新着記事」の並びが**ファイル名順**（ソートが安定なので
+ * 読み込み順がそのまま残る）に化けた。新着は「新しく出た順」であって
+ * 「最後に手を入れた順」ではない（`docs/site-review-2026-09-01-2.md`）。
+ *
+ * 同日公開のときだけ `slug` で決める。**並びが実行ごとに変わらないようにするため。**
+ */
+const byRecent = [...articles].sort((a, b) =>
+  a.published === b.published ? (a.slug < b.slug ? -1 : 1) : a.published < b.published ? 1 : -1,
+);
+
+/** サイト全体の最終更新日（トップ・カテゴリ・サイトマップの lastmod）。**最大の `updated`。** */
+const latestUpdated = articles.reduce((max, a) => (a.updated > max ? a.updated : max), '');
 
 // ---- 共通パーツ
 
@@ -392,7 +407,7 @@ function postListHtml(list, cls = '') {
   return `<ul class="${cls}">${list
     .map(
       (a) =>
-        `<li><a href="/${a.slug}/">${esc(a.title)}</a><time datetime="${esc(a.updated)}">${esc(a.updated)}</time></li>`,
+        `<li><a href="/${a.slug}/">${esc(a.title)}</a><time datetime="${esc(a.published)}">${esc(a.published)}</time></li>`,
     )
     .join('')}</ul>`;
 }
@@ -744,7 +759,7 @@ function articleCards(list) {
         `<span class="article-list__cat">${esc(catName(a.category))}</span>` +
         `<span class="article-list__title">${esc(a.title)}</span>` +
         `<span class="article-list__desc">${esc(a.description)}</span>` +
-        `<time datetime="${esc(a.updated)}">${esc(a.updated)}</time>` +
+        `<time datetime="${esc(a.published)}">${esc(a.published)}</time>` +
         `</span></a></li>`,
     )
     .join('')}</ul>`;
@@ -859,13 +874,21 @@ writeFile(
 
 // ---- sitemap.xml / robots.txt
 
+// ⚠️ 一覧ページの lastmod は「いちばん新しい記事の更新日」であって
+// 「いちばん新しく公開された記事の更新日」ではない。byRecent は published 順なので
+// byRecent[0].updated を使うと、古い記事を直した日が sitemap に出なくなる。
 const urls = [
-  { loc: `${ORIGIN}/`, lastmod: byRecent[0]?.updated },
+  { loc: `${ORIGIN}/`, lastmod: latestUpdated },
   // noindex のカテゴリページは sitemap に載せない
-  ...(showCategoryNav ? site.categories.map((c) => ({ loc: `${ORIGIN}/${c.slug}/`, lastmod: byRecent[0]?.updated })) : []),
+  ...(showCategoryNav
+    ? site.categories.map((c) => ({
+        loc: `${ORIGIN}/${c.slug}/`,
+        lastmod: articles.filter((a) => a.category === c.slug).reduce((max, a) => (a.updated > max ? a.updated : max), ''),
+      }))
+    : []),
   ...byRecent.map((a) => ({ loc: a.url, lastmod: a.updated })),
   ...pages.map((p) => ({ loc: p.url, lastmod: p.updated })),
-  { loc: `${ORIGIN}/sitemap/`, lastmod: byRecent[0]?.updated },
+  { loc: `${ORIGIN}/sitemap/`, lastmod: latestUpdated },
 ];
 
 writeFile(
@@ -919,6 +942,22 @@ copyDir(path.join(ROOT, 'public'), DIST);
   const dropped = fs.readdirSync(imgDir).filter((f) => f.endsWith('.svg'));
   for (const f of dropped) fs.rmSync(path.join(imgDir, f));
   if (dropped.length) console.log(`  dist/img から SVG ${dropped.length} 枚を除外（PNG が配信対象）`);
+}
+
+/**
+ * `figures.pptx` も素材なので配信しない。
+ *
+ * 利用者が PowerPoint で図を直すための**編集用マスター**（`tools/figures/build.py` が出す）で、
+ * サイトのどのページからも参照していない。SVG と同じ理由で public/ に置いてあるだけだが、
+ * 置いたままだと 109KB が本番に出て、URL を知られれば誰でも落とせる。
+ */
+{
+  const master = path.join(DIST, 'img', 'figures.pptx');
+  if (fs.existsSync(master)) {
+    const kb = (fs.statSync(master).size / 1024).toFixed(0);
+    fs.rmSync(master);
+    console.log(`  dist/img から figures.pptx（${kb}KB・編集用マスター）を除外`);
+  }
 }
 
 console.log(`built: ${articles.length} article(s), ${pages.length} page(s), ${site.categories.length} category page(s)`);

@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/horeizai-maisuu-eyecatch.png
 ogImage: /img/og/horeizai-maisuu.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 保冷剤を1枚だけ入れる人は、あまりいません。**2枚、3枚と足していきます。**

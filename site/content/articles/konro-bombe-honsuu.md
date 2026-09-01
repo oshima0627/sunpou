@@ -6,7 +6,7 @@ category: cassette-konro
 eyecatch: /img/konro-bombe-eyecatch.png
 ogImage: /img/og/konro-bombe.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 防災の備蓄でカセットボンベを買うとき、**何本買えばいいのかが分かりません。**

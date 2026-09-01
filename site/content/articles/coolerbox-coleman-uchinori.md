@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coleman-fukasa-eyecatch.png
 ogImage: /img/og/coleman-uchinori.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 コールマンのクーラーボックスは「**28QT**」「**50QT**」のように、リットルではない単位で並んでいます。

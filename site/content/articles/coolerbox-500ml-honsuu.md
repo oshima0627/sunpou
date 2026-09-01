@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-500ml-eyecatch.png
 ogImage: /img/og/500ml-honsuu.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 運動会、帰省、釣り、まとめ買い。「20Lのクーラーボックスなら、500mlのペットボトルは何本入るんだろう」と調べて、答えが見つからずにここへたどり着いた方向けの記事です。

@@ -6,7 +6,7 @@ category: kyatatsu
 eyecatch: /img/kyatatsu-fumidai-eyecatch.png
 ogImage: /img/og/kyatatsu-fumidai.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 「踏み台」と「脚立」は、どちらも上に乗って高いところの作業をする道具です。売り場でも隣に並んでいます。

@@ -7,7 +7,7 @@ eyecatch: /img/konro-erabikata-eyecatch.png
 ogImage: /img/og/konro-erabikata.png
 pillar: true
 published: 2026-08-29
-updated: 2026-08-29
+updated: 2026-09-01
 ---
 
 カセットコンロの仕様表でいちばん目に入るのは「**目安として9号土鍋まで**」という一行ですが、これは号数の目安であって、寸法ではありません。

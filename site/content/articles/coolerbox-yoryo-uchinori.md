@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-yoryo-eyecatch.png
 ogImage: /img/og/yoryo-uchinori.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 「20Lって、どれくらい？」

@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-daiwa-shimano-eyecatch.png
 ogImage: /img/og/daiwa-shimano.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 釣り用のクーラーボックスを選ぶとき、だいたいダイワとシマノの二択になります。

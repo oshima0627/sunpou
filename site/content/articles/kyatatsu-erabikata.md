@@ -7,7 +7,7 @@ eyecatch: /img/kyatatsu-erabikata-eyecatch.png
 ogImage: /img/og/kyatatsu-erabikata.png
 pillar: true
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 脚立の売り場でいちばん目に入るのは「180」や「6尺」という数字ですが、**これは足を置ける高さではありません。**

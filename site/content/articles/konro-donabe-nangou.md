@@ -6,7 +6,7 @@ category: cassette-konro
 eyecatch: /img/konro-donabe-eyecatch.png
 ogImage: /img/og/donabe-nangou.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 鍋の季節にカセットコンロを買うとき、仕様欄にこう書いてあります。

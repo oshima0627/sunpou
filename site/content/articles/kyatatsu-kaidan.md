@@ -6,7 +6,7 @@ category: kyatatsu
 eyecatch: /img/kyatatsu-kaidan-eyecatch.png
 ogImage: /img/og/kyatatsu-kaidan.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 「**伸縮脚付き**」「**段差対応**」と書かれた脚立があります。四本の脚がそれぞれ伸び縮みして、傾いた場所でも天板を水平に保てるものです。

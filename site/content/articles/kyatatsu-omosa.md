@@ -6,7 +6,7 @@ category: kyatatsu
 eyecatch: /img/kyatatsu-omosa-eyecatch.png
 ogImage: /img/og/kyatatsu-omosa.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 脚立や踏み台は、買ったあと**自分で運びます。** 物置から出して、部屋まで持って、また戻します。

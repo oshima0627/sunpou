@@ -3,7 +3,7 @@ title: 運営者情報
 description: 「寸法で選ぶ」の運営方針・数値の作り方・免責事項・連絡先について。
 slug: about
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-25
 ---
 
 ## このサイトについて

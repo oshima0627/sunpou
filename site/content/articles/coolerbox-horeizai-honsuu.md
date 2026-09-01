@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-horeizai-eyecatch.png
 ogImage: /img/og/horeizai-honsuu.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 クーラーボックスは、保冷剤を入れたぶんだけ中身が入らなくなります。

@@ -3,7 +3,7 @@ title: プライバシーポリシー
 description: 「寸法で選ぶ」におけるアクセス解析・広告・個人情報の取り扱いについて。
 slug: privacy
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-08-25
 ---
 
 ## アクセス解析について

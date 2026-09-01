@@ -6,7 +6,7 @@ category: kyatatsu
 eyecatch: /img/kyatatsu-secchi-eyecatch.png
 ogImage: /img/og/kyatatsu-secchi.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 脚立や踏み台は、**しまうときは薄い板**です。ところが**広げると床を取ります。**

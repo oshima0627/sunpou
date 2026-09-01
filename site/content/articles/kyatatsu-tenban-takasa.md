@@ -6,7 +6,7 @@ category: kyatatsu
 eyecatch: /img/kyatatsu-takasa-eyecatch.png
 ogImage: /img/og/kyatatsu-takasa.png
 published: 2026-08-25
-updated: 2026-08-25
+updated: 2026-09-01
 ---
 
 脚立には「90」「120」「180」「210」といった数字が付いています。ホームセンターでは「6尺」「7尺」とも呼ばれます。

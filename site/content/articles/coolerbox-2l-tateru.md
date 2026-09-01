@@ -6,7 +6,7 @@ category: coolerbox
 eyecatch: /img/coolerbox-2l-eyecatch.png
 ogImage: /img/og/2l-tateru.png
 published: 2026-08-24
-updated: 2026-08-24
+updated: 2026-09-01
 ---
 
 麦茶を2Lのまま持っていきたい。スポーツドリンクを2Lで買って冷やしたい。
