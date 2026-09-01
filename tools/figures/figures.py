@@ -494,6 +494,156 @@ def kyatatsu_erabikata_eyecatch(f):
 
     f.footer("脚立の「足を置ける高さ」は天板高さではなく、使用最大高さです。")
 
+# ---------------------------------------------------------------- 本文の図版
+
+def _plan(f, x, y, wcm, dcm, sc, dia, cols, rows_n, label, sub):
+    """上から見た床面に丸型ボトルを敷き詰める図。灰色の残りが「余り」。"""
+    bw, bh = wcm * sc, dcm * sc
+    d = dia * sc
+    f.text(x, y - 30, 520, 24, label, 16, INK, bold=True)
+    f.rect(x, y, bw, bh, BAND, PALE, 2)
+    for r in range(rows_n):
+        for c in range(cols):
+            f.oval(x + c * d, y + r * d, d, d, PALE2, NAVY, 2)
+    f.text(x, y + bh + 16, 520, 24, sub, 15, MUTE)
+    return bh
+
+
+def bottle_height_chart(f):
+    """ボトルの全高と、クーラーボックスの深さの関係。"""
+    f.header("1.5L も 2L とほぼ同じ高さ",
+             "棒がボトルの全高、線がクーラーボックスの内寸の深さ",
+             key="310", key_label="立つのは深さ", key_unit="mm")
+
+    x0, sc, top, rh = 480, 1.55, 186, 58
+    data = [("ダイワ10L・20L", 220), ("ダイワ15L", 230), ("ロゴス・アイリス", 243),
+            ("ダイワ25L", 255), ("アイリス40L", 310)]
+    ys = f.rows(len(data), top=top, rh=rh, highlight=4)
+    for (name, mm), y in zip(data, ys):
+        ok = mm >= 306
+        f.bar(x0, y + 12, mm * sc, 28, PALE2 if ok else BAND, PALE if ok else BAND,
+              NAVY if ok else MUTE, 2, radius=0.30)
+        f.text(74, y + 12, 380, 28, f"{name}　内寸の深さ {mm}mm", 16, INK, bold=True)
+        f.text(x0 + mm * sc + 12, y + 12, 160, 28, "2Lが立つ" if ok else "立たない",
+               16, NAVY if ok else MUTE, bold=True)
+    line = x0 + 306 * sc
+    f.ghost(line, top - 8, 1, len(data) * rh - 8, WARN)
+    f.text(line - 40, top - 34, 320, 24, "2Lの全高 306mm", 16, WARN, bold=True)
+
+    f.footer("1.5L（305〜307.5mm）は 2L（305〜306mm）とほぼ同じ高さです。",
+             "出典：ボトル＝料材開発／深さ＝各メーカー公式の内寸")
+
+
+def coolerbox_floorplan(f):
+    """床面積が同じ858cm²でも、割り切れ方で15本と12本に分かれる。"""
+    f.header("床面積が同じでも本数は違う",
+             "どちらも 858cm² ／ 丸型ボトル 胴径 68.5mm ／ 灰色は割り切れない余り",
+             key="12", key_label="ロゴスは", key_unit="本")
+
+    sc, dia = 7.4, 6.85
+    _plan(f, 80, 230, 39, 22, sc, dia, 5, 3,
+          "ダイワ S2000（20L）　内寸 22 × 39cm", "39 ÷ 6.85 ＝ 5.7 → 5列 ／ 22 ÷ 6.85 ＝ 3.2 → 3行")
+    _plan(f, 620, 230, 33, 26, sc, dia, 4, 3,
+          "ロゴス ハイパー氷点下クーラーL（20L）　内寸 33 × 26cm",
+          "33 ÷ 6.85 ＝ 4.8 → 4列 ／ 26 ÷ 6.85 ＝ 3.8 → 3行")
+    # 合計行は左右で同じ高さに置く（床の奥行が違うので、低いほうに合わせる）
+    f.rich(80, 480, 400, 44, [("5列 × 3行 ＝ ", 22, INK, True), ("15", 34, NAVY, True), ("本", 20, NAVY, True)])
+    f.rich(620, 480, 400, 44, [("4列 × 3行 ＝ ", 22, INK, True), ("12", 34, NAVY, True), ("本", 20, NAVY, True)])
+
+    f.footer("広さではなく、胴径で割り切れるかで決まります。")
+
+
+def coolerbox_daiwa_shimano_yuka(f):
+    """公表容量20Lと22L。どちらも15本。"""
+    f.header("公表容量は 20L と 22L。どちらも 15本",
+             "ボトルはシマノ公表の前提 Φ66 × 全高207mm ／ 灰色は使えない余り",
+             key="15", key_label="どちらも", key_unit="本")
+
+    sc, dia = 7.2, 6.6
+    _plan(f, 80, 230, 39, 22, sc, dia, 5, 3,
+          "ダイワ クールラインα3 2000（20L）　内寸 22 × 39cm",
+          "メーカーの公表は18本（前提にしたボトルが違う）")
+    f.rich(80, 452, 400, 44, [("3列 × 5行 ＝ ", 22, INK, True), ("15", 34, NAVY, True), ("本", 20, NAVY, True)])
+    _plan(f, 620, 230, 39.1, 21.1, sc, dia, 5, 3,
+          "シマノ フィクセル 22L　内寸（底部）21.1 × 39.1cm",
+          "本数の公表なし。内寸は「底部」の値を使った")
+    f.rich(620, 452, 400, 44, [("3列 × 5行 ＝ ", 22, INK, True), ("15", 34, NAVY, True), ("本", 20, NAVY, True)])
+
+    f.footer("公表容量が違っても、入る本数は同じでした。")
+
+
+def coolerbox_horeizai_oki(f):
+    """同じ箱・同じ1枚でも、置き方で6本と18本。"""
+    f.header("同じ箱・同じ1枚。置き方だけで違う",
+             "ダイワ S2000（20L）内寸 22 × 39cm ／ 500ml角型 胴径60mm",
+             key="6", key_label="寝かせると", key_unit="本")
+
+    sc = 7.4
+    for x, cap, pack, n, note, bad in (
+            (80, "氷点下パックL（25.5 × 16.4 × 厚2.5cm）を床に寝かせる", (25.5, 16.4), 6,
+             "残る帯は 22 − 16.4 ＝ 5.6cm。胴径6cmに足りず丸ごと死ぬ", True),
+            (620, "氷点下パックM（19.6 × 13.8 × 厚2.6cm）を壁に立てかける", (19.6, 2.6), 18,
+             "床の余り 4cm と 3cm に、厚さ2.6cmがそのまま収まる", False)):
+        bw, bh = 39 * sc, 22 * sc
+        f.text(x, 200, 520, 24, cap, 15, INK, bold=True)
+        f.rect(x, 230, bw, bh, BAND, PALE, 2)
+        f.rect(x, 230, pack[0] * sc, pack[1] * sc, WARNB if bad else PALE, WARN if bad else NAVY, 2)
+        cols, rows_n = (3, 2) if bad else (6, 3)
+        oy = 230 + pack[1] * sc + 4 if bad else 230
+        for r in range(rows_n):
+            for c in range(cols):
+                f.oval(x + c * 6 * sc, oy + r * 6 * sc, 6 * sc, 6 * sc, PALE2, NAVY, 2)
+        f.rich(x, 230 + bh + 16, 400, 40,
+               [(str(n), 32, WARN if bad else NAVY, True), ("本", 20, WARN if bad else NAVY, True)])
+        f.text(x, 230 + bh + 58, 520, 24, note, 14, MUTE)
+
+    f.footer("面積ではなく、残った帯が胴径で割り切れるかで決まります。")
+
+
+def coolerbox_nagasa_diagonal(f):
+    """斜めに置くと長辺より長いものが入る。"""
+    f.header("斜めに置くと、長辺より長いものが入る",
+             "シマノ スペーザ 350（内寸 25.2 × 59.2 × 深さ 23.0cm）を上から見た床",
+             key="68.3", key_label="立体の対角線", key_unit="cm")
+
+    sc = 6.4
+    x, y = 100, 230
+    bw, bh = 59.2 * sc, 25.2 * sc
+    f.rect(x, y, bw, bh, BAND, PALE, 2)
+    f.ghost(x, y, bw, bh, NAVY)
+
+    px = 640
+    f.rect(px - 20, 210, 480, 120, BAND, radius=0.06)
+    f.text(px, 230, 440, 26, "床の対角線", 18, MUTE)
+    f.text(px, 264, 440, 34, "√(25.2² ＋ 59.2²) ＝ 64.3", 21, NAVY, bold=True)
+    f.rect(px - 20, 346, 480, 120, WHITE, PALE, 2, radius=0.06)
+    f.text(px, 366, 440, 26, "立体の対角線", 18, MUTE)
+    f.text(px, 400, 440, 34, "√(25.2² ＋ 59.2² ＋ 23.0²) ＝ 68.3", 20, NAVY, bold=True)
+
+    f.footer("角の丸みや水栓の出っ張りは計算に入っていません。")
+
+
+def coolerbox_yoryo_danmen(f):
+    """どちらも15L。外寸が小さいほうが中は広い。"""
+    f.header("どちらも15L。中の広さは違う",
+             "上から見た床面 ／ 灰色の外枠＝外寸、青い内枠＝内寸（メーカー公表値）",
+             key="6.3", key_label="断熱で片側", key_unit="cm")
+
+    sc = 6.4
+    for x, cap, ow, od, iw, idp, note in (
+            (100, "アイリスオーヤマ HUGEL 15L（真空断熱パネル）", 45.0, 30.8, 30.2, 18.2,
+             "長辺で片側7.4cm ／ 短辺で片側6.3cm"),
+            (640, "ダイワ クールラインα3 S1500（発泡スチロール）", 47.5, 25.0, 36.0, 17.0,
+             "長辺で片側5.75cm ／ 短辺で片側4.0cm")):
+        f.text(x, 200, 520, 24, cap, 15, INK, bold=True)
+        f.rect(x, 230, ow * sc, od * sc, BAND, PALE, 2)
+        f.rect(x + (ow - iw) * sc / 2, 230 + (od - idp) * sc / 2, iw * sc, idp * sc, PALE2, NAVY, 3)
+        f.text(x, 230 + od * sc + 18, 480, 26, f"外寸 {ow} × {od}cm", 18, INK, bold=True)
+        f.text(x, 230 + od * sc + 46, 480, 26, f"→ 内寸 {iw} × {idp}cm", 18, NAVY, bold=True)
+        f.text(x, 230 + od * sc + 74, 480, 24, f"外寸と内寸の差は {note}", 14, MUTE)
+
+    f.footer("外寸が大きくても、断熱が厚ければ中は狭くなります。")
+
 ORDER = [
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
@@ -514,6 +664,12 @@ ORDER = [
     "kyatatsu-kaidan-eyecatch",
     "kyatatsu-fumidai-eyecatch",
     "kyatatsu-erabikata-eyecatch",
+    "bottle-height-chart",
+    "coolerbox-floorplan",
+    "coolerbox-daiwa-shimano-yuka",
+    "coolerbox-horeizai-oki",
+    "coolerbox-nagasa-diagonal",
+    "coolerbox-yoryo-danmen",
 ]
 
 FIGURES = {
@@ -536,4 +692,10 @@ FIGURES = {
     "kyatatsu-kaidan-eyecatch": kyatatsu_kaidan_eyecatch,
     "kyatatsu-fumidai-eyecatch": kyatatsu_fumidai_eyecatch,
     "kyatatsu-erabikata-eyecatch": kyatatsu_erabikata_eyecatch,
+    "bottle-height-chart": bottle_height_chart,
+    "coolerbox-floorplan": coolerbox_floorplan,
+    "coolerbox-daiwa-shimano-yuka": coolerbox_daiwa_shimano_yuka,
+    "coolerbox-horeizai-oki": coolerbox_horeizai_oki,
+    "coolerbox-nagasa-diagonal": coolerbox_nagasa_diagonal,
+    "coolerbox-yoryo-danmen": coolerbox_yoryo_danmen,
 }
