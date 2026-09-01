@@ -53,7 +53,36 @@
   </div>
 </footer>
 
-<a class="pagetop" href="#" aria-label="ページの先頭へ戻る">↑</a>
+<a class="pagetop" href="#" aria-label="ページの先頭へ戻る" hidden>↑</a>
+<!-- ページ先頭へ戻るボタンは、1画面ぶんスクロールするまで出さない。
+     ⚠️ 常時表示だと右下44pxが本文に重なる（2026-09-01 のレビューで、モバイルの表と
+     本文の上に被っているのを確認した）。読み始めの画面では要らないボタンでもある。 -->
+<script>
+(function () {
+  var b = document.querySelector('.pagetop');
+  if (!b) return;
+  // ⚠️ **innerHeight を基準にしない。** スクリプトが走る時点では 0 のことがあり
+  //（プレビューのブラウザで実際に 0 だった）、`scrollY < innerHeight` が false になって
+  // 先頭にいるのにボタンが出た。**画面の高さに依存しない固定値で判定する。**
+  var show = function () { b.hidden = scrollY < 600; };
+  addEventListener('scroll', show, { passive: true });
+  addEventListener('load', show);
+  show();
+})();
+// 横にはみ出している表に「→ 横にスクロール」と出す。
+// ⚠️ 早見表はモバイル375pxで幅1303px＝26%しか見えない（2026-09-01 のレビューで実測）。
+// 影のグラデーションだけでは、残り74%があることが伝わらない。
+// はみ出しているかは実際に測らないと分からないので、CSS では書けない。
+(function () {
+  var mark = function () {
+    document.querySelectorAll('.table-wrap').forEach(function (w) {
+      w.classList.toggle('table-wrap--over', w.scrollWidth - w.clientWidth > 8);
+    });
+  };
+  addEventListener('resize', mark);
+  mark();
+})();
+</script>
 {{analytics}}
 </body>
 </html>

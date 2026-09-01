@@ -309,6 +309,21 @@ function readDocs(dir) {
     });
 }
 
+/**
+ * カテゴリページの導入文。`content/categories/<slug>.md`（front matter なし・本文だけ）。
+ *
+ * ⚠️ **2026-09-01 まで、カテゴリ3ページの固有の本文は0文字だった**（定型1文＋記事一覧のみ）。
+ * 「クーラーボックス 内寸」のような語の受け皿になる位置なのに、順位を取る材料が無かった
+ * （`docs/site-review-2026-09-01.md`）。**書いた数字は記事側と同じ根拠のものだけを置く。**
+ */
+function readCategoryLead(slug) {
+  const p = path.join(ROOT, 'content/categories', `${slug}.md`);
+  if (!fs.existsSync(p)) return '';
+  const parsed = addHeadingIds(wrapTables(marked.parse(fs.readFileSync(p, 'utf8'))));
+  assertNoRawEmphasis(parsed.html, `content/categories/${slug}.md`);
+  return resolveLinks(parsed.html);
+}
+
 // ---------------------------------------------------------------- build
 
 // dist ごと削除せず中身だけ消す。wrangler dev が監視している間、
@@ -445,6 +460,29 @@ function crumbs(items) {
   return `<nav class="crumbs" aria-label="パンくずリスト">${parts.join(' › ')}</nav>`;
 }
 
+/**
+ * パンくずの構造化データ。
+ *
+ * ⚠️ **画面のパンくずは 2026-08-31 から出ていたのに、JSON-LD は1件も出していなかった**
+ * （2026-09-01 のレビューで判明）。検索結果にパンくずを出すのはこちらの役目で、
+ * `<nav>` を読ませているわけではない。
+ *
+ * 引数は crumbs() と同じ配列にする。**表示とデータを別々に組み立てると食い違う。**
+ * 末尾（現在地）には item を付けない（Google の仕様上こうしてよい）。
+ */
+function breadcrumbLd(items) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((it, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: it.label,
+      ...(it.path ? { item: ORIGIN + it.path } : {}),
+    })),
+  };
+}
+
 // ---- 記事ページ
 
 /**
@@ -488,13 +526,35 @@ for (const a of articles) {
     );
   }
   const cname = catName(a.category);
+  const trail = [
+    { path: '/', label: 'ホーム' },
+    { path: `/${a.category}/`, label: cname },
+    { label: a.title },
+  ];
 
-  // 関連記事は同じカテゴリを優先し、足りない分だけ他カテゴリで埋める。
-  // カテゴリが2件以上になると、そうしないと無関係な記事が並ぶ。
-  const others = byRecent.filter((x) => x.slug !== a.slug);
+  /**
+   * 関連記事の並べ方。
+   *
+   * ⚠️ **2026-09-01 まで「同じカテゴリの新着順」だった。** 記事が増えるほど古い記事が
+   * どの関連記事にも出なくなる。実際、クーラーボックスの古い4本
+   * （`2l-tateru` `500ml-honsuu` `daiwa-shimano` `horeizai-honsuu`）は
+   * **関連記事からの被リンクが0**だった（`docs/site-review-2026-09-01.md`）。
+   * いちばん需要のあるキーワードの記事が、内部リンクから落ちていた。
+   *
+   * 日付順をやめて、こう並べる:
+   *   1. そのカテゴリの収益記事（front matter の `pillar`）。**同カテゴリの全記事から必ず張る**
+   *   2. 同じカテゴリの残りを「この記事の次」から巡回して取る。
+   *      どの記事も同じ回数だけ出るので、古い記事が落ちない
+   *   3. それでも5本に足りなければ、他カテゴリの新着で埋める
+   */
+  const inCat = articles.filter((x) => x.category === a.category);
+  const here = inCat.findIndex((x) => x.slug === a.slug);
+  const rotated = inCat.slice(here + 1).concat(inCat.slice(0, here));
+  const pillar = inCat.find((x) => x.pillar && x.slug !== a.slug);
   const related = [
-    ...others.filter((x) => x.category === a.category),
-    ...others.filter((x) => x.category !== a.category),
+    ...(pillar ? [pillar] : []),
+    ...rotated.filter((x) => x !== pillar),
+    ...byRecent.filter((x) => x.category !== a.category),
   ].slice(0, 5);
 
   const prNotice = site.affiliateEnabled
@@ -521,24 +581,25 @@ for (const a of articles) {
       // og:image は PNG（front matter の ogImage）を優先する。
       // 本文の図版（eyecatch）は SVG のままでよいが、SNS のカードは SVG を受け付けない。
       ogImage: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),
-      jsonLd: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Article',
-        headline: a.title,
-        description: a.description,
-        image: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),
-        datePublished: a.published,
-        dateModified: a.updated,
-        articleSection: cname,
-        inLanguage: site.lang,
-        mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },
-        publisher: { '@type': 'Organization', name: site.name },
-      }),
-      breadcrumb: crumbs([
-        { path: '/', label: 'ホーム' },
-        { path: `/${a.category}/`, label: cname },
-        { label: a.title },
+      jsonLd: JSON.stringify([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          headline: a.title,
+          description: a.description,
+          image: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),
+          datePublished: a.published,
+          dateModified: a.updated,
+          articleSection: cname,
+          inLanguage: site.lang,
+          mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },
+          // 誰が書いたか。数値を自分で計算して出すサイトなので、書き手を明示する
+          author: { '@type': 'Person', name: site.author, url: `${ORIGIN}/about/` },
+          publisher: { '@type': 'Organization', name: site.name },
+        },
+        breadcrumbLd(trail),
       ]),
+      breadcrumb: crumbs(trail),
       sidebar: side(
         // 目次は本文中とサイドバーの2か所に出力しているが、**同時に見えるのは片方だけ**。
         // 901px 以上は追従するサイドバー版、900px 以下（サイドバーが本文の下に落ちる幅）は
@@ -575,6 +636,7 @@ for (const a of articles) {
 for (const p of pages) {
   const parsed = addHeadingIds(wrapFigures(wrapTables(marked.parse(p.body))));
   assertNoRawEmphasis(parsed.html, p.file);
+  const pageTrail = [{ path: '/', label: 'ホーム' }, { label: p.title }];
 
   writeFile(
     `${p.slug}/index.html`,
@@ -584,15 +646,18 @@ for (const p of pages) {
       description: esc(p.description),
       canonical: p.url,
       ogType: 'website',
-      jsonLd: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebPage',
-        name: p.title,
-        description: p.description,
-        url: p.url,
-        inLanguage: site.lang,
-      }),
-      breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: p.title }]),
+      jsonLd: JSON.stringify([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'WebPage',
+          name: p.title,
+          description: p.description,
+          url: p.url,
+          inLanguage: site.lang,
+        },
+        breadcrumbLd(pageTrail),
+      ]),
+      breadcrumb: crumbs(pageTrail),
       sidebar: side(
         aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget
       ),
@@ -607,22 +672,27 @@ for (const p of pages) {
 for (const c of site.categories) {
   const list = byRecent.filter((a) => a.category === c.slug);
   const url = `${ORIGIN}/${c.slug}/`;
+  const catTrail = [{ path: '/', label: 'ホーム' }, { label: c.name }];
+  const lead = readCategoryLead(c.slug);
   writeFile(
     `${c.slug}/index.html`,
     render(baseTpl, {
       ...common,
-      title: `${esc(c.name)}の記事一覧 | ${esc(site.name)}`,
-      description: `${c.name}について、メーカー公式の寸法から計算して比べた記事の一覧です。`,
+      title: `${esc(c.title || `${c.name}の記事一覧`)} | ${esc(site.name)}`,
+      description: c.description || `${c.name}について、メーカー公式の寸法から計算して比べた記事の一覧です。`,
       canonical: url,
       ogType: 'website',
-      jsonLd: JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'CollectionPage',
-        name: `${c.name}の記事一覧`,
-        url,
-        inLanguage: site.lang,
-      }),
-      breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: c.name }]),
+      jsonLd: JSON.stringify([
+        {
+          '@context': 'https://schema.org',
+          '@type': 'CollectionPage',
+          name: `${c.name}の記事一覧`,
+          url,
+          inLanguage: site.lang,
+        },
+        breadcrumbLd(catTrail),
+      ]),
+      breadcrumb: crumbs(catTrail),
       // カテゴリが1つの間、このページはトップページと中身がほぼ同じになる。
       // 重複コンテンツとして competing させたくないので noindex にしておく
       // （follow なので記事へのリンクはたどられる）。2つ目のカテゴリができたら自動で index される。
@@ -631,8 +701,12 @@ for (const c of site.categories) {
         aboutWidget + widget('新着記事', postListHtml(byRecent.slice(0, 5))) + categoryWidget
       ),
       content:
-        `<h1>${esc(c.name)}の記事一覧</h1>` +
-        `<p class="lead">${esc(c.name)}について、メーカー公式の寸法から計算して比べた記事です。</p>` +
+        // 導入文があればそれを使う（h1 も導入文側に置く）。無ければ従来どおりの見出しだけ。
+        (lead
+          ? `<div class="post cat-lead">${lead}</div>`
+          : `<h1>${esc(c.name)}の記事一覧</h1>` +
+            `<p class="lead">${esc(c.name)}について、メーカー公式の寸法から計算して比べた記事です。</p>`) +
+        `<h2 class="section-title">${esc(c.name)}の記事（${list.length}本）</h2>` +
         articleCards(list),
       year: String(new Date().getFullYear()),
     }),
@@ -641,13 +715,31 @@ for (const c of site.categories) {
 
 // ---- 記事カード（トップ・カテゴリー共通）
 
+/**
+ * 一覧のサムネ。`/img/<name>.png` に対して `/img/thumb/<name>.png`（幅480px）があれば
+ * そちらを使う（`tools/figures/build.py` が焼く）。
+ *
+ * ⚠️ **2026-09-01 まで 2400px の本体をそのまま240pxの枠で出していた。**
+ * トップページの画像だけで 1.35MB あった（`docs/site-review-2026-09-01.md`）。
+ * 無い場合は本体にそのまま落とす（図版以外のアイキャッチが増えても壊れないように）。
+ */
+function thumbOf(src) {
+  const small = src.replace(/^\/img\//, '/img/thumb/');
+  return fs.existsSync(path.join(ROOT, 'public', small.slice(1)))
+    ? { src: small, w: 480, h: 252 }
+    : { src, w: 1200, h: 630 };
+}
+
 function articleCards(list) {
   if (!list.length) return '<p>記事はまだありません。</p>';
   return `<ul class="article-list">${list
     .map(
       (a) =>
         `<li><a class="article-list__link" href="/${a.slug}/">` +
-        (a.eyecatch ? `<img class="article-list__thumb" src="${a.eyecatch}" alt="" width="1200" height="630" loading="lazy" decoding="async">` : '') +
+        (a.eyecatch
+          ? (({ src, w, h }) =>
+              `<img class="article-list__thumb" src="${src}" alt="" width="${w}" height="${h}" loading="lazy" decoding="async">`)(thumbOf(a.eyecatch))
+          : '') +
         `<span class="article-list__body">` +
         `<span class="article-list__cat">${esc(catName(a.category))}</span>` +
         `<span class="article-list__title">${esc(a.title)}</span>` +
@@ -695,6 +787,8 @@ writeFile(
 
 // ---- サイトマップ（HTML）
 
+const sitemapTrail = [{ path: '/', label: 'ホーム' }, { label: 'サイトマップ' }];
+
 writeFile(
   'sitemap/index.html',
   render(baseTpl, {
@@ -703,8 +797,8 @@ writeFile(
     description: '「寸法で選ぶ」の全ページ一覧です。',
     canonical: `${ORIGIN}/sitemap/`,
     ogType: 'website',
-    jsonLd: '',
-    breadcrumb: crumbs([{ path: '/', label: 'ホーム' }, { label: 'サイトマップ' }]),
+    jsonLd: JSON.stringify(breadcrumbLd(sitemapTrail)),
+    breadcrumb: crumbs(sitemapTrail),
     sidebar: side(aboutWidget + categoryWidget),
     // 見出しは .post h2（紺の縦棒＋上に5.6remの余白）を使わない。
     // 全ページの索引なのに、区切りごとに記事本文と同じ大きさの見出しと余白が入って、
@@ -735,7 +829,14 @@ writeFile(
     description: 'お探しのページは見つかりませんでした。',
     canonical: '',
     ogType: 'website',
-    jsonLd: '',
+    // ⚠️ 空にすると `<script type="application/ld+json"></script>` が出て、
+    // JSON として壊れたものを配ることになる（2026-09-01 に全ページを JSON.parse して見つけた）。
+    jsonLd: JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: 'ページが見つかりません',
+      inLanguage: site.lang,
+    }),
     breadcrumb: '',
     sidebar: side(''),
     content: '<h1>ページが見つかりません</h1><p><a href="/">トップへ戻る</a></p><p><a href="/sitemap/">サイトマップから探す</a></p>',

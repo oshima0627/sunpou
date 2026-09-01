@@ -5,6 +5,7 @@ slug: coolerbox/erabikata
 category: coolerbox
 eyecatch: /img/coolerbox-erabikata-eyecatch.png
 ogImage: /img/og/erabikata.png
+pillar: true
 published: 2026-08-25
 updated: 2026-09-01
 ---

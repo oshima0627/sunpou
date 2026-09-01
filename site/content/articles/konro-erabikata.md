@@ -5,6 +5,7 @@ slug: cassette-konro/erabikata
 category: cassette-konro
 eyecatch: /img/konro-erabikata-eyecatch.png
 ogImage: /img/og/konro-erabikata.png
+pillar: true
 published: 2026-08-29
 updated: 2026-08-29
 ---

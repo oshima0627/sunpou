@@ -250,6 +250,21 @@ h1 {
   background-attachment: local, local, scroll, scroll;
 }
 
+/* はみ出している表にだけ出す案内。クラスは base.html のスクリプトが実測して付ける。
+ * ⚠️ 影のグラデーションだけでは、右にまだ列があることが伝わらない
+ * （早見表はモバイル375pxで26%しか見えていない。docs/site-review-2026-09-01.md）。 */
+.table-wrap--over::after {
+  content: "→ 横にスクロールできます";
+  display: block;
+  padding: .3rem .75rem .45rem;
+  font-size: .74rem;
+  color: var(--muted);
+  border-top: 1px solid var(--cell-line);
+  position: sticky;
+  left: 0;
+  width: max-content;
+}
+
 .post table {
   border-collapse: collapse;
   width: 100%;
@@ -718,6 +733,10 @@ figure.eyecatch { margin-inline: 0; }
   opacity: .82;
 }
 .pagetop:hover { opacity: 1; text-decoration: none; }
+
+/* ⚠️ display:flex は hidden 属性より強い。これが無いと非表示にならない。
+ * 1画面ぶんスクロールするまで出さない制御は templates/base.html にある。 */
+.pagetop[hidden] { display: none; }
 
 
 /* ================================================================

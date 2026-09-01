@@ -5,6 +5,7 @@ slug: kyatatsu/erabikata
 category: kyatatsu
 eyecatch: /img/kyatatsu-erabikata-eyecatch.png
 ogImage: /img/og/kyatatsu-erabikata.png
+pillar: true
 published: 2026-08-25
 updated: 2026-08-25
 ---
@@ -36,6 +37,12 @@ updated: 2026-08-25
 | **外壁の高いところ** | 3.3m | **170cm** | [[LINK:長谷川工業 RHB-21a]]（9.0kg）／[[LINK:アルインコ 上わく付 踏台 TBF-8]]（7.5kg） |
 | **とにかく軽いもの** | — | — | アルインコ CCA-30K（**1.0kg**） |
 | **とにかく薄くしまいたい** | — | — | 長谷川 EFA（**奥行9.6cm**）／[[LINK:長谷川工業 上わく付き踏台 SRA-5a]]（10cm） |
+
+**いちばん使う「0.8m前後」には、型の違う3つの選び方があります。**
+踏台の[[LINK:アルインコ 踏台 CCA-80K::アルインコ CCA-80K]]（0.79m・2.5kg）、
+上わく付き踏台の[[LINK:アルインコ 上わく付 踏台 TBF-4::アルインコ TBF-4]]（0.77m・3.8kg）、
+はしご兼用脚立の[[LINK:長谷川工業 RHB-12a::長谷川工業 RHB-12a]]（0.80m・4.5kg）です。
+**軽さと収納なら踏台、手すりが欲しいなら上わく付き、はしごとしても使いたいならはしご兼用**という分かれ方です。
 
 ![届きたい高さから身長を引いて必要な足場の高さを出し、踏台と脚立の種類を選ぶ流れの図](/img/kyatatsu-erabikata-eyecatch.png)
 

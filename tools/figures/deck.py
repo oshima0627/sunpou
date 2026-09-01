@@ -60,8 +60,12 @@ class Fig:
     def __init__(self, slide):
         self.s = slide
         # 実際に描いた文字列を全部ためる。build.py がここから数値を拾って
-        # 元の SVG と突き合わせる（**渡した値ではなく、画像に出た値**を照合する）
+        # 記事の本文と突き合わせる（**渡した値ではなく、画像に出た値**を照合する）
         self.drawn = []
+        # 同じものを「テキストボックス1つ＝1行」でためる。
+        # ⚠️ drawn は**run 単位**なので、「33」と「製品」が別々に入る。
+        # 「33製品」が本文にあるかを見るには、繋がった形が要る（build.py の check_numbers）
+        self.lines = []
         # 文字の実描画範囲。build.py が総当たりで重なりとはみ出しを検査する
         self.boxes = []
         self.rect(0, 0, W, H, BG)
@@ -161,6 +165,7 @@ class Fig:
         tf.vertical_anchor = MSO_ANCHOR.MIDDLE
         p = tf.paragraphs[0]
         p.alignment = align
+        self.lines.append("".join(b for b, _, _, _ in parts))
         cx = x
         for body, size, color, bold in parts:
             self.drawn.append(body)

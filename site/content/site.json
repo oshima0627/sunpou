@@ -9,9 +9,15 @@
 
   "//categories": "記事の front matter の category は、この slug のどれかでなければビルドが落ちる。",
   "categories": [
-    { "slug": "coolerbox", "name": "クーラーボックス" },
-    { "slug": "cassette-konro", "name": "カセットコンロ" },
-    { "slug": "kyatatsu", "name": "脚立・踏み台" }
+    { "slug": "coolerbox", "name": "クーラーボックス",
+      "title": "クーラーボックスを内寸で選ぶ｜容量Lではなく「何が入るか」で比べる",
+      "description": "同じ20Lでも500mlは15本と18本。2Lが立つのは33製品中9つ。ダイワ・シマノ・コールマン・アイリスオーヤマ・ロゴスの公表内寸から計算した記事をまとめています。" },
+    { "slug": "cassette-konro", "name": "カセットコンロ",
+      "title": "カセットコンロを鍋の幅ともつ時間で選ぶ｜「9号まで」は寸法ではない",
+      "description": "同じ9号土鍋でも幅31〜32.5cm。ボンベ1本は強火連続で55〜78分。イワタニ11機種と銀峯陶器18製品の公表寸法から計算した記事をまとめています。" },
+    { "slug": "kyatatsu", "name": "脚立・踏み台",
+      "title": "脚立・踏み台を「足を置ける高さ」で選ぶ｜型番の数字とは違う",
+      "description": "「180」の脚立で足を置けるのは1.40m。踏台と脚立の分かれ目は天板高さ80cm。長谷川工業・アルインコ・ピカの42製品の公表寸法から計算した記事をまとめています。" }
   ],
 
   "//nav": "ヘッダーとフッターのナビ。カテゴリは自動で先頭に入るので、ここには固定ページだけ書く。",
@@ -38,6 +44,9 @@
 
   "//webAnalyticsToken": "Cloudflare Web Analytics のビーコントークン。クライアント側HTMLに出るので秘密情報ではない（リポジトリに置いてよい）。空にすると計測タグを出力しない。",
   "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb",
+
+  "//author": "記事の書き手。Article の構造化データ author に出る。運営者情報ページ（/about/）と同じ名前にすること。",
+  "author": "大島 直孝",
 
   "//defaultOgImage": "og:image の既定値。記事は front matter の ogImage を優先する。SNSのカードはSVGを受け付けないので、ここは必ずPNGにする。",
   "defaultOgImage": "/img/og/site.png",
