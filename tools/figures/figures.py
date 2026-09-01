@@ -798,6 +798,34 @@ def kyatatsu_fumidai(f):
 
     f.footer("天板は0.79mと0.81m。足を置ける高さは0.79mと0.50mに分かれます。")
 
+def coolerbox_omosa_eyecatch(f):
+    """自重は満載重量の一部。軽さで選んでも満載では逆転する。
+
+    ⚠️ 元の SVG が無い（新規に起こした図）ので、build の数値照合は効かない。
+    値は `site/content/articles/coolerbox-omosa.md` の表から取っている。
+    """
+    f.header("中身を入れると何kgになる？",
+             "濃い色が自重（メーカー公表）、薄い色まで伸びると満載の上限",
+             key="91", key_label="80Lは満載で", key_unit="kg")
+
+    # 自重の軽い順。**並べ替えると満載の順序がそろわない**のがこの図の言いたいこと
+    data = [("ロゴス ハイパー氷点下クーラーL", "20L", 1.5, 21.5),
+            ("ダイワ クールラインα3 S1000X", "10L", 2.1, 12.1),
+            ("ダイワ クールラインα3 S2000", "20L", 3.7, 23.7),
+            ("コールマン 50QT", "約47L", 6.3, 53.3),
+            ("コールマン 62QT", "約58L", 6.3, 64.3),
+            ("ダイワ トランクマスターHD III 8000", "80L", 11.0, 91.0)]
+    x0, sc, top, rh = 470, 6.1, 182, 62
+    ys = f.rows(len(data), top=top, rh=rh, highlight=len(data) - 1)
+    for (name, cap, own, full), y in zip(data, ys):
+        f.bar(x0, y + 14, full * sc, 28, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.bar(x0, y + 14, own * sc, 28, NAVY2, NAVY, None, radius=0.40)
+        f.text(74, y + 8, 380, 24, name, 16, INK, bold=True)
+        f.text(74, y + 32, 380, 22, f"{cap} ／ 自重 {own}kg", 14, MUTE)
+        f.text(x0 + full * sc + 12, y + 14, 120, 28, f"{full}kg", 18, NAVY, bold=True)
+
+    f.footer("自重がいちばん軽い1.5kgの製品が、満載では21.5kgになります。")
+
 ORDER = [
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
@@ -830,6 +858,7 @@ ORDER = [
     "kyatatsu-omosa",
     "kyatatsu-kaidan",
     "kyatatsu-fumidai",
+    "coolerbox-omosa-eyecatch",
 ]
 
 FIGURES = {
@@ -864,4 +893,5 @@ FIGURES = {
     "kyatatsu-omosa": kyatatsu_omosa,
     "kyatatsu-kaidan": kyatatsu_kaidan,
     "kyatatsu-fumidai": kyatatsu_fumidai,
+    "coolerbox-omosa-eyecatch": coolerbox_omosa_eyecatch,
 }

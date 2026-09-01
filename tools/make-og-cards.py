@@ -38,6 +38,7 @@ CARDS=[
  ("sns-rules",        "3つのルール",      "一次情報だけ／計算式を書く／出典URLを付ける"),
  ("sns-konro-kw",     "2.9kW が 10号",   "最大4.1kWの機種は9号まで。火力と鍋の大きさは無関係"),
  ("sns-konro-haba",   "33.4cm ＜ 36cm",  "「10号まで」の機種より、10号土鍋のほうが幅がある"),
+ ("coolerbox-omosa",  "91kg",           "80Lのクーラーボックスは、満載でこの重さになる"),
 ]
 
 def fit(draw, text, path, start, maxw):
