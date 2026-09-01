@@ -1,4 +1,4 @@
-# amazon-affiliate
+# sunpou — 「寸法で選ぶ」
 
 Amazon の商品比較サイト「**寸法で選ぶ**」のリサーチと原稿。
 

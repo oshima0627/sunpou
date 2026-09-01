@@ -10,7 +10,7 @@ Static Assets として配信する。**Worker のコードは無く、アセッ
 
 | 設定 | 値 |
 |---|---|
-| リポジトリ | `oshima0627/amazon-affiliate` |
+| リポジトリ | `oshima0627/sunpou` |
 | 本番ブランチ | `main` |
 | **Root directory（Path）** | **`/site`** ← これを指定しないと `package.json` を見つけられない |
 | ビルドコマンド | `npm run build`（依存のインストールは Workers Builds が自動でやる） |

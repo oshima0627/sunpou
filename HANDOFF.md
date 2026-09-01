@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法で選ぶ**」を運営している。
 | | |
 |---|---|
 | 公開URL | **https://sunpou.nexeed-lab.com/** |
-| リポジトリ | `github.com/oshima0627/amazon-affiliate`（`main` が本番） |
+| リポジトリ | `github.com/oshima0627/sunpou`（`main` が本番） |
 | サイトのソース | `site/` |
 | デプロイ | **`main` に push すると Cloudflare Workers Builds が自動でビルド＆デプロイ**（2〜3分） |
 | Search Console | **登録済み。ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com`** |
