@@ -1,6 +1,33 @@
 # 作業別サブエージェント／Skill の設計
 
-作成: 2026-08-31 ／ 状態: **設計（未実装）**
+作成: 2026-08-31 ／ 状態: **実装済み（2026-09-01）。ただし下記のとおり設計を1点変えた**
+
+## ★ 実装時に変えたこと：**エージェントは新規に作らなかった**
+
+実装しようとしたら、**`article-writer` と `source-verifier` が
+すでにユーザー階層（`~/.claude/agents/`）に存在していた**（2026-08-31 22:33 作成）。
+
+| | 既存の2体 | この spec の2体 |
+|---|---|---|
+| 生成 | `article-writer`（一次情報だけを根拠に書く。`CLAUDE.md` と `HANDOFF.md` を必ず先に読む） | `article-writer` |
+| 評価 | `source-verifier`（**WebFetch して文字列一致で照合。`Edit`/`Write` を持たない**） | `article-reviewer` |
+
+**同名で作れば衝突し、別名で作れば役割が重複する**（`harness-core.md`「選択肢が多いほど精度が下がる」）。
+しかも既存の `source-verifier` は **`Bash` すら持っておらず**、この spec が
+「抜け穴が残る」と書いた問題がそもそも無い。**既存のほうが分離として強い。**
+
+→ **エージェントは作らず、既存2体が持っていないもの（`Bash` を要する機械的検査）を Skill で埋めた。**
+
+| 作ったもの | 中身 |
+|---|---|
+| `specs/article-contract.md` | 完了基準（二値）。A=機械／B=読解／**C=`source-verifier` に投げる**、と担当を分けた |
+| `specs/article-rubric.md` | 段階評価（1/3/5・重み付け・実在記事での較正） |
+| `.claude/skills/article-check/SKILL.md` | A と B を回し、C を `source-verifier` に投げる手順 |
+| `.claude/skills/measure/SKILL.md` | 測定 |
+| `.claude/skills/link-check/SKILL.md` | リンクの検証 |
+| `.claude/skills/fix-site/SKILL.md` | サイト・図版の修正 |
+
+⚠️ **`source-verifier` に `Bash` の仕事を投げないこと。** 役割を混ぜると分離した意味がなくなる。
 
 ## 何を作るか
 
