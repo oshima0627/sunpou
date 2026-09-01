@@ -738,6 +738,9 @@ figure.eyecatch { margin-inline: 0; }
  * 1画面ぶんスクロールするまで出さない制御は templates/base.html にある。 */
 .pagetop[hidden] { display: none; }
 
+/* トップの「用途から選ぶ」の一行説明。section-title の直後に置くので上の余白を詰める */
+.lead--tight { margin-top: .2rem; }
+
 
 /* ================================================================
  * トップページの入口

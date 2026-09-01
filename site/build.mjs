@@ -752,6 +752,11 @@ function articleCards(list) {
 
 // ---- トップページ
 
+// 各カテゴリの収益記事（front matter の pillar）。site.json のカテゴリ順に並べる。
+const pillars = site.categories
+  .map((c) => articles.find((a) => a.category === c.slug && a.pillar))
+  .filter(Boolean);
+
 writeFile(
   'index.html',
   render(baseTpl, {
@@ -779,6 +784,14 @@ writeFile(
     content:
       `<h1>${esc(site.tagline)}</h1><p class="lead">${esc(site.description)}</p>` +
       categoryCards +
+      // ⚠️ **2026-09-01 まで、トップは20本の日付順一覧だけだった。**
+      // 用途から逆に引ける早見表（＝各カテゴリの入口）が、更新日の位置に埋もれていた
+      // （`docs/site-review-2026-09-01.md`）。先に出す。
+      (pillars.length
+        ? `<h2 class="section-title">用途から選ぶ</h2>` +
+          `<p class="lead lead--tight">入れたいもの・届きたい高さ・使いたい鍋から、必要な寸法を逆に引ける早見表です。</p>` +
+          articleCards(pillars)
+        : '') +
       `<h2 class="section-title">新着記事</h2>` +
       articleCards(byRecent),
     year: String(new Date().getFullYear()),
