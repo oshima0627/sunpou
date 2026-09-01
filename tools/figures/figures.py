@@ -371,6 +371,129 @@ def konro_donabe_eyecatch(f):
 
     f.footer("同じ号数でも、シリーズで幅が違います。")
 
+# ---------------------------------------------------------------- 脚立・踏み台
+
+def kyatatsu_takasa_eyecatch(f):
+    """型番に180が付いても天板高さは1.80m〜1.68m。立てる高さは1.40m。"""
+    f.header("同じ「180」でも天板の高さが違う",
+             "型番に180が付く4シリーズのメーカー公表値",
+             key="1.40", key_label="実際に立てるのは", key_unit="m")
+
+    data = [("アルインコ BSA-180A", "専用脚立", 1.80, False),
+            ("ピカ SEC-S180", "専用脚立", 1.80, False),
+            ("長谷川工業 RHB-18a", "はしご兼用脚立", 1.70, False),
+            ("ピカ MCX-180", "はしご兼用脚立", 1.68, False),
+            ("RHB-18a に立てる高さ", "天板には乗れません", 1.40, True)]
+    x0, sc, top, rh = 400, 340.0, 176, 68
+    ys = f.rows(len(data), top=top, rh=rh, highlight=4)
+    for (name, note, m, hot), y in zip(data, ys):
+        f.bar(x0, y + 16, m * sc, 30, WARNB if hot else PALE2, WARNB if hot else PALE,
+              WARN if hot else NAVY, 2, radius=0.30)
+        f.text(74, y + 10, 320, 24, name, 16, INK, bold=True)
+        f.text(74, y + 36, 320, 22, note, 14, MUTE)
+        f.text(x0 + m * sc + 12, y + 16, 110, 30, f"{m:.2f}m", 18,
+               WARN if hot else NAVY, bold=True)
+
+    f.footer("専用脚立は型番＝天板高さ。はしご兼用脚立は型番より9〜12cm低い値でした。")
+
+
+def kyatatsu_omosa_eyecatch(f):
+    """足を置ける高さが同じでも、重さは1.7kgと6.3kg。"""
+    f.header("同じ高さに立つのに 1.7kg と 6.3kg",
+             "足を置ける高さが0.5〜0.6mの5製品",
+             key="6.3", key_label="いちばん重いもの", key_unit="kg")
+
+    data = [("アルインコ CCA-60K", "踏台 ／ 0.56m", 1.7),
+            ("長谷川工業 SE-6a", "踏台 ／ 0.56m", 1.8),
+            ("長谷川工業 EFA-05", "踏台（上わく付き）／ 0.51m", 3.5),
+            ("長谷川工業 RHB-09a", "はしご兼用脚立 ／ 0.50m", 3.6),
+            ("長谷川工業 SWH-09", "強力型脚立 ／ 0.60m", 6.3)]
+    x0, sc, top, rh = 430, 92.0, 176, 68
+    ys = f.rows(len(data), top=top, rh=rh, highlight=4)
+    for (name, note, kg), y in zip(data, ys):
+        f.bar(x0, y + 16, kg * sc, 30, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 10, 350, 24, name, 16, INK, bold=True)
+        f.text(74, y + 36, 350, 22, note, 14, MUTE)
+        f.text(x0 + kg * sc + 12, y + 16, 110, 30, f"{kg}kg", 18, NAVY, bold=True)
+
+    f.footer("踏台は天板高さ、脚立は使用最大高さでそろえています。")
+
+
+def kyatatsu_kaidan_eyecatch(f):
+    """伸縮脚は21〜45cm。階段で必要な69cmに届かない。"""
+    f.header("伸縮脚は21〜45cm。階段には届きません",
+             "3社5シリーズの公表値",
+             key="69", key_label="階段で必要な高低差", key_unit="cm")
+
+    data = [("長谷川工業 RZS", "脚軽伸縮タイプ／専用脚立", 21, False),
+            ("長谷川工業 RYZB", "はしご兼用伸縮脚立", 31, False),
+            ("ピカ スタッピー SXJ", "四脚アジャスト式", 31, False),
+            ("アルインコ PRT-FX", "伸縮脚付専用脚立", 44, False),
+            ("ピカ かるノビ SCL", "階段用／前後の脚の長さが違う", 45, False),
+            ("階段で必要な高低差", "踏面15cm・蹴上げ23cm・3段ぶん", 69, True)]
+    x0, sc, top, rh = 430, 8.6, 176, 62
+    ys = f.rows(len(data), top=top, rh=rh, highlight=5)
+    for (name, note, cm, hot), y in zip(data, ys):
+        f.bar(x0, y + 14, cm * sc, 28, WARNB if hot else PALE2, WARNB if hot else PALE,
+              WARN if hot else NAVY, 2, radius=0.30)
+        f.text(74, y + 8, 350, 24, name, 16, INK, bold=True)
+        f.text(74, y + 32, 350, 22, note, 14, MUTE)
+        f.text(x0 + cm * sc + 12, y + 14, 110, 28, f"{cm}cm", 18,
+               WARN if hot else NAVY, bold=True)
+
+    f.footer("前脚と後脚は3段離れます。1段で済ませるには踏面が28cm近く必要でした。")
+
+
+def kyatatsu_fumidai_eyecatch(f):
+    """「踏台」の天板は0.30mから1.61mまで。上わくが付くと80cmを超えても踏台。"""
+    f.header("「踏台」の天板は0.30mから1.61mまで",
+             "メーカーが呼び分けている天板高さの範囲",
+             key="1.61", key_label="踏台なのに最大", key_unit="m")
+
+    data = [("踏台（上わくなし）", 0.30, 0.79), ("踏台（上わく付き）", 0.51, 1.61),
+            ("脚立", 0.51, 2.70)]
+    x0, sc, top, rh = 380, 260.0, 200, 84
+    ys = f.rows(len(data), top=top, rh=rh, highlight=1)
+    for (name, lo, hi), y in zip(data, ys):
+        f.bar(x0 + lo * sc, y + 20, (hi - lo) * sc, 34, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 14, 300, 24, name, 17, INK, bold=True)
+        f.text(74, y + 40, 300, 22, f"{lo:.2f} 〜 {hi:.2f}m", 15, MUTE)
+    line = x0 + 0.80 * sc
+    f.ghost(line, top - 10, 1, len(data) * rh - 10, WARN)
+    f.text(line - 90, top - 36, 300, 24, "天板高さ 80cm", 16, WARN, bold=True)
+    for v, lab in ((0, "0"), (1, "1m"), (2, "2m")):
+        f.text(x0 + v * sc - 20, top + len(data) * rh - 4, 60, 22, lab, 14, MUTE)
+
+    f.footer("上わくが付くと、80cmを超えても「踏台」と呼ばれていました。")
+
+
+def kyatatsu_erabikata_eyecatch(f):
+    """届きたい高さ − 身長 ＝ 必要な足場。0.8m に立つ3つの選び方。"""
+    f.header("届きたい高さ − 身長 ＝ 必要な足場",
+             "長谷川工業の「身長＋天板高さ＝作業高さ」を逆に使う（身長160cm基準）",
+             key="0.8", key_label="2.4mに届くには", key_unit="m")
+
+    for x, lab, val in ((150, "届きたい高さ", "2.4m"), (500, "身長", "1.6m"),
+                        (860, "必要な足場", "0.8m")):
+        f.rect(x - 24, 186, 260, 108, BAND if x < 800 else HILI, PALE, 2, radius=0.06)
+        f.text(x, 204, 220, 24, lab, 16, MUTE)
+        f.text(x, 238, 220, 44, val, 34, NAVY, bold=True)
+    f.text(422, 218, 60, 44, "−", 30, MUTE, bold=True)
+    f.text(786, 218, 60, 44, "＝", 30, MUTE, bold=True)
+
+    f.text(72, 320, 500, 26, "0.8m に足を置ける3つの選び方", 20, INK, bold=True)
+    for x, kind, model, spec, note in (
+            (96, "踏台", "アルインコ CCA-80K", "0.79m ／ 2.5kg", "いちばん軽く、短くしまえる"),
+            (456, "踏台（上わく付き）", "アルインコ TBF-4", "0.77m ／ 3.8kg", "手すりが天板の60cm上"),
+            (816, "はしご兼用脚立", "長谷川工業 RHB-12a", "0.80m ／ 4.5kg", "天板には乗れない")):
+        f.rect(x - 22, 356, 320, 150, WHITE, PALE, 2, radius=0.05)
+        f.text(x, 376, 290, 24, kind, 16, MUTE)
+        f.text(x, 404, 290, 26, model, 17, INK, bold=True)
+        f.text(x, 436, 290, 26, spec, 18, NAVY, bold=True)
+        f.text(x, 470, 290, 24, note, 14, MUTE)
+
+    f.footer("脚立の「足を置ける高さ」は天板高さではなく、使用最大高さです。")
+
 ORDER = [
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
@@ -386,6 +509,11 @@ ORDER = [
     "konro-jikan-eyecatch",
     "konro-bombe-eyecatch",
     "konro-donabe-eyecatch",
+    "kyatatsu-takasa-eyecatch",
+    "kyatatsu-omosa-eyecatch",
+    "kyatatsu-kaidan-eyecatch",
+    "kyatatsu-fumidai-eyecatch",
+    "kyatatsu-erabikata-eyecatch",
 ]
 
 FIGURES = {
@@ -403,4 +531,9 @@ FIGURES = {
     "konro-jikan-eyecatch": konro_jikan_eyecatch,
     "konro-bombe-eyecatch": konro_bombe_eyecatch,
     "konro-donabe-eyecatch": konro_donabe_eyecatch,
+    "kyatatsu-takasa-eyecatch": kyatatsu_takasa_eyecatch,
+    "kyatatsu-omosa-eyecatch": kyatatsu_omosa_eyecatch,
+    "kyatatsu-kaidan-eyecatch": kyatatsu_kaidan_eyecatch,
+    "kyatatsu-fumidai-eyecatch": kyatatsu_fumidai_eyecatch,
+    "kyatatsu-erabikata-eyecatch": kyatatsu_erabikata_eyecatch,
 }
