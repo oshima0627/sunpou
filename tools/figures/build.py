@@ -81,6 +81,27 @@ def check_numbers(name, used):
     return sorted(n for n in used if n not in src)
 
 
+def check_layout(f):
+    """文字同士の重なりと、キャンバスからのはみ出しを総当たりで見る。
+
+    ⚠️ **目視では見落とす。** CLAUDE.md が SVG に対して `getBBox()` を要求しているのと
+    同じ理由で、PowerPoint 版でも機械で当たり判定を取る。幅は est_width の近似なので、
+    **重なり2px までは許容**する（隣接する行の見かけ上の接触を拾わないため）。
+    """
+    out = []
+    bs = f.boxes
+    for i, (x, y, w, h, t) in enumerate(bs):
+        if x < 0 or y < 0 or x + w > deck.W + 1 or y + h > deck.H + 1:
+            out.append(f"はみ出し「{t[:18]}」 x={x:.0f}..{x + w:.0f} y={y:.0f}..{y + h:.0f}")
+        for j in range(i + 1, len(bs)):
+            X, Y, Wd, Ht, T = bs[j]
+            ox = min(x + w, X + Wd) - max(x, X)
+            oy = min(y + h, Y + Ht) - max(y, Y)
+            if ox > 2 and oy > 2:
+                out.append(f"重なり「{t[:14]}」×「{T[:14]}」 {ox:.0f}x{oy:.0f}px")
+    return out
+
+
 def render(soffice, pptx, outdir):
     filt = ('png:impress_png_Export:{"PixelWidth":{"type":"long","value":%d},'
             '"PixelHeight":{"type":"long","value":%d}}' % (deck.W * SCALE, deck.H * SCALE))
@@ -113,11 +134,14 @@ def main():
             used = set(re.findall(r"\d+(?:\.\d+)?", " ".join(f.drawn)))
             bad = check_numbers(name, used)
             if bad:
-                problems.append((name, bad))
+                problems.append((name, f"元のSVGに無い数値 {bad}"))
+            lay = check_layout(f)
+            if lay:
+                problems.append((name, "; ".join(lay[:3])))
         if problems:
             for n, b in problems:
-                print(f"  ✗ {n}: 元のSVGに無い数値 {b}")
-            raise SystemExit("図の数値が元の SVG と合いません。figures.py を直してください")
+                print(f"  ✗ {n}: {b}")
+            raise SystemExit("figures.py を直してください")
         prs.save(PPTX)
         print(f"pptx: {os.path.relpath(PPTX, ROOT)}（{len(order)}スライド）")
 

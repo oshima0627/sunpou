@@ -62,6 +62,8 @@ class Fig:
         # 実際に描いた文字列を全部ためる。build.py がここから数値を拾って
         # 元の SVG と突き合わせる（**渡した値ではなく、画像に出た値**を照合する）
         self.drawn = []
+        # 文字の実描画範囲。build.py が総当たりで重なりとはみ出しを検査する
+        self.boxes = []
         self.rect(0, 0, W, H, BG)
         self.rect(0, 0, 12, H, NAVY)          # 左のアクセント帯
 
@@ -159,8 +161,17 @@ class Fig:
         tf.vertical_anchor = MSO_ANCHOR.MIDDLE
         p = tf.paragraphs[0]
         p.alignment = align
+        cx = x
         for body, size, color, bold in parts:
             self.drawn.append(body)
+            bw = est_width(body, size)
+            bh = size * 1.15
+            if align == PP_ALIGN.RIGHT:
+                self.boxes.append((x + w - est_width("".join(p[0] for p in parts), size),
+                                   y + h / 2 - bh / 2, bw, bh, body))
+            else:
+                self.boxes.append((cx, y + h / 2 - bh / 2, bw, bh, body))
+            cx += bw
             r = p.add_run()
             r.text = body
             r.font.size = PT(size)
