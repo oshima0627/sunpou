@@ -29,6 +29,33 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRITE = process.argv.includes('--write');
 const DIRS = ['site/content/articles', 'site/content/pages'];
 
+/**
+ * そのファイルの**中身が最後に変わった**コミットの日付。
+ *
+ * ⚠️ **`git log -1` では駄目だった。** この同期そのものがコミットになるので、
+ * 次に走らせると「最終コミット日＝同期した日」になり、**毎回ずれ続ける**
+ * （実際 about.md / privacy.md が 8/25 → 9/1 に押し上げられた）。
+ * **`updated:` の行しか変わっていないコミットは飛ばして**、その手前を見る。
+ */
+function lastContentChange(rel) {
+  const shas = execFileSync('git', ['log', '--format=%H', '--', rel], { cwd: ROOT })
+    .toString()
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  for (const sha of shas) {
+    const diff = execFileSync('git', ['show', '--format=', '--unified=0', sha, '--', rel], { cwd: ROOT }).toString();
+    const edits = diff
+      .split('\n')
+      .filter((l) => /^[+-]/.test(l) && !/^(\+\+\+|---)/.test(l))
+      .map((l) => l.slice(1).trim());
+    // 追加も削除も `updated: ...` だけなら、それは日付合わせのコミット
+    if (edits.length && edits.every((l) => /^updated:/.test(l))) continue;
+    return execFileSync('git', ['log', '-1', '--format=%cs', sha], { cwd: ROOT }).toString().trim();
+  }
+  return '';
+}
+
 let changed = 0;
 let checked = 0;
 
@@ -37,9 +64,7 @@ for (const dir of DIRS) {
   if (!fs.existsSync(full)) continue;
   for (const file of fs.readdirSync(full).filter((f) => f.endsWith('.md')).sort()) {
     const rel = `${dir}/${file}`;
-    const gitDate = execFileSync('git', ['log', '-1', '--format=%cs', '--', rel], { cwd: ROOT })
-      .toString()
-      .trim();
+    const gitDate = lastContentChange(rel);
     // 一度もコミットされていない新規ファイルは触らない（書き手が入れた日付をそのまま使う）
     if (!gitDate) continue;
     checked++;
