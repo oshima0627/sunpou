@@ -279,6 +279,98 @@ def coolerbox_daiwa_shimano_eyecatch(f):
     f.footer("名前が違うだけで、中身は同じ物差しです。",
              "両社の公表資料で確認しました（実測ではありません）")
 
+# ---------------------------------------------------------------- カセットコンロ
+
+def konro_erabikata_eyecatch(f):
+    """「9号まで」を名乗っても本体幅は32.8〜39.1cm。土鍋との差が機種で違う。"""
+    f.header("同じ「9号まで」でも幅が違う",
+             "横棒は本体幅。破線は9号土鍋でいちばん幅のある墨貫入（32.5cm）",
+             key="6.6", key_label="土鍋との差は最大", key_unit="cm")
+
+    data = [("スリム", 32.8), ("スマート／ウィンドシールド", 33.4),
+            ("達人スリムV／達人スリムβ", 33.5), ("BO", 33.7),
+            ("アモルフォプレミアム", 35.5), ("雅SLIM", 35.85), ("極", 39.1)]
+    # ⚠️ **0 から描く。** 途中で軸を切ると差が誇張される（このサイトは数字の扱いが売り）
+    x0, sc, top, rh = 330, 17.2, 176, 50
+    ys = f.rows(len(data), top=top, rh=rh, highlight=len(data) - 1)
+    nabe = x0 + 32.5 * sc
+    for (name, w), y in zip(data, ys):
+        f.bar(x0, y + 8, w * sc, 26, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 8, 250, 26, name, 15, INK, bold=True)
+        f.text(x0 + w * sc + 12, y + 8, 110, 26, f"{w}cm", 16, NAVY, bold=True)
+    f.ghost(nabe, top - 6, 1, len(data) * rh - 6, WARN)
+    f.text(nabe - 130, top + len(data) * rh - 2, 260, 24, "9号土鍋 32.5cm", 15, WARN, bold=True)
+
+    f.footer("「9号まで」は号数の目安で、寸法ではありません。")
+
+
+def konro_jikan_eyecatch(f):
+    """ボンベ1本の連続燃焼時間は55〜78分。割り算では出ない。"""
+    f.header("ボンベ1本は55〜78分",
+             "濃い部分が「250g ÷ ガス消費量」。薄い部分まで伸びると公表の連続燃焼時間",
+             key="78", key_label="いちばん長くて", key_unit="分")
+
+    data = [("BO", "286g/h ／ ＋3分", 55), ("スマート／ウィンドシールド", "254g/h ／ ＋19分", 78),
+            ("達人スリムV", "245g/h ／ ＋7分", 68), ("スリム ほか2機種", "236g/h ／ ＋6分", 70),
+            ("エコプレミアムIII", "210g/h ／ ＋1分", 72), ("ミニ", "135g/h ／ ＋1分", 112)]
+    x0, sc, top, rh = 420, 5.6, 176, 58
+    hot = max(range(len(data)), key=lambda i: data[i][2])
+    ys = f.rows(len(data), top=top, rh=rh, highlight=hot)
+    for (name, spec, mins), y in zip(data, ys):
+        f.bar(x0, y + 10, mins * sc, 28, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 4, 330, 24, name, 16, INK, bold=True)
+        f.text(74, y + 28, 330, 22, spec, 14, MUTE)
+        f.text(x0 + mins * sc + 12, y + 10, 100, 28, f"{mins}分", 18, NAVY, bold=True)
+
+    f.footer("火力が強い機種ほど、早く使い切ります。")
+
+
+def konro_bombe_eyecatch(f):
+    """農水省の「1人6本」に届くのは、10℃で全部まかなうときだけ。"""
+    f.header("6本に届くのは「全部まかなう」とき",
+             "1人・1週間あたり ／ 気温10℃での計算",
+             key="5.8", key_label="全部まかなっても", key_unit="本")
+
+    data = [("食事＋カップ麺＋飲み物＋お湯", "全部まかなう", 5.8),
+            ("食事＋飲み物＋お湯", "カップ麺なし", 4.5),
+            ("食事＋飲み物", "お湯を沸かさない", 3.2),
+            ("食事だけ", "1日3回のレトルト", 2.5)]
+    x0, sc, top, rh = 430, 95.0, 200, 76
+    ys = f.rows(len(data), top=top, rh=rh, highlight=0)
+    goal = x0 + 6 * sc
+    for (name, note, n), y in zip(data, ys):
+        f.bar(x0, y + 16, n * sc, 34, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 12, 350, 24, name, 16, INK, bold=True)
+        f.text(74, y + 38, 350, 22, note, 14, MUTE)
+        f.text(x0 + n * sc + 12, y + 16, 100, 34, f"{n}本", 19, NAVY, bold=True)
+    f.ghost(goal, top - 8, 1, len(data) * rh - 4, WARN)
+    f.text(goal - 200, top - 34, 260, 24, "農林水産省の目安 6本", 16, WARN, bold=True)
+
+    f.footer("「1人6本」はカップ麺まで含めた全部の想定でした。",
+             "農水省とイワタニの公表値からの計算です（実測ではありません）")
+
+
+def konro_donabe_eyecatch(f):
+    """号数は幅を決めていない。同じ号数でもシリーズで幅が違う。"""
+    f.header("土鍋の「号数」は幅を決めていません",
+             "銀峯陶器の公表寸法。同じ号数でもシリーズで幅が違う（幅は取手込み）",
+             key="33.4", key_label="コンロの本体幅", key_unit="cm")
+
+    data = [("6号", 21, 22), ("7号", 24, 26.5), ("8号", 27, 29.5),
+            ("9号", 31, 32.5), ("10号", 34, 36)]
+    x0, sc, top, rh = 300, 22.0, 186, 66
+    base = 18.0
+    ys = f.rows(len(data), top=top, rh=rh, highlight=3)
+    konro = x0 + (33.4 - base) * sc
+    for (name, lo, hi), y in zip(data, ys):
+        f.bar(x0 + (lo - base) * sc, y + 14, (hi - lo) * sc, 30, PALE2, PALE, NAVY, 2, radius=0.30)
+        f.text(74, y + 14, 180, 30, name, 20, INK, bold=True)
+        f.text(x0 + (hi - base) * sc + 14, y + 14, 180, 30, f"{lo}〜{hi}cm", 17, NAVY, bold=True)
+    f.ghost(konro, top - 8, 1, len(data) * rh - 8, WARN)
+    f.text(konro - 60, top - 34, 420, 24, "カセットコンロの本体幅 33.4cm", 16, WARN, bold=True)
+
+    f.footer("同じ号数でも、シリーズで幅が違います。")
+
 ORDER = [
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
@@ -290,6 +382,10 @@ ORDER = [
     "coolerbox-horeizai-eyecatch",
     "horeizai-maisuu-eyecatch",
     "coolerbox-daiwa-shimano-eyecatch",
+    "konro-erabikata-eyecatch",
+    "konro-jikan-eyecatch",
+    "konro-bombe-eyecatch",
+    "konro-donabe-eyecatch",
 ]
 
 FIGURES = {
@@ -303,4 +399,8 @@ FIGURES = {
     "coolerbox-horeizai-eyecatch": coolerbox_horeizai_eyecatch,
     "horeizai-maisuu-eyecatch": horeizai_maisuu_eyecatch,
     "coolerbox-daiwa-shimano-eyecatch": coolerbox_daiwa_shimano_eyecatch,
+    "konro-erabikata-eyecatch": konro_erabikata_eyecatch,
+    "konro-jikan-eyecatch": konro_jikan_eyecatch,
+    "konro-bombe-eyecatch": konro_bombe_eyecatch,
+    "konro-donabe-eyecatch": konro_donabe_eyecatch,
 }
