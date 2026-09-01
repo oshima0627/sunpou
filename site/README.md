@@ -104,7 +104,41 @@ npm run deploy             # 手動デプロイ。通常は Git 連携に任せ�
 
 `public/img/` の SVG は手書き。写真素材は使っていない。
 
-### ★ 記事が読み込むのは PNG。SVG は素材（2026-08-31 に変更）
+### ★★ 図版は PowerPoint で作る（2026-09-01 から移行中）
+
+```
+tools/figures/deck.py     デザインシステム（色・部品・見出し帯・脚注）
+tools/figures/figures.py  1関数 = 1図版。ここに書いたものだけ PowerPoint 版になる
+tools/figures/build.py    pptx を組んで LibreOffice で PNG に焼く
+site/public/img/figures.pptx  編集できるマスター（1スライド = 1図版）
+```
+
+```bash
+python tools/figures/build.py                    # figures.py にあるもの全部
+python tools/figures/build.py kyatatsu-secchi    # 1枚だけ
+python tools/figures/build.py --from-pptx        # pptx を手で直したあと、PNGだけ焼き直す
+```
+
+**なぜ PowerPoint か**：SVG を手書きするより**見出し・余白・強調の階層を作りやすく**、
+さらに**利用者が PowerPoint で直接直せる**。図の出来が記事の説得力に直結する
+（`specs/article-rubric.md` の「図版1枚で結論が言えるか」）。
+
+**設計の決めごと**
+- **紺のベタ帯に白抜きの見出し**＋右に「言いたい数字ひとつ」を白カードで抜く。
+  縮小しても最初に目に入るのが結論になる
+- 棒は角丸＋グラデーション、行は交互の帯、最大値の行だけ左に紺の印
+- 脚注に「メーカー公表値からの計算です（実測ではありません）」を必ず出す
+
+**ビルドが落とす検査**
+- ⚠️ **図に書いた数値が元の SVG に無ければ落ちる。** 手で打ち直した転記ミスを捕まえる
+  （照合するのは渡した値ではなく**実際に描画した文字列**）
+- ⚠️ **見出しが枠に収まらなければ落ちる。** `word_wrap = False` を LibreOffice が
+  尊重せず、長い見出しは黙って2行になって下の行に重なる（2026-09-01 に実際に起きた）
+
+⚠️ **`figures.py` に無い図は、まだ SVG 由来の PNG のまま。** 移行は1枚ずつで、
+どの時点でもサイトは完全な状態を保つ（`tools/svg-to-png.py` が焼いたものが残るため）。
+
+### 記事が読み込むのは PNG。SVG は素材（2026-08-31 に変更）
 
 ```
 public/img/*.svg   ← 正（手書きのマスター）。**配信しない**
