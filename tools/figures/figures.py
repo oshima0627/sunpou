@@ -826,7 +826,64 @@ def coolerbox_omosa_eyecatch(f):
 
     f.footer("自重がいちばん軽い1.5kgの製品が、満載では21.5kgになります。")
 
+# ---------------------------------------------------------------- 土鍋：号数と人数
+
+# 銀峯陶器の公表値（18製品）。号数ごとの容量のはばと、目安人数のはば。
+NINZUU = [
+    # 号数, 容量の下限(ℓ), 容量の上限(ℓ), 目安人数のはば
+    ("6号", 0.6, 0.9, "1人前"),
+    ("7号", 1.0, 1.5, "1〜2人前"),
+    ("8号", 1.5, 2.2, "1〜3人前"),
+    ("9号", 2.2, 3.2, "2〜5人前"),
+    ("10号", 2.9, 4.0, "3〜6人前"),
+]
+
+
+def donabe_ninzuu_eyecatch(f):
+    """号数は口径を決めるが、容量は決めない。号数ごとの容量のはばを面で見せる。"""
+    f.header("同じ9号でも、容量は1.45倍ちがう",
+             "銀峯陶器18製品の公表値。濃い色が下限、薄い色までが号数ごとのはば",
+             key="1.45", key_label="9号のなかで", key_unit="倍")
+
+    x0, sc, top, rh = 250, 128.0, 190, 70
+    ys = f.rows(len(NINZUU), top=top, rh=rh, highlight=3)
+    for (name, lo, hi, ppl), y in zip(NINZUU, ys):
+        f.bar(x0, y + 16, hi * sc, 32, PALE2, PALE, NAVY, 2, radius=0.22)
+        f.bar(x0, y + 16, lo * sc, 32, NAVY2, NAVY, None, radius=0.30)
+        f.text(74, y + 16, 160, 32, name, 21, INK, bold=True)
+        # ⚠️ ラベルは棒の右端に追従させず、列を固定する（号数で長さが変わるとガタつく）
+        f.text(800, y + 16, 170, 32, f"{lo}〜{hi}ℓ", 18, NAVY, bold=True)
+        f.text(980, y + 16, 200, 32, ppl, 17, MUTE)
+
+    f.footer("号数が決めているのは口径だけで、容量と人数は決めていません。",
+             note="メーカー公表値です（実測ではありません）")
+
+
+def donabe_ninzuu(f):
+    """同じ9号の4製品。口径はほぼ同じで、深さと容量と人数が違う。"""
+    f.header("同じ9号で、2〜3人前 と 4〜5人前",
+             "銀峯陶器の公表値。口径の差は0.5cmしかありません",
+             key="1.45", key_label="容量の差", key_unit="倍")
+
+    data = [("墨貫入 9号", 28, 15, 2.2, "2〜3人前"),
+            ("菊花 9号", 28.5, 15.5, 2.7, "3〜4人前"),
+            ("菊花 深型 9号", 28.5, 17, 3.0, "4〜5人前"),
+            ("花三島 9号", 28, 16, 3.2, "4〜5人前")]
+    x0, sc, top, rh = 420, 105.0, 200, 78
+    ys = f.rows(len(data), top=top, rh=rh, highlight=0)
+    for (name, dia, h, cap, ppl), y in zip(data, ys):
+        f.bar(x0, y + 18, cap * sc, 34, PALE2, PALE, NAVY, 2, radius=0.28)
+        f.text(74, y + 10, 330, 26, name, 19, INK, bold=True)
+        f.text(74, y + 38, 330, 22, f"口径{dia:g}cm ／ 高さ{h:g}cm", 15, MUTE)
+        f.text(x0 + cap * sc + 14, y + 18, 110, 34, f"{cap}ℓ", 20, NAVY, bold=True)
+        f.text(1000, y + 18, 170, 34, ppl, 18, WARN, bold=True)
+
+    f.footer("口径が同じでも、深さが違えば入る量が変わります。")
+
+
 ORDER = [
+    "donabe-ninzuu-eyecatch",
+    "donabe-ninzuu",
     "kyatatsu-secchi-eyecatch",
     "kyatatsu-secchi",
     "coolerbox-500ml-eyecatch",
@@ -862,6 +919,8 @@ ORDER = [
 ]
 
 FIGURES = {
+    "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,
+    "donabe-ninzuu": donabe_ninzuu,
     "kyatatsu-secchi-eyecatch": kyatatsu_secchi_eyecatch,
     "kyatatsu-secchi": kyatatsu_secchi,
     "coolerbox-500ml-eyecatch": coolerbox_500ml_eyecatch,
