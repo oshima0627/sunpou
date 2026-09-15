@@ -1,5 +1,5 @@
 {
-  "name": "寸法で選ぶ",
+  "name": "寸法帳",
   "tagline": "カタログに書いていない寸法で、モノを比べる",
   "description": "メーカー公式の寸法をもとに、カタログには書いていない「何本入るか」「本当に収まるのか」を計算して比べるサイトです。実測ではなく、公表寸法からの計算です。",
   "lang": "ja",
@@ -28,7 +28,7 @@
   ],
 
   "//affiliateDisclosure": "Amazonアソシエイト運営規約が求める開示文言。正確な文言は規約の該当条項で確認してから確定させること（現状は一般に使われている形）。",
-  "affiliateDisclosure": "Amazonのアソシエイトとして、寸法で選ぶは適格販売により収入を得ています。",
+  "affiliateDisclosure": "Amazonのアソシエイトとして、寸法帳は適格販売により収入を得ています。",
 
   "//prLabel": "景品表示法のステマ規制（2023-10-01 施行）向けの表記。Amazon の開示文言とは別物で、両方必要。",
   "prLabel": "この記事には広告（アフィリエイトリンク）が含まれます。",
@@ -42,7 +42,7 @@
   "//affiliateEnabled": "false の間は本文のリンク位置がプレースホルダのまま出力され、開示文言もPR表記も出さない。2026-08-25 に申請が完了しリンクを掲載できるようになったので true にした（本審査は3件の適格販売のあと）。",
   "affiliateEnabled": true,
 
-  "//webAnalyticsToken": "Cloudflare Web Analytics のビーコントークン。クライアント側HTMLに出るので秘密情報ではない（リポジトリに置いてよい）。空にすると計測タグを出力しない。",
+  "//webAnalyticsToken": "Cloudflare Web Analytics のビーコントークン。クライアント側HTMLに出るので秘密情報ではない（リポジトリに置いてよい）。空にすれば計測タグを出力しない。",
   "webAnalyticsToken": "c17ec8a67dc74453ba9c953fc85ff7fb",
 
   "//author": "記事の書き手。Article の構造化データ author に出る。運営者情報ページ（/about/）と同じ名前にすること。",
