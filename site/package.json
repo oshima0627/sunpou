@@ -2,7 +2,7 @@
   "name": "sunpou-site",
   "private": true,
   "type": "module",
-  "description": "寸法で選ぶ — Amazon商品比較記事サイト（Cloudflare Workers Static Assets）",
+  "description": "寸法帳 — Amazon商品比較記事サイト（Cloudflare Workers Static Assets）",
   "scripts": {
     "build": "node build.mjs",
     "dev": "node build.mjs && wrangler dev",
