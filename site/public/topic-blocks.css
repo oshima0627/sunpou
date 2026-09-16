@@ -1,0 +1,81 @@
+/* ---------------------------------------------------------------- カテゴリ導入の topic ブロック
+ * 承認済みモック（/cabin-bag/）に合わせた読みやすさ改善。
+ * カテゴリ lead は .post.cat-lead 内なので、.post h2 / .post ul / a の上書きが必要。 */
+
+.topic-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 0 0 2rem;
+}
+
+.topic {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: 3px;
+  padding: 1.05rem 1.15rem 1.1rem;
+}
+
+.topic__label {
+  display: inline-block;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: #fff;
+  background: var(--navy);
+  padding: .18rem .55rem;
+  border-radius: 2px;
+  margin: 0 0 .55rem;
+}
+
+/* .post h2 の大きな余白・左帯・薄い背景を打ち消す */
+.post .topic__title,
+.topic__title {
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--fg-strong);
+  margin: 0 0 .55rem;
+  line-height: 1.4;
+  padding: 0;
+  border-left: 0;
+  background: transparent;
+  scroll-margin-top: 5rem;
+}
+
+.post .topic__points,
+.topic__points {
+  margin: 0 0 .9rem;
+  padding-left: 1.15rem;
+  font-size: 1rem;
+}
+
+.post .topic__points li,
+.topic__points li {
+  margin-bottom: .35rem;
+  font-size: 1rem;
+}
+
+.topic__cta {
+  display: inline-block;
+  font-size: .92rem;
+  font-weight: 700;
+  color: var(--navy);
+  text-decoration: none;
+  border: 1px solid var(--navy);
+  border-radius: 2px;
+  padding: .42rem 1rem;
+  background: #fff;
+}
+
+.topic__cta:hover {
+  background: var(--navy);
+  color: #fff;
+  text-decoration: none;
+}
+
+.note-muted {
+  font-size: .88rem;
+  color: var(--muted);
+  margin: 0 0 2rem;
+}
