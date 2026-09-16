@@ -881,7 +881,46 @@ def donabe_ninzuu(f):
     f.footer("口径が同じでも、深さが違えば入る量が変わります。")
 
 
+# ---------------------------------------------------------------- スーツケース：40Lは何泊
+
+# 社, 泊の下限, 泊の上限, 右に出す注記。40L の目安（製品ごとの公表しかない社は 36〜40L の製品）
+NANPAKU = [
+    ("Legend Walker", 1, 2, "27〜41Lの帯"),
+    ("ace",           2, 3, "30〜49Lの帯"),
+    ("ニトリ",        2, 3, "40L製品"),
+    ("無印良品",      2, 3, "36L製品"),
+    ("RIMOWA",        3, 4, "36〜37L製品"),
+    ("サムソナイト",  4, 4, "1泊＝10Lで計算"),
+]
+
+
+def liter_nanpaku_eyecatch(f):
+    """同じ40Lで、社ごとの泊数の目安がどれだけ開くか。横棒の左端が最短、右端が最長。"""
+    f.header("同じ40Lで、1〜2泊 から 4泊",
+             "6社の公表目安を横に並べたもの。棒の左端が最短、右端が最長の泊数",
+             key="2", key_label="40Lの目安の開き", key_unit="倍")
+
+    x0, sc, top, rh = 330, 150.0, 200, 58
+    # 目盛り（1〜5泊）
+    for n in range(1, 6):
+        f.text(x0 + n * sc - 40, 170, 80, 22, f"{n}泊", 15, MUTE, align=PP_ALIGN.CENTER)
+    ys = f.rows(len(NANPAKU), top=top, rh=rh, highlight=None)
+    for (name, lo, hi, note), y in zip(NANPAKU, ys):
+        w = max((hi - lo) * sc, 14)
+        x = x0 + lo * sc - (7 if hi == lo else 0)
+        c1, c2 = (NAVY2, NAVY) if name in ("Legend Walker", "サムソナイト") else (PALE2, PALE)
+        f.bar(x, y + 11, w, 28, c1, c2, NAVY, 2, radius=0.3)
+        f.text(74, y + 11, 240, 28, name, 20, INK, bold=True)
+        label = f"{lo}泊" if lo == hi else f"{lo}〜{hi}泊"
+        f.text(x + w + 12, y + 11, 90, 28, label, 18, NAVY, bold=True)
+        f.text(x + w + 104, y + 13, 190, 24, note, 14, MUTE)
+
+    f.footer("泊数は容量から決まらず、社ごとの目安です。60L以上は各社4〜7泊に収まります。",
+             note="メーカー公表の目安です（実測ではありません）")
+
+
 ORDER = [
+    "liter-nanpaku-eyecatch",
     "donabe-ninzuu-eyecatch",
     "donabe-ninzuu",
     "kyatatsu-secchi-eyecatch",
@@ -919,6 +958,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "liter-nanpaku-eyecatch": liter_nanpaku_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,
     "donabe-ninzuu": donabe_ninzuu,
     "kyatatsu-secchi-eyecatch": kyatatsu_secchi_eyecatch,
