@@ -32,6 +32,17 @@
     </ul>
     <a class="topic__cta" href="/cabin-bag/liter-nanpaku/">40Lと泊数の記事を読む</a>
   </section>
+
+  <section class="topic">
+    <span class="topic__label">総外寸158</span>
+    <h2 class="topic__title">158cm以内でも、容量は68L級から100L級</h2>
+    <ul class="topic__points">
+      <li><strong>同じ157cm帯でも、公表容量は87Lから100Lまで開く</strong></li>
+      <li>158はANA型の預け入れ帯。JAL国際線は203cmなど天井が違う</li>
+      <li>総外寸は容量の代理ではない</li>
+    </ul>
+    <a class="topic__cta" href="/cabin-bag/outer-sum-158-liters/">158cmとリットルの記事を読む</a>
+  </section>
 </div>
 
 <p class="note-muted">数字はすべてメーカー・航空会社・JRの公式ページの公表値と、そこからの当サイトの計算です。実測ではありません。</p>
