@@ -49,8 +49,11 @@ export function createAfHelpers({ links, site, esc }) {
     return (
       `<aside class="af-card">` +
         `<a class="af-card__link" href="${href}" rel="nofollow sponsored noopener" target="_blank">` +
-          `<span class="af-card__title">${esc(text)}</span>` +
-          `<span class="af-card__meta">${esc(short)}<span class="af-card__chev" aria-hidden="true">↗</span></span>` +
+          `<span class="af-card__text">` +
+            `<span class="af-card__title">${esc(text)}</span>` +
+            `<span class="af-card__meta">${esc(short)}</span>` +
+          `</span>` +
+          `<span class="af-card__chev" aria-hidden="true">↗</span>` +
         `</a>` +
       `</aside>`
     );
