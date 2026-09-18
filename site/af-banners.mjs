@@ -1,6 +1,9 @@
 /**
- * Amazonアソシエイト CSSバナー（H2間・サイド）。links.json 台帳を引く。
- * もしもURLは拒否。商品画像なし。
+ * 広告バナー（H2間・サイド・左レール）。links.json 台帳を引く。
+ *
+ * bannerHtml / bannerHtmlSide があれば公式HTMLを .af-card__banner / .af-banner-only に載せる（kakei 揃え）。
+ * 無いときは Amazon Associates（tag=sunpou-22）の CSS 自前バナーにフォールバック。
+ * もしもURLを url に推測で入れない。bannerHtml は公式発行HTMLを転記するまで空／省略。
  */
 
 const AF_H2_SKIP_RE = /出典|確認できなかった|未確認|この記事で扱っていない|数字の出どころ|広告/;
@@ -13,18 +16,31 @@ export function createAfHelpers({ links, site, esc }) {
   function assertAssociateUrl(url, key) {
     if (!url) return;
     const tag = site.associateTag || 'sunpou-22';
+    // 公式バナーHTMLだけの案件では url が Amazon 以外になることもあるが、
+    // 現状の台帳は tag=sunpou-22。もしもURLの推測組み立ては拒否する。
+    if (/moshimo\.com|af\.moshimo/i.test(url)) {
+      throw new Error(
+        `links.json の ${key} にもしもURLが入っています（url への推測組み立ては不可）` +
+          ' / 対処: 公式発行の bannerHtml を使うか、Amazon Associates の URL（tag=sunpou-22）にする',
+      );
+    }
     if (!String(url).includes(`tag=${tag}`)) {
       throw new Error(
         `links.json の ${key} の url に tag=${tag} がありません` +
-          ' / 対処: Associates 発行の検索または商品URLだけを入れる（もしもURLは不可）',
+          ' / 対処: Associates 発行の検索または商品URLだけを入れる',
       );
     }
-    if (/moshimo\.com|af\.moshimo/i.test(url)) {
-      throw new Error(
-        `links.json の ${key} にもしもURLが入っています（sunpou では不可）` +
-          ' / 対処: Amazon Associates の URL（tag=sunpou-22）に差し替える',
-      );
-    }
+  }
+
+  /** バナーHTMLから width/height を読む（計測1x1は無視したいので最初の img を対象）。 */
+  function bannerGeometry(html) {
+    const m = String(html).match(/<img\b[^>]*>/i);
+    if (!m) return null;
+    const tag = m[0];
+    const w = Number((tag.match(/\bwidth=["']?(\d+)/i) || [])[1] || 0);
+    const h = Number((tag.match(/\bheight=["']?(\d+)/i) || [])[1] || 0);
+    if (!w || !h) return null;
+    return { w, h };
   }
 
   function renderAfCard(entry, label, { side = false, key = '?' } = {}) {
@@ -34,9 +50,15 @@ export function createAfHelpers({ links, site, esc }) {
     if (!site.affiliateEnabled || !entry.url) {
       return `<span class="link-todo" title="広告リンク未設定">${esc(text)}</span>`;
     }
-    const short = entry.shortLabel || 'Amazon.co.jp';
-    const href = esc(entry.url);
+
+    // サイド／左レール: bannerHtmlSide（160x600）があれば静音表示。無ければ CSS フォールバック。
     if (side) {
+      const bannerSide = entry.bannerHtmlSide;
+      if (bannerSide) {
+        return `<div class="af-banner-only">${bannerSide}</div>`;
+      }
+      const short = entry.shortLabel || 'Amazon.co.jp';
+      const href = esc(entry.url);
       return (
         `<div class="af-banner-only">` +
           `<a class="af-banner-only__link" href="${href}" rel="nofollow sponsored noopener" target="_blank">` +
@@ -46,6 +68,27 @@ export function createAfHelpers({ links, site, esc }) {
         `</div>`
       );
     }
+
+    // 本文: bannerHtml があれば横長優先クラスで載せる。下に長文CTAは出さない。
+    const banner = entry.bannerHtml;
+    if (banner) {
+      const geom = bannerGeometry(banner);
+      const landscape = geom && geom.w > geom.h * 1.15;
+      const largeLandscape = landscape && geom.w >= 700;
+      let cardCls = 'af-card af-card--box';
+      if (largeLandscape) cardCls = 'af-card af-card--wide';
+      else if (landscape) cardCls = 'af-card af-card--wide-sm';
+      return (
+        `<aside class="${cardCls}">` +
+          `<p class="af-card__badge">広告</p>` +
+          `<div class="af-card__banner">${banner}</div>` +
+        `</aside>`
+      );
+    }
+
+    // Amazon CSS フォールバック（商品画像なし）
+    const short = entry.shortLabel || 'Amazon.co.jp';
+    const href = esc(entry.url);
     return (
       `<aside class="af-card">` +
         `<a class="af-card__link" href="${href}" rel="nofollow sponsored noopener" target="_blank">` +
@@ -95,7 +138,23 @@ export function createAfHelpers({ links, site, esc }) {
         );
       }
       return renderAfCard(links[key], label, { side: true, key });
-    });
+    }).filter(Boolean);
+    if (!cards.length) return '';
+    return `<div class="af-rail" aria-label="広告">${cards.join('\n')}</div>`;
+  }
+
+  function leftAdsWidget(lefts) {
+    if (!lefts.length) return '';
+    const cards = lefts.map(({ key, label }) => {
+      if (!isAfEntryKey(key)) {
+        throw new Error(
+          `[[AFLeft:${key}]] が content/links.json にありません` +
+            ' / 対処: content/links.json にキーを足す',
+        );
+      }
+      return renderAfCard(links[key], label, { side: true, key });
+    }).filter(Boolean);
+    if (!cards.length) return '';
     return `<div class="af-rail" aria-label="広告">${cards.join('\n')}</div>`;
   }
 
@@ -199,6 +258,7 @@ export function createAfHelpers({ links, site, esc }) {
     extractSideAds,
     extractLeftAds,
     sideAdsWidget,
+    leftAdsWidget,
     categoryAfPool,
     collectAfBannerPool,
     stripBodyAfMarkers,
