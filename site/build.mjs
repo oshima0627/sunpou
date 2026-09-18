@@ -21,12 +21,13 @@ const OLD_SIDE = `  let sideKeys = sideExtract.sides;
 
 const NEW_SIDE = `  let sideKeys = sideExtract.sides;
   if (!sideKeys.length && site.affiliateEnabled) {
-    sideKeys = af.pickCategorySideKeys
-      ? af.pickCategorySideKeys(a.category)
-      : (() => {
-          const cat = af.categoryAfPool(a.category);
-          return cat.length ? [{ key: cat[0], label: undefined }] : [];
-        })();
+    const cat = af.categoryAfPool(a.category);
+    const withSide = cat.filter((k) => links[k] && links[k].bannerHtmlSide);
+    const amazon = cat.filter(
+      (k) => links[k] && links[k].url && !/moshimo\\.com|af\\.moshimo/i.test(String(links[k].url)),
+    );
+    const pick = withSide[0] || amazon[0] || cat[0];
+    if (pick) sideKeys = [{ key: pick, label: undefined }];
   }
 `;
 
