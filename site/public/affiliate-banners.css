@@ -1,20 +1,170 @@
-/* Amazonアソシエイト：CSS自前バナー（商品画像なし）
+/* 広告バナー表示（kakei 揃え＋sunpou 色トークン）
  *
- * Creators API が使えない間の表示。琥珀系は既存 .buy と同じ言語。
- * 本文（H2間）は横長フル幅。サイドは .af-banner-only（枠・「広告」バッジなし）。
- * バナー下テキストCTAなし。
+ * 公式バナーHTML（bannerHtml / bannerHtmlSide）があるとき:
+ *   本文: .af-card--wide / --wide-sm / --box ＋ .af-card__banner（下に長文CTAなし）
+ *   サイド／左レール: .af-banner-only（160px・枠・バッジなし）
+ * 無いとき（Amazon Associates tag=sunpou-22 のフォールバック）:
+ *   本文: 琥珀系 CSS 横長カード（.af-card__link）
+ *   サイド: 静音テキストバナー（.af-banner-only__link）
+ * sunpou の色は --warn-bg / --warn-line / --navy / --surface をそのまま使う。
  */
+
+/* ---------------------------------------------------------------- 公式バナーHTML（本文） */
 
 .af-card {
   display: block;
+  max-width: 100%;
+  margin: 1.6rem auto;
+  padding: 0.9rem 1rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Amazon CSSフォールバック（bannerHtml 無し）は琥珀の横長リンク行 */
+.af-card:has(> .af-card__link) {
   width: 100%;
   margin: 1.6rem 0;
   padding: 0;
   background: var(--warn-bg);
   border: 1px solid var(--warn-line);
-  border-radius: 6px;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* 横長: リンク先バナー画像だけを本文幅いっぱいに拡大（枠だけの拡大はしない） */
+.af-card--wide {
+  width: 100%;
+  position: relative;
+}
+.af-card--wide .af-card__banner {
+  display: block;
+  width: 100%;
+}
+.af-card--wide .af-card__banner > a {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+.af-card--wide .af-card__banner > a > img {
+  display: block;
+  width: 100% !important;
+  max-width: 728px !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+/* 468x60 など小さい横長: 引き伸ばさず実寸中央（ボケ防止） */
+.af-card--wide-sm {
+  width: fit-content;
+  max-width: 100%;
+  position: relative;
+  margin-inline: auto;
+}
+.af-card--wide-sm .af-card__banner {
+  display: flex;
+  justify-content: center;
+}
+.af-card--wide-sm .af-card__banner > a {
+  display: inline-block;
+  line-height: 0;
+}
+.af-card--wide-sm .af-card__banner > a > img {
+  display: block;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+}
+
+/* 300x250・正方形: 実寸のまま中央 */
+.af-card--box {
+  width: fit-content;
+  position: relative;
+  margin-inline: auto;
+}
+.af-card--box .af-card__banner {
+  display: flex;
+  justify-content: center;
+}
+.af-card--box .af-card__banner > a {
+  display: inline-block;
+  width: auto;
+  line-height: 0;
+}
+.af-card--box .af-card__banner > a > img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+/* もしも計測ピクセル（1x1）は拡大しない */
+.af-card__banner > img[width="1"],
+.af-banner-only > img[width="1"] {
+  width: 1px !important;
+  height: 1px !important;
+  border: 0 !important;
+  position: absolute;
+  left: -9999px;
   overflow: hidden;
 }
+
+.af-card__badge {
+  margin: 0 0 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #8a5a10;
+}
+.af-card__banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+.af-card__banner a {
+  display: inline-block;
+  line-height: 0;
+  width: auto;
+  max-width: 100%;
+  text-align: center;
+}
+.af-card__banner img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  vertical-align: top;
+}
+.af-card__cta {
+  margin: 0;
+  line-break: strict;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  text-wrap: pretty;
+}
+.af-card__cta .buy {
+  margin: 0;
+}
+
+/* リスト項目にカードが載るとき、箇条書きの点を消してカードを主役にする */
+.post li:has(> .af-card),
+.post li:has(.af-card) {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+.post ul:has(.af-card) {
+  padding-left: 0;
+  margin: 1rem 0;
+}
+
+/* ---------------------------------------------------------------- Amazon CSSフォールバック（本文） */
 
 .af-card__link {
   display: flex;
@@ -64,15 +214,19 @@
   opacity: .85;
 }
 
-/* サイドバー：静音バナー（枠・バッジなし） */
+/* ---------------------------------------------------------------- レール／サイド（静音） */
+
 .af-rail {
   display: flex;
   flex-direction: column;
-  gap: .75rem;
+  gap: 1rem;
   margin: 0 0 1.25rem;
   padding: 0;
   background: transparent;
   border: none;
+}
+.l-rail .af-rail {
+  margin: 0;
 }
 
 .af-banner-only {
@@ -82,8 +236,41 @@
   padding: 0;
   background: transparent;
   border: none;
+  text-align: center;
+  line-height: 0;
+}
+.af-banner-only a {
+  display: inline-block;
+  line-height: 0;
+  max-width: 100%;
+}
+.af-banner-only img {
+  width: 160px;
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
 }
 
+/* サイドに横長しか無いとき: レール幅いっぱいに拡大 */
+.af-banner-only--wide > a {
+  display: block;
+  width: 100%;
+  line-height: 0;
+}
+.af-banner-only--landscape > a {
+  display: inline-block;
+  max-width: 100%;
+  line-height: 0;
+}
+.af-banner-only--landscape > a > img {
+  display: block;
+  width: auto !important;
+  max-width: 100% !important;
+  height: auto !important;
+  margin: 0 auto;
+}
+
+/* Amazon CSSフォールバック（サイド・枠・バッジなし） */
 .af-banner-only__link {
   display: block;
   padding: .65rem .75rem;
@@ -93,6 +280,7 @@
   color: var(--fg-strong);
   font-weight: 700;
   line-height: 1.4;
+  text-align: left;
 }
 .af-banner-only__link:hover,
 .af-banner-only__link:focus-visible {
