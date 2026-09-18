@@ -1,0 +1,99 @@
+/* Amazonアソシエイト：CSS自前バナー（商品画像なし）
+ *
+ * Creators API が使えない間の表示。琥珀系は既存 .buy と同じ言語。
+ * サイドは .af-banner-only（枠・「広告」バッジなし）。
+ */
+
+.af-card {
+  display: block;
+  width: min(100%, 360px);
+  margin: 1.6rem auto;
+  padding: 0;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.af-card__link {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  padding: .85rem 1rem .9rem;
+  text-decoration: none;
+  color: #7a4a00;
+  font-weight: 700;
+}
+.af-card__link:hover,
+.af-card__link:focus-visible {
+  background: #f6c344;
+  color: #2b1a00;
+  text-decoration: none;
+}
+
+.af-card__title {
+  font-size: .95rem;
+  line-height: 1.45;
+  color: inherit;
+}
+.af-card__meta {
+  font-size: .78rem;
+  font-weight: 600;
+  color: #8a5a10;
+  letter-spacing: .02em;
+}
+.af-card__link:hover .af-card__meta,
+.af-card__link:focus-visible .af-card__meta { color: #2b1a00; }
+.af-card__chev { font-weight: 400; margin-left: .15em; }
+
+/* サイドバー：静音バナー（枠・バッジなし） */
+.af-rail {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.af-banner-only {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.af-banner-only__link {
+  display: block;
+  padding: .65rem .75rem;
+  border-left: 3px solid var(--navy);
+  background: var(--surface);
+  text-decoration: none;
+  color: var(--fg-strong);
+  font-weight: 700;
+  line-height: 1.4;
+}
+.af-banner-only__link:hover,
+.af-banner-only__link:focus-visible {
+  background: #eef2f7;
+  color: var(--navy);
+  text-decoration: none;
+}
+
+.af-banner-only__title {
+  display: block;
+  font-size: .84rem;
+}
+.af-banner-only__meta {
+  display: block;
+  margin-top: .2rem;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--muted-on-surface);
+}
+.af-banner-only__link:hover .af-banner-only__meta {
+  color: var(--navy);
+}
