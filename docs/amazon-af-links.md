@@ -1,7 +1,7 @@
 # Amazonアソシエイト広告バナー（links.json）
 
 作成日: 2026-09-18
-更新: 2026-09-18（もしも media 689246 登録開始）
+更新: 2026-09-18（もしも media 689246 の発行HTMLを転記）
 
 ## なにをする仕組みか
 
@@ -18,18 +18,18 @@
 | `[[AF:キー]]` | プールに入り、H2 間に回転挿入（本文末のマーカーは剥がす） |
 | `[[AFSide:キー]]` | 右サイドバーへ静音バナー（本文には出さない） |
 | `[[AFLeft:キー]]` | 左レール（`.l-rail`）へ。空なら CSS で非表示 |
-| （マーカーなし） | `affiliateEnabled` 時、記事の `category` に紐づくキーを自動プール／サイド1本。`moshimo-*` を同カテゴリで優先 |
+| （マーカーなし） | `affiliateEnabled` 時、記事の `category` に紐づくキーを自動プール／サイド1本。`moshimo-*` を同カテゴリで優先。サイドは `bannerHtmlSide` があるキーを優先（`pickCategorySideKeys`） |
 
 ## もしも（media 689246）
 
 | キー | カテゴリ | 状態 |
 |---|---|---|
 | `moshimo-lduvin-suitcase` | cabin-bag | bannerHtml 728x90 転記済み |
-| `moshimo-legend-walker` | cabin-bag | **stub**（a_id/p_id/pl_id のみ。発行HTML待ち） |
-| `moshimo-gifteria-outdoor` | coolerbox | **stub** |
-| `moshimo-newtec-outdoor` | coolerbox | **stub** |
-| `moshimo-napnap` | baby-gate | **stub** |
-| `moshimo-tedemogu` | baby-gate | **stub** |
+| `moshimo-legend-walker` | cabin-bag | bannerHtml 728x90 + bannerHtmlSide 160x600 転記済み |
+| `moshimo-gifteria-outdoor` | coolerbox | bannerHtml 728x90 + bannerHtmlSide 160x600 転記済み |
+| `moshimo-newtec-outdoor` | coolerbox | bannerHtml 728x90 転記済み |
+| `moshimo-napnap` | baby-gate | bannerHtml 300x250 転記済み |
+| `moshimo-tedemogu` | baby-gate | bannerHtml 728x90 転記済み |
 
 dishwasher / monitor-arm / tire-chain / curtain / kyatatsu / measuring は Amazon フォールバックのまま。
 
