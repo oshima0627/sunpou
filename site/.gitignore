@@ -1,5 +1,6 @@
+.build.stitched.mjs
+.af-banners.inflated.mjs
 node_modules/
 dist/
 .wrangler/
 .dev.vars
-.build.stitched.mjs
