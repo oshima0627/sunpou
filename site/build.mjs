@@ -1,14 +1,12 @@
 /**
- * Entry: stitch build.body.*.txt then run (MCP push size limit workaround).
- * Logical source = concatenated build.body.N.txt (= AF-wired build.mjs).
+ * Stitch AF-wired build parts then run. Parts are plain JS (readable).
  */
 import fs from 'node:fs';
 import path from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = import.meta.dirname;
-const names = ['build.body.1.txt', 'build.body.2.txt', 'build.body.3.txt', 'build.body.4.txt'];
-const parts = names.map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8'));
+const names = ['build.part1.mjs.txt', 'build.part2.mjs.txt', 'build.part3.mjs.txt', 'build.part4.mjs.txt', 'build.part5.mjs.txt'];
 const runPath = path.join(ROOT, '.build.stitched.mjs');
-fs.writeFileSync(runPath, parts.join(''));
+fs.writeFileSync(runPath, names.map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8')).join(''));
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());
