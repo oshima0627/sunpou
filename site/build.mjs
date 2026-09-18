@@ -8,7 +8,11 @@ import zlib from 'node:zlib';
 import { pathToFileURL } from 'node:url';
 
 const ROOT = import.meta.dirname;
-const names = ['build.z1.txt', 'build.z2.txt', 'build.z3.txt', 'build.z4.txt'];
+const z1parts = ['build.z1a.txt', 'build.z1b.txt'].map((f) => path.join(ROOT, f));
+const useSplitZ1 = z1parts.every((f) => fs.existsSync(f));
+const names = useSplitZ1
+  ? ['build.z1a.txt', 'build.z1b.txt', 'build.z2.txt', 'build.z3.txt', 'build.z4.txt']
+  : ['build.z1.txt', 'build.z2.txt', 'build.z3.txt', 'build.z4.txt'];
 const b64 = names.map((f) => fs.readFileSync(path.join(ROOT, f), 'utf8').trim()).join('');
 let code = zlib.inflateSync(Buffer.from(b64, 'base64')).toString('utf8');
 
