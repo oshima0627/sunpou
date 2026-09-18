@@ -1,13 +1,14 @@
 /* Amazonアソシエイト：CSS自前バナー（商品画像なし）
  *
  * Creators API が使えない間の表示。琥珀系は既存 .buy と同じ言語。
- * サイドは .af-banner-only（枠・「広告」バッジなし）。
+ * 本文（H2間）は横長フル幅。サイドは .af-banner-only（枠・「広告」バッジなし）。
+ * バナー下テキストCTAなし。
  */
 
 .af-card {
   display: block;
-  width: min(100%, 360px);
-  margin: 1.6rem auto;
+  width: 100%;
+  margin: 1.6rem 0;
   padding: 0;
   background: var(--warn-bg);
   border: 1px solid var(--warn-line);
@@ -17,9 +18,12 @@
 
 .af-card__link {
   display: flex;
-  flex-direction: column;
-  gap: .25rem;
-  padding: .85rem 1rem .9rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  min-height: 64px;
+  padding: .75rem 1rem;
   text-decoration: none;
   color: #7a4a00;
   font-weight: 700;
@@ -31,9 +35,17 @@
   text-decoration: none;
 }
 
+.af-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
 .af-card__title {
   font-size: .95rem;
-  line-height: 1.45;
+  line-height: 1.4;
   color: inherit;
 }
 .af-card__meta {
@@ -44,7 +56,13 @@
 }
 .af-card__link:hover .af-card__meta,
 .af-card__link:focus-visible .af-card__meta { color: #2b1a00; }
-.af-card__chev { font-weight: 400; margin-left: .15em; }
+.af-card__chev {
+  flex-shrink: 0;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1;
+  opacity: .85;
+}
 
 /* サイドバー：静音バナー（枠・バッジなし） */
 .af-rail {
