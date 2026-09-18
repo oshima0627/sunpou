@@ -1,0 +1,37 @@
+/* kakei-aligned layout width + empty-safe left rail (overrides styles.css tokens) */
+:root {
+  --content: 1080px;
+  --side: 260px;
+  --rail: 180px;
+}
+
+.site-header__inner,
+.l-wrap,
+.site-footer__inner {
+  max-width: calc(var(--content) + var(--side) + 24px);
+}
+
+/* 左レールは広幅のみ。空なら display:none でグリッドに参加させない */
+.l-rail { display: none; font-size: .85rem; }
+
+@media (min-width: 1280px) {
+  .l-rail:not(:empty) {
+    display: block;
+    position: sticky;
+    top: 5rem;
+  }
+  .l-wrap:has(.l-rail:not(:empty)):has(> .l-side) {
+    grid-template-columns: var(--rail, 180px) minmax(0, 1fr) var(--side);
+    max-width: calc(var(--content) + var(--side) + var(--rail, 180px) + 60px);
+    gap: 30px;
+  }
+  .l-wrap:has(.l-rail:not(:empty)):not(:has(> .l-side)) {
+    grid-template-columns: var(--rail, 180px) minmax(0, 1fr);
+    max-width: calc(var(--content) + var(--rail, 180px) + 40px);
+    gap: 30px;
+  }
+  body:has(.l-rail:not(:empty)) .site-header__inner,
+  body:has(.l-rail:not(:empty)) .site-footer__inner {
+    max-width: calc(var(--content) + var(--side) + var(--rail, 180px) + 60px);
+  }
+}
