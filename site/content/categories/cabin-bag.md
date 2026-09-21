@@ -43,6 +43,17 @@
     </ul>
     <a class="topic__cta" href="/cabin-bag/outer-sum-158-liters/">158cmとリットルの記事を読む</a>
   </section>
+
+  <section class="topic">
+    <span class="topic__label">本体と外寸</span>
+    <h2 class="topic__title">本体と外寸の差は、3辺和で6〜11cm</h2>
+    <ul class="topic__points">
+      <li><strong>公式併記14製品で、差は高さ5〜8cm・幅1〜5cm・奥行0cm</strong></li>
+      <li>航空会社・JRの判定はキャスター＋ハンドル込みの外寸側</li>
+      <li>本体だけ見て機内持ち込みと判断すると危険</li>
+    </ul>
+    <a class="topic__cta" href="/cabin-bag/body-vs-outer-dims/">本体と外寸の差の記事を読む</a>
+  </section>
 </div>
 
 <p class="note-muted">数字はすべてメーカー・航空会社・JRの公式ページの公表値と、そこからの当サイトの計算です。実測ではありません。</p>
