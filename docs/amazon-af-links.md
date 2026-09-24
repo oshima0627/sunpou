@@ -1,7 +1,7 @@
 # Amazonアソシエイト広告バナー（links.json）
 
 作成日: 2026-09-18
-更新: 2026-09-18（もしも media 689246 の発行HTMLを転記）
+更新: 2026-09-24（もしも Amazon.co.jp p_id=170 APPROVED → moshimo-amazon 転記）
 
 ## なにをする仕組みか
 
@@ -30,12 +30,21 @@
 | `moshimo-newtec-outdoor` | coolerbox | bannerHtml 728x90 転記済み |
 | `moshimo-napnap` | baby-gate | bannerHtml 300x250 転記済み |
 | `moshimo-tedemogu` | baby-gate | bannerHtml 728x90 転記済み |
+| `moshimo-amazon` | dishwasher / monitor-arm / tire-chain / curtain / kyatatsu / cassette-konro / fridge | bannerHtml 728x90 (4153) + bannerHtmlSide 300x250 (4157) APPROVED |
 
-dishwasher / monitor-arm / tire-chain / curtain / kyatatsu / measuring は Amazon フォールバックのまま。
+cabin-bag / coolerbox / baby-gate は merchant バナー優先。上記以外のカテゴリは `moshimo-amazon` が H2間・サイドのフォールバック。measuring は明示 `[[AF:]]` のみ（categories 空のまま）。
 
-## Amazon プロモーション 170
+## Amazon プロモーション 170（もしも）
 
-**未着手（pending）。** プロモーション 170 の素材・リンクはまだ台帳に入れない。着手時は Associates の発行URLだけを転記する。
+**APPROVED（2026-09-24）。** media 689246 / a_id=5809024 / p_id=170 / pc_id=185。
+
+| キー | 用途 | サイズ / pl_id |
+|---|---|---|
+| `moshimo-amazon` | カテゴリ固有 moshimo が無い枠の本文・サイド差し替え | body 728x90 `pl_id=4153` / side 300x250 `pl_id=4157` |
+
+対象カテゴリ: dishwasher / monitor-arm / tire-chain / curtain / kyatatsu / cassette-konro / fridge。  
+cabin-bag / coolerbox / baby-gate は既存の merchant `moshimo-*` を優先（本キーは入れない）。  
+Associates（`tag=sunpou-22`）の検索・商品リンク（`amazon-*` と `[[LINK:]]`）はそのまま維持。media 687816 は使わない。
 
 ## 開示
 
