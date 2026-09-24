@@ -2,7 +2,7 @@
  *
  * 公式バナーHTML（bannerHtml / bannerHtmlSide）があるとき:
  *   本文: .af-card--wide / --wide-sm / --box ＋ .af-card__banner（下に長文CTAなし）
- *   サイド／左レール: .af-banner-only（160px・枠・バッジなし）
+ *   サイド／左レール: .af-banner-only（公式img・枠・バッジなし。max-width:100%）
  * 無いとき（Amazon Associates tag=sunpou-22 のフォールバック）:
  *   本文: 琥珀系 CSS 横長カード（.af-card__link）
  *   サイド: 静音テキストバナー（.af-banner-only__link）
@@ -245,7 +245,8 @@
   max-width: 100%;
 }
 .af-banner-only img {
-  width: 160px;
+  /* 160x600 は実寸、300x250 等はサイド幅(260px)に収める */
+  width: auto;
   max-width: 100%;
   height: auto;
   vertical-align: top;

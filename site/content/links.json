@@ -4,9 +4,9 @@
   "//ルール2": "Creators API / 商品画像は使わない（適格販売10件/30日が必要）。bannerHtml が無い間は Amazon CSS 自前バナー。",
   "//ルール3": "未登録キーを [[AF:]] で使うとビルドが落ちる。",
   "//ルール4": "もしもは media 689246 のみ。687816（kakei）など他メディアの HTML/URL は転記しない。",
-  "//ルール5": "bannerHtml（本文・横長優先）/ bannerHtmlSide（サイド・左レール 160x600）/ bannerSize*。公式発行HTMLのみ。URLを推測で組み立てない。",
+  "//ルール5": "bannerHtml（本文・横長優先）/ bannerHtmlSide（サイド・左レール。従来160x600、Amazonは300x250可）/ bannerSize*。公式発行HTMLのみ。URLを推測で組み立てない。",
   "//ルール6": "bannerHtml が無いキーは Amazon CSS バナー（tag=sunpou-22）にフォールバック。cabin-bag/coolerbox/baby-gate では moshimo-* をプール先頭に優先。",
-  "//状態": "2026-09-18 media 689246 の発行HTMLを転記済み（lduvin/legend-walker/gifteria/newtec/napnap/tedemogu）。Amazon プロモーション170は未着手。",
+  "//状態": "2026-09-24 media 689246 もしも Amazon.co.jp（p_id=170）APPROVED。moshimo-amazon に 728x90(pl_id=4153)/300x250(pl_id=4157) を転記。既存 merchant moshimo-* と Associates(tag=sunpou-22) は維持。",
   "amazon-coolerbox": {
     "label": "クーラーボックスをAmazonで探す",
     "shortLabel": "Amazon.co.jp",
@@ -60,10 +60,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E8%84%9A%E7%AB%8B&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "kyatatsu"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-ladder]] 用にキーは残す。"
   },
   "amazon-step-stool": {
     "label": "踏み台をAmazonで探す",
@@ -71,10 +70,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E8%B8%8F%E3%81%BF%E5%8F%B0&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "kyatatsu"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-step-stool]] 用にキーは残す。"
   },
   "amazon-curtain": {
     "label": "遮光カーテンをAmazonで探す",
@@ -82,10 +80,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E9%81%AE%E5%85%89%E3%82%AB%E3%83%BC%E3%83%86%E3%83%B3&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "curtain"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-curtain]] 用にキーは残す。"
   },
   "amazon-baby-gate": {
     "label": "ベビーゲートをAmazonで探す",
@@ -104,10 +101,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E9%9D%9E%E9%87%91%E5%B1%9E%E3%82%BF%E3%82%A4%E3%83%A4%E3%83%81%E3%82%A7%E3%83%BC%E3%83%B3&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "tire-chain"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-tire-chain]] 用にキーは残す。"
   },
   "amazon-dishwasher": {
     "label": "据置食洗機をAmazonで探す",
@@ -115,10 +111,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E6%8D%AE%E7%BD%AE%E9%A3%9F%E6%B4%97%E6%A9%9F&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "dishwasher"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-dishwasher]] 用にキーは残す。"
   },
   "amazon-monitor-arm": {
     "label": "モニターアームをAmazonで探す",
@@ -126,10 +121,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E3%83%A2%E3%83%8B%E3%82%BF%E3%83%BC%E3%82%A2%E3%83%BC%E3%83%A0&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "monitor-arm"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-monitor-arm]] 用にキーは残す。"
   },
   "amazon-cassette-stove": {
     "label": "カセットコンロをAmazonで探す",
@@ -137,10 +131,9 @@
     "url": "https://www.amazon.co.jp/s?k=%E3%82%AB%E3%82%BB%E3%83%83%E3%83%88%E3%82%B3%E3%83%B3%E3%83%AD&tag=sunpou-22",
     "freeText": true,
     "asp": "Amazonアソシエイト",
-    "categories": [
-      "cassette-konro"
-    ],
-    "checkedAt": "2026-09-18"
+    "categories": [],
+    "checkedAt": "2026-09-18",
+    "note": "カテゴリ自動挿入は moshimo-amazon（p_id=170）に委譲。明示 [[AF:amazon-cassette-stove]] 用にキーは残す。"
   },
   "amazon-measuring-tools": {
     "label": "メジャー・寸法測定ツールをAmazonで探す",
@@ -239,5 +232,27 @@
     "checkedAt": "2026-09-18",
     "bannerHtml": "<a href=\"//af.moshimo.com/af/c/click?a_id=5809026&p_id=6988&pc_id=19985&pl_id=88554\" rel=\"nofollow\" referrerpolicy=\"no-referrer-when-downgrade\" attributionsrc><img src=\"//image.moshimo.com/af-img/2091/000000088554.png\" width=\"728\" height=\"90\" style=\"border:none;\"></a><img src=\"//i.moshimo.com/af/i/impression?a_id=5809026&p_id=6988&pc_id=19985&pl_id=88554\" width=\"1\" height=\"1\" style=\"border:none;\" loading=\"lazy\">",
     "bannerSize": "728x90"
+  },
+  "moshimo-amazon": {
+    "label": "Amazon.co.jp",
+    "shortLabel": "もしもアフィリエイト",
+    "url": "//af.moshimo.com/af/c/click?a_id=5809024&p_id=170&pc_id=185&pl_id=4153",
+    "freeText": true,
+    "asp": "もしもアフィリエイト",
+    "categories": [
+      "dishwasher",
+      "monitor-arm",
+      "tire-chain",
+      "curtain",
+      "kyatatsu",
+      "cassette-konro",
+      "fridge"
+    ],
+    "note": "media 689246 / a_id=5809024 p_id=170 pc_id=185 body pl_id=4153 (728x90) side pl_id=4157 (300x250)。Amazonプロモーション170 APPROVED。発行HTMLを文字どおり転記。カテゴリ固有の moshimo-* が無い枠のフォールバック差し替え用。Associates(tag=sunpou-22) の商品・検索リンクは別途維持。",
+    "checkedAt": "2026-09-24",
+    "bannerHtml": "<a href=\"//af.moshimo.com/af/c/click?a_id=5809024&p_id=170&pc_id=185&pl_id=4153\" rel=\"nofollow\" referrerpolicy=\"no-referrer-when-downgrade\" attributionsrc><img src=\"//image.moshimo.com/af-img/0068/000000004153.gif\" width=\"728\" height=\"90\" style=\"border:none;\"></a><img src=\"//i.moshimo.com/af/i/impression?a_id=5809024&p_id=170&pc_id=185&pl_id=4153\" width=\"1\" height=\"1\" style=\"border:none;\" loading=\"lazy\">",
+    "bannerSize": "728x90",
+    "bannerHtmlSide": "<a href=\"//af.moshimo.com/af/c/click?a_id=5809024&p_id=170&pc_id=185&pl_id=4157\" rel=\"nofollow\" referrerpolicy=\"no-referrer-when-downgrade\" attributionsrc><img src=\"//image.moshimo.com/af-img/0068/000000004157.gif\" width=\"300\" height=\"250\" style=\"border:none;\"></a><img src=\"//i.moshimo.com/af/i/impression?a_id=5809024&p_id=170&pc_id=185&pl_id=4157\" width=\"1\" height=\"1\" style=\"border:none;\" loading=\"lazy\">",
+    "bannerSizeSide": "300x250"
   }
 }
