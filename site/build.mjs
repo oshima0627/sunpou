@@ -1,6 +1,7 @@
 /**
  * Inflate AF-wired build from build.z*.txt (zlib+base64) then run.
- * Patches: prefer bannerHtmlSide for right rail; wire left rail (sidebarLeft).
+ * Patches: prefer bannerHtmlSide for right rail; wire left rail (sidebarLeft);
+ *          homepage left+right Moshimo rails (pickHome*).
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -33,6 +34,22 @@ if (!code.includes(OLD_RENDER)) {
   throw new Error('build.mjs patch: article sidebar render block not found');
 }
 code = code.replace(OLD_RENDER, NEW_RENDER);
+
+// Homepage left+right rails (media 689246). Ads only — no about/category widgets.
+const OLD_HOME_PRE = "// ---- トップページ\n\n// 各カテゴリの収益記事（front matter の pillar）。site.json のカテゴリ順に並べる。\nconst pillars = site.categories\n  .map((c) => articles.find((a) => a.category === c.slug && a.pillar))\n  .filter(Boolean);\n\nwriteFile(\n";
+const NEW_HOME_PRE = "// ---- トップページ\n\n// 各カテゴリの収益記事（front matter の pillar）。site.json のカテゴリ順に並べる。\nconst pillars = site.categories\n  .map((c) => articles.find((a) => a.category === c.slug && a.pillar))\n  .filter(Boolean);\n\nconst homeSideKeys = site.affiliateEnabled ? af.pickHomeSideKeys() : [];\nconst homeLeftKeys = site.affiliateEnabled ? af.pickHomeLeftKeys(homeSideKeys) : [];\nconst homeSideAdsHtml = af.sideAdsWidget(homeSideKeys);\nconst homeLeftAdsHtml = af.leftAdsWidget(homeLeftKeys);\n\nwriteFile(\n";
+const OLD_HOME_SIDE = "    // トップだけサイドバーを外す。\n    // 「このサイトについて」は site.description をそのまま出しており、これは本文の\n    // リード文と**一字一句同じ**だった。「カテゴリー」も本文のカテゴリカードと同じ中身。\n    // つまりトップのサイドバーは全部が本文の複製で、読者に新しい情報が1つも無かった。\n    sidebar: side(''),\n";
+const NEW_HOME_SIDE = "    // トップのウィジェット（about/category）は本文複製なので出さない。\n    // 広告レールだけ記事と同じく左右に載せる（media 689246・160×600 L≠R）。\n    sidebarLeft: homeLeftAdsHtml,\n    sidebar: side(homeSideAdsHtml),\n";
+
+if (!code.includes(OLD_HOME_PRE)) {
+  throw new Error('build.mjs patch: homepage pillars/writeFile prelude not found');
+}
+code = code.replace(OLD_HOME_PRE, NEW_HOME_PRE);
+
+if (!code.includes(OLD_HOME_SIDE)) {
+  throw new Error("build.mjs patch: homepage empty-sidebar block not found");
+}
+code = code.replace(OLD_HOME_SIDE, NEW_HOME_SIDE);
 
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
