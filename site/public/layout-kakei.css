@@ -1,6 +1,8 @@
-/* kakei-aligned layout width + empty-safe left rail (overrides styles.css tokens) */
+/* Full-bleed layout + empty-safe left rail (overrides styles.css tokens)
+ * Chrome (header / .l-wrap / footer) fills the viewport; only ~1.15rem padding
+ * remains as edge inset. Sidebar track stays --side. */
 :root {
-  --content: 1080px;
+  --content: 100%;
   --side: 260px;
   --rail: 180px;
 }
@@ -8,7 +10,7 @@
 .site-header__inner,
 .l-wrap,
 .site-footer__inner {
-  max-width: calc(var(--content) + var(--side) + 24px);
+  max-width: none;
 }
 
 /* 左レールは広幅のみ。空なら display:none でグリッドに参加させない */
@@ -22,16 +24,16 @@
   }
   .l-wrap:has(.l-rail:not(:empty)):has(> .l-side) {
     grid-template-columns: var(--rail, 180px) minmax(0, 1fr) var(--side);
-    max-width: calc(var(--content) + var(--side) + var(--rail, 180px) + 60px);
+    max-width: none;
     gap: 30px;
   }
   .l-wrap:has(.l-rail:not(:empty)):not(:has(> .l-side)) {
     grid-template-columns: var(--rail, 180px) minmax(0, 1fr);
-    max-width: calc(var(--content) + var(--rail, 180px) + 40px);
+    max-width: none;
     gap: 30px;
   }
   body:has(.l-rail:not(:empty)) .site-header__inner,
   body:has(.l-rail:not(:empty)) .site-footer__inner {
-    max-width: calc(var(--content) + var(--side) + var(--rail, 180px) + 60px);
+    max-width: none;
   }
 }
