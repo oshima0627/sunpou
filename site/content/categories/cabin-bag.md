@@ -54,6 +54,17 @@
     </ul>
     <a class="topic__cta" href="/cabin-bag/body-vs-outer-dims/">本体と外寸の差の記事を読む</a>
   </section>
+
+  <section class="topic">
+    <span class="topic__label">拡張と外寸</span>
+    <h2 class="topic__title">拡張すると総外寸は、奥行だけで+4〜+7cm</h2>
+    <ul class="topic__points">
+      <li><strong>公式併記13製品で、差は奥行+4〜+7cm・高さ0・幅0</strong></li>
+      <li>機内持ち込み帯115の製品は拡張で118〜122へ</li>
+      <li>預け入れ158帯では拡張後160〜164となりANA型158を超える行あり</li>
+    </ul>
+    <a class="topic__cta" href="/cabin-bag/expandable-vs-fixed-outer-dims/">拡張前後の外寸の記事を読む</a>
+  </section>
 </div>
 
 <p class="note-muted">数字はすべてメーカー・航空会社・JRの公式ページの公表値と、そこからの当サイトの計算です。実測ではありません。</p>
