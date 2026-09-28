@@ -245,7 +245,7 @@
   max-width: 100%;
 }
 .af-banner-only img {
-  /* 160x600 は実寸、300x250 等はサイド幅(260px)に収める */
+  /* 160x600 は実寸、300x250 等はサイド・左レール幅に収める */
   width: auto;
   max-width: 100%;
   height: auto;
