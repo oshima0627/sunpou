@@ -3,6 +3,7 @@ title: 新幹線にスーツケースは持ち込める？メーカー外寸で�
 description: メーカー公表の外寸（キャスター・ハンドル込み）と、東海道・山陽・九州・西九州新幹線の特大荷物ルール（3辺和160cm超〜250cm）を突き合わせ、機内持ち込みサイズ5製品を判定します。
 slug: cabin-bag/shinkansen-fit-outer-dims
 category: cabin-bag
+eyecatch: /img/cabin-bag-shinkansen-fit-outer-dims-eyecatch.png
 published: 2026-09-16
 updated: 2026-09-16
 ---

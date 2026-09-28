@@ -919,8 +919,407 @@ def liter_nanpaku_eyecatch(f):
              note="メーカー公表の目安です（実測ではありません）")
 
 
+# ---------------------------------------------------------------- ベビーゲート
+
+BABY_GATE = [
+    # 製品短縮名, 本体レンジ表記, 最大(追加込み), 開口100での読み
+    ("日本育児（本体）",   "67〜91",  91,  "本体では届かない"),
+    ("日本育児＋ワイドS",  "91〜115", 115, "ワイドパネルS側"),
+    ("カトージ LDK-STYLEⅡ","〜95",   95,  "最大95で外れる"),
+    ("リッチェル＋拡張1",  "91〜104", 104, "拡張1本側"),
+]
+
+
+def baby_gate_opening_width_fit_eyecatch(f):
+    """開口100cmは本体レンジを超え、カトージ最大95で外れる。"""
+    f.header("開口100cmは、本体では届かない",
+             "公表の取付幅レンジに当てると、カトージは外れ、日本育児はワイドS側",
+             key="95", key_label="カトージの最大", key_unit="cm")
+
+    x0, sc, top, rh = 360, 6.0, 186, 70
+    # 目盛り
+    for n in (70, 80, 90, 100, 110):
+        f.text(x0 + (n - 67) * sc - 20, 162, 50, 20, f"{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    # 開口100の縦線
+    mark = x0 + (100 - 67) * sc
+    f.rect(mark, 180, 2, 4 * rh + 8, WARN)
+    # 目盛りの100は上で出したので、縦線ラベルは行わず重なりを避ける
+
+    ys = f.rows(len(BABY_GATE), top=top, rh=rh, highlight=2)
+    for (name, rng, hi, note), y in zip(BABY_GATE, ys):
+        # レンジ幅は表記から雑に。hi-lo で棒
+        lo = 67 if "67" in rng or rng.startswith("〜") else int(rng.split("〜")[0])
+        w = max((hi - lo) * sc, 8)
+        x = x0 + (lo - 67) * sc
+        hot = hi < 100
+        c1, c2 = (WARNB, WARN) if hot else (NAVY2, NAVY)
+        f.bar(x, y + 16, w, 28, c1, c2, NAVY if not hot else WARN, 2, radius=0.3)
+        f.text(64, y + 12, 280, 26, name, 17, INK, bold=True)
+        f.text(64, y + 38, 280, 22, f"{rng}cm", 14, MUTE)
+        f.text(x + w + 12, y + 16, 200, 28, note, 15, WARN if hot else NAVY, bold=True)
+
+    f.footer("「対応幅」見出しではなく、パーツごとの取付幅レンジで判定します。")
+
+
+# ---------------------------------------------------------------- スーツケース：機内持ち込み
+
+AIRLINE_ROWS = [
+    # 製品短縮, ≥100席, <100席, Peach, Jetstar
+    ("ace パリセイド3-Z",     "○", "×", "○", "×"),
+    ("PROTECA スタリアCXR",   "○", "○", "○", "○"),
+    ("EDGELINK（通常）",      "○", "×", "○", "×"),
+    ("EDGELINK（拡張）",      "×", "×", "×", "×"),
+    ("Legend Walker 5516-48", "○", "×", "○", "×"),
+]
+
+
+def cabin_bag_airline_fit_outer_dims_eyecatch(f):
+    """機内持ち込み表記でも、全列○はPROTECAだけ。"""
+    f.header("全列○は PROTECA だけ",
+             "メーカー外寸を ANA/JAL・100席未満・Peach・Jetstar に当てた結果",
+             key="115", key_label="ANA/JALの和上限", key_unit="cm")
+
+    cols = [("≥100席", 430), ("＜100席", 560), ("Peach", 690), ("Jetstar", 820)]
+    for label, x in cols:
+        f.text(x, 168, 110, 22, label, 14, MUTE, align=PP_ALIGN.CENTER)
+
+    ys = f.rows(len(AIRLINE_ROWS), top=196, rh=54, highlight=1)
+    for (name, a, b, c, d), y in zip(AIRLINE_ROWS, ys):
+        f.text(64, y + 12, 340, 28, name, 17, INK, bold=True)
+        for val, x in zip((a, b, c, d), (430, 560, 690, 820)):
+            color = NAVY if val == "○" else WARN
+            f.text(x, y + 12, 110, 28, val, 22, color, bold=True, align=PP_ALIGN.CENTER)
+
+    f.footer("「機内持ち込み対応」でも、Jetstarと100席未満で落ちる製品が多いです。")
+
+
+# ---------------------------------------------------------------- 本体 vs 外寸
+
+BODY_OUTER = [
+    ("PROTECA スタリアCXR", 6),
+    ("PROTECA ポケットライナー2", 8),
+    ("Legend Walker 5516-48", 11),
+    ("ace フレットボード 68L", 10),
+    ("ace フレットボード 100L", 9),
+]
+
+
+def cabin_bag_body_vs_outer_dims_eyecatch(f):
+    """本体と外寸の3辺和差は6〜11cm。見るのは外寸側。"""
+    f.header("3辺和の差は 6〜11cm",
+             "公式併記の本体サイズと外寸／全体。差の主因は高さ（キャスター＋ハンドル）",
+             key="11", key_label="いちばん大きい差", key_unit="cm")
+
+    x0, sc, top, rh = 420, 48.0, 186, 58
+    for n in range(0, 13, 2):
+        f.text(x0 + n * sc - 16, 162, 40, 20, f"{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    ys = f.rows(len(BODY_OUTER), top=top, rh=rh, highlight=2)
+    for (name, delta), y in zip(BODY_OUTER, ys):
+        w = delta * sc
+        hot = delta == 11
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 14, w, 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 14, 340, 28, name, 17, INK, bold=True)
+        f.text(x0 + w + 12, y + 14, 80, 28, f"{delta}cm", 18, NAVY, bold=True)
+
+    f.footer("判定に使うのは外寸／全体（キャスター・ハンドル込み）。本体サイズではありません。")
+
+
+# ---------------------------------------------------------------- 拡張 vs 固定
+
+EXPAND = [
+    ("EDGELINK CRUZBOX", 4, "114→118"),
+    ("PROTECA フレスターEX", 4, "115→119"),
+    ("ACE クレスタ", 4, "115→119"),
+    ("Legend Walker 5109-46", 5, "115→120"),
+    ("Legend Walker 5525-48", 7, "115→122"),
+]
+
+
+def cabin_bag_expandable_vs_fixed_outer_dims_eyecatch(f):
+    """拡張で動くのは奥行だけ。増分4〜7cm。"""
+    f.header("拡張で増えるのは奥行だけ",
+             "高さ・幅は0。3辺和の増分も奥行と同じ 4〜7cm",
+             key="7", key_label="いちばん大きい増分", key_unit="cm")
+
+    x0, sc, top, rh = 420, 70.0, 186, 58
+    for n in range(0, 9, 2):
+        f.text(x0 + n * sc - 16, 162, 40, 20, f"+{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    ys = f.rows(len(EXPAND), top=top, rh=rh, highlight=4)
+    for (name, delta, note), y in zip(EXPAND, ys):
+        w = delta * sc
+        hot = delta == 7
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 14, w, 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 14, 340, 28, name, 17, INK, bold=True)
+        f.text(x0 + w + 12, y + 14, 70, 28, f"+{delta}cm", 17, NAVY, bold=True)
+        f.text(x0 + w + 90, y + 16, 140, 24, note, 14, MUTE)
+
+    f.footer("機内持ち込み帯（114〜115）は拡張後118〜122。預け入れ天井帯も超え得ます。")
+
+
+# ---------------------------------------------------------------- 158cm vs リットル
+
+SUM158 = [
+    ("ace フレットボード 68L", 151, 68),
+    ("Legend Walker 5516-70", 155, 81),
+    ("Legend Walker 5528-70", 157, 87),
+    ("Samsonite シーライト75", 157, 94),
+    ("ace フレットボード 100L", 157, 100),
+]
+
+
+def cabin_bag_outer_sum_158_liters_eyecatch(f):
+    """同じ157帯でも容量は68L級から100Lまで。"""
+    f.header("同じ157帯でも 68L〜100L",
+             "総外寸158cm以内は預け入れの帯。容量（L）の代理ではありません",
+             key="100", key_label="157帯の上限側", key_unit="L")
+
+    x0, sc, top, rh = 400, 8.5, 186, 58
+    for n in (60, 70, 80, 90, 100):
+        f.text(x0 + (n - 60) * sc - 16, 162, 40, 20, f"{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    ys = f.rows(len(SUM158), top=top, rh=rh, highlight=4)
+    for (name, outer, lit), y in zip(SUM158, ys):
+        w = (lit - 60) * sc
+        hot = lit == 100
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 14, max(w, 8), 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 10, 320, 24, name, 16, INK, bold=True)
+        f.text(64, y + 34, 320, 20, f"総外寸 {outer}cm", 13, MUTE)
+        f.text(x0 + max(w, 8) + 12, y + 14, 70, 28, f"{lit}L", 18, NAVY, bold=True)
+
+    f.footer("151cmの68Lから158cmの100Lまで。総外寸が近くても容量は約1.5倍開きます。")
+
+
+# ---------------------------------------------------------------- 新幹線
+
+SHINKANSEN = [
+    ("ace パリセイド3-Z", 115),
+    ("PROTECA スタリアCXR", 99),
+    ("EDGELINK（通常）", 114),
+    ("EDGELINK（拡張）", 118),
+    ("Legend Walker 5516-48", 115),
+]
+
+
+def cabin_bag_shinkansen_fit_outer_dims_eyecatch(f):
+    """機内持ち込み級はいずれも3辺和160以下。特大予約は不要。"""
+    f.header("機内持込級は、特大の手前",
+             "東海道・山陽・九州・西九州の特大荷物は3辺和160cm超。照合5製品はすべて以下",
+             key="160", key_label="特大のしきい値", key_unit="cm")
+
+    x0, sc, top, rh = 360, 4.0, 186, 58
+    for n in (100, 120, 140, 160, 180):
+        f.text(x0 + (n - 90) * sc - 18, 162, 50, 20, f"{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    # 160線
+    mark = x0 + (160 - 90) * sc
+    f.rect(mark, 180, 2, 5 * rh + 8, WARN)
+
+    ys = f.rows(len(SHINKANSEN), top=top, rh=rh, highlight=None)
+    for (name, s), y in zip(SHINKANSEN, ys):
+        w = (s - 90) * sc
+        f.bar(x0, y + 14, w, 26, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.text(64, y + 14, 280, 28, name, 17, INK, bold=True)
+        f.text(x0 + w + 12, y + 14, 100, 28, f"{s}cm", 18, NAVY, bold=True)
+
+    f.footer("航空機では落ちる外寸でも、新幹線の160までは余裕があります。")
+
+
+# ---------------------------------------------------------------- カーテン
+
+CURTAIN_W = [
+    ("レール170cm", 178.5, True),
+    ("レール180cm", 189.0, True),
+    ("レール190cm", 199.5, True),
+    ("レール195cm", 204.8, False),
+    ("レール200cm", 210.0, False),
+]
+
+
+def curtain_ready_made_rail_fit_eyecatch(f):
+    """レール×1.05ゆとり。195cmでは幅100×2（合計200）が足りない。"""
+    f.header("レール195cmは、幅100×2不足",
+             "必要仕上がり幅＝レール×1.05。合計200の既製両開きに当てた結果",
+             key="195", key_label="幅100×2の限界超え", key_unit="cm")
+
+    x0, sc, top, rh = 360, 8.0, 186, 58
+    # 200の線
+    mark = x0 + (200 - 170) * sc
+    f.rect(mark, 180, 2, 5 * rh + 8, NAVY)
+    f.text(mark - 50, 162, 110, 20, "既製合計200", 13, NAVY, bold=True)
+
+    ys = f.rows(len(CURTAIN_W), top=top, rh=rh, highlight=3)
+    for (name, need, ok), y in zip(CURTAIN_W, ys):
+        w = (need - 170) * sc
+        c1, c2 = (PALE2, PALE) if ok else (WARNB, WARN)
+        f.bar(x0, y + 14, max(w, 8), 26, c1, c2, NAVY if ok else WARN, 2, radius=0.3)
+        f.text(64, y + 14, 280, 28, name, 18, INK, bold=True)
+        label = f"必要{need:g} → ○" if ok else f"必要{need:g} → ×"
+        f.text(x0 + max(w, 8) + 12, y + 14, 220, 28, label, 16, NAVY if ok else WARN, bold=True)
+
+    f.footer("丈は床ルール次第。ニトリ式（床−1）と無印式（床−2）で178／200の向きが分かれます。")
+
+
+# ---------------------------------------------------------------- 食洗機
+
+DISHWASHER = [
+    ("Panasonic NP-TH5", 550, "× 450すき間"),
+    ("Panasonic NP-TCR5", 470, "× 450すき間"),
+    ("東芝 DWS-33B", 420, "○ 420幅"),
+    ("アイリス ISHT-5000", 420, "○ 420幅"),
+    ("Panasonic NP-TML1", 310, "○ 310幅"),
+]
+
+
+def dishwasher_countertop_fit_outer_dims_eyecatch(f):
+    """450mm級すき間に入るのは420幅と310幅。550／470は入らない。"""
+    f.header("450mmすき間に入る幅は限られる",
+             "想定すき間幅450mmに、公表の本体幅Wを当てた結果",
+             key="310", key_label="いちばん細い本体", key_unit="mm")
+
+    x0, sc, top, rh = 400, 1.15, 186, 58
+    mark = x0 + 450 * sc
+    f.rect(mark, 180, 2, 5 * rh + 8, WARN)
+    f.text(mark - 50, 162, 120, 20, "すき間450", 13, WARN, bold=True)
+
+    ys = f.rows(len(DISHWASHER), top=top, rh=rh, highlight=4)
+    for (name, wmm, note), y in zip(DISHWASHER, ys):
+        ok = wmm <= 450
+        c1, c2 = (NAVY2, NAVY) if ok else (WARNB, WARN)
+        f.bar(x0, y + 14, wmm * sc, 26, c1, c2, NAVY if ok else WARN, 2, radius=0.3)
+        f.text(64, y + 14, 320, 28, name, 16, INK, bold=True)
+        f.text(x0 + wmm * sc + 10, y + 14, 200, 28, f"{wmm}mm {note}", 15, NAVY if ok else WARN, bold=True)
+
+    f.footer("閉時奥行は全機種とも想定カウンター600mmに収まります。ドア全開奥行は機種で差が出ます。")
+
+
+# ---------------------------------------------------------------- 冷蔵庫
+
+FRIDGE = [
+    ("Panasonic NR-C37WS2", 600, 200),
+    ("シャープ SJ-MF51R", 630, 170),
+    ("Panasonic NR-F55WX3", 699, 101),
+    ("三菱 MR-WZ61N", 738, 62),
+    ("東芝 GR-W600FZS", 745, 55),
+]
+
+
+def fridge_delivery_path_fit_eyecatch(f):
+    """想定通路800mmから本体奥行を引く。745mm級は余り55mm。"""
+    f.header("奥行745mmで、余りは55mm",
+             "想定通路幅800mm − 本体奥行。曲がり角は含まない引き算",
+             key="55", key_label="800mm通路の余り", key_unit="mm")
+
+    x0, sc, top, rh = 400, 1.0, 186, 58
+    for n in (600, 650, 700, 750, 800):
+        f.text(x0 + (n - 580) * sc - 20, 162, 50, 20, f"{n}", 12, MUTE, align=PP_ALIGN.CENTER)
+    mark = x0 + (800 - 580) * sc
+    f.rect(mark, 180, 2, 5 * rh + 8, WARN)
+
+    ys = f.rows(len(FRIDGE), top=top, rh=rh, highlight=4)
+    for (name, depth, rest), y in zip(FRIDGE, ys):
+        w = (depth - 580) * sc
+        hot = rest == 55
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 14, max(w, 8), 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 10, 320, 24, name, 16, INK, bold=True)
+        f.text(64, y + 34, 320, 20, f"奥行 {depth}mm", 13, MUTE)
+        f.text(x0 + max(w, 8) + 12, y + 14, 160, 28, f"余り {rest}mm", 17, NAVY, bold=True)
+
+    f.footer("容量Lではなく本体奥行で判定。メーカーの「幅＋約10cm」は直立搬入の別軸です。")
+
+
+# ---------------------------------------------------------------- モニターアーム
+
+MONITOR = [
+    ("サンワ CR-LAC1405BK", 10, 50),
+    ("サンワ CR-LAC116BK", 10, 50),
+    ("Ergotron LX", 10, 60),
+    ("エレコム DPA-SN01BK", 10, 80),
+    ("HUANUO SS43", 20, 89),
+]
+
+
+def monitor_arm_desk_thickness_clamp_fit_eyecatch(f):
+    """天板55mmでサンワ50mm上限は外れる。"""
+    f.header("天板55mmで、上限50は外れる",
+             "公表クランプ可能厚に天板厚を当てる。耐荷重やインチではない",
+             key="55", key_label="サンワ50上限が外れる", key_unit="mm")
+
+    x0, sc, top, rh = 380, 7.0, 186, 58
+    for n in (10, 30, 50, 70, 90):
+        f.text(x0 + (n - 10) * sc - 16, 162, 40, 20, f"{n}", 13, MUTE, align=PP_ALIGN.CENTER)
+    mark = x0 + (55 - 10) * sc
+    f.rect(mark, 180, 2, 5 * rh + 8, WARN)
+    f.text(mark - 30, 162, 80, 20, "天板55", 13, WARN, bold=True)
+
+    ys = f.rows(len(MONITOR), top=top, rh=rh, highlight=0)
+    for (name, lo, hi), y in zip(MONITOR, ys):
+        w = (hi - lo) * sc
+        x = x0 + (lo - 10) * sc
+        ok = lo <= 55 <= hi
+        c1, c2 = (NAVY2, NAVY) if ok else (WARNB, WARN)
+        f.bar(x, y + 14, w, 26, c1, c2, NAVY if ok else WARN, 2, radius=0.3)
+        f.text(64, y + 14, 300, 28, name, 16, INK, bold=True)
+        f.text(x + w + 10, y + 14, 140, 28, f"{lo}〜{hi}mm", 16, NAVY if ok else WARN, bold=True)
+
+    f.footer("○は天板厚が公表クランプ可能厚レンジに入るときだけです。")
+
+
+# ---------------------------------------------------------------- タイヤチェーン
+
+TIRE = [
+    ("S（QE1〜QE7L）", 124, 524, 401),
+    ("M（QE10〜QE14）", 139, 539, 431),
+    ("L（QE14L〜QE20）", 168, 539, 381),
+]
+
+
+def tire_chain_case_size_trunk_fit_eyecatch(f):
+    """Lは高いが奥行はMより50mm浅い。ヤリス荷室には1ケースいずれも入る。"""
+    f.header("Lは高いが、奥行は浅い",
+             "カーメイト バイアスロンのケース外寸。品番が大きい＝全部が大きい、ではない",
+             key="50", key_label="LがMより浅い", key_unit="mm")
+
+    # 3本の棒：H / W / D をグループ化して見せる
+    metrics = [("高さ H", 0), ("幅 W", 1), ("奥行 D", 2)]
+    vals = {
+        "高さ H": [124, 139, 168],
+        "幅 W": [524, 539, 539],
+        "奥行 D": [401, 431, 381],
+    }
+    scales = {"高さ H": 1.8, "幅 W": 0.55, "奥行 D": 0.7}
+    labels = ["S", "M", "L"]
+    xs = [100, 420, 740]
+    for (title, _), x in zip(metrics, xs):
+        f.text(x, 170, 280, 24, title, 18, INK, bold=True)
+        sc = scales[title]
+        base = min(vals[title]) - 20
+        for i, (lab, v) in enumerate(zip(labels, vals[title])):
+            y = 210 + i * 70
+            w = (v - base) * sc
+            hot = (title == "奥行 D" and lab == "L") or (title == "高さ H" and lab == "L")
+            c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+            f.bar(x + 40, y, w, 28, c1, c2, NAVY, 2, radius=0.3)
+            f.text(x, y, 36, 28, lab, 18, INK, bold=True)
+            f.text(x + 40 + w + 8, y, 90, 28, f"{v}mm", 16, NAVY, bold=True)
+
+    f.footer("ヤリス公表荷室（長630×幅1,000×高692）には S／M／Lいずれも1ケースは収まります。")
+
+
 ORDER = [
     "liter-nanpaku-eyecatch",
+    "baby-gate-opening-width-fit-eyecatch",
+    "cabin-bag-airline-fit-outer-dims-eyecatch",
+    "cabin-bag-body-vs-outer-dims-eyecatch",
+    "cabin-bag-expandable-vs-fixed-outer-dims-eyecatch",
+    "cabin-bag-outer-sum-158-liters-eyecatch",
+    "cabin-bag-shinkansen-fit-outer-dims-eyecatch",
+    "curtain-ready-made-rail-fit-eyecatch",
+    "dishwasher-countertop-fit-outer-dims-eyecatch",
+    "fridge-delivery-path-fit-eyecatch",
+    "monitor-arm-desk-thickness-clamp-fit-eyecatch",
+    "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
     "donabe-ninzuu",
     "kyatatsu-secchi-eyecatch",
@@ -959,6 +1358,17 @@ ORDER = [
 
 FIGURES = {
     "liter-nanpaku-eyecatch": liter_nanpaku_eyecatch,
+    "baby-gate-opening-width-fit-eyecatch": baby_gate_opening_width_fit_eyecatch,
+    "cabin-bag-airline-fit-outer-dims-eyecatch": cabin_bag_airline_fit_outer_dims_eyecatch,
+    "cabin-bag-body-vs-outer-dims-eyecatch": cabin_bag_body_vs_outer_dims_eyecatch,
+    "cabin-bag-expandable-vs-fixed-outer-dims-eyecatch": cabin_bag_expandable_vs_fixed_outer_dims_eyecatch,
+    "cabin-bag-outer-sum-158-liters-eyecatch": cabin_bag_outer_sum_158_liters_eyecatch,
+    "cabin-bag-shinkansen-fit-outer-dims-eyecatch": cabin_bag_shinkansen_fit_outer_dims_eyecatch,
+    "curtain-ready-made-rail-fit-eyecatch": curtain_ready_made_rail_fit_eyecatch,
+    "dishwasher-countertop-fit-outer-dims-eyecatch": dishwasher_countertop_fit_outer_dims_eyecatch,
+    "fridge-delivery-path-fit-eyecatch": fridge_delivery_path_fit_eyecatch,
+    "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
+    "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,
     "donabe-ninzuu": donabe_ninzuu,
     "kyatatsu-secchi-eyecatch": kyatatsu_secchi_eyecatch,

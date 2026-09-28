@@ -1,7 +1,7 @@
 /* 寸法で選ぶ
  *
  * デザインの参考：tsuzukiblog.org（SWELL テーマ）から設計パターンを取り込んでいる。
- *   - 2カラム（本文 ~716px ＋ サイドバー ~304px）
+ *   - 2カラム（本文 ~1080px ＋ サイドバー ~260px／kakei aligned）
  *   - 本文色は黒ではなく柔らかいグレー、背景はわずかに灰色がかった白
  *   - H2 は左に太い紺の縦棒＋極薄の背景、見出し前の余白を大きく取る
  *   - H3 は罫線を使わず、余白だけで区切る
@@ -34,8 +34,8 @@
   --surface: #f5f6f8;
   --warn-bg: #fff9e8;
   --warn-line: #e7cd7a;
-  --content: 716px;
-  --side: 304px;
+  --content: 1080px;       /* kakei aligned (旧716) */
+  --side: 260px;           /* kakei aligned (旧304) */
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -73,7 +73,7 @@ a:hover { text-decoration: none; }
 }
 
 .site-header__inner {
-  max-width: calc(var(--content) + var(--side) + 40px);
+  max-width: calc(var(--content) + var(--side) + 24px);
   margin-inline: auto;
   min-height: 94px;
   padding: 0 1.15rem;
@@ -100,7 +100,7 @@ a:hover { text-decoration: none; }
  * 出さないようにした。固定トラックの grid のままだと中身が無くても304px分の空白が
  * 残るので、:has() で「aside があるとき」に限って2カラムに切り替える。 */
 .l-wrap {
-  max-width: calc(var(--content) + var(--side) + 40px);
+  max-width: calc(var(--content) + var(--side) + 24px);
   margin-inline: auto;
   padding: 2rem 1.15rem 4rem;
   display: grid;
@@ -122,7 +122,7 @@ a:hover { text-decoration: none; }
  * 先に 100% で伸ばしてから max-width で止める。 */
 .l-wrap:not(:has(> .l-side)) .l-main {
   width: 100%;
-  max-width: 860px;
+  max-width: var(--content); /* kakei aligned: was 860px */
   margin-inline: auto;
 }
 
@@ -508,7 +508,7 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
 }
 
 .site-footer__inner {
-  max-width: calc(var(--content) + var(--side) + 40px);
+  max-width: calc(var(--content) + var(--side) + 24px);
   margin-inline: auto;
   padding: 1.8rem 1.15rem 3rem;
 }

@@ -3,6 +3,7 @@ title: モニターアームはデスクに付く？天板厚とクランプ可�
 description: Ergotron・サンワサプライ・エレコム・HUANUOの公表クランプ可能厚（mm）を横断し、典型デスク厚バンドに入るかを計算します。耐荷重マーケティングではなく、カタログに無い天板フィット判定です。
 slug: monitor-arm/desk-thickness-clamp-fit
 category: monitor-arm
+eyecatch: /img/monitor-arm-desk-thickness-clamp-fit-eyecatch.png
 published: 2026-09-16
 updated: 2026-09-16
 ---

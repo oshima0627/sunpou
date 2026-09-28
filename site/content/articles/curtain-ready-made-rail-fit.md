@@ -3,6 +3,7 @@ title: 既製カーテンはレールに合う？幅×ゆとりと丈178／200�
 description: レール幅×1.05の必要仕上がり幅と、既製の幅100×2／幅150×2を突き合わせます。掃き出し窓の床ルールでは、同じ180cmでもニトリ式と無印式で178と200が分かれます。
 slug: curtain/ready-made-rail-fit
 category: curtain
+eyecatch: /img/curtain-ready-made-rail-fit-eyecatch.png
 published: 2026-09-16
 updated: 2026-09-16
 ---
