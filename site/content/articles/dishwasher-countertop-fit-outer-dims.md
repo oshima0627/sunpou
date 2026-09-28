@@ -3,6 +3,7 @@ title: 据置食洗機はカウンターに収まる？設置外寸W×D×Hとす
 description: パナソニック・東芝・アイリスオーヤマの公表設置外寸（W×D×H、ドア開放時）を横断し、想定カウンター奥行600mm・幅450mm級すき間に収まるかを計算します。洗浄性能や価格ではなく、カタログに無い設置フィット判定です。
 slug: dishwasher/countertop-fit-outer-dims
 category: dishwasher
+eyecatch: /img/dishwasher-countertop-fit-outer-dims-eyecatch.png
 published: 2026-09-16
 updated: 2026-09-16
 ---

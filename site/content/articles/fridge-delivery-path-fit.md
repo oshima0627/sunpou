@@ -3,6 +3,7 @@ title: 冷蔵庫は通路を通るか？想定通路幅から本体奥行を引�
 description: パナソニック・シャープ・東芝・日立・三菱の公表本体奥行と搬入案内を横断し、想定通路幅80cm／90cmに対する余りを計算します。容量や価格ではなく、カタログに無い搬入フィット判定です。
 slug: fridge/delivery-path-fit
 category: fridge
+eyecatch: /img/fridge-delivery-path-fit-eyecatch.png
 published: 2026-09-24
 updated: 2026-09-24
 ---

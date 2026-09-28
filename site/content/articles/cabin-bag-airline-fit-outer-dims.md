@@ -3,6 +3,7 @@ title: 機内持ち込みスーツケースは本当に持ち込める？メー�
 description: 「機内持ち込み対応」でも航空会社と100席未満で○×が分かれる。メーカー公表の外寸（キャスター・ハンドル込み）とANA・JAL・Peach・Jetstar・Skymark・AIRDOの各辺＋3辺和を突き合わせ、5製品を判定します。
 slug: cabin-bag/airline-fit-outer-dims
 category: cabin-bag
+eyecatch: /img/cabin-bag-airline-fit-outer-dims-eyecatch.png
 published: 2026-09-15
 updated: 2026-09-15
 ---

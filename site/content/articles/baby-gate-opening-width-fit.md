@@ -3,6 +3,7 @@ title: ベビーゲートは開口に合う？本体＋追加フレーム／ワ�
 description: 実測した開口幅と、日本育児・カトージ・リッチェルの公表取付幅（本体・追加フレーム・ワイドパネル）を突き合わせます。開口100cmでカトージは外れ、日本育児はワイドパネルS側になります。階段上の可否は公式注意をそのまま反映します。
 slug: baby-gate/opening-width-fit
 category: baby-gate
+eyecatch: /img/baby-gate-opening-width-fit-eyecatch.png
 published: 2026-09-16
 updated: 2026-09-16
 ---
