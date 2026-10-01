@@ -1,6 +1,6 @@
-# 冷蔵庫を搬入経路の奥行で選ぶ
+# 冷蔵庫を搬入と据付の奥行で選ぶ
 
-通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路幅に、本体奥行を向けて通るかは、カタログの容量欄には書いていません。</strong>
+通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路に本体奥行が通るかと、設置後の据付必要奥行・ドア開放最大奥行は、カタログの容量欄には並んでいません。</strong>
 
 <div class="topic-stack">
   <section class="topic">
@@ -13,6 +13,16 @@
     </ul>
     <a class="topic__cta" href="/fridge/delivery-path-fit/">通路幅×本体奥行の判定記事を読む</a>
   </section>
+  <section class="topic">
+    <span class="topic__label">据付・開閉</span>
+    <h2 class="topic__title">据付必要奥行とドア開放最大奥行を外形から引く</h2>
+    <ul class="topic__points">
+      <li><strong>据付ギャップ（据付必要奥行−外形奥行）は0〜10mm。</strong> パナソニック・日立は0、シャープFiT63の一部は+7、東芝は+3、三菱（脚カバー込み図）は+10</li>
+      <li><strong>同じ外形699mm帯でも、ドア開放最大は日立約1007mm〜東芝約1160mm。</strong> 外形が同じでも開閉の必要奥行は一致しない</li>
+      <li><strong>パナソニック大型は引出最大がドア開放より深いことがある。</strong> 前面通路はドアだけで見ると足りない場合がある</li>
+    </ul>
+    <a class="topic__cta" href="/fridge/install-clearance-outer-dims/">据付・ドア開放奥行の比較記事を読む</a>
+  </section>
 </div>
 
-<p class="note-muted">数字はすべてメーカー公式の公表値と、そこからの当サイトの計算です。実搬入の実測適合ではありません。想定通路幅は記事内で明示した仮定です。</p>
+<p class="note-muted">数字はすべてメーカー公式の公表値と、そこからの当サイトの計算です。実搬入・実設置の実測適合ではありません。想定通路幅は搬入記事内で明示した仮定です。</p>
