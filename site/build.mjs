@@ -51,6 +51,20 @@ if (!code.includes(OLD_HOME_SIDE)) {
 }
 code = code.replace(OLD_HOME_SIDE, NEW_HOME_SIDE);
 
+const OLD_CAT_LOOP = "for (const c of site.categories) {\n  const list = byRecent.filter((a) => a.category === c.slug);\n  const url = `${ORIGIN}/${c.slug}/`;\n  const catTrail = [{ path: '/', label: '\u30db\u30fc\u30e0' }, { label: c.name }];\n  const lead = readCategoryLead(c.slug);\n";
+const NEW_CAT_LOOP = "for (const c of site.categories) {\n  const list = byRecent.filter((a) => a.category === c.slug);\n  const url = `${ORIGIN}/${c.slug}/`;\n  const catTrail = [{ path: '/', label: '\u30db\u30fc\u30e0' }, { label: c.name }];\n  const lead = readCategoryLead(c.slug);\n  const catSideKeys = site.affiliateEnabled ? af.pickCategorySideKeys(c.slug) : [];\n  const catLeftKeys = site.affiliateEnabled ? af.pickCategoryLeftKeys(c.slug, catSideKeys) : [];\n  const catLeadHtml = lead && site.affiliateEnabled ? af.insertAdsBetweenH2s(lead, af.categoryAfPool(c.slug)) : lead;\n  const catLeadAd = '';\n  const catPr = (catLeadAd || catSideKeys.length || catLeftKeys.length)\n    ? `<p class=\"pr-notice\">${esc(site.prLabel)}</p>`\n    : '';\n";
+if (!code.includes(OLD_CAT_LOOP)) {
+  throw new Error('build.mjs patch: category loop header not found');
+}
+code = code.replace(OLD_CAT_LOOP, NEW_CAT_LOOP);
+
+const OLD_CAT_BODY = "      robots: showCategoryNav ? '' : '<meta name=\"robots\" content=\"noindex,follow\">',\n      sidebar: side(\n        aboutWidget + widget('\u65b0\u7740\u8a18\u4e8b', postListHtml(byRecent.slice(0, 5))) + categoryWidget\n      ),\n      content:\n        // \u5c0e\u5165\u6587\u304c\u3042\u308c\u3070\u305d\u308c\u3092\u4f7f\u3046\uff08h1 \u3082\u5c0e\u5165\u6587\u5074\u306b\u7f6e\u304f\uff09\u3002\u7121\u3051\u308c\u3070\u5f93\u6765\u3069\u304a\u308a\u306e\u898b\u51fa\u3057\u3060\u3051\u3002\n        (lead\n          ? `<div class=\"post cat-lead\">${lead}</div>`\n          : `<h1>${esc(c.name)}\u306e\u8a18\u4e8b\u4e00\u89a7</h1>` +\n            `<p class=\"lead\">${esc(c.name)}\u306b\u3064\u3044\u3066\u3001\u30e1\u30fc\u30ab\u30fc\u516c\u5f0f\u306e\u5bf8\u6cd5\u304b\u3089\u8a08\u7b97\u3057\u3066\u6bd4\u3079\u305f\u8a18\u4e8b\u3067\u3059\u3002</p>`) +\n        `<h2 class=\"section-title\">${esc(c.name)}\u306e\u8a18\u4e8b\uff08${list.length}\u672c\uff09</h2>` +\n";
+const NEW_CAT_BODY = "      robots: showCategoryNav ? '' : '<meta name=\"robots\" content=\"noindex,follow\">',\n      sidebarLeft: af.leftAdsWidget(catLeftKeys),\n      sidebar: side(\n        af.sideAdsWidget(catSideKeys) +\n        aboutWidget + widget('\u65b0\u7740\u8a18\u4e8b', postListHtml(byRecent.slice(0, 5))) + categoryWidget\n      ),\n      content:\n        catPr +\n        // \u5c0e\u5165\u6587\u304c\u3042\u308c\u3070\u305d\u308c\u3092\u4f7f\u3046\uff08h1 \u3082\u5c0e\u5165\u6587\u5074\u306b\u7f6e\u304f\uff09\u3002\u7121\u3051\u308c\u3070\u5f93\u6765\u3069\u304a\u308a\u306e\u898b\u51fa\u3057\u3060\u3051\u3002\n        (catLeadHtml\n          ? `<div class=\"post cat-lead\">${catLeadHtml}</div>`\n          : `<h1>${esc(c.name)}\u306e\u8a18\u4e8b\u4e00\u89a7</h1>` +\n            `<p class=\"lead\">${esc(c.name)}\u306b\u3064\u3044\u3066\u3001\u30e1\u30fc\u30ab\u30fc\u516c\u5f0f\u306e\u5bf8\u6cd5\u304b\u3089\u8a08\u7b97\u3057\u3066\u6bd4\u3079\u305f\u8a18\u4e8b\u3067\u3059\u3002</p>`) +\n        catLeadAd +\n        `<h2 class=\"section-title\">${esc(c.name)}\u306e\u8a18\u4e8b\uff08${list.length}\u672c\uff09</h2>` +\n";
+if (!code.includes(OLD_CAT_BODY)) {
+  throw new Error('build.mjs patch: category sidebar/content block not found');
+}
+code = code.replace(OLD_CAT_BODY, NEW_CAT_BODY);
+
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());

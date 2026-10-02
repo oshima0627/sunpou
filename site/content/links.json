@@ -6,7 +6,7 @@
   "//ルール4": "もしもは media 689246 のみ。687816（kakei）など他メディアの HTML/URL は転記しない。",
   "//ルール5": "bannerHtml（本文・横長優先）/ bannerHtmlSide（右サイド・左レール。優先160x600、次点300x250）/ bannerSize*。公式発行HTMLのみ。URLを推測で組み立てない。左右は別キーを優先。",
   "//ルール6": "bannerHtml が無いキーは Amazon CSS バナー（tag=sunpou-22）にフォールバック。cabin-bag/coolerbox/baby-gate では moshimo-* をプール先頭に優先。",
-  "//状態": "2026-09-29 media 689246 左右レール配線。160x600: legend-walker pl_id=63106 / gifteria pl_id=86751。300x250 side: amazon 4157 / lduvin 64718 / newtec 70478 / napnap 29865 / tedemogu 88553。Amazon に160x600は無し。左右は bannerHtmlSide 必須・L≠R 優先。",
+  "//状態": "2026-10-03 media 689246。記事の左右レールは同カテゴリの bannerHtmlSide だけ（L≠R）。カテゴリに別案件が無ければ左は空（一般框は moshimo-amazon がプールにあるときだけ）。トップだけ L=legend 63106 / R=gifteria 86751。本文は導入直後とH2前。テーマ外の縦長フォールバックは記事では使わない。",
   "amazon-coolerbox": {
     "label": "クーラーボックスをAmazonで探す",
     "shortLabel": "Amazon.co.jp",

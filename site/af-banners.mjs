@@ -38,13 +38,22 @@ const NEW_AFTER_LEFT = `  function pickCategoryLeftKeys(category, rightKeys = []
     const withSide = cat.filter((k) => links[k] && links[k].bannerHtmlSide && !used.has(k));
     const tall = withSide.filter(isSkyscraperSide);
     if (tall.length) return [{ key: tall[0], label: undefined }];
-    for (const k of SKYSCRAPER_FALLBACKS) {
-      if (!used.has(k) && links[k] && links[k].bannerHtmlSide) {
-        return [{ key: k, label: undefined }];
+    // トップ（category なし）だけ、グローバル 160×600 で L≠R を維持する。
+    // 記事カテゴリではスーツケース／アウトドアの縦長に落とさない（テーマ外れ）。
+    if (!category) {
+      for (const k of SKYSCRAPER_FALLBACKS) {
+        if (!used.has(k) && links[k] && links[k].bannerHtmlSide) {
+          return [{ key: k, label: undefined }];
+        }
       }
     }
     if (withSide.length) return [{ key: withSide[0], label: undefined }];
-    if (!used.has('moshimo-amazon') && links['moshimo-amazon'] && links['moshimo-amazon'].bannerHtmlSide) {
+    if (
+      !used.has('moshimo-amazon') &&
+      links['moshimo-amazon'] &&
+      links['moshimo-amazon'].bannerHtmlSide &&
+      (!category || cat.includes('moshimo-amazon'))
+    ) {
       return [{ key: 'moshimo-amazon', label: undefined }];
     }
     return [];
@@ -102,6 +111,27 @@ if (!code.includes(OLD_EXPORT)) {
   throw new Error('af-banners.mjs patch: export block not found');
 }
 code = code.replace(OLD_EXPORT, NEW_EXPORT);
+
+const insertStart = code.indexOf('  function insertAdsBetweenH2s(html, pool) {');
+const insertEnd = code.indexOf('  function resolveAfMarkers(html) {');
+if (insertStart < 0 || insertEnd < 0 || insertEnd < insertStart) {
+  throw new Error('af-banners.mjs patch: insertAdsBetweenH2s bounds not found');
+}
+const bodySnippet = fs.readFileSync(path.join(ROOT, 'af-body-insert.snippet.js'), 'utf8');
+if (!bodySnippet.includes('function categoryLeadBanner')) {
+  throw new Error('af-banners.mjs patch: body snippet missing categoryLeadBanner');
+}
+code = code.slice(0, insertStart) + bodySnippet + code.slice(insertEnd);
+
+const OLD_BODY_EXPORT = `    insertAdsBetweenH2s,
+    resolveAfMarkers,`;
+const NEW_BODY_EXPORT = `    insertAdsBetweenH2s,
+    categoryLeadBanner,
+    resolveAfMarkers,`;
+if (!code.includes(OLD_BODY_EXPORT)) {
+  throw new Error('af-banners.mjs patch: insertAds export not found');
+}
+code = code.replace(OLD_BODY_EXPORT, NEW_BODY_EXPORT);
 
 const runPath = path.join(ROOT, '.af-banners.inflated.mjs');
 fs.writeFileSync(runPath, code);
