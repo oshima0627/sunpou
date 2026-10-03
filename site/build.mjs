@@ -1,7 +1,8 @@
 /**
  * Inflate AF-wired build from build.z*.txt (zlib+base64) then run.
  * Patches: prefer bannerHtmlSide for right rail; wire left rail (sidebarLeft);
- *          homepage left+right Moshimo rails (pickHome*).
+ *          homepage left+right Moshimo rails (pickHome*);
+ *          resolveLinks appends a Rakuten text link from content/rakuten-products.json.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -64,6 +65,52 @@ if (!code.includes(OLD_CAT_BODY)) {
   throw new Error('build.mjs patch: category sidebar/content block not found');
 }
 code = code.replace(OLD_CAT_BODY, NEW_CAT_BODY);
+
+// 楽天は商品リンク作成が発行した hb.afl URL だけ。検索語に型番が境界つきで含まれるとき、
+// Amazon の .buy の直後へ文字リンクを足す。504px ウィジェットは埋め込まない。
+const OLD_RAKUTEN_LOAD = "const links = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/links.json'), 'utf8'));\n";
+const NEW_RAKUTEN_LOAD = OLD_RAKUTEN_LOAD + "const rakutenProducts = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/rakuten-products.json'), 'utf8'));\n";
+const OLD_RAKUTEN_FN = "function resolveLinks(html) {\n";
+const NEW_RAKUTEN_FN = `function rakutenBuyAnchor(term) {
+  const hits = [];
+  for (const [model, entry] of Object.entries(rakutenProducts)) {
+    if (!model || model.startsWith('//')) continue;
+    if (!entry || typeof entry.href !== 'string' || entry.href === '') continue;
+    // ASCII 英数の外側だけを境界にする。SJ-MF51R は SJ-MF55R に一致しない。
+    const escaped = model.replace(/[.*+?^\${}()|[\\]\\\\]/g, '\\\\$&');
+    if (new RegExp(\`(?<![A-Za-z0-9])\${escaped}(?![A-Za-z0-9])\`).test(term)) hits.push(model);
+  }
+  if (hits.length > 1) {
+    throw new Error(\`楽天型番が検索語に複数一致しました: \${term} → \${hits.join(', ')}\`);
+  }
+  if (!hits.length) return '';
+  const href = rakutenProducts[hits[0]].href;
+  return \`<a class="buy buy--rakuten" rel="nofollow sponsored noopener" target="_blank" href="\${href}">楽天で見る</a>\`;
+}
+
+function resolveLinks(html) {
+`;
+const OLD_RAKUTEN_RETURN =
+  '    return `' + '<a class="buy" href="${url}"${aria} rel="nofollow sponsored noopener" target="_blank">${esc(text)}</a>`' + ';\n';
+const NEW_RAKUTEN_RETURN =
+  '    const amazonHtml = `' + '<a class="buy" href="${url}"${aria} rel="nofollow sponsored noopener" target="_blank">${esc(text)}</a>`' + ';\n' +
+  '    return amazonHtml + rakutenBuyAnchor(term);\n';
+
+if (!code.includes(OLD_RAKUTEN_LOAD)) {
+  throw new Error('build.mjs patch: links.json load not found');
+}
+// replace の置換文字列は $& をマッチ全体に展開する。型番エスケープの \\$& を壊さないため関数で渡す。
+code = code.replace(OLD_RAKUTEN_LOAD, () => NEW_RAKUTEN_LOAD);
+
+if (!code.includes(OLD_RAKUTEN_FN)) {
+  throw new Error('build.mjs patch: resolveLinks function not found');
+}
+code = code.replace(OLD_RAKUTEN_FN, () => NEW_RAKUTEN_FN);
+
+if (!code.includes(OLD_RAKUTEN_RETURN)) {
+  throw new Error('build.mjs patch: resolveLinks amazon return not found');
+}
+code = code.replace(OLD_RAKUTEN_RETURN, () => NEW_RAKUTEN_RETURN);
 
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
