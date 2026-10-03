@@ -397,12 +397,47 @@ code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; fo
   text-decoration: none;
 }
 
-/* 楽天の文字リンク。型番台帳に当たったときだけ .buy の直後に並ぶ。
- * 見た目は同じ琥珀ボタン。区別は文言「楽天で見る」。504px ウィジェットは使わない。
- * 表セルは nowrap なので、余白が無いと隣のボタンとくっついて見える。 */
-a.buy.buy--rakuten {
-  margin-left: .45em;
-  vertical-align: baseline;
+/* 楽天アフィリエイト公式の商品カード（table ウィジェット、幅504px）。
+ * 中の href・img・文言は変えない。はみ出しは外側のラッパーだけ横スクロールする。
+ * 比較表用の .post table（幅100%・nowrap・先頭列固定）が当たるとカードが潰れるので、
+ * この中だけ打ち消す。文字リンク「楽天で見る」は出さない。 */
+.rakuten-widget {
+  max-width: 100%;
+  overflow-x: auto;
+  margin: 1.1rem 0 1.4rem;
+}
+.rakuten-widget table {
+  width: auto;
+  max-width: none;
+  border-collapse: separate;
+  font-size: medium;
+  line-height: normal;
+  margin: 0;
+}
+.rakuten-widget th,
+.rakuten-widget td {
+  padding: 0;
+  border: 0;
+  white-space: normal;
+  text-align: left;
+  vertical-align: top;
+  position: static;
+  background: transparent;
+  font-weight: 400;
+  color: inherit;
+}
+.rakuten-widget tbody td:first-child,
+.rakuten-widget tbody th:first-child,
+.rakuten-widget thead th,
+.rakuten-widget thead th:first-child {
+  position: static;
+  left: auto;
+  top: auto;
+  z-index: auto;
+  background: transparent;
+  border: 0;
+  font-weight: 400;
+  color: inherit;
 }
 
 /* 表の外（本文中）に置かれたリンクは、行の中で少し浮かせる */
