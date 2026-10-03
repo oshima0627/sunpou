@@ -2,7 +2,7 @@
  * Inflate AF-wired build from build.z*.txt (zlib+base64) then run.
  * Patches: prefer bannerHtmlSide for right rail; wire left rail (sidebarLeft);
  *          homepage left+right Moshimo rails (pickHome*);
- *          resolveLinks appends a Rakuten text link from content/rakuten-products.json.
+ *          fridge articles embed official Rakuten table widgets from content/rakuten-products.json.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -66,52 +66,147 @@ if (!code.includes(OLD_CAT_BODY)) {
 }
 code = code.replace(OLD_CAT_BODY, NEW_CAT_BODY);
 
-// 楽天は商品リンク作成が発行した hb.afl URL だけ。検索語に型番が境界つきで含まれるとき、
-// Amazon の .buy の直後へ文字リンクを足す。504px ウィジェットは埋め込まない。
-const OLD_RAKUTEN_LOAD = "const links = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/links.json'), 'utf8'));\n";
-const NEW_RAKUTEN_LOAD = OLD_RAKUTEN_LOAD + "const rakutenProducts = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/rakuten-products.json'), 'utf8'));\n";
-const OLD_RAKUTEN_FN = "function resolveLinks(html) {\n";
-const NEW_RAKUTEN_FN = `function rakutenBuyAnchor(term) {
-  const hits = [];
-  for (const [model, entry] of Object.entries(rakutenProducts)) {
-    if (!model || model.startsWith('//')) continue;
-    if (!entry || typeof entry.href !== 'string' || entry.href === '') continue;
-    // ASCII 英数の外側だけを境界にする。SJ-MF51R は SJ-MF55R に一致しない。
-    const escaped = model.replace(/[.*+?^\${}()|[\\]\\\\]/g, '\\\\$&');
-    if (new RegExp(\`(?<![A-Za-z0-9])\${escaped}(?![A-Za-z0-9])\`).test(term)) hits.push(model);
-  }
-  if (hits.length > 1) {
-    throw new Error(\`楽天型番が検索語に複数一致しました: \${term} → \${hits.join(', ')}\`);
-  }
-  if (!hits.length) return '';
-  const href = rakutenProducts[hits[0]].href;
-  return \`<a class="buy buy--rakuten" rel="nofollow sponsored noopener" target="_blank" href="\${href}">楽天で見る</a>\`;
-}
-
-function resolveLinks(html) {
-`;
-const OLD_RAKUTEN_RETURN =
-  '    return `' + '<a class="buy" href="${url}"${aria} rel="nofollow sponsored noopener" target="_blank">${esc(text)}</a>`' + ';\n';
-const NEW_RAKUTEN_RETURN =
-  '    const amazonHtml = `' + '<a class="buy" href="${url}"${aria} rel="nofollow sponsored noopener" target="_blank">${esc(text)}</a>`' + ';\n' +
-  '    return amazonHtml + rakutenBuyAnchor(term);\n';
-
-if (!code.includes(OLD_RAKUTEN_LOAD)) {
-  throw new Error('build.mjs patch: links.json load not found');
-}
-// replace の置換文字列は $& をマッチ全体に展開する。型番エスケープの \\$& を壊さないため関数で渡す。
-code = code.replace(OLD_RAKUTEN_LOAD, () => NEW_RAKUTEN_LOAD);
-
-if (!code.includes(OLD_RAKUTEN_FN)) {
-  throw new Error('build.mjs patch: resolveLinks function not found');
-}
-code = code.replace(OLD_RAKUTEN_FN, () => NEW_RAKUTEN_FN);
-
-if (!code.includes(OLD_RAKUTEN_RETURN)) {
-  throw new Error('build.mjs patch: resolveLinks amazon return not found');
-}
-code = code.replace(OLD_RAKUTEN_RETURN, () => NEW_RAKUTEN_RETURN);
+// 楽天の文字リンクは足さない。公式 table ウィジェットは下の後処理で、
+// 冷蔵庫2記事の製品カード直後（カードが無い型番はカード節の末尾）に埋め込む。
+// 504px カードを比較表のセルには入れない。linkHtml は一字も改変しない。
 
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());
+
+// 生成HTMLへ公式ウィジェットを後挿入する。inflate 側の resolveLinks は Amazon のまま。
+const RAKUTEN_ARTICLES = [
+  {
+    slug: 'fridge/delivery-path-fit',
+    md: 'fridge-delivery-path-fit.md',
+  },
+  {
+    slug: 'fridge/install-clearance-outer-dims',
+    md: 'fridge-install-clearance-outer-dims.md',
+  },
+];
+
+function rakutenModelInText(model, text) {
+  const escaped = model.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  return new RegExp(`(?<![A-Za-z0-9])${escaped}(?![A-Za-z0-9])`).test(text);
+}
+
+function wrapRakutenWidget(linkHtml) {
+  // 外側のラッパーだけ。linkHtml は前後に足すだけで、中身は結合しない。
+  return '<div class="rakuten-widget">' + linkHtml + '</div>';
+}
+
+function insertRakutenWidgets(html, md, slug, products) {
+  const models = Object.keys(products).filter((key) => key && !key.startsWith('//'));
+  for (const model of models) {
+    const entry = products[model];
+    const linkHtml = entry && entry.linkHtml;
+    if (typeof linkHtml !== 'string' || !linkHtml.startsWith('<table') || !linkHtml.endsWith('</table>')) {
+      throw new Error(`楽天 linkHtml が公式 table ウィジェットではありません: ${model}`);
+    }
+    if (!linkHtml.includes('hb.afl.rakuten.co.jp')) {
+      throw new Error(`楽天 linkHtml に hb.afl がありません: ${model}`);
+    }
+  }
+  const used = new Set();
+  const parts = html.split(/(<aside class="pcard">[\s\S]*?<\/aside>)/);
+  let out = '';
+  let restAt = null;
+  for (const part of parts) {
+    if (!part.startsWith('<aside class="pcard">')) {
+      out += part;
+      continue;
+    }
+    const nameMatch = part.match(/<p class="pcard__name">([\s\S]*?)<\/p>/);
+    const name = nameMatch ? nameMatch[1].replace(/<[^>]+>/g, '') : '';
+    const hits = models.filter((model) => rakutenModelInText(model, name));
+    if (hits.length > 1) {
+      throw new Error(`${slug}: 製品カードに楽天型番が複数一致しました: ${name} → ${hits.join(', ')}`);
+    }
+    out += part;
+    if (hits.length === 1) {
+      if (used.has(hits[0])) {
+        throw new Error(`${slug}: 型番 ${hits[0]} のウィジェットを2回置こうとしました`);
+      }
+      used.add(hits[0]);
+      out += '\n' + wrapRakutenWidget(products[hits[0]].linkHtml);
+    }
+    restAt = out.length;
+  }
+  const rest = models
+    .filter((model) => !used.has(model) && rakutenModelInText(model, md))
+    .sort((a, b) => md.indexOf(a) - md.indexOf(b));
+  if (rest.length) {
+    const chunk = '\n' + rest.map((model) => {
+      used.add(model);
+      return wrapRakutenWidget(products[model].linkHtml);
+    }).join('\n');
+    if (restAt == null) {
+      const tableEnd = out.indexOf('</table></div>');
+      if (tableEnd < 0) throw new Error(`${slug}: カードも比較表も無く、楽天ウィジェットを置けません`);
+      const at = tableEnd + '</table></div>'.length;
+      out = out.slice(0, at) + chunk + out.slice(at);
+    } else {
+      out = out.slice(0, restAt) + chunk + out.slice(restAt);
+    }
+  }
+  for (const model of models) {
+    const inArticle = rakutenModelInText(model, md);
+    const count = out.split(products[model].linkHtml).length - 1;
+    if (inArticle && count !== 1) {
+      throw new Error(`${slug}: 楽天ウィジェット ${model} が ${count} 回です（1回であるべき）`);
+    }
+    if (!inArticle && count !== 0) {
+      throw new Error(`${slug}: 本文に無い型番 ${model} のウィジェットが ${count} 回あります`);
+    }
+    const at = out.indexOf(products[model].linkHtml);
+    if (at >= 0) {
+      const before = out.slice(0, at);
+      const open = before.lastIndexOf('<div class="table-wrap">');
+      const close = before.lastIndexOf('</table></div>');
+      if (open >= 0 && open > close) {
+        throw new Error(`${slug}: 楽天ウィジェット ${model} が比較表の中に入っています`);
+      }
+    }
+  }
+  if (out.includes('>楽天で見る<') || out.includes('buy--rakuten')) {
+    throw new Error(`${slug}: 文字リンク「楽天で見る」が残っています`);
+  }
+  return out;
+}
+
+function embedRakutenWidgets() {
+  const products = JSON.parse(fs.readFileSync(path.join(ROOT, 'content/rakuten-products.json'), 'utf8'));
+  const dist = path.join(ROOT, 'dist');
+  for (const article of RAKUTEN_ARTICLES) {
+    const htmlPath = path.join(dist, article.slug, 'index.html');
+    const mdPath = path.join(ROOT, 'content/articles', article.md);
+    const html = fs.readFileSync(htmlPath, 'utf8');
+    const md = fs.readFileSync(mdPath, 'utf8');
+    const next = insertRakutenWidgets(html, md, article.slug, products);
+    if (!next.includes('tag=sunpou-22')) {
+      throw new Error(`${article.slug}: Amazon tag=sunpou-22 が消えました`);
+    }
+    fs.writeFileSync(htmlPath, next);
+  }
+  // 冷蔵庫2記事以外に公式ウィジェットも文字リンクも出さない。
+  const allow = new Set(RAKUTEN_ARTICLES.map((a) => path.join(dist, a.slug, 'index.html')));
+  const stack = [dist];
+  while (stack.length) {
+    const dir = stack.pop();
+    for (const name of fs.readdirSync(dir)) {
+      const full = path.join(dir, name);
+      if (fs.statSync(full).isDirectory()) {
+        stack.push(full);
+        continue;
+      }
+      if (!name.endsWith('.html') || allow.has(full)) continue;
+      const html = fs.readFileSync(full, 'utf8');
+      if (html.includes('hb.afl.rakuten.co.jp') || html.includes('>楽天で見る<') || html.includes('buy--rakuten')) {
+        throw new Error(`冷蔵庫以外に楽天リンクがあります: ${full}`);
+      }
+    }
+  }
+}
+
+embedRakutenWidgets();
