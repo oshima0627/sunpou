@@ -2,7 +2,7 @@
  * Inflate AF-wired build from build.z*.txt (zlib+base64) then run.
  * Patches: prefer bannerHtmlSide for right rail; wire left rail (sidebarLeft);
  *          homepage left+right Moshimo rails (pickHome*);
- *          fridge articles embed official Rakuten table widgets from content/rakuten-products.json.
+ *          fridge articles (3) embed official Rakuten table widgets from content/rakuten-products.json.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -83,6 +83,10 @@ const RAKUTEN_ARTICLES = [
   {
     slug: 'fridge/install-clearance-outer-dims',
     md: 'fridge-install-clearance-outer-dims.md',
+  },
+  {
+    slug: 'fridge/side-top-clearance-door-swing',
+    md: 'fridge-side-top-clearance-door-swing.md',
   },
 ];
 
