@@ -845,3 +845,23 @@ figure.eyecatch { margin-inline: 0; }
 
 /* 索引の見出しは記事本文の h2 より詰める */
 .sitemap .section-title { margin-top: 2.2rem; }
+
+
+/* 結論直後〜関連記事の前：寸法判定後の Amazon 検索 CTA */
+.decision-cta {
+  margin: 1.75rem 0 1.25rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid #e6d9c4;
+  border-radius: 10px;
+  background: #fffaf0;
+}
+.decision-cta__lead {
+  margin: 0 0 .65rem;
+  font-weight: 700;
+  color: #2b1a00;
+}
+.decision-cta__go { margin: 0; }
+.decision-cta .buy {
+  display: inline-block;
+  font-size: 1.05rem;
+}

@@ -70,6 +70,122 @@ code = code.replace(OLD_CAT_BODY, NEW_CAT_BODY);
 // 冷蔵庫2記事の製品カード直後（カードが無い型番はカード節の末尾）に埋め込む。
 // 504px カードを比較表のセルには入れない。linkHtml は一字も改変しない。
 
+
+// ---- FAQ JSON-LD + 結論直後の Amazon 検索 CTA（share / 関連記事の前）
+const OLD_ARTICLE_JSONLD =
+  "      jsonLd: JSON.stringify([\n" +
+  "        {\n" +
+  "          '@context': 'https://schema.org',\n" +
+  "          '@type': 'Article',\n" +
+  "          headline: a.title,\n" +
+  "          description: a.description,\n" +
+  "          image: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),\n" +
+  "          datePublished: a.published,\n" +
+  "          dateModified: a.updated,\n" +
+  "          articleSection: cname,\n" +
+  "          inLanguage: site.lang,\n" +
+  "          mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },\n" +
+  "          // 誰が書いたか。数値を自分で計算して出すサイトなので、書き手を明示する\n" +
+  "          author: { '@type': 'Person', name: site.author, url: `${ORIGIN}/about/` },\n" +
+  "          publisher: { '@type': 'Organization', name: site.name },\n" +
+  "        },\n" +
+  "        breadcrumbLd(trail),\n" +
+  "      ]),\n";
+
+const NEW_ARTICLE_JSONLD =
+  "      jsonLd: JSON.stringify([\n" +
+  "        {\n" +
+  "          '@context': 'https://schema.org',\n" +
+  "          '@type': 'Article',\n" +
+  "          headline: a.title,\n" +
+  "          description: a.description,\n" +
+  "          image: ORIGIN + (a.ogImage || a.eyecatch || site.defaultOgImage),\n" +
+  "          datePublished: a.published,\n" +
+  "          dateModified: a.updated,\n" +
+  "          articleSection: cname,\n" +
+  "          inLanguage: site.lang,\n" +
+  "          mainEntityOfPage: { '@type': 'WebPage', '@id': a.url },\n" +
+  "          // 誰が書いたか。数値を自分で計算して出すサイトなので、書き手を明示する\n" +
+  "          author: { '@type': 'Person', name: site.author, url: `${ORIGIN}/about/` },\n" +
+  "          publisher: { '@type': 'Organization', name: site.name },\n" +
+  "        },\n" +
+  "        breadcrumbLd(trail),\n" +
+  "        ...((() => {\n" +
+  "          if (!a.faq) return [];\n" +
+  "          let items;\n" +
+  "          try { items = JSON.parse(a.faq); } catch { return []; }\n" +
+  "          if (!Array.isArray(items) || !items.length) return [];\n" +
+  "          return [{\n" +
+  "            '@context': 'https://schema.org',\n" +
+  "            '@type': 'FAQPage',\n" +
+  "            mainEntity: items.map((it) => ({\n" +
+  "              '@type': 'Question',\n" +
+  "              name: it.q,\n" +
+  "              acceptedAnswer: { '@type': 'Answer', text: it.a },\n" +
+  "            })),\n" +
+  "          }];\n" +
+  "        })()),\n" +
+  "      ]),\n";
+
+if (!code.includes(OLD_ARTICLE_JSONLD)) {
+  throw new Error('build.mjs patch: article jsonLd block not found');
+}
+code = code.replace(OLD_ARTICLE_JSONLD, NEW_ARTICLE_JSONLD);
+
+const OLD_SHARE = "        html +\n        shareButtons(a.title, a.url) +\n";
+const NEW_SHARE = "        html +\n        decisionCtaHtml(a.category) +\n        shareButtons(a.title, a.url) +\n";
+if (!code.includes(OLD_SHARE)) {
+  throw new Error('build.mjs patch: shareButtons join not found');
+}
+code = code.replace(OLD_SHARE, NEW_SHARE);
+
+const OLD_SHARE_FN = "function shareButtons(title, url) {\n";
+const NEW_SHARE_FN =
+  "function decisionCtaHtml(category) {\n" +
+  "  if (!site.affiliateEnabled || !category) return '';\n" +
+  "  const preferred = {\n" +
+  "    coolerbox: 'amazon-coolerbox',\n" +
+  "    'cabin-bag': 'amazon-suitcase-cabin',\n" +
+  "    fridge: 'amazon-fridge',\n" +
+  "    'cassette-konro': 'amazon-cassette-stove',\n" +
+  "    kyatatsu: 'amazon-ladder',\n" +
+  "    curtain: 'amazon-curtain',\n" +
+  "    'baby-gate': 'amazon-baby-gate',\n" +
+  "    'tire-chain': 'amazon-tire-chain',\n" +
+  "    dishwasher: 'amazon-dishwasher',\n" +
+  "    'monitor-arm': 'amazon-monitor-arm',\n" +
+  "  };\n" +
+  "  const keys = Object.keys(links).filter((key) => {\n" +
+  "    if (key.startsWith('//')) return false;\n" +
+  "    const e = links[key];\n" +
+  "    if (!e || typeof e !== 'object') return false;\n" +
+  "    if (!Array.isArray(e.categories) || !e.categories.includes(category)) return false;\n" +
+  "    if (typeof e.url !== 'string') return false;\n" +
+  "    return e.url.includes('amazon.co.jp') && e.url.includes('tag=sunpou-22');\n" +
+  "  });\n" +
+  "  const pref = preferred[category];\n" +
+  "  keys.sort((a, b) => {\n" +
+  "    if (pref && a === pref) return -1;\n" +
+  "    if (pref && b === pref) return 1;\n" +
+  "    return String(links[a].label || '').length - String(links[b].label || '').length;\n" +
+  "  });\n" +
+  "  if (!keys.length) return '';\n" +
+  "  const e = links[keys[0]];\n" +
+  "  return (\n" +
+  "    `<aside class=\"decision-cta\">` +\n" +
+  "    `<p class=\"decision-cta__lead\">寸法が合った候補を、Amazonで在庫と価格を確認</p>` +\n" +
+  "    `<p class=\"decision-cta__go\"><a class=\"buy\" href=\"${esc(e.url)}\" rel=\"nofollow sponsored noopener\" target=\"_blank\">${esc(e.label || 'Amazonで探す')}</a></p>` +\n" +
+  "    `</aside>`\n" +
+  "  );\n" +
+  "}\n" +
+  "\n" +
+  "function shareButtons(title, url) {\n";
+if (!code.includes(OLD_SHARE_FN)) {
+  throw new Error('build.mjs patch: shareButtons function not found');
+}
+code = code.replace(OLD_SHARE_FN, NEW_SHARE_FN);
+
+
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());

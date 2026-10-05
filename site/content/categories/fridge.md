@@ -1,4 +1,4 @@
-# 冷蔵庫を搬入と据付の奥行で選ぶ
+# 冷蔵庫を搬入幅・設置スペースの寸法で選ぶ
 
 通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路に本体奥行が通るか、設置後の据付必要奥行・ドア開放最大奥行、左右・上方のあきと扉の横張り出しは、カタログの容量欄には並んでいません。</strong>
 
@@ -11,7 +11,7 @@
       <li><strong>パナソニック・東芝・日立・三菱の699mm帯は、想定通路800mmで余り約101mm。</strong> 容量帯が違っても奥行が同じなら余りは同じ計算</li>
       <li><strong>東芝奥行745mmは、想定通路800mmで余り約55mm。</strong> 同じ想定でも奥行が深いほど余りが急に減る</li>
     </ul>
-    <a class="topic__cta" href="/fridge/delivery-path-fit/">通路幅×本体奥行の判定記事を読む</a>
+    <a class="topic__cta" href="/fridge/delivery-path-fit/">搬入幅・通路判定の記事を読む</a>
   </section>
   <section class="topic">
     <span class="topic__label">据付・開閉</span>
