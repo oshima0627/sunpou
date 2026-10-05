@@ -1,6 +1,6 @@
 # 冷蔵庫を搬入と据付の奥行で選ぶ
 
-通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路に本体奥行が通るかと、設置後の据付必要奥行・ドア開放最大奥行は、カタログの容量欄には並んでいません。</strong>
+通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路に本体奥行が通るか、設置後の据付必要奥行・ドア開放最大奥行、左右・上方のあきと扉の横張り出しは、カタログの容量欄には並んでいません。</strong>
 
 <div class="topic-stack">
   <section class="topic">
@@ -23,6 +23,16 @@
     </ul>
     <a class="topic__cta" href="/fridge/install-clearance-outer-dims/">据付・ドア開放奥行の比較記事を読む</a>
   </section>
+  <section class="topic">
+    <span class="topic__label">左右・上方</span>
+    <h2 class="topic__title">設置幅は本体幅＋10mm、扉は横へ191〜361mm張り出す</h2>
+    <ul class="topic__points">
+      <li><strong>左右あきは11機種すべて各5mm。</strong> 幅685mmクラスは最小695mm、各社の「10mm程度余裕」を足すと705mm</li>
+      <li><strong>壁際でドアを十分開けるなら、その側は壁から10〜20mm。</strong> シャープ SJ-MF51R は片側壁際で710mm</li>
+      <li><strong>同じ幅685mmでも、扉の右側の張り出しは269〜361mm。</strong> 上方あきは30〜50mm</li>
+    </ul>
+    <a class="topic__cta" href="/fridge/side-top-clearance-door-swing/">左右・上方あきと扉の張り出しの記事を読む</a>
+  </section>
 </div>
 
-<p class="note-muted">数字はすべてメーカー公式の公表値と、そこからの当サイトの計算です。実搬入・実設置の実測適合ではありません。想定通路幅は搬入記事内で明示した仮定です。</p>
+<p class="note-muted">数字はすべてメーカー公式の公表値と、そこからの当サイトの計算です。実搬入・実設置の実測適合ではありません。想定通路幅は搬入記事内で明示した仮定です。設置幅・高さは公表のあきを足した計算です。</p>

@@ -1229,6 +1229,35 @@ def fridge_delivery_path_fit_eyecatch(f):
     f.footer("容量Lではなく本体奥行で判定。メーカーの「幅＋約10cm」は直立搬入の別軸です。")
 
 
+FRIDGE_SWING = [
+    # 製品名, 本体幅(mm), 扉の横張り出し・図の右側(mm), 表示
+    ("Panasonic NR-F55WX3", 685, 361, "361mm"),
+    ("シャープ SJ-MF55R", 730, 305, "305mm"),
+    ("東芝 GR-W600FZS", 685, 301, "301mm"),
+    ("三菱 MR-WZ61N", 685, 269, "269mm"),
+    ("日立 R-HZC54Y", 650, 235, "約235mm"),
+]
+
+
+def fridge_side_top_clearance_door_swing_eyecatch(f):
+    """左右あきは各5mmで揃うが、扉の横張り出しは機種で大きく違う。"""
+    f.header("扉は本体の横へ最大361mm出る",
+             "左右あきは各5mmで同じ。違うのは扉を開けたときの横張り出し",
+             key="361", key_label="横張り出しの最大", key_unit="mm")
+
+    x0, sc, top, rh = 400, 1.4, 186, 58
+    ys = f.rows(len(FRIDGE_SWING), top=top, rh=rh, highlight=0)
+    for (name, width, swing, label), y in zip(FRIDGE_SWING, ys):
+        hot = swing == 361
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 14, swing * sc, 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 10, 320, 24, name, 16, INK, bold=True)
+        f.text(64, y + 34, 320, 20, f"本体幅 {width}mm", 13, MUTE)
+        f.text(x0 + swing * sc + 12, y + 14, 160, 28, label, 17, NAVY, bold=True)
+
+    f.footer("壁際で扉が十分に開かないときは、壁から10〜20mm（機種による）。")
+
+
 # ---------------------------------------------------------------- モニターアーム
 
 MONITOR = [
@@ -1318,6 +1347,7 @@ ORDER = [
     "curtain-ready-made-rail-fit-eyecatch",
     "dishwasher-countertop-fit-outer-dims-eyecatch",
     "fridge-delivery-path-fit-eyecatch",
+    "fridge-side-top-clearance-door-swing-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
@@ -1367,6 +1397,7 @@ FIGURES = {
     "curtain-ready-made-rail-fit-eyecatch": curtain_ready_made_rail_fit_eyecatch,
     "dishwasher-countertop-fit-outer-dims-eyecatch": dishwasher_countertop_fit_outer_dims_eyecatch,
     "fridge-delivery-path-fit-eyecatch": fridge_delivery_path_fit_eyecatch,
+    "fridge-side-top-clearance-door-swing-eyecatch": fridge_side_top_clearance_door_swing_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,
