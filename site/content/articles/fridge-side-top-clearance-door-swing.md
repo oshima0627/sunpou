@@ -3,7 +3,7 @@ title: 冷蔵庫の設置スペース左右は何mm？上方あきと扉の横�
 description: 冷蔵庫の設置スペースは左右・上方のあきが必要です。本体幅に左右あきを足した設置幅と、扉の横張り出しをメーカー横断で計算します。
 slug: fridge/side-top-clearance-door-swing
 category: fridge
-eyecatch: /img/fridge-side-top-clearance-door-swing-eyecatch.png
+eyecatch: /img/fridge-side-top-clearance-door-swing-photo-eyecatch.jpg
 published: 2026-10-05
 updated: 2026-10-06
     a: "壁際設置ではドア用スペースが別に要ることがあります。公表の横張り出し・壁際スペースを並べます。"

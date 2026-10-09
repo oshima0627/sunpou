@@ -3,7 +3,7 @@ title: 冷蔵庫の設置スペース奥行は足りる？据付必要奥行と�
 description: 冷蔵庫の設置スペース（奥行）は外形奥行だけでは決まりません。据付必要奥行とドア開放時最大奥行を、主要メーカーの公表値で横断比較します。
 slug: fridge/install-clearance-outer-dims
 category: fridge
-eyecatch: /img/fridge-install-clearance-outer-dims-eyecatch.png
+eyecatch: /img/fridge-install-clearance-outer-dims-photo-eyecatch.jpg
 published: 2026-10-01
 updated: 2026-10-06
     a: "メーカー公表のドア開放時最大奥行（または同等の値）を横断して比較します。通路側の余白確認に使えます。"
