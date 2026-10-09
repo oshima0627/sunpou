@@ -4,7 +4,7 @@ description: 冷蔵庫の搬入幅の目安は本体＋約10cm。パナソニッ
 slug: fridge/delivery-path-fit
 category: fridge
 pillar: true
-eyecatch: /img/fridge-delivery-path-fit-eyecatch.png
+eyecatch: /img/fridge-delivery-path-fit-photo-eyecatch.jpg
 published: 2026-09-24
 updated: 2026-10-06
     a: "本記事の主値はメーカー公表の本体奥行（外形の奥行）です。直立搬入の「幅＋10cm」案内とは別の計算です。"
