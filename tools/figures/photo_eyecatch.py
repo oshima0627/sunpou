@@ -18,11 +18,13 @@ def make(slug, kicker, lines, box):
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
     d.rectangle(box, fill=(28, 30, 34, 225)); d.rectangle((x0, y0, x0 + 12, y1), fill=(245, 200, 0, 255))
     im = Image.alpha_composite(im.convert("RGBA"), ov); d = ImageDraw.Draw(im)
-    fk = ImageFont.truetype(FONT, 28)
+    ks = 28
+    while ks > 18 and d.textlength(kicker, font=ImageFont.truetype(FONT, ks)) > (x1 - x0) - 60: ks -= 1
+    fk = ImageFont.truetype(FONT, ks)
     size = 52
     while size > 30:
         ft = ImageFont.truetype(FONT, size)
-        if max(d.textlength(l, font=ft) for l in lines) <= (x1 - x0) - 60: break
+        if max(d.textlength(l, font=ft) for l in lines) <= (x1 - x0) - 60 and 40 + len(lines) * (size + 14) <= (y1 - y0) - 20: break
         size -= 2
     top = y0 + ((y1 - y0) - (40 + len(lines) * (size + 14))) // 2 - 6
     d.text((x0 + 40, top), kicker, font=fk, fill=(245, 200, 0))

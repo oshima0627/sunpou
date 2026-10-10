@@ -3,7 +3,7 @@ title: 非金属タイヤチェーンのケースは荷室に入る？S／M／L�
 description: カーメイト バイアスロン クイックイージーの公表ケース外寸（S／M／L）を横断比較し、トヨタ ヤリスのOEM荷室寸法に収まるかを計算します。タイヤサイズ適合表の代わりではなく、カタログに無いケース収納判定です。
 slug: tire-chain/case-size-trunk-fit
 category: tire-chain
-eyecatch: /img/tire-chain-case-size-trunk-fit-eyecatch.png
+eyecatch: /img/tire-chain-case-size-trunk-fit-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-09-16
 ---

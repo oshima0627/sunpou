@@ -1,5 +1,451 @@
 {
- "fridge-delivery-path-fit": {"kicker":"冷蔵庫の搬入経路","lines":["通路80/90cm、","通る？"],"band":[0,334,420,560]},
- "fridge-install-clearance-outer-dims": {"kicker":"冷蔵庫の設置スペース","lines":["奥行は足りる？"],"band":[0,480,580,630]},
- "fridge-side-top-clearance-door-swing": {"kicker":"冷蔵庫の設置スペース","lines":["左右・上のすき間は何mm？"],"band":[0,480,720,630]}
+ "fridge-delivery-path-fit": {
+  "kicker": "冷蔵庫の搬入経路",
+  "lines": [
+   "通路80/90cm、",
+   "通る？"
+  ],
+  "band": [
+   0,
+   334,
+   420,
+   560
+  ]
+ },
+ "fridge-install-clearance-outer-dims": {
+  "kicker": "冷蔵庫の設置スペース",
+  "lines": [
+   "奥行は足りる？"
+  ],
+  "band": [
+   0,
+   480,
+   580,
+   630
+  ]
+ },
+ "fridge-side-top-clearance-door-swing": {
+  "kicker": "冷蔵庫の設置スペース",
+  "lines": [
+   "左右・上のすき間は何mm？"
+  ],
+  "band": [
+   0,
+   480,
+   720,
+   630
+  ]
+ },
+ "baby-gate-opening-width-fit": {
+  "kicker": "ベビーゲートの幅",
+  "lines": [
+   "開口に合う？"
+  ],
+  "band": [
+   0,
+   240,
+   460,
+   600
+  ]
+ },
+ "cabin-bag-airline-fit-outer-dims": {
+  "kicker": "機内持ち込みサイズ",
+  "lines": [
+   "100席未満は",
+   "小さい"
+  ],
+  "band": [
+   0,
+   365,
+   450,
+   600
+  ]
+ },
+ "cabin-bag-body-vs-outer-dims": {
+  "kicker": "スーツケースの外寸",
+  "lines": [
+   "キャスター＋",
+   "ハンドル分"
+  ],
+  "band": [
+   0,
+   295,
+   420,
+   630
+  ]
+ },
+ "cabin-bag-expandable-vs-fixed-outer-dims": {
+  "kicker": "拡張スーツケース",
+  "lines": [
+   "拡張で",
+   "何cm増える？"
+  ],
+  "band": [
+   0,
+   400,
+   440,
+   600
+  ]
+ },
+ "cabin-bag-liter-nanpaku": {
+  "kicker": "スーツケース40L",
+  "lines": [
+   "何泊できる？"
+  ],
+  "band": [
+   0,
+   255,
+   440,
+   560
+  ]
+ },
+ "cabin-bag-outer-sum-158-liters": {
+  "kicker": "総外寸158cm",
+  "lines": [
+   "何リットル？"
+  ],
+  "band": [
+   0,
+   365,
+   450,
+   620
+  ]
+ },
+ "cabin-bag-shinkansen-fit-outer-dims": {
+  "kicker": "新幹線の特大荷物",
+  "lines": [
+   "160cm超えは",
+   "予約"
+  ],
+  "band": [
+   0,
+   320,
+   500,
+   500
+  ]
+ },
+ "coolerbox-2l-tateru": {
+  "kicker": "クーラーボックス",
+  "lines": [
+   "2Lは",
+   "立つ？"
+  ],
+  "band": [
+   0,
+   300,
+   360,
+   560
+  ]
+ },
+ "coolerbox-500ml-honsuu": {
+  "kicker": "クーラーボックス",
+  "lines": [
+   "500mlは何本？"
+  ],
+  "band": [
+   0,
+   370,
+   600,
+   600
+  ]
+ },
+ "coolerbox-coleman-uchinori": {
+  "kicker": "クーラーボックスの内寸",
+  "lines": [
+   "2Lが立った"
+  ],
+  "band": [
+   0,
+   330,
+   540,
+   560
+  ]
+ },
+ "coolerbox-daiwa-shimano": {
+  "kicker": "釣り用クーラー",
+  "lines": [
+   "保冷力の物差し"
+  ],
+  "band": [
+   0,
+   390,
+   600,
+   600
+  ]
+ },
+ "coolerbox-erabikata": {
+  "kicker": "クーラーボックスの選び方",
+  "lines": [
+   "内寸で決める"
+  ],
+  "band": [
+   0,
+   440,
+   520,
+   630
+  ]
+ },
+ "coolerbox-horeizai-honsuu": {
+  "kicker": "保冷剤の置き方",
+  "lines": [
+   "500mlが",
+   "何本減る？"
+  ],
+  "band": [
+   0,
+   360,
+   400,
+   570
+  ]
+ },
+ "coolerbox-horeizai-maisuu": {
+  "kicker": "保冷剤は何枚？",
+  "lines": [
+   "500mlを",
+   "減らさず",
+   "何枚？"
+  ],
+  "band": [
+   0,
+   290,
+   300,
+   560
+  ]
+ },
+ "coolerbox-omosa": {
+  "kicker": "中身入りの重さ",
+  "lines": [
+   "80L満載で91kg"
+  ],
+  "band": [
+   0,
+   470,
+   470,
+   630
+  ]
+ },
+ "coolerbox-uchinori-nagasa": {
+  "kicker": "内寸60/80cm",
+  "lines": [
+   "長い",
+   "クーラー"
+  ],
+  "band": [
+   0,
+   420,
+   330,
+   630
+  ]
+ },
+ "coolerbox-yoryo-uchinori": {
+  "kicker": "20Lは何の20L？",
+  "lines": [
+   "外寸の",
+   "3〜4割"
+  ],
+  "band": [
+   0,
+   320,
+   390,
+   580
+  ]
+ },
+ "curtain-ready-made-rail-fit": {
+  "kicker": "カーテン丈178/200",
+  "lines": [
+   "既製で合う？"
+  ],
+  "band": [
+   0,
+   280,
+   560,
+   600
+  ]
+ },
+ "dishwasher-countertop-fit-outer-dims": {
+  "kicker": "据置食洗機",
+  "lines": [
+   "カウンターに入る？"
+  ],
+  "band": [
+   0,
+   430,
+   520,
+   630
+  ]
+ },
+ "konro-bombe-honsuu": {
+  "kicker": "カセットボンベ備蓄",
+  "lines": [
+   "1人6本で足りる？"
+  ],
+  "band": [
+   0,
+   340,
+   580,
+   630
+  ]
+ },
+ "konro-donabe-nangou": {
+  "kicker": "9号土鍋",
+  "lines": [
+   "コンロに乗る？"
+  ],
+  "band": [
+   0,
+   360,
+   440,
+   630
+  ]
+ },
+ "konro-donabe-ninzuu": {
+  "kicker": "土鍋は何号？",
+  "lines": [
+   "号数と人数"
+  ],
+  "band": [
+   0,
+   370,
+   520,
+   630
+  ]
+ },
+ "konro-erabikata": {
+  "kicker": "カセットコンロの選び方",
+  "lines": [
+   "鍋幅と",
+   "ボンベで選ぶ"
+  ],
+  "band": [
+   0,
+   430,
+   340,
+   630
+  ]
+ },
+ "konro-nenshou-jikan": {
+  "kicker": "ボンベ1本で何分？",
+  "lines": [
+   "55〜78分"
+  ],
+  "band": [
+   0,
+   450,
+   480,
+   630
+  ]
+ },
+ "kyatatsu-erabikata": {
+  "kicker": "脚立・踏み台の選び方",
+  "lines": [
+   "天井高から",
+   "逆算"
+  ],
+  "band": [
+   0,
+   300,
+   440,
+   630
+  ]
+ },
+ "kyatatsu-fumidai-kyatatsu": {
+  "kicker": "踏み台と脚立",
+  "lines": [
+   "何が",
+   "違う？"
+  ],
+  "band": [
+   0,
+   380,
+   300,
+   630
+  ]
+ },
+ "kyatatsu-kaidan": {
+  "kicker": "伸縮脚付き脚立",
+  "lines": [
+   "階段で使える？"
+  ],
+  "band": [
+   0,
+   280,
+   480,
+   630
+  ]
+ },
+ "kyatatsu-omosa": {
+  "kicker": "脚立の重さ",
+  "lines": [
+   "1.7kgと6.3kg"
+  ],
+  "band": [
+   0,
+   370,
+   520,
+   580
+  ]
+ },
+ "kyatatsu-secchi": {
+  "kicker": "脚立を広げると",
+  "lines": [
+   "床は何cm要る？"
+  ],
+  "band": [
+   0,
+   380,
+   500,
+   600
+  ]
+ },
+ "kyatatsu-tenban-takasa": {
+  "kicker": "脚立6尺の高さ",
+  "lines": [
+   "天板は",
+   "約10cm低い"
+  ],
+  "band": [
+   0,
+   320,
+   560,
+   630
+  ]
+ },
+ "monitor-arm-desk-thickness-clamp-fit": {
+  "kicker": "モニターアーム",
+  "lines": [
+   "天板の厚さで",
+   "付く？"
+  ],
+  "band": [
+   0,
+   250,
+   440,
+   480
+  ]
+ },
+ "tire-chain-case-size-trunk-fit": {
+  "kicker": "タイヤチェーンのケース",
+  "lines": [
+   "荷室に入る？"
+  ],
+  "band": [
+   0,
+   280,
+   460,
+   560
+  ]
+ },
+ "washer-drum-waterproof-pan-fit": {
+  "kicker": "防水パン640",
+  "lines": [
+   "ドラム式は",
+   "置ける？"
+  ],
+  "band": [
+   0,
+   110,
+   390,
+   320
+  ]
+ }
 }

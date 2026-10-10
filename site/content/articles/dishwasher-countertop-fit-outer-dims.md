@@ -3,7 +3,7 @@ title: 食洗機据え置きのサイズは入る？設置外寸W×D×Hとカウ
 description: 据置食洗機のサイズは洗浄能力だけでは決まりません。設置外寸（W×D×H・ドア開放時）をカウンター奥行600mmや幅450mm級すき間に当てます。
 slug: dishwasher/countertop-fit-outer-dims
 category: dishwasher
-eyecatch: /img/dishwasher-countertop-fit-outer-dims-eyecatch.png
+eyecatch: /img/dishwasher-countertop-fit-outer-dims-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-10-06
     a: "公表の設置幅（W）を横断し、想定すき間に収まるかを計算します。給排水の取り回しは別確認です。"

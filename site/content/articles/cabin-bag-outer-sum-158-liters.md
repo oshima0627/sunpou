@@ -3,7 +3,7 @@ title: スーツケース総外寸158cm以内は何リットル？同じ157帯�
 description: ANAの無料預け入れ目安（3辺和158cm・キャスターと持ち手込み）を前提に、ace・PROTECA・Legend Walker・サムソナイトの公表外寸と容量を並べました。総外寸157cm前後でも容量はメーカー・プロポーションで68L級から100L級まで割れます。158はANA型の帯で、JAL国際線は203cmなど航空会社で天井が違います。
 slug: cabin-bag/outer-sum-158-liters
 category: cabin-bag
-eyecatch: /img/cabin-bag-outer-sum-158-liters-eyecatch.png
+eyecatch: /img/cabin-bag-outer-sum-158-liters-photo-eyecatch.jpg
 published: 2026-09-17
 updated: 2026-09-17
 ---

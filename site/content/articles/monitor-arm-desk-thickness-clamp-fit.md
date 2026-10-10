@@ -3,7 +3,7 @@ title: モニターアームは天板の厚さで付く？クランプ可能厚�
 description: モニターアームは耐荷重だけでなく天板の厚みが適合条件です。Ergotron・サンワ・エレコム・HUANUOのクランプ可能厚を典型デスク厚に当てます。
 slug: monitor-arm/desk-thickness-clamp-fit
 category: monitor-arm
-eyecatch: /img/monitor-arm-desk-thickness-clamp-fit-eyecatch.png
+eyecatch: /img/monitor-arm-desk-thickness-clamp-fit-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-10-06
     a: "いいえ。カタログに無い天板フィット（クランプ可能厚）も判定が必要です。本記事は厚み適合に絞ります。"
