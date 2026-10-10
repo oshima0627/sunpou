@@ -3,8 +3,7 @@ title: 土鍋は何号がいい？号数と何人前は一致しない（銀峯1
 description: 土鍋の号数が決めているのは口径だけです。銀峯陶器18製品では、同じ9号でも容量・目安人数が割れます。人数から必要な容量を逆算します。
 slug: cassette-konro/donabe-ninzuu
 category: cassette-konro
-eyecatch: /img/donabe-ninzuu-eyecatch.png
-ogImage: /img/og/donabe-ninzuu.png
+eyecatch: /img/konro-donabe-ninzuu-photo-eyecatch.jpg
 published: 2026-09-07
 updated: 2026-10-06
     a: "人数×約0.7ℓを目安に容量を逆算し、号数表に当てる方法を記事内で示しています（銀峯陶器の公表値ベース）。"

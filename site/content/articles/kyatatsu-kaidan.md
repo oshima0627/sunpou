@@ -3,8 +3,7 @@ title: 「伸縮脚付き」の脚立は階段で使える？ 21〜44cmでは足
 description: 脚立の伸縮脚は長谷川工業21cm・31cm、ピカ31cm、アルインコ44cm。建築基準法施行令23条の階段寸法と突き合わせると、前後の脚は3〜10段離れ、必要な高低差は69〜230cmでした。階段用は別カテゴリの製品です。
 slug: kyatatsu/kaidan
 category: kyatatsu
-eyecatch: /img/kyatatsu-kaidan-eyecatch.png
-ogImage: /img/og/kyatatsu-kaidan.png
+eyecatch: /img/kyatatsu-kaidan-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-09-01
 ---

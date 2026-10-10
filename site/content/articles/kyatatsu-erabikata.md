@@ -3,8 +3,7 @@ title: 脚立・踏み台の選び方｜天井の高さから「足を置ける�
 description: カタログの天板高さは足を置ける高さではありません。踏台は天板高さ、脚立は使用最大高さでそろえ直し、質量・設置奥行・収納寸法まで1枚にまとめました。長谷川工業・アルインコ・ピカの42製品を、届きたい高さから逆に引けます。
 slug: kyatatsu/erabikata
 category: kyatatsu
-eyecatch: /img/kyatatsu-erabikata-eyecatch.png
-ogImage: /img/og/kyatatsu-erabikata.png
+eyecatch: /img/kyatatsu-erabikata-photo-eyecatch.jpg
 pillar: true
 published: 2026-08-25
 updated: 2026-09-01

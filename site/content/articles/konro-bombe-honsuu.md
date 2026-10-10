@@ -3,8 +3,7 @@ title: カセットボンベは何本備蓄？農水省「1人6本」の中身�
 description: カセットボンベの備蓄目安「1人1週間で約6本」（農水省）の中身を、岩谷産業の用途別試算から1人あたりに直して検証します。
 slug: cassette-konro/bombe-honsuu
 category: cassette-konro
-eyecatch: /img/konro-bombe-eyecatch.png
-ogImage: /img/og/konro-bombe.png
+eyecatch: /img/konro-bombe-honsuu-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-10-06
     a: "岩谷産業の用途別試算を足して1人あたりに直すと、6本に届くのは気温10℃で食事もお湯もまかなうケースでした（記事内の計算）。"

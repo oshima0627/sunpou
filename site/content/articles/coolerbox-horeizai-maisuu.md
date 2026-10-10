@@ -4,7 +4,6 @@ description: 氷点下パックMなら、ダイワ10Lは1枚が限界でアイ�
 slug: coolerbox/horeizai-maisuu
 category: coolerbox
 eyecatch: /img/coolerbox-horeizai-maisuu-photo-eyecatch.jpg
-ogImage: /img/og/horeizai-maisuu.png
 published: 2026-08-25
 updated: 2026-09-01
 ---

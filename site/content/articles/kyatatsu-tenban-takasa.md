@@ -3,8 +3,7 @@ title: 脚立6尺の高さは何cm？型番180でも天板は約10cm低い
 description: 脚立の「6尺」「180」は天板高さとは限りません。長谷川工業・アルインコ・ピカの公表寸法で、型番と天板・使用最大高さの差を突き合わせます。
 slug: kyatatsu/tenban-takasa
 category: kyatatsu
-eyecatch: /img/kyatatsu-takasa-eyecatch.png
-ogImage: /img/og/kyatatsu-takasa.png
+eyecatch: /img/kyatatsu-tenban-takasa-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-10-06
     a: "踏台は天板高さ、脚立（はしご兼用など）は使用最大高さが「足を置ける高さ」の目安になります。呼び方がメーカーで違います。"
