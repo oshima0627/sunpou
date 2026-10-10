@@ -3,8 +3,7 @@ title: カセットコンロに土鍋は乗る？鍋の幅とボンベ1本の分
 description: カセットコンロの「9号まで」は号数目安で寸法ではありません。イワタニ11機種の鍋幅・連続燃焼時間を銀峯陶器の土鍋実寸と突き合わせた早見表です。
 slug: cassette-konro/erabikata
 category: cassette-konro
-eyecatch: /img/konro-erabikata-eyecatch.png
-ogImage: /img/og/konro-erabikata.png
+eyecatch: /img/konro-erabikata-photo-eyecatch.jpg
 pillar: true
 published: 2026-08-29
 updated: 2026-10-06

@@ -4,7 +4,6 @@ description: 外寸の体積のうち中身に使えるのは28.9〜40.0%。公�
 slug: coolerbox/yoryo-uchinori
 category: coolerbox
 eyecatch: /img/coolerbox-yoryo-uchinori-photo-eyecatch.jpg
-ogImage: /img/og/yoryo-uchinori.png
 published: 2026-08-24
 updated: 2026-09-01
 ---

@@ -4,7 +4,6 @@ description: メーカーが公表しているのは空のときの自重だけ�
 slug: coolerbox/omosa
 category: coolerbox
 eyecatch: /img/coolerbox-omosa-photo-eyecatch.jpg
-ogImage: /img/og/coolerbox-omosa.png
 published: 2026-09-01
 updated: 2026-09-01
 ---
