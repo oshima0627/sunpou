@@ -3,7 +3,7 @@ title: ドラム式洗濯機は防水パン640に置ける？4社の「奥行内
 description: ドラム式洗濯機が置ける防水パンは、メーカー公表の「奥行内寸500〜540mm以上」で決まります。4社8機種の条件と外形奥行、TOTO洗濯機パン640／740／800／900の有効寸法を突き合わせて計算します。
 slug: washer/drum-waterproof-pan-fit
 category: washer
-eyecatch: /img/washer-drum-waterproof-pan-fit-eyecatch.png
+eyecatch: /img/washer-drum-waterproof-pan-fit-photo-eyecatch.jpg
 published: 2026-10-08
 updated: 2026-10-08
 faq: [{"q":"ドラム式洗濯機は640の防水パンに置ける？","a":"奥行は、メーカー公表の条件（奥行内寸500〜540mm以上）に対し、TOTOの640サイズの有効奥行580mm（参考値）が上回ります。幅はパナソニックが幅内寸590mm以上を条件にしており、実測した内寸での確認が要ります。"},{"q":"防水パンの奥行内寸は何mm必要？","a":"今回の4社8機種では、パナソニック・日立・シャープが540mm以上、東芝 TW-127XP5Lが520mm以上、東芝 TW-84GS5Lが500mm以上でした。"}]

@@ -3,7 +3,7 @@ title: スーツケース40Lは何泊？ 6社の目安を並べると1〜2泊か
 description: ace・Legend Walker・サムソナイト・無印良品・ニトリ・RIMOWAが公表する「容量と泊数の目安」を1つの表に並べました。同じ40Lが1〜2泊にも4泊にもなります。60L以上は6社とも4〜7泊でほぼ揃います。各社の帯から1泊あたりの容量を計算し、「10L×泊数＋10〜20L」で5社の帯が説明できることを出しています。
 slug: cabin-bag/liter-nanpaku
 category: cabin-bag
-eyecatch: /img/liter-nanpaku-eyecatch.png
+eyecatch: /img/cabin-bag-liter-nanpaku-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-09-16
 ---

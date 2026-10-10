@@ -3,7 +3,7 @@ title: スーツケースの本体サイズと外寸の差は何cm？キャス�
 description: ace・PROTECAは本体サイズと外寸、Legend Walkerは本体と全体を併記します。航空会社やJRの判定は突起込みの外寸側。公式の両表記がある製品で差を出すと、3辺和で6〜11cm、高さ5〜8cm、幅1〜5cm、奥行は0cmでした。
 slug: cabin-bag/body-vs-outer-dims
 category: cabin-bag
-eyecatch: /img/cabin-bag-body-vs-outer-dims-eyecatch.png
+eyecatch: /img/cabin-bag-body-vs-outer-dims-photo-eyecatch.jpg
 published: 2026-09-21
 updated: 2026-09-21
 ---

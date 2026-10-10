@@ -4,7 +4,7 @@ description: 機内持ち込みサイズは100席以上と100席未満で異な�
 slug: cabin-bag/airline-fit-outer-dims
 category: cabin-bag
 pillar: true
-eyecatch: /img/cabin-bag-airline-fit-outer-dims-eyecatch.png
+eyecatch: /img/cabin-bag-airline-fit-outer-dims-photo-eyecatch.jpg
 published: 2026-09-15
 updated: 2026-10-06
     a: "いいえ。航空会社と機材の席数で○×が分かれます。メーカー外寸と各社ルールの突き合わせが必要です。"

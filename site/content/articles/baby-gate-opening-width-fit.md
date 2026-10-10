@@ -3,7 +3,7 @@ title: ベビーゲートの幅は開口に合う？本体＋追加フレーム�
 description: ベビーゲートの幅は本体だけでなく追加フレーム／ワイドパネル込みの公表取付幅で決まります。日本育児・カトージ・リッチェルのレンジで開口適合を判定します。
 slug: baby-gate/opening-width-fit
 category: baby-gate
-eyecatch: /img/baby-gate-opening-width-fit-eyecatch.png
+eyecatch: /img/baby-gate-opening-width-fit-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-10-06
     a: "突っ張り式は階段上に使えない／非推奨とするメーカー注意があります。公式の注意書きを優先してください。"

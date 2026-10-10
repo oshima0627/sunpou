@@ -3,7 +3,7 @@ title: 拡張すると総外寸は何cm増える？エキスパンド前後の�
 description: ace・PROTECA・Legend Walkerの公式が通常時と拡張時の外寸を併記する製品を並べました。差は奥行だけで+4〜+7cm、3辺和も同じだけ増えます。機内持ち込み帯115の製品は拡張で118〜122へ。預け入れ158帯では拡張後に160〜164となりANA型の158を超える行がありました。
 slug: cabin-bag/expandable-vs-fixed-outer-dims
 category: cabin-bag
-eyecatch: /img/cabin-bag-expandable-vs-fixed-outer-dims-eyecatch.png
+eyecatch: /img/cabin-bag-expandable-vs-fixed-outer-dims-photo-eyecatch.jpg
 published: 2026-09-28
 updated: 2026-09-28
 ---

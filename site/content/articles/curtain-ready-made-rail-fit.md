@@ -3,7 +3,7 @@ title: カーテン丈178と200どっち？レール幅×ゆとりで既製が�
 description: 既製カーテンはレール幅×ゆとりの仕上がり幅と、丈178／200の床ルールで合否が分かれます。ニトリ式と無印式の測り方の差も整理します。
 slug: curtain/ready-made-rail-fit
 category: curtain
-eyecatch: /img/curtain-ready-made-rail-fit-eyecatch.png
+eyecatch: /img/curtain-ready-made-rail-fit-photo-eyecatch.jpg
 published: 2026-09-16
 updated: 2026-10-06
     a: "必要仕上がり幅＝レール幅×ゆとり（例: 1.05）を、既製幅×枚数と突き合わせて判定します。"
