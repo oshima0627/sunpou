@@ -3,7 +3,7 @@ title: クーラーボックスは中身を入れると何kgになる？ 80Lは�
 description: メーカーが公表しているのは空のときの自重だけです。公表容量に水の密度をかけて足すと、80Lは91.0kg、20Lでも21.5〜26.2kg。自重が軽い製品を選んでも満載では逆転します。メーカー公式18製品の公表値から計算しました。
 slug: coolerbox/omosa
 category: coolerbox
-eyecatch: /img/coolerbox-omosa-eyecatch.png
+eyecatch: /img/coolerbox-omosa-photo-eyecatch.jpg
 ogImage: /img/og/coolerbox-omosa.png
 published: 2026-09-01
 updated: 2026-09-01

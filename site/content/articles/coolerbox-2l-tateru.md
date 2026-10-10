@@ -3,7 +3,7 @@ title: クーラーボックスに2Lペットボトルは立てて入る？ 深�
 description: 2Lの全高は305〜306mm。10〜25Lのクーラーボックスでは1つも立ちませんでした。しかも1.5Lは2Lとほぼ同じ高さです。メーカー公表の内寸から判定しました。
 slug: coolerbox/2l-tateru
 category: coolerbox
-eyecatch: /img/coolerbox-2l-eyecatch.png
+eyecatch: /img/coolerbox-2l-tateru-photo-eyecatch.jpg
 ogImage: /img/og/2l-tateru.png
 published: 2026-08-24
 updated: 2026-09-01
