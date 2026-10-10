@@ -3,7 +3,7 @@ title: クーラーボックスの選び方｜容量Lではなく「入れたい
 description: 2Lが立つのは33製品中9つ。しかも6つはコールマンです。500mlの本数・2Lの可否・保冷剤の置き場所・魚の長さ・自重を、メーカー公表の内寸から1枚にまとめました。用途から逆に引ける早見表です。
 slug: coolerbox/erabikata
 category: coolerbox
-eyecatch: /img/coolerbox-erabikata-eyecatch.png
+eyecatch: /img/coolerbox-erabikata-photo-eyecatch.jpg
 ogImage: /img/og/erabikata.png
 pillar: true
 published: 2026-08-25

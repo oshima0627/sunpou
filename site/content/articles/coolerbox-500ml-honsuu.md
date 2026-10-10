@@ -3,7 +3,7 @@ title: クーラーボックスに500mlペットボトルは何本入る？ 容�
 description: 同じ20Lでも15本と18本。メーカー公式の内寸から、500mlペットボトルが何本入るかを計算して比べました。ダイワの公表値で計算式の答え合わせもしています。
 slug: coolerbox/500ml-honsuu
 category: coolerbox
-eyecatch: /img/coolerbox-500ml-eyecatch.png
+eyecatch: /img/coolerbox-500ml-honsuu-photo-eyecatch.jpg
 ogImage: /img/og/500ml-honsuu.png
 published: 2026-08-24
 updated: 2026-09-01

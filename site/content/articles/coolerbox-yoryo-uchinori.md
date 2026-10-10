@@ -3,7 +3,7 @@ title: クーラーボックスの「20L」は何の20L？ 外寸の3〜4割し�
 description: 外寸の体積のうち中身に使えるのは28.9〜40.0%。公表20Lでも内寸の掛け算は18.9Lでした。カタログの保冷日数は容量の4割を氷で埋めた数字です。メーカー公表の内寸・外寸から計算しました。
 slug: coolerbox/yoryo-uchinori
 category: coolerbox
-eyecatch: /img/coolerbox-yoryo-eyecatch.png
+eyecatch: /img/coolerbox-yoryo-uchinori-photo-eyecatch.jpg
 ogImage: /img/og/yoryo-uchinori.png
 published: 2026-08-24
 updated: 2026-09-01

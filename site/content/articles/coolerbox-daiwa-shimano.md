@@ -3,7 +3,7 @@ title: ダイワとシマノのクーラーボックス、どっち？ 保冷力
 description: ダイワのKEEPとシマノのCOOLは、どちらもJIS S 2048の簡便法で「氷が溶け切るまでの時間」に換算した値です。だから並べて比べられます。内寸・外寸・自重・500mlの本数も同じ条件で計算しました。
 slug: coolerbox/daiwa-shimano
 category: coolerbox
-eyecatch: /img/coolerbox-daiwa-shimano-eyecatch.png
+eyecatch: /img/coolerbox-daiwa-shimano-photo-eyecatch.jpg
 ogImage: /img/og/daiwa-shimano.png
 published: 2026-08-24
 updated: 2026-09-01

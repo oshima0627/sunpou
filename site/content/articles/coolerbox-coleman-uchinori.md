@@ -3,7 +3,7 @@ title: コールマンのクーラーボックスは何リットル？ 内寸で
 description: エクストリームクーラー28QT（約26L）の内寸の深さは35cm。日本の釣り系メーカーの26Lクラスは22〜23.5cmで2Lは立ちません。コールマンは内寸を「範囲」で公表している唯一のメーカーでした。
 slug: coolerbox/coleman-uchinori
 category: coolerbox
-eyecatch: /img/coleman-fukasa-eyecatch.png
+eyecatch: /img/coolerbox-coleman-uchinori-photo-eyecatch.jpg
 ogImage: /img/og/coleman-uchinori.png
 published: 2026-08-25
 updated: 2026-09-01

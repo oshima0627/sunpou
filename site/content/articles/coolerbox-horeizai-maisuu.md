@@ -3,7 +3,7 @@ title: クーラーボックスに保冷剤は何枚入る？ 500mlを減らさ�
 description: 氷点下パックMなら、ダイワ10Lは1枚が限界でアイリスオーヤマ40Lは7枚。深さの余りが25mm未満だと上に1枚も載りません。メーカー公表の内寸と保冷剤の寸法から計算しました。
 slug: coolerbox/horeizai-maisuu
 category: coolerbox
-eyecatch: /img/horeizai-maisuu-eyecatch.png
+eyecatch: /img/coolerbox-horeizai-maisuu-photo-eyecatch.jpg
 ogImage: /img/og/horeizai-maisuu.png
 published: 2026-08-25
 updated: 2026-09-01

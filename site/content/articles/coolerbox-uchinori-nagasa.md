@@ -3,7 +3,7 @@ title: 内寸60cm・80cmのクーラーボックスはどれ？ ダイワとシ�
 description: 80Lと60Lは内寸の長辺が同じ85cmでした。容量Lと長さの順位は一致しません。斜めに置けば4〜8cm、立体の対角なら8〜13cm伸びます。メーカー公表の内寸から計算しました。
 slug: coolerbox/uchinori-nagasa
 category: coolerbox
-eyecatch: /img/coolerbox-nagasa-eyecatch.png
+eyecatch: /img/coolerbox-uchinori-nagasa-photo-eyecatch.jpg
 ogImage: /img/og/uchinori-nagasa.png
 published: 2026-08-24
 updated: 2026-09-01
