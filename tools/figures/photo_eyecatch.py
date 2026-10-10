@@ -1,16 +1,14 @@
-"""冷蔵庫記事の写真系アイキャッチ（1200x630 JPG）。記事ごとに別のベース写真を使う。
-python3 tools/figures/fridge_photo_eyecatch.py"""
+"""写真系アイキャッチ（1200x630 JPG）。記事ごとに別のベース写真 assets/<slug>-base.jpg を使う。
+設定は photo_eyecatch.json（slug: kicker, lines, band）。ベース写真が無い記事はスキップ。
+python3 tools/figures/photo_eyecatch.py [slug ...]"""
+import json, sys
 from pathlib import Path
 from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS = Path(__file__).parent / "assets"
 FONT = "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc"
 # slug: (kicker, title lines, band box (x0,y0,x1,y1) in 1200x630 output)
-ITEMS = {
-    "fridge-delivery-path-fit": ("冷蔵庫の搬入経路", ["通路80/90cm、", "通る？"], (0, 334, 420, 560)),
-    "fridge-install-clearance-outer-dims": ("冷蔵庫の設置スペース", ["奥行は足りる？"], (0, 480, 580, 630)),
-    "fridge-side-top-clearance-door-swing": ("冷蔵庫の設置スペース", ["左右・上のすき間は何mm？"], (0, 480, 720, 630)),
-}
+ITEMS = {k: (v["kicker"], v["lines"], tuple(v["band"])) for k, v in json.loads((Path(__file__).parent / "photo_eyecatch.json").read_text()).items()}
 W, H = 1200, 630
 def make(slug, kicker, lines, box):
     im = Image.open(ASSETS / f"{slug}-base.jpg").convert("RGB")
@@ -33,4 +31,7 @@ def make(slug, kicker, lines, box):
     d.text((W - 24, H - 16), "寸法帳", font=ImageFont.truetype(FONT, 22), fill=(90, 90, 90), anchor="rs")
     out = ROOT / "site/public/img" / f"{slug}-photo-eyecatch.jpg"
     im.convert("RGB").save(out, quality=88, optimize=True, progressive=True); print(out)
-for k, v in ITEMS.items(): make(k, *v)
+for k, v in ITEMS.items():
+    if sys.argv[1:] and k not in sys.argv[1:]: continue
+    if not (ASSETS / f"{k}-base.jpg").exists(): print("skip (no base):", k); continue
+    make(k, *v)

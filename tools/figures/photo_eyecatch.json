@@ -1,0 +1,5 @@
+{
+ "fridge-delivery-path-fit": {"kicker":"冷蔵庫の搬入経路","lines":["通路80/90cm、","通る？"],"band":[0,334,420,560]},
+ "fridge-install-clearance-outer-dims": {"kicker":"冷蔵庫の設置スペース","lines":["奥行は足りる？"],"band":[0,480,580,630]},
+ "fridge-side-top-clearance-door-swing": {"kicker":"冷蔵庫の設置スペース","lines":["左右・上のすき間は何mm？"],"band":[0,480,720,630]}
+}
