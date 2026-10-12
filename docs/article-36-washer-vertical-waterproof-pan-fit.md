@@ -64,7 +64,7 @@ PWP640N2W／740N2W の有効奥行 580、800N2W／900N2W は 546。参考値の�
 
 ## 5. アイキャッチ
 
-- ⚠️ **写真風アイキャッチは未作成（保留）。** このセッションには画像生成ツールが無かった
+- 写真風アイキャッチ作成済み（2026-10-12、ベース写真 `tools/figures/assets/washer-vertical-waterproof-pan-fit-base.jpg`。縦型洗濯機・640角防水パン・洗濯機用水栓・洗面化粧台の構図）。図版は本文の TOTO 表の直後へ移動
 - 暫定でアイキャッチは図版 `washer-vertical-waterproof-pan-fit-eyecatch.png`（figures.py・PowerPoint 版）。他記事の画像は使っていない
 - `tools/figures/photo_eyecatch.json` に設定（kicker／lines／band）は追加済み。**ベース写真 `tools/figures/assets/washer-vertical-waterproof-pan-fit-base.jpg` を置いて `python3 tools/figures/photo_eyecatch.py washer-vertical-waterproof-pan-fit` を回し、front matter の eyecatch を `-photo-eyecatch.jpg` に替え、図版は本文（TOTO の表の直後）へ移す**（eyecatch と同じ画像を本文に置くとビルドが落ちるため）
 - 写真の想定：日本の洗面所、白いビニールクロスの壁と巾木、床置きの白い防水パン（640角）、縦型洗濯機（ふた上面・操作パネル）、上部に水栓（洗濯機用水栓）、横に洗面化粧台。ドラム式記事の写真と別の構図にする
