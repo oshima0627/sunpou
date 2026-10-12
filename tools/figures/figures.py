@@ -1291,6 +1291,43 @@ def washer_drum_waterproof_pan_fit_eyecatch(f):
     f.footer("有効寸法はTOTOの参考値。洗濯機側の条件は奥行内寸500〜540mm以上。")
 
 
+WASHER_VERTICAL = [
+    # 製品, 外形 幅×奥行（mm）, 設置可能な防水パンの奥行内寸（条件, mm）
+    ("東芝 AW-10GM3", "外形 622×639", 570),
+    ("東芝 AW-12DPB6", "外形 637×649", 550),
+    ("シャープ ES-GV10L", "外形 600×597", 550),
+    ("Panasonic NA-FA12V6", "外形 637×694", 540),
+    ("シャープ ES-GE5K", "外形 565×540", 535),
+    ("日立 BW-X120M", "外形 640×650", 530),
+    ("シャープ ES-GE7K", "外形 565×538", 507),
+]
+
+
+def washer_vertical_waterproof_pan_fit_eyecatch(f):
+    """縦型の条件は507〜570mm。550・570の条件は、TOTO 800・900の有効奥行546mmに届かない。"""
+    f.header("縦型の条件は507〜570mm",
+             "4社の「設置可能な防水パン（奥行内寸）」と、TOTO 800・900の有効奥行546mm",
+             key="24", key_label="570mm条件に対する不足", key_unit="mm")
+
+    x0, sc, top, rh = 400, 6.0, 196, 48
+    mark = x0 + (546 - 480) * sc
+    ys = f.rows(len(WASHER_VERTICAL), top=top, rh=rh, highlight=0)
+    f.rect(mark, 186, 2, len(WASHER_VERTICAL) * rh + 8, WARN)
+    f.text(mark - 120, 162, 260, 20, "TOTO 800・900 有効奥行 546mm", 13, WARN, bold=True)
+    for (name, outer, depth), y in zip(WASHER_VERTICAL, ys):
+        hot = depth > 546
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 12, (depth - 480) * sc, 24, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 4, 320, 24, name, 16, INK, bold=True)
+        f.text(64, y + 27, 320, 18, outer, 12, MUTE)
+        lx = x0 + (depth - 480) * sc + 12
+        if lx < mark + 12 and lx + 80 > mark:
+            lx = mark + 12   # 546mmの線と数字が重ならないよう、線の右へ逃がす
+        f.text(lx, y + 10, 160, 28, f"{depth}mm", 16, NAVY, bold=True)
+
+    f.footer("有効寸法はTOTOの参考値。条件は各社の仕様ページ・カタログの公表値。")
+
+
 # ---------------------------------------------------------------- モニターアーム
 
 MONITOR = [
@@ -1382,6 +1419,7 @@ ORDER = [
     "fridge-delivery-path-fit-eyecatch",
     "fridge-side-top-clearance-door-swing-eyecatch",
     "washer-drum-waterproof-pan-fit-eyecatch",
+    "washer-vertical-waterproof-pan-fit-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
@@ -1433,6 +1471,7 @@ FIGURES = {
     "fridge-delivery-path-fit-eyecatch": fridge_delivery_path_fit_eyecatch,
     "fridge-side-top-clearance-door-swing-eyecatch": fridge_side_top_clearance_door_swing_eyecatch,
     "washer-drum-waterproof-pan-fit-eyecatch": washer_drum_waterproof_pan_fit_eyecatch,
+    "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,

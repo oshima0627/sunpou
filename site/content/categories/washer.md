@@ -1,6 +1,6 @@
 # 洗濯機を防水パンの寸法で選ぶ
 
-ドラム式洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは、各社が仕様欄に書く「奥行内寸○mm以上」と、壁からの距離で決まります。</strong>
+ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは、各社が仕様欄に書く「奥行内寸○mm以上」と、壁からの距離で決まります。</strong>
 
 <div class="topic-stack">
   <section class="topic">
@@ -12,6 +12,16 @@
       <li><strong>TOTOの洗濯機パンは、640・740の有効奥行580mmに対し、800・900は546mm。</strong> 540mm条件に対する余りは40mmと6mm</li>
     </ul>
     <a class="topic__cta" href="/washer/drum-waterproof-pan-fit/">防水パンの判定記事を読む</a>
+  </section>
+  <section class="topic">
+    <span class="topic__label">縦型</span>
+    <h2 class="topic__title">縦型の条件は奥行内寸507〜570mm以上、ドラム式より厳しい機種もある</h2>
+    <ul class="topic__points">
+      <li><strong>4社15機種の条件は奥行内寸507〜570mm以上。</strong> 日立は530、パナソニックは540、シャープは507〜550、東芝は510〜570</li>
+      <li><strong>大きい機種ほど厳しいとは限らない。</strong> 外形奥行694mmのNA-FA12V6は540以上、外形奥行639mmのAW-10GM3は570以上</li>
+      <li><strong>TOTOの800・900の有効奥行546mmには、550・570条件の3機種が届かない。</strong> 不足は4mmと24mm、640・740の580mmなら全機種が上回る</li>
+    </ul>
+    <a class="topic__cta" href="/washer/vertical-waterproof-pan-fit/">縦型の防水パン判定記事を読む</a>
   </section>
 </div>
 

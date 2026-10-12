@@ -447,5 +447,18 @@
    390,
    320
   ]
+ },
+ "washer-vertical-waterproof-pan-fit": {
+  "kicker": "縦型洗濯機の防水パン",
+  "lines": [
+   "奥行内寸",
+   "足りる？"
+  ],
+  "band": [
+   0,
+   110,
+   420,
+   320
+  ]
  }
 }
