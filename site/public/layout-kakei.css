@@ -37,3 +37,19 @@
     max-width: none;
   }
 }
+
+/* トップページだけ 家計の制度ログ のシェル寸法に揃える（2026-10-13）
+ * 家計: .l-wrap max-width 1440px・左右 padding 0.75rem(12px)・rail 180 / gap 30 / side 260。
+ * 記事ページには効かせない（.af-card--home はトップにのみ出る）。 */
+.l-wrap:has(.af-card--home) {
+  max-width: 1440px;
+  padding-left: .75rem;
+  padding-right: .75rem;
+  padding-top: 2.2rem;
+}
+body:has(.af-card--home) .site-header__inner,
+body:has(.af-card--home) .site-footer__inner {
+  max-width: 1440px;
+  padding-left: .75rem;
+  padding-right: .75rem;
+}
