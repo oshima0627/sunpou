@@ -53,3 +53,11 @@ body:has(.af-card--home) .site-footer__inner {
   padding-left: .75rem;
   padding-right: .75rem;
 }
+
+/* 左右レールは本文と一緒にスクロールさせる（追従・内部スクロールなし）2026-10-13 */
+.l-rail, .l-rail:not(:empty), .l-side, .af-rail {
+  position: static !important;
+  top: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
