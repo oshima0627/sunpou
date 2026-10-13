@@ -52,6 +52,15 @@ if (!code.includes(OLD_HOME_SIDE)) {
 }
 code = code.replace(OLD_HOME_SIDE, NEW_HOME_SIDE);
 
+// Homepage: kakei-style inline wide banner right after the hero (「広告」badge + 728x90).
+// Uses existing media 689246 HTML from content/links.json (moshimo-amazon, p_id 170 / pl 4153).
+const OLD_HOME_HERO = "`<h1>${esc(site.tagline)}</h1><p class=\"lead\">${esc(site.description)}</p>` +\n      categoryCards +";
+const NEW_HOME_HERO = "`<h1>${esc(site.tagline)}</h1><p class=\"lead\">${esc(site.description)}</p>` +\n      (site.affiliateEnabled && links['moshimo-amazon'] && links['moshimo-amazon'].bannerHtml\n        ? `<aside class=\"af-card af-card--wide af-card--home\"><p class=\"af-card__badge\">広告</p><div class=\"af-card__banner\">${links['moshimo-amazon'].bannerHtml}</div></aside>`\n        : '') +\n      categoryCards +";
+if (!code.includes(OLD_HOME_HERO)) {
+  throw new Error('build.mjs patch: homepage hero block not found');
+}
+code = code.replace(OLD_HOME_HERO, NEW_HOME_HERO);
+
 const OLD_CAT_LOOP = "for (const c of site.categories) {\n  const list = byRecent.filter((a) => a.category === c.slug);\n  const url = `${ORIGIN}/${c.slug}/`;\n  const catTrail = [{ path: '/', label: '\u30db\u30fc\u30e0' }, { label: c.name }];\n  const lead = readCategoryLead(c.slug);\n";
 const NEW_CAT_LOOP = "for (const c of site.categories) {\n  const list = byRecent.filter((a) => a.category === c.slug);\n  const url = `${ORIGIN}/${c.slug}/`;\n  const catTrail = [{ path: '/', label: '\u30db\u30fc\u30e0' }, { label: c.name }];\n  const lead = readCategoryLead(c.slug);\n  const catSideKeys = site.affiliateEnabled ? af.pickCategorySideKeys(c.slug) : [];\n  const catLeftKeys = site.affiliateEnabled ? af.pickCategoryLeftKeys(c.slug, catSideKeys) : [];\n  const catLeadHtml = lead && site.affiliateEnabled ? af.insertAdsBetweenH2s(lead, af.categoryAfPool(c.slug)) : lead;\n  const catLeadAd = '';\n  const catPr = (catLeadAd || catSideKeys.length || catLeftKeys.length)\n    ? `<p class=\"pr-notice\">${esc(site.prLabel)}</p>`\n    : '';\n";
 if (!code.includes(OLD_CAT_LOOP)) {
