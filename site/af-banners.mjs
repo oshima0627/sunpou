@@ -136,4 +136,41 @@ code = code.replace(OLD_BODY_EXPORT, NEW_BODY_EXPORT);
 const runPath = path.join(ROOT, '.af-banners.inflated.mjs');
 fs.writeFileSync(runPath, code);
 const mod = await import(pathToFileURL(runPath).href + '?t=' + Date.now());
-export const createAfHelpers = mod.createAfHelpers;
+// 左右レールは縦長（160x600 / 120x600 / 300x600）だけ。正方形・横長は既存の縦長に差し替える。
+// media 689246 の links.json にある縦長は legend-walker(63106) と gifteria-outdoor(86751) の2本のみ。
+const VERTICAL_RE = /width="(\d+)" height="(\d+)"/g;
+export function createAfHelpers(opts) {
+  const h = mod.createAfHelpers(opts);
+  const { links } = opts;
+  const isVertical = (k) => {
+    const html = links[k] && links[k].bannerHtmlSide;
+    if (!html) return false;
+    for (const m of html.matchAll(VERTICAL_RE)) {
+      const w = +m[1], hh = +m[2];
+      if (w > 1 && hh >= 600 && hh >= w * 1.9) return true;
+    }
+    return false;
+  };
+  const verticals = Object.keys(links).filter((k) => !k.startsWith('//') && isVertical(k));
+  const themed = (k) => {
+    const e = links[k] || {};
+    const cats = (e.categories || []).join(' ');
+    return /suitcase|cabin|travel|lduvin/.test(k + ' ' + cats) ? 'moshimo-legend-walker' : 'moshimo-gifteria-outdoor';
+  };
+  const norm = (keys, avoid) => (keys || []).map((x) => {
+    if (isVertical(x.key) && x.key !== avoid) return x;
+    let k = themed(x.key);
+    if (!verticals.includes(k) || k === avoid) k = verticals.find((v) => v !== avoid) || verticals[0];
+    return k ? { key: k, label: undefined } : null;
+  }).filter(Boolean);
+  const firstKey = (keys) => (keys && keys[0] ? keys[0].key : undefined);
+  return {
+    ...h,
+    sideAdsWidget: (sides) => h.sideAdsWidget(norm(sides)),
+    leftAdsWidget: (lefts) => h.leftAdsWidget(norm(lefts)),
+    pickCategorySideKeys: (c) => norm(h.pickCategorySideKeys(c)),
+    pickCategoryLeftKeys: (c, r = []) => { const nr = norm(r); return norm(h.pickCategoryLeftKeys(c, nr), firstKey(nr)); },
+    pickHomeSideKeys: () => norm(h.pickHomeSideKeys()),
+    pickHomeLeftKeys: (r = []) => { const nr = norm(r); return norm(h.pickHomeLeftKeys(nr), firstKey(nr)); },
+  };
+}
