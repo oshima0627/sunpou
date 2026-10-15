@@ -52,8 +52,9 @@
 
 ## 5. アイキャッチ
 
-- 図版 `washer-vertical-lid-open-height-eyecatch.png`（figures.py）を eyecatch に使用
-- 写真風アイキャッチ：この実行環境に GenerateImage（cursor 名前空間）が無く未作成。ベース写真と `-photo-eyecatch.jpg` は未配置
+- 写真風アイキャッチ作成済み（2026-10-15、ベース写真 `tools/figures/assets/washer-vertical-lid-open-height-base.jpg`。日本のマンション脱衣所・防水パン上の縦型洗濯機でフタ全開・上に棚の構図）。図版は本文の結論直後へ移動済み
+- 図版 `washer-vertical-lid-open-height-eyecatch.png`（figures.py）は本文に残置。他記事の画像は使っていない
+- `tools/figures/photo_eyecatch.json` に設定追加済み。front matter の eyecatch は `-photo-eyecatch.jpg`
 
 ## 6. 次の候補
 

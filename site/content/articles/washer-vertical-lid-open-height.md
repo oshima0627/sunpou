@@ -3,7 +3,7 @@ title: 縦型洗濯機のフタ開け時の高さは何mm？4社15機種は1132�
 description: 縦型（全自動）洗濯機のフタを全開にしたときの高さは、メーカー公表の寸法図で1132〜1529mm。閉じた状態の高さより242〜431mm高いです。パナソニック・日立・シャープ・東芝15機種の全開・折れ時・閉じた高さを横断します。
 slug: washer/vertical-lid-open-height
 category: washer
-eyecatch: /img/washer-vertical-lid-open-height-eyecatch.png
+eyecatch: /img/washer-vertical-lid-open-height-photo-eyecatch.jpg
 published: 2026-10-15
 updated: 2026-10-15
 faq: [{"q":"縦型洗濯機のフタを開けたときの高さは何mm？","a":"今回の4社15機種では、フタ全開時の高さは1132〜1529mmでした。いちばん高いのは東芝 AW-12DPB6 の1529mm、いちばん低いのはシャープ ES-GE5K の1132mmです。"},{"q":"カタログの高さだけでは吊戸棚との干渉は分からない？","a":"仕様表の高さは閉じた状態（給水ホース取付部を含む）が中心です。フタ全開時は閉じた高さより242〜431mm高くなります。吊戸棚・棚との干渉は寸法図の全開時・折れ時の数字で見てください。"}]
