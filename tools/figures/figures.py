@@ -1328,6 +1328,41 @@ def washer_vertical_waterproof_pan_fit_eyecatch(f):
     f.footer("有効寸法はTOTOの参考値。条件は各社の仕様ページ・カタログの公表値。")
 
 
+WASHER_LID_OPEN = [
+    # 製品, 閉じた高さ, フタ全開時
+    ("東芝 AW-12DPB6", 1098, 1529),
+    ("Panasonic NA-FA12V6", 1086, 1479),
+    ("東芝 AW-10DPB6", 1033, 1464),
+    ("日立 BW-X120M", 1077, 1379),
+    ("シャープ ES-SW11L", 1055, 1320),
+    ("日立 BW-G70M", 980, 1223),
+    ("シャープ ES-GE5K", 890, 1132),
+]
+
+
+def washer_vertical_lid_open_height_eyecatch(f):
+    """フタ全開時は1132〜1529mm。閉じた高さより242〜431mm高い。"""
+    f.header("フタ全開時は1132〜1529mm",
+             "閉じた高さより242〜431mm高い。4社の寸法図から",
+             key="431", key_label="閉じた高さとの最大差", key_unit="mm")
+
+    x0, sc, top, rh = 400, 0.55, 160, 58
+    base = 850
+    ys = f.rows(len(WASHER_LID_OPEN), top=top, rh=rh, highlight=0)
+    for (name, closed, full), y in zip(WASHER_LID_OPEN, ys):
+        hot = (full - closed) >= 400
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        # 薄い棒＝全開、濃い棒＝閉じ
+        f.bar(x0, y + 16, (full - base) * sc, 24, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.bar(x0, y + 16, (closed - base) * sc, 24, c1, c2, None, radius=0.3)
+        f.text(64, y + 6, 320, 22, name, 16, INK, bold=True)
+        f.text(64, y + 30, 320, 18, f"閉じ{closed} → 全開{full}", 12, MUTE)
+        f.text(x0 + (full - base) * sc + 12, y + 12, 160, 28, f"{full}mm", 16, NAVY, bold=True)
+
+    f.footer("濃い棒が閉じた高さ、薄い棒がフタ全開時。数字はメーカー寸法図の公表値。")
+
+
+
 # ---------------------------------------------------------------- モニターアーム
 
 MONITOR = [
@@ -1420,6 +1455,7 @@ ORDER = [
     "fridge-side-top-clearance-door-swing-eyecatch",
     "washer-drum-waterproof-pan-fit-eyecatch",
     "washer-vertical-waterproof-pan-fit-eyecatch",
+    "washer-vertical-lid-open-height-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
@@ -1472,6 +1508,7 @@ FIGURES = {
     "fridge-side-top-clearance-door-swing-eyecatch": fridge_side_top_clearance_door_swing_eyecatch,
     "washer-drum-waterproof-pan-fit-eyecatch": washer_drum_waterproof_pan_fit_eyecatch,
     "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
+    "washer-vertical-lid-open-height-eyecatch": washer_vertical_lid_open_height_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,

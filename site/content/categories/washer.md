@@ -1,6 +1,6 @@
-# 洗濯機を防水パンの寸法で選ぶ
+# 洗濯機を防水パンの寸法とフタの高さで選ぶ
 
-ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは、各社が仕様欄に書く「奥行内寸○mm以上」と、壁からの距離で決まります。</strong>
+ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さで決まります。</strong>
 
 <div class="topic-stack">
   <section class="topic">
@@ -23,6 +23,16 @@
     </ul>
     <a class="topic__cta" href="/washer/vertical-waterproof-pan-fit/">縦型の防水パン判定記事を読む</a>
   </section>
+  <section class="topic">
+    <span class="topic__label">上部クリアランス</span>
+    <h2 class="topic__title">フタ全開時は1132〜1529mm、閉じた高さより242〜431mm高い</h2>
+    <ul class="topic__points">
+      <li><strong>4社15機種のフタ全開時は1132〜1529mm。</strong> いちばん高いのは東芝 AW-12DPB6 の1529、いちばん低いのはシャープ ES-GE5K の1132</li>
+      <li><strong>閉じた高さとの差は242〜431mm。</strong> 東芝 AW-12DPB6・AW-10DPB6 が差431mmで最大</li>
+      <li><strong>折れ時は全開より56〜195mm低い。</strong> 仕様表の高さだけでは吊戸棚との干渉は分からない</li>
+    </ul>
+    <a class="topic__cta" href="/washer/vertical-lid-open-height/">フタ開け時の高さの記事を読む</a>
+  </section>
 </div>
 
-<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図の公表値と、そこからの当サイトの計算です。実際の防水パンへの実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。</p>
+<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図・寸法図の公表値と、そこからの当サイトの計算です。実際の防水パン・吊戸棚への実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。</p>
