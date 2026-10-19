@@ -3,7 +3,7 @@ title: ドラム式洗濯機のドアを全開にすると奥行は何mm？4社1
 description: ドラム式洗濯機のドアを開けたときの奥行は、メーカー公表の寸法図で973〜1259mm。仕様表の外形奥行より373〜520mm前に出ます。パナソニック・日立・シャープ・東芝12機種のドア開け時の奥行、ドアの大きさ、横への張り出し、開く向きを横断します。
 slug: washer/drum-door-open-front-space
 category: washer
-eyecatch: /img/washer-drum-door-open-front-space-eyecatch.png
+eyecatch: /img/washer-drum-door-open-front-space-photo-eyecatch.jpg
 published: 2026-10-19
 updated: 2026-10-19
 faq: [{"q":"ドラム式洗濯機のドアを全開にすると、前に何mm要る？","a":"今回の4社12機種では、背面からドアの先までの奥行（ドア開け時の奥行）は973〜1259mmでした。仕様表の外形奥行より373〜520mm前に出ます。いちばん長いのはシャープ ES-X12C の1259mm、いちばん短いのはシャープ ES-7S2 の973mmです。"},{"q":"背面の壁から洗面台や向かいの壁まで何mmあれば置ける？","a":"パナソニックは、ドアを全開にするにはLXシリーズで背面の壁面から1236mm以上、SDシリーズで1137mm以上としています。他社は寸法図のドア開け時の奥行を公表していて、壁からの必要距離としての数字は見当たりませんでした。"}]
