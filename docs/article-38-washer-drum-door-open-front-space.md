@@ -51,8 +51,10 @@
 
 ## 5. アイキャッチ
 
-- 図版 `washer-drum-door-open-front-space-eyecatch.png`（figures.py `washer_drum_door_open_front_space_eyecatch`）
-- 同じ PR で `figures.py` の行高を 58→56 に変更（脚注の罫線との重なり検査に記事37の図も掛かっていたため。記事37の図版 PNG も焼き直し）
+- 写真風アイキャッチ作成済み（2026-10-19、ベース写真 `tools/figures/assets/washer-drum-door-open-front-space-base.jpg`。日本のマンション脱衣所・防水パン上のドラム式洗濯機でドア全開の構図。ベース写真の Panasonic ロゴは塗り潰し済み）。図版は本文の結論直後へ移動済み
+- 図版 `washer-drum-door-open-front-space-eyecatch.png`（figures.py `washer_drum_door_open_front_space_eyecatch`）は本文に残置。他記事の画像は使っていない
+- `tools/figures/photo_eyecatch.json` に設定追加済み（記事38 PR 時点）。front matter の eyecatch は `-photo-eyecatch.jpg`
+- 同じ記事38 PR で `figures.py` の行高を 58→56 に変更（脚注の罫線との重なり検査に記事37の図も掛かっていたため。記事37の図版 PNG も焼き直し）
 
 ## 6. 次の候補
 
