@@ -1346,7 +1346,7 @@ def washer_vertical_lid_open_height_eyecatch(f):
              "閉じた高さより242〜431mm高い。4社の寸法図から",
              key="431", key_label="閉じた高さとの最大差", key_unit="mm")
 
-    x0, sc, top, rh = 400, 0.55, 160, 58
+    x0, sc, top, rh = 400, 0.55, 160, 56
     base = 850
     ys = f.rows(len(WASHER_LID_OPEN), top=top, rh=rh, highlight=0)
     for (name, closed, full), y in zip(WASHER_LID_OPEN, ys):
@@ -1360,6 +1360,41 @@ def washer_vertical_lid_open_height_eyecatch(f):
         f.text(x0 + (full - base) * sc + 12, y + 12, 160, 28, f"{full}mm", 16, NAVY, bold=True)
 
     f.footer("濃い棒が閉じた高さ、薄い棒がフタ全開時。数字はメーカー寸法図の公表値。")
+
+
+
+WASHER_DRUM_DOOR_OPEN = [
+    # 製品, 外形奥行, ドア開け時の奥行
+    ("シャープ ES-X12C", 739, 1259),
+    ("Panasonic NA-LX129FL", 732, 1226),
+    ("シャープ ES-12X2", 719, 1215),
+    ("東芝 TW-127XP5L", 720, 1175),
+    ("日立 BD-STX130M", 720, 1153),
+    ("東芝 TW-84GS5L", 633, 1111),
+    ("シャープ ES-7S2", 600, 973),
+]
+
+
+def washer_drum_door_open_front_space_eyecatch(f):
+    """ドア開け時の奥行は973〜1259mm。外形奥行より373〜520mm前に出る。"""
+    f.header("ドア開け時の奥行は973〜1259mm",
+             "外形奥行より373〜520mm前に出る。4社の寸法図から",
+             key="520", key_label="外形奥行との最大差", key_unit="mm")
+
+    x0, sc, top, rh = 400, 0.6, 160, 56
+    base = 500
+    ys = f.rows(len(WASHER_DRUM_DOOR_OPEN), top=top, rh=rh, highlight=0)
+    for (name, depth, opened), y in zip(WASHER_DRUM_DOOR_OPEN, ys):
+        hot = (opened - depth) >= 490
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        # 薄い棒＝ドア開け時、濃い棒＝外形奥行
+        f.bar(x0, y + 16, (opened - base) * sc, 24, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.bar(x0, y + 16, (depth - base) * sc, 24, c1, c2, None, radius=0.3)
+        f.text(64, y + 6, 320, 22, name, 16, INK, bold=True)
+        f.text(64, y + 30, 320, 18, f"外形{depth} → 開け時{opened}", 12, MUTE)
+        f.text(x0 + (opened - base) * sc + 12, y + 12, 160, 28, f"{opened}mm", 16, NAVY, bold=True)
+
+    f.footer("濃い棒が外形奥行、薄い棒がドア開け時の奥行。数字はメーカー寸法図の公表値。")
 
 
 
@@ -1456,6 +1491,7 @@ ORDER = [
     "washer-drum-waterproof-pan-fit-eyecatch",
     "washer-vertical-waterproof-pan-fit-eyecatch",
     "washer-vertical-lid-open-height-eyecatch",
+    "washer-drum-door-open-front-space-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
@@ -1509,6 +1545,7 @@ FIGURES = {
     "washer-drum-waterproof-pan-fit-eyecatch": washer_drum_waterproof_pan_fit_eyecatch,
     "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
     "washer-vertical-lid-open-height-eyecatch": washer_vertical_lid_open_height_eyecatch,
+    "washer-drum-door-open-front-space-eyecatch": washer_drum_door_open_front_space_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,
