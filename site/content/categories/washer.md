@@ -1,6 +1,6 @@
-# 洗濯機を防水パンの寸法とフタの高さで選ぶ
+# 洗濯機を防水パン・フタの高さ・ドアの前方スペースで選ぶ
 
-ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さで決まります。</strong>
+ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さ、ドラム式のドアが前の壁や洗面台に当たるかはドア開け時の奥行で決まります。</strong>
 
 <div class="topic-stack">
   <section class="topic">
@@ -33,6 +33,16 @@
     </ul>
     <a class="topic__cta" href="/washer/vertical-lid-open-height/">フタ開け時の高さの記事を読む</a>
   </section>
+  <section class="topic">
+    <span class="topic__label">前方スペース</span>
+    <h2 class="topic__title">ドラム式のドア開け時の奥行は973〜1259mm、外形奥行より373〜520mm前に出る</h2>
+    <ul class="topic__points">
+      <li><strong>4社12機種のドア開け時の奥行は973〜1259mm。</strong> いちばん長いのはシャープ ES-X12C の1259、いちばん短いのはシャープ ES-7S2 の973</li>
+      <li><strong>外形奥行との差は373〜520mm。</strong> 外形奥行600mmのシャープ2機種でも1110と973で違う</li>
+      <li><strong>パナソニックは背面の壁面からLXシリーズ1236mm以上、SDシリーズ1137mm以上。</strong> ドア開け時の奥行1226・1127より10mm長い</li>
+    </ul>
+    <a class="topic__cta" href="/washer/drum-door-open-front-space/">ドアの前方スペースの記事を読む</a>
+  </section>
 </div>
 
-<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図・寸法図の公表値と、そこからの当サイトの計算です。実際の防水パン・吊戸棚への実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。</p>
+<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図・寸法図の公表値と、そこからの当サイトの計算です。実際の防水パン・吊戸棚・洗面所の前方スペースへの実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。</p>
