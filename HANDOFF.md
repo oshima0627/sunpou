@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-10-12**（記事数と最新記事だけ更新。§2以降の測定・判断待ちは 2026-09-16 時点のまま。⚠️ **古い可能性が高い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-10-22**（記事数と最新記事を更新。§2以降の測定・判断待ちは 2026-09-16 時点のまま。⚠️ **古い可能性が高い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **37本**（クーラーボックス10／脚立・踏み台6／スーツケース6／カセットコンロ5／冷蔵庫3／洗濯機2／食洗機・カーテン・ベビーゲート・タイヤチェーン・モニターアーム 各1）。最新は **記事36 `/washer/vertical-waterproof-pan-fit/`（2026-10-12）** → `docs/article-36-washer-vertical-waterproof-pan-fit.md`。⚠️ **記事36の写真アイキャッチは未作成（図版で暫定）** |
+| 記事 | **40本**。洗濯機は5本。最新は **記事39 `/washer/lixil-panasonic-pan-inner-depth/`（2026-10-22）** → `docs/article-39-washer-lixil-panasonic-pan-inner-depth.md`。LIXIL各部寸法表の内寸奥行618mmとパナソニック590mm。⚠️ **記事39の写真アイキャッチは未作成**（図版で暫定。ベース写真の置き場は `tools/figures/assets/washer-lixil-panasonic-pan-inner-depth-base.jpg`） |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）
