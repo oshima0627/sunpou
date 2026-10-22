@@ -43,6 +43,16 @@
     </ul>
     <a class="topic__cta" href="/washer/drum-door-open-front-space/">ドアの前方スペースの記事を読む</a>
   </section>
+  <section class="topic">
+    <span class="topic__label">他社のパン</span>
+    <h2 class="topic__title">同じ640でも内寸奥行は618mmと590mm。900は560mmと590mm</h2>
+    <ul class="topic__points">
+      <li><strong>640・740の内寸奥行は、LIXILが618mm、パナソニックが590mm。</strong> 差は28mm</li>
+      <li><strong>800の内寸は両社とも744×584mm。</strong> 高さはLIXIL 82mm、パナソニック 55mm</li>
+      <li><strong>LIXIL 900の内寸奥行560mmは、570mm以上の条件に10mm足りない。</strong> パナソニック900の内寸奥行は590mm</li>
+    </ul>
+    <a class="topic__cta" href="/washer/lixil-panasonic-pan-inner-depth/">他社パンの内寸記事を読む</a>
+  </section>
 </div>
 
-<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図・寸法図の公表値と、そこからの当サイトの計算です。実際の防水パン・吊戸棚・洗面所の前方スペースへの実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。</p>
+<p class="note-muted">数字はすべてメーカー公式の仕様ページ・カタログ・施工図・寸法図の公表値と、そこからの当サイトの計算です。実際の防水パン・吊戸棚・洗面所の前方スペースへの実測適合ではありません。TOTOの有効寸法はTOTOが参考値としている数字です。LIXILとパナソニックの内寸は各社が内寸として公表した呼びで、洗濯機側の奥行内寸と同じ測り方かは未検証です。</p>

@@ -486,5 +486,18 @@
    420,
    320
   ]
+ },
+ "washer-lixil-panasonic-pan-inner-depth": {
+  "kicker": "洗濯機パンの内寸",
+  "lines": [
+   "640でも",
+   "618と590"
+  ],
+  "band": [
+   0,
+   110,
+   460,
+   340
+  ]
  }
 }

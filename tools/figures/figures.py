@@ -1397,6 +1397,38 @@ def washer_drum_door_open_front_space_eyecatch(f):
     f.footer("濃い棒が外形奥行、薄い棒がドア開け時の奥行。数字はメーカー寸法図の公表値。")
 
 
+WASHER_PAN_INNER = [
+    # 品番の短い呼び, 内寸奥行（mm）
+    ("LIXIL 640 PF-6464A", 618),
+    ("Panasonic 640 GB724", 590),
+    ("LIXIL 800 PF-8064A", 584),
+    ("Panasonic 800 GB73", 584),
+    ("LIXIL 900 PF-9064", 560),
+    ("Panasonic 900 GB731", 590),
+]
+
+
+def washer_lixil_panasonic_pan_inner_depth_eyecatch(f):
+    """同じ640でも内寸奥行は618mmと590mm。差は28mm。900のLIXILは560mm。"""
+    f.header("640の内寸奥行は28mm違う",
+             "LIXILは618mm、パナソニックは590mm。800は584mmで一致",
+             key="28", key_label="640同士の内寸奥行の差", key_unit="mm")
+
+    x0, sc, base = 430, 5.2, 540
+    top, rh = 186, 58
+    mark = x0 + (570 - base) * sc
+    ys = f.rows(len(WASHER_PAN_INNER), top=top, rh=rh, highlight=4)
+    f.rect(mark, 184, 2, len(WASHER_PAN_INNER) * rh + 8, WARN)
+    f.text(mark + 8, 164, 130, 18, "条件570mm", 13, WARN, bold=True)
+    for (name, depth), y in zip(WASHER_PAN_INNER, ys):
+        hot = depth in (618, 560)
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 16, (depth - base) * sc, 26, c1, c2, NAVY, 2, radius=0.3)
+        f.text(56, y + 14, 360, 28, name, 16, INK, bold=True)
+        f.text(860, y + 12, 160, 28, f"{depth}mm", 18, NAVY, bold=True)
+
+    f.footer("570mmの線は、奥行内寸570mm以上の条件です。")
+
 
 # ---------------------------------------------------------------- モニターアーム
 
@@ -1492,6 +1524,7 @@ ORDER = [
     "washer-vertical-waterproof-pan-fit-eyecatch",
     "washer-vertical-lid-open-height-eyecatch",
     "washer-drum-door-open-front-space-eyecatch",
+    "washer-lixil-panasonic-pan-inner-depth-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
     "donabe-ninzuu-eyecatch",
@@ -1546,6 +1579,7 @@ FIGURES = {
     "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
     "washer-vertical-lid-open-height-eyecatch": washer_vertical_lid_open_height_eyecatch,
     "washer-drum-door-open-front-space-eyecatch": washer_drum_door_open_front_space_eyecatch,
+    "washer-lixil-panasonic-pan-inner-depth-eyecatch": washer_lixil_panasonic_pan_inner_depth_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,
     "donabe-ninzuu-eyecatch": donabe_ninzuu_eyecatch,

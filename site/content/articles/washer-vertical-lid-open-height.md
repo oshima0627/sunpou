@@ -5,7 +5,7 @@ slug: washer/vertical-lid-open-height
 category: washer
 eyecatch: /img/washer-vertical-lid-open-height-photo-eyecatch.jpg
 published: 2026-10-15
-updated: 2026-10-15
+updated: 2026-10-22
 faq: [{"q":"縦型洗濯機のフタを開けたときの高さは何mm？","a":"今回の4社15機種では、フタ全開時の高さは1132〜1529mmでした。いちばん高いのは東芝 AW-12DPB6 の1529mm、いちばん低いのはシャープ ES-GE5K の1132mmです。"},{"q":"カタログの高さだけでは吊戸棚との干渉は分からない？","a":"仕様表の高さは閉じた状態（給水ホース取付部を含む）が中心です。フタ全開時は閉じた高さより242〜431mm高くなります。吊戸棚・棚との干渉は寸法図の全開時・折れ時の数字で見てください。"}]
 ---
 
@@ -144,7 +144,7 @@ lead: 全開1379。全開−閉じは302で、東芝12kgの431より小さい
 - **防水パンの奥行内寸・壁からの距離** — [縦型の防水パン条件](/washer/vertical-waterproof-pan-fit/)で扱っています
 - **ドラム式のドア全開に要る前方スペース** — [ドラム式のドア開け時の奥行](/washer/drum-door-open-front-space/)で扱っています
 - **かさ上げ台・洗濯パンの底厚を足した実寸** — 公表の床面基準の数字だけを並べています
-- **TOTO以外の防水パンの有効寸法** — 扱っていません
+- **TOTO以外の防水パンの内寸** — [LIXILとパナソニックの内寸](/washer/lixil-panasonic-pan-inner-depth/)で整理しています
 - **金額・取扱状況・工事費** — 扱いません
 
 ## 出典
