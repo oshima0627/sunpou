@@ -89,10 +89,9 @@ URL: `https://panasonic.jp/wash/check/option.html`
 
 ## 5. アイキャッチ
 
-- 図版 `washer-lixil-panasonic-pan-inner-depth-eyecatch.png`（figures.py）。他記事の画像は使っていない
-- 写真風は後追い。差し替え用ベースのパスは `tools/figures/assets/washer-lixil-panasonic-pan-inner-depth-base.jpg`（**ファイルはまだ無い**）
-- `tools/figures/photo_eyecatch.json` に kicker／lines／band を追加済み。ベースを置いて `python3 tools/figures/photo_eyecatch.py washer-lixil-panasonic-pan-inner-depth` を回し、front matter の eyecatch を `-photo-eyecatch.jpg` に替え、図版は本文へ移す（eyecatch と同じ画像を本文に置くとビルドが落ちる）
-- 写真の想定：日本の洗面所。床の白い640角防水パンを上から、立上りの内のりが見える構図。洗濯機はパンの外に少しずらすか、パン単体。既存の洗濯機アイキャッチ（本体正面・ドア全開）とは別の構図
+- 写真風アイキャッチ作成済み（2026-10-22、ベース写真 `tools/figures/assets/washer-lixil-panasonic-pan-inner-depth-base.jpg`。日本の洗面所・床の白い防水パン単体を斜め上から、立上りの内側が見える構図。ロゴなし）。front matter の eyecatch は `-photo-eyecatch.jpg`
+- 図版 `washer-lixil-panasonic-pan-inner-depth-eyecatch.png`（figures.py）は本文の結論直後へ移動済み。他記事の画像は使っていない
+- `tools/figures/photo_eyecatch.json` の kicker／lines／band は記事39 PR 時点の設定のまま
 
 ## 6. 次の候補
 

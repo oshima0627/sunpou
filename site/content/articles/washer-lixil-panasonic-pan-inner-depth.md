@@ -3,7 +3,7 @@ title: 同じ640の洗濯機パンでも内寸奥行は違う？LIXILは618mm、
 description: 洗濯機パンの640は外寸の呼び名です。LIXILの取付説明書では内寸奥行618mm、パナソニックの設置ページでは590mm。800は両社とも744×584mm、900は560mmと590mmです。奥行内寸540・550・570mm以上と突き合わせます。
 slug: washer/lixil-panasonic-pan-inner-depth
 category: washer
-eyecatch: /img/washer-lixil-panasonic-pan-inner-depth-eyecatch.png
+eyecatch: /img/washer-lixil-panasonic-pan-inner-depth-photo-eyecatch.jpg
 published: 2026-10-22
 updated: 2026-10-22
 faq: [{"q":"洗濯機パンの640は内寸も640mmですか？","a":"外寸の呼び名です。LIXILの取付説明書では内寸奥行618mm、パナソニックの設置ページでは内寸590×590mmでした。差は28mmです。"},{"q":"900の洗濯機パンのほうが奥行も広いですか？","a":"LIXILのPF-9064は外形幅900mmでも内寸奥行は560mmで、640サイズの618mmより58mm短いです。パナソニックのGB731は内寸奥行590mmで、同社の640サイズと同じでした。"}]
@@ -31,6 +31,8 @@ faq: [{"q":"洗濯機パンの640は内寸も640mmですか？","a":"外寸の�
 - **パナソニックは640・740・900の内寸奥行が590mmで、800だけ584mmです。** 640と800の差は **6mm**
 - **800だけ、内寸の幅も奥行も両社で同じ744×584mmです。** 高さは LIXIL 82mm、パナソニック 55mm で、差は **27mm**
 - **900の高さは LIXIL 82mm、パナソニック 50mm で、差は32mmです。** 内寸奥行はパナソニックのほうが **30mm** 深い
+
+![洗濯機パン640の内寸奥行はLIXIL 618mm、パナソニック590mm。同じ呼び名でも28mm違う](/img/washer-lixil-panasonic-pan-inner-depth-eyecatch.png)
 
 ## 冒頭で外すべき人／扱っていないこと
 
