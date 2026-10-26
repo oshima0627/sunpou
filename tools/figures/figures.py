@@ -1408,6 +1408,35 @@ WASHER_PAN_INNER = [
 ]
 
 
+WASHER_OPEN_FRONT = [
+    # 製品, 総外形高さ, 手前の高さ
+    ("東芝 AW-12DPB6", 1098, 891),
+    ("東芝 AW-9DPB6", 1033, 831),
+    ("東芝 AW-10DPB6", 1033, 826),
+]
+
+
+def washer_vertical_opening_height_eyecatch(f):
+    """手前の高さは826〜891mm。12kgより10kgが65mm低い。"""
+    f.header("手前の高さは826〜891mm",
+             "12kgより10kgが65mm低い。総外形との差は207mm",
+             key="65", key_label="12kgと10kgの差", key_unit="mm")
+
+    x0, sc, base = 430, 1.15, 780
+    top, rh = 186, 100
+    ys = f.rows(len(WASHER_OPEN_FRONT), top=top, rh=rh, highlight=2)
+    for (name, total, front), y in zip(WASHER_OPEN_FRONT, ys):
+        hot = front == 826
+        c1, c2 = (NAVY2, NAVY) if hot else (PALE2, PALE)
+        f.bar(x0, y + 28, (total - base) * sc, 28, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.bar(x0, y + 28, (front - base) * sc, 28, c1, c2, None, radius=0.3)
+        f.text(64, y + 16, 350, 26, name, 18, INK, bold=True)
+        f.text(64, y + 46, 350, 22, f"総外形{total}mm → 手前{front}mm", 14, MUTE)
+        f.text(x0 + (total - base) * sc + 12, y + 26, 140, 32, f"{front}mm", 20, NAVY, bold=True)
+
+    f.footer("濃い棒が手前の高さ、薄い棒が総外形高さ。差207mmは12kgと10kgで同じです。")
+
+
 def washer_lixil_panasonic_pan_inner_depth_eyecatch(f):
     """同じ640でも内寸奥行は618mmと590mm。差は28mm。900のLIXILは560mm。"""
     f.header("640の内寸奥行は28mm違う",
@@ -1524,6 +1553,7 @@ ORDER = [
     "washer-vertical-waterproof-pan-fit-eyecatch",
     "washer-vertical-lid-open-height-eyecatch",
     "washer-drum-door-open-front-space-eyecatch",
+    "washer-vertical-opening-height-eyecatch",
     "washer-lixil-panasonic-pan-inner-depth-eyecatch",
     "monitor-arm-desk-thickness-clamp-fit-eyecatch",
     "tire-chain-case-size-trunk-fit-eyecatch",
@@ -1579,6 +1609,7 @@ FIGURES = {
     "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
     "washer-vertical-lid-open-height-eyecatch": washer_vertical_lid_open_height_eyecatch,
     "washer-drum-door-open-front-space-eyecatch": washer_drum_door_open_front_space_eyecatch,
+    "washer-vertical-opening-height-eyecatch": washer_vertical_opening_height_eyecatch,
     "washer-lixil-panasonic-pan-inner-depth-eyecatch": washer_lixil_panasonic_pan_inner_depth_eyecatch,
     "monitor-arm-desk-thickness-clamp-fit-eyecatch": monitor_arm_desk_thickness_clamp_fit_eyecatch,
     "tire-chain-case-size-trunk-fit-eyecatch": tire_chain_case_size_trunk_fit_eyecatch,

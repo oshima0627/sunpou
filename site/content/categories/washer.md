@@ -34,6 +34,16 @@
     <a class="topic__cta" href="/washer/vertical-lid-open-height/">フタ開け時の高さの記事を読む</a>
   </section>
   <section class="topic">
+    <span class="topic__label">投入口</span>
+    <h2 class="topic__title">手前の高さは826〜891mm。12kgより10kgが65mm低い</h2>
+    <ul class="topic__points">
+      <li><strong>東芝7機種の手前の高さは826〜891mm。</strong> 総外形高さとの差は202〜207mm</li>
+      <li><strong>シャープ6機種の投入口高さは850〜893mm。</strong> 給水ホースを含む高さより149〜192mm低い</li>
+      <li><strong>投入口は円の口径ではない。</strong> パナソニック12kgは幅437×奥行340mm、東芝12kgは奥行357×幅441mm</li>
+    </ul>
+    <a class="topic__cta" href="/washer/vertical-opening-height/">投入口の高さの記事を読む</a>
+  </section>
+  <section class="topic">
     <span class="topic__label">前方スペース</span>
     <h2 class="topic__title">ドラム式のドア開け時の奥行は973〜1259mm、外形奥行より373〜520mm前に出る</h2>
     <ul class="topic__points">

@@ -499,5 +499,18 @@
    460,
    340
   ]
+ },
+ "washer-vertical-opening-height": {
+  "kicker": "縦型洗濯機の投入口",
+  "lines": [
+   "手前の高さ",
+   "は何mm？"
+  ],
+  "band": [
+   0,
+   110,
+   420,
+   320
+  ]
  }
 }

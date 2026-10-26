@@ -5,7 +5,7 @@ slug: washer/lixil-panasonic-pan-inner-depth
 category: washer
 eyecatch: /img/washer-lixil-panasonic-pan-inner-depth-photo-eyecatch.jpg
 published: 2026-10-22
-updated: 2026-10-22
+updated: 2026-10-25
 faq: [{"q":"洗濯機パンの640は内寸も640mmですか？","a":"外寸の呼び名です。LIXILの取付説明書では内寸奥行618mm、パナソニックの設置ページでは内寸590×590mmでした。差は28mmです。"},{"q":"900の洗濯機パンのほうが奥行も広いですか？","a":"LIXILのPF-9064は外形幅900mmでも内寸奥行は560mmで、640サイズの618mmより58mm短いです。パナソニックのGB731は内寸奥行590mmで、同社の640サイズと同じでした。"}]
 ---
 
@@ -178,6 +178,7 @@ lead: 900サイズの内寸奥行は590。幅の内寸は850
 - **サヌキなど、今回の2社以外の防水パン** — 内寸をこの回では確定していないため **未掲載**
 - **TOTOの洗濯機設置有効寸法** — [ドラム式](/washer/drum-waterproof-pan-fit/)と[縦型](/washer/vertical-waterproof-pan-fit/)の記事。参考値であり、この記事の内寸とは別の名前です
 - **フタを開けた高さ、ドラム式ドアの前方** — [フタ開け時の高さ](/washer/vertical-lid-open-height/)と[ドアの前方スペース](/washer/drum-door-open-front-space/)
+- **縦型の投入口の高さ** — [投入口の高さ](/washer/vertical-opening-height/)で扱っています
 - **金額・取扱状況・工事費** — 扱いません
 
 ## 出典

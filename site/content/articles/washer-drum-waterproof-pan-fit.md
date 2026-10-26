@@ -5,7 +5,7 @@ slug: washer/drum-waterproof-pan-fit
 category: washer
 eyecatch: /img/washer-drum-waterproof-pan-fit-photo-eyecatch.jpg
 published: 2026-10-08
-updated: 2026-10-22
+updated: 2026-10-25
 faq: [{"q":"ドラム式洗濯機は640の防水パンに置ける？","a":"奥行は、メーカー公表の条件（奥行内寸500〜540mm以上）に対し、TOTOの640サイズの有効奥行580mm（参考値）が上回ります。幅はパナソニックが幅内寸590mm以上を条件にしており、実測した内寸での確認が要ります。"},{"q":"防水パンの奥行内寸は何mm必要？","a":"今回の4社8機種では、パナソニック・日立・シャープが540mm以上、東芝 TW-127XP5Lが520mm以上、東芝 TW-84GS5Lが500mm以上でした。"}]
 ---
 
@@ -153,7 +153,7 @@ lead: 外形奥行739は今回最大。条件は540以上
 - **TOTO以外の防水パンの内寸** — [LIXILとパナソニックの内寸](/washer/lixil-panasonic-pan-inner-depth/)で整理しています。この記事の表はTOTOの施工図だけです
 - **日立・シャープの壁からの距離・幅の条件** — 仕様ページに数字がなく `未検証`
 - **排水口が真下にある場合の別売部品の選び方** — 各社の案内を参照してください
-- **縦型洗濯機の条件** — 扱っていません
+- **縦型洗濯機の条件** — [縦型の防水パン条件](/washer/vertical-waterproof-pan-fit/)で扱っています。投入口の高さは [別記事](/washer/vertical-opening-height/)です
 - **金額・取扱状況・工事費** — 扱いません
 
 ## 出典

@@ -5,7 +5,7 @@ slug: washer/vertical-waterproof-pan-fit
 category: washer
 eyecatch: /img/washer-vertical-waterproof-pan-fit-photo-eyecatch.jpg
 published: 2026-10-12
-updated: 2026-10-22
+updated: 2026-10-25
 faq: [{"q":"縦型洗濯機は防水パンの奥行内寸が何mmあれば置ける？","a":"今回の4社15機種では、奥行内寸の条件は507〜570mm以上でした。日立は確認した6機種とも530mm、パナソニックは540mm、シャープは507〜550mm、東芝は510〜570mmです。"},{"q":"縦型洗濯機は640の防水パンに置ける？","a":"奥行は、TOTOの640サイズの有効奥行580mm（参考値）が、今回の15機種の条件（最大570mm）をすべて上回ります。一方、TOTOの800・900サイズの有効奥行546mmは、550mm条件・570mm条件の3機種を数字の上で下回ります。幅や定義の違いは実測で確認が要ります。"}]
 ---
 
@@ -165,6 +165,7 @@ lead: 外形奥行540に対し、条件は535以上。差は5
 - **TOTO以外の防水パンの内寸** — [LIXILとパナソニックの内寸](/washer/lixil-panasonic-pan-inner-depth/)で整理しています。この記事の表はTOTOの施工図だけです
 - **日立・シャープの壁からの距離・幅の条件** — 仕様ページに数字がなく `未検証`
 - **ふたを開けたときの上方スペース** — [フタ開け時の高さ](/washer/vertical-lid-open-height/)で扱っています。排水口が真下にある場合の別売部品は各社の案内を参照してください
+- **投入口の高さ・開口の幅と奥行** — [投入口の高さ](/washer/vertical-opening-height/)で扱っています
 - **ドラム式の条件** — [別記事](/washer/drum-waterproof-pan-fit/)で扱っています
 - **金額・取扱状況・工事費** — 扱いません
 
