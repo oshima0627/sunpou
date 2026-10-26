@@ -97,7 +97,7 @@ size12.html の記号Nは「投入口高さ」。mmは寸法図画像で、テ�
 
 ## 5. アイキャッチ
 
-- 写真風アイキャッチは `tools/figures/assets/washer-vertical-opening-height-base.jpg` から `photo_eyecatch.py` で生成。操作パネル側は無地で潰してあり、他記事の写真は使っていない。front matter の eyecatch は `-photo-eyecatch.jpg`
+- 写真風アイキャッチは `tools/figures/assets/washer-vertical-opening-height-base.jpg` から `photo_eyecatch.py` で生成。AI生成の洗面所（白い縦型洗濯機・防水パン、ロゴなし）をベースにし、左上の無地部分にタイトル帯を載せる。他記事の写真は使っていない。front matter の eyecatch は `-photo-eyecatch.jpg`
 - 図版 `washer-vertical-opening-height-eyecatch.png`（figures.py）は本文の東芝の表の直後。他記事の画像は使っていない
 
 ## 6. 次の候補
