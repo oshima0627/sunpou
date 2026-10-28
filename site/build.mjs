@@ -195,6 +195,10 @@ if (!code.includes(OLD_SHARE_FN)) {
 code = code.replace(OLD_SHARE_FN, NEW_SHARE_FN);
 
 
+// 関連記事の埋め方（記事ページ・カテゴリページ）。related-links.mjs を参照。
+const { patchRelated } = await import('./related-links.mjs');
+code = patchRelated(code);
+
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());
