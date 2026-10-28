@@ -339,3 +339,6 @@ function embedRakutenWidgets() {
 }
 
 embedRakutenWidgets();
+
+// 画像の転送量を減らす後処理（一覧サムネの差し替え・ヒーローの fetchpriority）。
+await import('./img-cards.mjs');
