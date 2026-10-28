@@ -36,6 +36,53 @@ if (!code.includes(OLD_RENDER)) {
 }
 code = code.replace(OLD_RENDER, NEW_RENDER);
 
+// Amazon 直リンク（content/amazon-products.json）。
+// [[LINK:商品名]] の商品名がこの台帳にあれば https://www.amazon.co.jp/dp/<ASIN>?tag=<associateTag> へ、
+// なければ従来どおり検索結果ページへ。台帳に載せるのは、商品ページを開いて
+// 製品名・型番・サイズが記事の機種と一致したものだけ（確認日と Amazon 上の商品名を残す）。
+// links.json に置かないのは、links.json の全キーが「バナー」として扱われるため。
+const OLD_LINK_URL = "    const url = `https://www.amazon.co.jp/s?k=${encodeURIComponent(term)}&tag=${encodeURIComponent(site.associateTag)}`;\n";
+const NEW_LINK_URL =
+  "    const directAsin = AMAZON_PRODUCTS[term] && AMAZON_PRODUCTS[term].asin;\n" +
+  "    const url = directAsin\n" +
+  "      ? `https://www.amazon.co.jp/dp/${directAsin}?tag=${encodeURIComponent(site.associateTag)}`\n" +
+  "      : `https://www.amazon.co.jp/s?k=${encodeURIComponent(term)}&tag=${encodeURIComponent(site.associateTag)}`;\n";
+if (!code.includes(OLD_LINK_URL)) {
+  throw new Error('build.mjs patch: resolveLinks の Amazon URL 行が見つかりません');
+}
+code = code.replace(OLD_LINK_URL, NEW_LINK_URL);
+
+const OLD_RESOLVE_FN = "function resolveLinks(html) {\n";
+const NEW_RESOLVE_FN =
+  "const AMAZON_PRODUCTS = (() => {\n" +
+  "  const file = path.join(ROOT, 'content/amazon-products.json');\n" +
+  "  if (!fs.existsSync(file)) return {};\n" +
+  "  const raw = JSON.parse(fs.readFileSync(file, 'utf8'));\n" +
+  "  const out = {};\n" +
+  "  for (const [term, v] of Object.entries(raw)) {\n" +
+  "    if (term.startsWith('//')) continue;\n" +
+  "    if (!v || !/^B[0-9A-Z]{9}$|^[0-9]{9}[0-9X]$/.test(v.asin || '')) {\n" +
+  "      throw new Error(`content/amazon-products.json: 「${term}」の asin が不正です`);\n" +
+  "    }\n" +
+  "    out[term] = v;\n" +
+  "  }\n" +
+  "  return out;\n" +
+  "})();\n" +
+  "function resolveLinks(html) {\n";
+if (code.split(OLD_RESOLVE_FN).length !== 2) {
+  throw new Error('build.mjs patch: function resolveLinks が1つに定まりません');
+}
+code = code.replace(OLD_RESOLVE_FN, NEW_RESOLVE_FN);
+
+// front matter `afbody: none` の記事は、本文の H2 間バナー（機種と無関係な汎用バナー）を出さない。
+// 製品カード・判断CTA・左右レールは従来どおり。
+const OLD_AFPOOL = "  if (!afPool.length && site.affiliateEnabled) afPool = af.categoryAfPool(a.category);\n";
+const NEW_AFPOOL = OLD_AFPOOL + "  if (a.afbody === 'none') afPool = [];\n";
+if (code.split(OLD_AFPOOL).length !== 2) {
+  throw new Error('build.mjs patch: 本文バナープールの行が見つかりません');
+}
+code = code.replace(OLD_AFPOOL, NEW_AFPOOL);
+
 // Homepage left+right rails (media 689246). Ads only — no about/category widgets.
 const OLD_HOME_PRE = "// ---- トップページ\n\n// 各カテゴリの収益記事（front matter の pillar）。site.json のカテゴリ順に並べる。\nconst pillars = site.categories\n  .map((c) => articles.find((a) => a.category === c.slug && a.pillar))\n  .filter(Boolean);\n\nwriteFile(\n";
 const NEW_HOME_PRE = "// ---- トップページ\n\n// 各カテゴリの収益記事（front matter の pillar）。site.json のカテゴリ順に並べる。\nconst pillars = site.categories\n  .map((c) => articles.find((a) => a.category === c.slug && a.pillar))\n  .filter(Boolean);\n\nconst homeSideKeys = site.affiliateEnabled ? af.pickHomeSideKeys() : [];\nconst homeLeftKeys = site.affiliateEnabled ? af.pickHomeLeftKeys(homeSideKeys) : [];\nconst homeSideAdsHtml = af.sideAdsWidget(homeSideKeys);\nconst homeLeftAdsHtml = af.leftAdsWidget(homeLeftKeys);\n\nwriteFile(\n";

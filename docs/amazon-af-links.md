@@ -50,3 +50,13 @@ Associates（`tag=sunpou-22`）の検索・商品リンク（`amazon-*` と `[[L
 
 - 記事冒頭の PR 表記（`prLabel`）とフッターの Amazon 開示（`affiliateDisclosure`）は従来どおり。
 - サイドバー／左レールの公式バナーに「広告」バッジは付けない（静音）。本文の公式バナーも長文 CTA は付けない。
+
+## 商品ページへの直リンク（`content/amazon-products.json`）
+
+2026-10-28 追加。`[[LINK:商品名]]`（表セル・製品カード・本文）の商品名が `content/amazon-products.json` にあれば
+`https://www.amazon.co.jp/dp/<ASIN>?tag=sunpou-22`、なければ従来の検索結果 URL。`rel="nofollow sponsored noopener"` と文言は変わらない。
+
+- **載せる条件:** Amazon の商品ページを開き、製品名・型番・サイズ（バリエーション商品は `dimensionValuesDisplayData` 相当のサイズ/型の選択肢まで）が記事の機種と一致したものだけ。一致しない・確認できない機種は載せない（検索リンクのまま）。
+- **載せないもの:** 価格・在庫・セール。台帳の `amazonTitle` は照合の記録で、サイトには出さない。
+- **規約の根拠:** アソシエイト・プログラム・ポリシー（Special Links）— 商品の宣伝リンクは Amazon 側の当該商品の詳細ページへ直接つなぐ。検索結果ページは「商品リスト」扱いで、自前のオリジナルコンテンツを添える条件が付く。`tag`（XXXXX-##）を各リンクの URL に入れる。価格・在庫は Amazon が配信するリンク、または API で取得した場合以外は表示できない。
+- **本文バナー:** 記事の front matter に `afbody: none` を書くと、H2 間の汎用バナーを出さない（製品カード・判断 CTA・左右レールは従来どおり）。
