@@ -41,7 +41,7 @@ Cookie を無効にする設定は、お使いのブラウザから行えます�
 
 各サービスでの情報の取り扱いは、次の各社のページをご確認ください。
 
-- **Amazon**：当サイトの広告リンクは Amazon の検索結果ページへのリンクで、クリックすると Amazon.co.jp に移動します。移動先での取り扱いは [Amazon.co.jp のプライバシー規約](https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=201909010)をご確認ください
+- **Amazon**：当サイトの広告リンクは Amazon の商品ページまたは検索結果ページへのリンクで、クリックすると Amazon.co.jp に移動します。移動先での取り扱いは [Amazon.co.jp のプライバシー規約](https://www.amazon.co.jp/gp/help/customer/display.html?nodeId=201909010)をご確認ください
 - **もしもアフィリエイト**：[株式会社もしも プライバシーポリシー](https://www.moshimo.co.jp/company/privacy)（同社は Cookie・Web ビーコン・アクセスログを、広告効果の分析などに利用すると説明しています）
 - **楽天アフィリエイト**：[楽天グループ 個人情報保護方針](https://privacy.rakuten.co.jp/)（Cookie 等から取得する情報と、その広告配信・成果確認での利用が説明されています）
 
