@@ -3,6 +3,7 @@ title: クーラーボックスは中身を入れると何kgになる？ 80Lは�
 description: メーカーが公表しているのは空のときの自重だけです。公表容量に水の密度をかけて足すと、80Lは91.0kg、20Lでも21.5〜26.2kg。自重が軽い製品を選んでも満載では逆転します。メーカー公式18製品の公表値から計算しました。
 slug: coolerbox/omosa
 category: coolerbox
+afbody: none
 eyecatch: /img/coolerbox-omosa-photo-eyecatch.jpg
 published: 2026-09-01
 updated: 2026-09-01
@@ -77,7 +78,7 @@ lead: 公表容量80L。空で11.0kg、満載の上限は91.0kg
 | コールマン エクストリームホイールクーラー/62QT [[LINK:コールマン エクストリームホイールクーラー 62QT::Amazonで見る]] | 約58L | 約6.3kg | **64.3kg** | 160.8kg |
 | コールマン エクストリームホイールクーラー/85QT [[LINK:コールマン エクストリームホイールクーラー 85QT::Amazonで見る]] | 約81L | 約7.9kg | **88.9kg** | 222.3kg |
 | ダイワ トランクマスターHD III 8000（S8000） [[LINK:ダイワ トランクマスターHD III 8000::Amazonで見る]] | 80L | 11.0kg | **91.0kg** | 227.5kg |
-| ダイワ トランクマスターHD III 8000（VSS8000） [[LINK:ダイワ トランクマスターHD III 8000::Amazonで見る]] | 80L | 13.2kg | **93.2kg** | 233.0kg |
+| ダイワ トランクマスターHD III 8000（VSS8000） [[LINK:ダイワ トランクマスターHD III VSS8000::Amazonで見る]] | 80L | 13.2kg | **93.2kg** | 233.0kg |
 
 「一人で持つのに要る体重」の出し方は後半で説明します。
 
