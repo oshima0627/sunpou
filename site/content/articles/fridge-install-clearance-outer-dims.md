@@ -196,6 +196,7 @@ lead: 据付ギャップ0。ドア1088より引出1198が深い
 
 - [冷蔵庫の搬入幅・通路判定（奥行から余りを計算）](/fridge/delivery-path-fit/)
 - [冷蔵庫の設置スペース左右・上方あきと扉の横張り出し](/fridge/side-top-clearance-door-swing/)
+- [冷蔵庫の置き場所は幅700mm・奥行650mmに入る？（型番の判定）](/fridge/niche-width-depth-fit/)
 
 ## この記事で扱っていないこと
 

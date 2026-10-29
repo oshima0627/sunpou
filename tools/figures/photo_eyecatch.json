@@ -1,4 +1,17 @@
 {
+ "fridge-niche-width-depth-fit": {
+  "kicker": "冷蔵庫の置き場所",
+  "lines": [
+   "幅と奥行の上限で",
+   "入る型番"
+  ],
+  "band": [
+   0,
+   400,
+   560,
+   610
+  ]
+ },
  "fridge-delivery-path-fit": {
   "kicker": "冷蔵庫の搬入経路",
   "lines": [

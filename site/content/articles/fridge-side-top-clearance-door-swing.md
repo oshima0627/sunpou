@@ -156,6 +156,7 @@ lead: 幅685で最小695。扉の右側は269mm
 
 - [冷蔵庫の搬入幅・通路判定（奥行から余りを計算）](/fridge/delivery-path-fit/)
 - [冷蔵庫の設置スペース奥行（据付必要奥行・ドア開放）](/fridge/install-clearance-outer-dims/)
+- [冷蔵庫の置き場所は幅700mm・奥行650mmに入る？（型番の判定）](/fridge/niche-width-depth-fit/)
 
 ## この記事で扱っていないこと
 

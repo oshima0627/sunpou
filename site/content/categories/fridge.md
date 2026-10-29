@@ -1,8 +1,18 @@
 # 冷蔵庫を搬入幅・設置スペースの寸法で選ぶ
 
-通販ページでは容量Lや幅クラスが中心ですが、<strong>玄関・廊下の想定通路に本体奥行が通るか、設置後の据付必要奥行・ドア開放最大奥行、左右・上方のあきと扉の横張り出しは、カタログの容量欄には並んでいません。</strong>
+通販ページでは容量Lや幅クラスが中心ですが、<strong>置き場所の有効幅・有効奥行の上限に入る型番、玄関・廊下の想定通路に本体奥行が通るか、設置後の据付必要奥行・ドア開放最大奥行、左右・上方のあきと扉の横張り出しは、カタログの容量欄には並んでいません。</strong>
 
 <div class="topic-stack">
+  <section class="topic">
+    <span class="topic__label">置き場所の上限</span>
+    <h2 class="topic__title">有効幅700mm・有効奥行650mmに入る型番を、最小設置寸法で分ける</h2>
+    <ul class="topic__points">
+      <li><strong>幅700mmかつ奥行650mmに入るのは2機種。</strong> NR-C37WS2は最小幅610mm・据付奥行600mm、SJ-MF51Rは695mm・637mm</li>
+      <li><strong>余裕10mmを幅に足すと、同じ上限に入るのは1機種。</strong> 695mmクラスの余裕込み幅は705mmで、700mmを5mm超える</li>
+      <li><strong>本体幅650mmの最小設置幅は660mm。</strong> 有効幅650mmには入らず、日立の据付奥行699mmは奥行650mmを49mm超える</li>
+    </ul>
+    <a class="topic__cta" href="/fridge/niche-width-depth-fit/">幅・奥行の上限で型番を判定する記事を読む</a>
+  </section>
   <section class="topic">
     <span class="topic__label">搬入経路</span>
     <h2 class="topic__title">公表の本体奥行を、想定通路80cm／90cmに当てる</h2>
