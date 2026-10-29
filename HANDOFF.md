@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-10-25**（記事40を追加。§2以降の測定・判断待ちは 2026-09-16 時点のまま。⚠️ **古い可能性が高い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-10-29**（記事41を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **41本**。洗濯機は6本。最新は **記事40 `/washer/vertical-opening-height/`（2026-10-25）** → `docs/article-40-washer-vertical-opening-height.md`。東芝の手前の高さ826〜891mm（12kgより10kgが65mm低い）。シャープの投入口高さ850〜893mm。円の口径は未公表。⚠️ パナソニック記号Nのmmと、シャープES-GE7K等の投入口高さは未掲載。写真のベースは `tools/figures/assets/washer-vertical-opening-height-base.jpg` |
+| 記事 | **42本**。最新は **記事41 `/fridge/niche-width-depth-fit/`（2026-10-29）** → `docs/article-41-fridge-niche-width-depth-fit.md`。有効幅700mm×有効奥行650mmに最小設置寸法で入るのは2機種（NR-C37WS2 と SJ-MF51R）。幅へ10mmの余裕を足すと1機種。Amazon直リンクは確認できた左開き NR-C37WS2L-K（B0FR8ZC34P）だけ。写真のベースは `tools/figures/assets/fridge-niche-width-depth-fit-base.jpg`。直前は記事40 `/washer/vertical-opening-height/` |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）
@@ -398,7 +398,8 @@ cd site && npm run build    # dist/ に出力
 | `docs/article-21-donabe-ninzuu.md` | 記事21（2026-09-07）。銀峯陶器18製品の取り方／検算33件／他社が取れなかった記録 |
 | `docs/article-22-airline-fit-outer-dims.md` | 記事22（2026-09-15）。航空6社の規定と製品5つの外寸／○×の再計算 |
 | `docs/article-23-liter-nanpaku.md` | 記事23（2026-09-16）。6社の容量↔泊数の出典と原文／取れなかった社／`/article-check` の記録（ace の HTML コメントの罠） |
-| **`docs/article-40-washer-vertical-opening-height.md`** | **最新の記事（2026-10-25）。** 東芝の手前の高さ、シャープの投入口高さ、日立の約cm、パナソニックの幅×奥行。検算は `tools/check-article-40.py` |
+| **`docs/article-41-fridge-niche-width-depth-fit.md`** | **最新の記事（2026-10-29）。** 有効幅・有効奥行の上限に入る冷蔵庫11機種。検算は `tools/check-article-41.py` |
+| `docs/article-40-washer-vertical-opening-height.md` | 記事40（2026-10-25）。東芝の手前の高さ、シャープの投入口高さ |
 | `docs/x-drafts.txt` | Xの投稿下書き（投稿済み／未投稿） |
 | `site/README.md` | サイトの実装。デザインの実測値・設定の理由・罠 |
 | `specs/article-contract.md` | **完了基準（二値）。1件でも不合格なら公開しない** |

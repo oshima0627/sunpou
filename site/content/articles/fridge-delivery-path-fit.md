@@ -163,6 +163,7 @@ lead: 奥行738mm。想定通路800mmなら余り62mm
 
 - [冷蔵庫の設置スペース奥行（据付必要奥行・ドア開放）](/fridge/install-clearance-outer-dims/)
 - [冷蔵庫の設置スペース左右・上方あきと扉の横張り出し](/fridge/side-top-clearance-door-swing/)
+- [冷蔵庫の置き場所は幅700mm・奥行650mmに入る？（型番の判定）](/fridge/niche-width-depth-fit/)
 
 ## この記事で扱っていないこと
 
