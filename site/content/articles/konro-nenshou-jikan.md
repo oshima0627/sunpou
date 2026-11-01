@@ -4,6 +4,7 @@ description: イワタニは機種ごとにガス消費量と連続燃焼時間�
 slug: cassette-konro/nenshou-jikan
 category: cassette-konro
 afbody: none
+bounty: outdoor
 eyecatch: /img/konro-nenshou-jikan-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-09-01

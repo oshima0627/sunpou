@@ -4,6 +4,7 @@ description: カセットボンベの備蓄目安「1人1週間で約6本」（�
 slug: cassette-konro/bombe-honsuu
 category: cassette-konro
 afbody: none
+bounty: outdoor
 eyecatch: /img/konro-bombe-honsuu-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-10-06

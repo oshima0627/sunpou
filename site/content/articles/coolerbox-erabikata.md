@@ -4,6 +4,7 @@ description: 2Lが立つのは33製品中9つ。しかも6つはコールマン�
 slug: coolerbox/erabikata
 category: coolerbox
 afbody: none
+bounty: outdoor
 eyecatch: /img/coolerbox-erabikata-photo-eyecatch.jpg
 pillar: true
 published: 2026-08-25

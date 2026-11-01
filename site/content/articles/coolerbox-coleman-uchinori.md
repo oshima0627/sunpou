@@ -4,6 +4,7 @@ description: エクストリームクーラー28QT（約26L）の内寸の深さ
 slug: coolerbox/coleman-uchinori
 category: coolerbox
 afbody: none
+bounty: outdoor
 eyecatch: /img/coolerbox-coleman-uchinori-photo-eyecatch.jpg
 published: 2026-08-25
 updated: 2026-09-01

@@ -4,6 +4,7 @@ description: 同じ20Lでも15本と18本。メーカー公式の内寸から、
 slug: coolerbox/500ml-honsuu
 category: coolerbox
 afbody: none
+bounty: outdoor
 eyecatch: /img/coolerbox-500ml-honsuu-photo-eyecatch.jpg
 published: 2026-08-24
 updated: 2026-09-01

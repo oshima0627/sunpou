@@ -865,3 +865,30 @@ figure.eyecatch { margin-inline: 0; }
   display: inline-block;
   font-size: 1.05rem;
 }
+
+/* Amazon 紹介プログラムの文字ブロック（front matter `bounty:`）。バナーではなく、
+ * 判断CTA（.decision-cta）と同じ控えめな枠。リンクは既存の .buy をそのまま使う。 */
+.bounty {
+  margin: 1.25rem 0;
+  padding: .85rem 1rem;
+  border: 1px solid var(--line);
+  border-left: 4px solid #f6c344;
+  border-radius: 8px;
+  background: var(--surface);
+}
+.post .bounty__badge {
+  display: inline-block;
+  margin: 0 0 .35rem;
+  padding: 0 .4em;
+  border: 1px solid #c9992c;
+  border-radius: 3px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #7a4a00;
+  line-height: 1.6;
+}
+.post .bounty__title { margin: 0 0 .3rem; font-weight: 700; color: #2b1a00; }
+.post .bounty__lead { margin: 0 0 .5rem; font-size: .95rem; }
+.post .bounty__links { margin: 0; display: flex; flex-wrap: wrap; gap: .4rem .5rem; align-items: center; }
+.bounty__note { font-size: .85rem; color: var(--muted-on-surface); }

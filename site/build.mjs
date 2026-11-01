@@ -246,6 +246,10 @@ code = code.replace(OLD_SHARE_FN, NEW_SHARE_FN);
 const { patchRelated } = await import('./related-links.mjs');
 code = patchRelated(code);
 
+// Amazon 紹介プログラム（Audible / Music Unlimited）の文字ブロック。front matter `bounty:`。bounty-blocks.mjs を参照。
+const { patchBounty } = await import('./bounty-blocks.mjs');
+code = patchBounty(code);
+
 const runPath = path.join(ROOT, '.build.stitched.mjs');
 fs.writeFileSync(runPath, code);
 await import(pathToFileURL(runPath).href + '?t=' + Date.now());
