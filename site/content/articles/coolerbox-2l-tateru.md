@@ -4,6 +4,7 @@ description: 2Lの全高は305〜306mm。10〜25Lのクーラーボックスで�
 slug: coolerbox/2l-tateru
 category: coolerbox
 afbody: none
+bounty: outdoor
 eyecatch: /img/coolerbox-2l-tateru-photo-eyecatch.jpg
 published: 2026-08-24
 updated: 2026-09-01

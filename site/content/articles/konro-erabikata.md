@@ -4,6 +4,7 @@ description: カセットコンロの「9号まで」は号数目安で寸法で
 slug: cassette-konro/erabikata
 category: cassette-konro
 afbody: none
+bounty: outdoor
 eyecatch: /img/konro-erabikata-photo-eyecatch.jpg
 pillar: true
 published: 2026-08-29

@@ -4,6 +4,7 @@ description: 土鍋の号数が決めているのは口径だけです。銀峯�
 slug: cassette-konro/donabe-ninzuu
 category: cassette-konro
 afbody: none
+bounty: outdoor
 eyecatch: /img/konro-donabe-ninzuu-photo-eyecatch.jpg
 published: 2026-09-07
 updated: 2026-10-06
