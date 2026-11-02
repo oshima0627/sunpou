@@ -1537,6 +1537,40 @@ def tire_chain_case_size_trunk_fit_eyecatch(f):
     f.footer("ヤリス公表荷室（長630×幅1,000×高692）には S／M／Lいずれも1ケースは収まります。")
 
 
+DEPTH_BARS = [
+    # 名前, 種類, 閉めた外形奥行, 上限700mm以下か
+    ("ES-GE7K", "縦型", 538, True),
+    ("ES-7S2", "ドラム", 600, True),
+    ("TW-84GS5L", "ドラム", 633, True),
+    ("NA-SD10UBL", "ドラム", 650, True),
+    ("NA-FA12V6", "縦型", 694, True),
+    ("BD-SV120M", "ドラム", 716, False),
+    ("ES-X12C", "ドラム", 739, False),
+]
+
+
+def washer_outer_depth_limit_fit_eyecatch(f):
+    """閉めた外形奥行が700mm以下のドラムは5機種。716mmから先は外れる。"""
+    f.header("700mm以下のドラムは5機種",
+             "閉めた外形奥行。716mmから先は外れる",
+             key="5", key_label="700mm以下", key_unit="機種")
+
+    x0, sc, top, rh = 420, 1.85, 188, 50
+    mark = x0 + (700 - 500) * sc
+    ys = f.rows(len(DEPTH_BARS), top=top, rh=rh, highlight=1)
+    f.rect(mark, top - 4, 2, len(DEPTH_BARS) * rh - 6, WARN)
+    f.text(mark - 8, top - 22, 130, 16, "上限700mm", 12, WARN, bold=True)
+    for (name, kind, depth, ok), y in zip(DEPTH_BARS, ys):
+        c1, c2 = (NAVY2, NAVY) if ok else (PALE2, PALE)
+        bw = (depth - 500) * sc
+        f.bar(x0, y + 16, max(bw, 8), 18, c1, c2, NAVY, 2, radius=0.3)
+        f.text(58, y + 2, 350, 22, name, 15, INK, bold=True)
+        tail = f"{kind} {depth}mm" if ok else f"{kind} {depth}mm 出る"
+        f.text(58, y + 24, 350, 18, tail, 13, MUTE)
+
+    f.footer("棒は閉めた外形奥行です。ドアを開けた長さは入れていません。")
+
+
 NICHE_FIT = [
     # 製品, 最小設置幅, 据付必要奥行, 幅700mmかつ奥行650mmの判定
     ("NR-C37WS2", 610, 600, "入る"),
@@ -1583,6 +1617,7 @@ ORDER = [
     "fridge-delivery-path-fit-eyecatch",
     "fridge-side-top-clearance-door-swing-eyecatch",
     "fridge-niche-width-depth-fit-eyecatch",
+    "washer-outer-depth-limit-fit-eyecatch",
     "washer-drum-waterproof-pan-fit-eyecatch",
     "washer-vertical-waterproof-pan-fit-eyecatch",
     "washer-vertical-lid-open-height-eyecatch",
@@ -1640,6 +1675,7 @@ FIGURES = {
     "fridge-delivery-path-fit-eyecatch": fridge_delivery_path_fit_eyecatch,
     "fridge-side-top-clearance-door-swing-eyecatch": fridge_side_top_clearance_door_swing_eyecatch,
     "fridge-niche-width-depth-fit-eyecatch": fridge_niche_width_depth_fit_eyecatch,
+    "washer-outer-depth-limit-fit-eyecatch": washer_outer_depth_limit_fit_eyecatch,
     "washer-drum-waterproof-pan-fit-eyecatch": washer_drum_waterproof_pan_fit_eyecatch,
     "washer-vertical-waterproof-pan-fit-eyecatch": washer_vertical_waterproof_pan_fit_eyecatch,
     "washer-vertical-lid-open-height-eyecatch": washer_vertical_lid_open_height_eyecatch,

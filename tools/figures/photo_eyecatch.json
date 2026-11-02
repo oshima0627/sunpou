@@ -1,4 +1,17 @@
 {
+ "washer-outer-depth-limit-fit": {
+  "kicker": "洗濯機の奥行",
+  "lines": [
+   "上限700mmに",
+   "入るドラムは5機種"
+  ],
+  "band": [
+   0,
+   400,
+   520,
+   610
+  ]
+ },
  "fridge-niche-width-depth-fit": {
   "kicker": "冷蔵庫の置き場所",
   "lines": [

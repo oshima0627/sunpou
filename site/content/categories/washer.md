@@ -1,8 +1,18 @@
 # 洗濯機を防水パン・フタの高さ・ドアの前方スペースで選ぶ
 
-ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さ、ドラム式のドアが前の壁や洗面台に当たるかはドア開け時の奥行で決まります。</strong>
+ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>置き場の内のりに収まるかは閉めた外形奥行、家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さ、ドラム式のドアが前の壁や洗面台に当たるかはドア開け時の奥行で決まります。</strong>
 
 <div class="topic-stack">
+  <section class="topic">
+    <span class="topic__label">外形奥行</span>
+    <h2 class="topic__title">上限600・650・700mmに入るドラムは5機種。716mmから先は外れる</h2>
+    <ul class="topic__points">
+      <li><strong>ドラム9機種で上限700mm以下なのは5機種。</strong> 600mmが2機種、633mmが1機種、650mmが2機種</li>
+      <li><strong>上限600mmの余りは、2機種とも0mm。</strong> シャープ ES-7S2 と ES-8L2</li>
+      <li><strong>縦型でいちばん深い694mmは、700mmに6mm余る。</strong> 日立 BD-SV120M の716mmは16mm出る</li>
+    </ul>
+    <a class="topic__cta" href="/washer/outer-depth-limit-fit/">外形奥行の上限で型番を分ける記事を読む</a>
+  </section>
   <section class="topic">
     <span class="topic__label">防水パン</span>
     <h2 class="topic__title">ドラム式の条件は奥行内寸500〜540mm以上、外形奥行は633〜739mm</h2>
