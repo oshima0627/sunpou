@@ -17,6 +17,7 @@
 | 2026-10-28 | D. Amazonリンクの直リンク化とバナー削減（実験）: 型番・サイズを商品ページで確認できた機種だけ `https://www.amazon.co.jp/dp/<ASIN>?tag=sunpou-22` に切替（台帳 `site/content/amazon-products.json`）。本文の汎用バナー（機種と無関係）を2カテゴリ15記事で廃止。詳細は §4-1 | `/cassette-konro/*` 5記事、`/coolerbox/*` 10記事（about / privacy の文言も実態に合わせて修正） | #56 `2dccfb1`、#57 `c43e6c1` |
 | 2026-10-29 | E. 記事41を追加: 冷蔵庫の置き場所を有効幅650/700/760mm・有効奥行650/710/760mmの上限で判定。11機種の最小設置幅と据付必要奥行。幅700mm×奥行650mmは2機種、幅の余裕10mmを足すと1機種。Amazon直リンクは確認できた NR-C37WS2L-K（B0FR8ZC34P）のみ。他機種は未掲載 | `/fridge/niche-width-depth-fit/` と冷蔵庫カテゴリ、既存冷蔵庫3記事からの内部リンク | #59 |
 | 2026-11-02 | F. Amazon紹介プログラム（バウンティ）の文字ブロックを追加: Audible / Amazon Music Unlimited への公式形式リンク（tag=sunpou-22）を、本文末（判断CTAの後・シェアと関連記事の前）に「PR」表記つきで1つ。バナーではない（`afbody: none` は維持）。front matter `bounty: outdoor` で出し分け、定義は `site/bounty-blocks.mjs`。体験期間・価格・キャンペーン条件は書かない（「詳しくは公式ページで」） | `/cassette-konro/*` 5記事、`/coolerbox/*` 10記事（計15） | #60 |
+| 2026-11-02 | G. 記事42を追加: 洗濯機の閉めた外形奥行を上限600／650／700mmで判定。18機種。ドラムで700mm以下は5機種、600mm以下は2機種（余り0）。716mmの BD-SV120M は16mm出る。Amazon直リンクは確認できた NA-SD10UBL-W（B0FN766CTN）のみ。他機種は未掲載 | `/washer/outer-depth-limit-fit/` と洗濯機カテゴリ、既存洗濯機3記事からの内部リンク | #61 |
 | （追記） | | | |
 
 ## 2. ベースライン（変更前）
