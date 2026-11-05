@@ -1604,7 +1604,38 @@ def fridge_niche_width_depth_fit_eyecatch(f):
     f.footer("棒は据付必要奥行。幅700mmを超える機種は、奥行が足りても外れます。")
 
 
+MAT_BARS = [
+    # 製品, 幅80cmの多い向きの枚数, 定員の下限に届く向きがあるか
+    ("T2-629", 1, False),
+    ("T3-673", 2, False),
+    ("T5-689", 3, False),
+    ("T3-44", 3, True),
+    ("MDX+", 3, False),
+    ("コクーンIII", 4, False),
+]
+
+
+def tent_mat_floor_count_eyecatch(f):
+    """幅80cmのマットで、定員の下限に届く向きがあるのは1機種。"""
+    f.header("幅80cmで届くのは1機種",
+             "多い向きの枚数。145cm側の2人用は1枚",
+             key="1", key_label="届く向きがある", key_unit="機種")
+
+    x0, sc, top, rh = 430, 90, 176, 58
+    ys = f.rows(len(MAT_BARS), top=top, rh=rh, highlight=3)
+    for (name, n, ok), y in zip(MAT_BARS, ys):
+        c1, c2 = (NAVY2, NAVY) if ok else (PALE2, PALE)
+        f.bar(x0, y + 16, n * sc, 22, c1, c2, NAVY, 2, radius=0.3)
+        f.text(64, y + 8, 200, 24, name, 18, INK, bold=True)
+        tail = f"{n}枚 届く" if ok else f"{n}枚"
+        f.text(x0 + n * sc + 12, y + 12, 180, 28, tail, 18, NAVY, bold=True)
+
+    f.footer("棒は幅80cm×長さ208cmの、枚数が多い向きです。",
+             "公表の約寸法からの計算です")
+
+
 ORDER = [
+    "tent-mat-floor-count-eyecatch",
     "liter-nanpaku-eyecatch",
     "baby-gate-opening-width-fit-eyecatch",
     "cabin-bag-airline-fit-outer-dims-eyecatch",
@@ -1663,6 +1694,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "tent-mat-floor-count-eyecatch": tent_mat_floor_count_eyecatch,
     "liter-nanpaku-eyecatch": liter_nanpaku_eyecatch,
     "baby-gate-opening-width-fit-eyecatch": baby_gate_opening_width_fit_eyecatch,
     "cabin-bag-airline-fit-outer-dims-eyecatch": cabin_bag_airline_fit_outer_dims_eyecatch,

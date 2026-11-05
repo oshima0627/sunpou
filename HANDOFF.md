@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-11-02**（記事42を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-11-05**（記事43を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **43本**。最新は **記事42 `/washer/outer-depth-limit-fit/`（2026-11-02）** → `docs/article-42-washer-outer-depth-limit-fit.md`。閉めた外形奥行を上限600／650／700mmで判定。18機種。ドラムで700mm以下は5機種、600mm以下は2機種（余り0）。716mmの BD-SV120M は16mm出る。Amazon直リンクは確認できた NA-SD10UBL-W（B0FN766CTN）だけ。写真のベースは `tools/figures/assets/washer-outer-depth-limit-fit-base.jpg`。直前は記事41 `/fridge/niche-width-depth-fit/` |
+| 記事 | **44本**。最新は **記事43 `/tent/mat-floor-count/`（2026-11-05）** → `docs/article-43-tent-mat-floor-count.md`。新カテゴリ「テント」。床の2辺に幅50×150・幅60×180・幅80×208のマットが何枚並ぶか。定員がある10機種で、幅80cmが下限に届く向きがあるのは1機種（ワンポールテントS）。幅60cmで届かないのはカマボコ3M（4枚と3枚、定員5）。Amazon直リンクは載せていない。写真のベースは `tools/figures/assets/tent-mat-floor-count-base.jpg`（ふもとっぱらの草原・富士・車横付けに合わせた生成画像）。直前は記事42 `/washer/outer-depth-limit-fit/` |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）
@@ -398,7 +398,8 @@ cd site && npm run build    # dist/ に出力
 | `docs/article-21-donabe-ninzuu.md` | 記事21（2026-09-07）。銀峯陶器18製品の取り方／検算33件／他社が取れなかった記録 |
 | `docs/article-22-airline-fit-outer-dims.md` | 記事22（2026-09-15）。航空6社の規定と製品5つの外寸／○×の再計算 |
 | `docs/article-23-liter-nanpaku.md` | 記事23（2026-09-16）。6社の容量↔泊数の出典と原文／取れなかった社／`/article-check` の記録（ace の HTML コメントの罠） |
-| **`docs/article-42-washer-outer-depth-limit-fit.md`** | **最新の記事（2026-11-02）。** 閉めた外形奥行を上限600／650／700mmで判定。検算は `tools/check-article-42.py` |
+| **`docs/article-43-tent-mat-floor-count.md`** | **最新の記事（2026-11-05）。** テント床にマットが何枚並ぶか。検算は `tools/check-article-43.py` |
+| `docs/article-42-washer-outer-depth-limit-fit.md` | 記事42（2026-11-02）。閉めた外形奥行を上限600／650／700mmで判定。検算は `tools/check-article-42.py` |
 | `docs/article-41-fridge-niche-width-depth-fit.md` | 記事41（2026-10-29）。有効幅・有効奥行の上限に入る冷蔵庫11機種。検算は `tools/check-article-41.py` |
 | `docs/article-40-washer-vertical-opening-height.md` | 記事40（2026-10-25）。東芝の手前の高さ、シャープの投入口高さ |
 | `docs/x-drafts.txt` | Xの投稿下書き（投稿済み／未投稿） |
