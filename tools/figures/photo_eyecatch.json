@@ -526,6 +526,19 @@
    340
   ]
  },
+ "tent-mat-floor-count": {
+  "kicker": "テントの床",
+  "lines": [
+   "幅80cmで定員に",
+   "届くのは1機種"
+  ],
+  "band": [
+   0,
+   348,
+   620,
+   610
+  ]
+ },
  "washer-vertical-opening-height": {
   "kicker": "縦型洗濯機の投入口",
   "lines": [
