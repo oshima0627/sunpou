@@ -1615,6 +1615,34 @@ MAT_BARS = [
 ]
 
 
+REPLACE_DELTAS = [
+    # 製品, 外形高さの差（新型−従来品）, 旧型の箱に入るか
+    ("三菱 MR-MZ60N", 7, False),
+    ("NR-F55HY2", 22, False),
+    ("NR-F49EY3", 22, False),
+    ("NR-E45RY3", 22, False),
+    ("NR-E41RY3", 32, False),
+]
+
+
+def fridge_replace_outer_delta_eyecatch(f):
+    """公式が従来品と書いた5組は、旧型の外形に入るのが0組。高さは7〜32mm増える。"""
+    f.header("旧型の外形に入るのは0組",
+             "幅の差は0mm。高さだけ増える",
+             key="0", key_label="旧型の箱に入る", key_unit="組")
+
+    x0, sc, top, rh = 470, 14, 176, 68
+    ys = f.rows(len(REPLACE_DELTAS), top=top, rh=rh, highlight=4)
+    for (name, dh, _ok), y in zip(REPLACE_DELTAS, ys):
+        f.bar(x0, y + 22, dh * sc, 22, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.text(64, y + 8, 250, 24, name, 18, INK, bold=True)
+        f.text(64, y + 34, 250, 20, "高さの差", 13, MUTE)
+        f.text(x0 + dh * sc + 12, y + 16, 180, 28, f"{dh}mm", 20, NAVY, bold=True)
+
+    f.footer("棒は外形高さの差です。幅の差はどの組も0mm。",
+             "メーカー公表値からの計算です（実測ではありません）")
+
+
 def tent_mat_floor_count_eyecatch(f):
     """幅80cmのマットで、定員の下限に届く向きがあるのは1機種。"""
     f.header("幅80cmで届くのは1機種",
@@ -1635,6 +1663,7 @@ def tent_mat_floor_count_eyecatch(f):
 
 
 ORDER = [
+    "fridge-replace-outer-delta-eyecatch",
     "tent-mat-floor-count-eyecatch",
     "liter-nanpaku-eyecatch",
     "baby-gate-opening-width-fit-eyecatch",
@@ -1694,6 +1723,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "fridge-replace-outer-delta-eyecatch": fridge_replace_outer_delta_eyecatch,
     "tent-mat-floor-count-eyecatch": tent_mat_floor_count_eyecatch,
     "liter-nanpaku-eyecatch": liter_nanpaku_eyecatch,
     "baby-gate-opening-width-fit-eyecatch": baby_gate_opening_width_fit_eyecatch,

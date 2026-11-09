@@ -150,6 +150,7 @@ lead: 左開き。幅650mmと奥行650mmの両方に入る。余裕込み幅も6
 - [冷蔵庫の搬入幅・通路判定（奥行から余りを計算）](/fridge/delivery-path-fit/)
 - [冷蔵庫の設置スペース奥行（据付必要奥行・ドア開放）](/fridge/install-clearance-outer-dims/)
 - [冷蔵庫の設置スペース左右・上方あきと扉の横張り出し](/fridge/side-top-clearance-door-swing/)
+- [買い替えで幅・奥行・高さは何mm変わるか](/fridge/replace-outer-delta/)
 
 ## この記事で扱っていないこと
 

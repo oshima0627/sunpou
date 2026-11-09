@@ -4,6 +4,16 @@
 
 <div class="topic-stack">
   <section class="topic">
+    <span class="topic__label">買い替え</span>
+    <h2 class="topic__title">従来品5組は幅の差0mm。旧型の外形に入るのは0組</h2>
+    <ul class="topic__points">
+      <li><strong>公式が従来品と書いた5組で、旧型の箱に入るのは0組。</strong> 外れる軸は高さだけ</li>
+      <li><strong>幅の差は5組とも0mm。高さの差は7mmから32mm。</strong> いちばん小さい増加は三菱 MR-MZ60N</li>
+      <li><strong>奥行が一番短くなるのは51mm。</strong> Panasonic NR-E45RY3 は699mmから648mm</li>
+    </ul>
+    <a class="topic__cta" href="/fridge/replace-outer-delta/">買い替え前後の寸法差の記事を読む</a>
+  </section>
+  <section class="topic">
     <span class="topic__label">置き場所の上限</span>
     <h2 class="topic__title">有効幅700mm・有効奥行650mmに入る型番を、最小設置寸法で分ける</h2>
     <ul class="topic__points">
