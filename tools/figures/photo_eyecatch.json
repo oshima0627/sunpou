@@ -1,4 +1,17 @@
 {
+ "fridge-replace-outer-delta": {
+  "kicker": "冷蔵庫の買い替え",
+  "lines": [
+   "高さは増える",
+   "幅の差は0"
+  ],
+  "band": [
+   0,
+   400,
+   560,
+   610
+  ]
+ },
  "washer-outer-depth-limit-fit": {
   "kicker": "洗濯機の奥行",
   "lines": [
