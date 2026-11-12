@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-11-09**（記事44を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-11-12**（記事45を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **45本**。最新は **記事44 `/fridge/replace-outer-delta/`（2026-11-09）** → `docs/article-44-fridge-replace-outer-delta.md`。公式が従来品と書いた冷蔵庫5組。幅の差は0、高さは+7〜+32mm、旧型の外形に入るのは0組。上の空き10mmなら1組、25mmなら4組。Amazon直リンクは NR-E45RY3L-S（B0G63M3YDZ）のみ。写真のベースは `tools/figures/assets/fridge-replace-outer-delta-base.jpg`（マンションキッチン・冷蔵庫上の下がり天井）。直前は記事43 `/tent/mat-floor-count/` |
+| 記事 | **46本**。最新は **記事45 `/camp-chair/seat-table-gap/`（2026-11-12）** → `docs/article-45-camp-chair-seat-table-gap.md`。チェア座面15段×テーブル天板9段。コールマン公式の差25〜30cmに入るのは135通り中20通り。同社同士の21通りでは3通りで、いずれも天板70cm。Amazon直リンクは無し。写真のベースは `tools/figures/assets/camp-chair-seat-table-gap-base.jpg`（本栖湖・浩庵キャンプ場の湖畔、富士山）。直前は記事44 `/fridge/replace-outer-delta/` |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）

@@ -1643,6 +1643,33 @@ def fridge_replace_outer_delta_eyecatch(f):
              "メーカー公表値からの計算です（実測ではありません）")
 
 
+GAP_BARS = [
+    # 天板の段, 差25〜30cmに入った座面の段の数（15段のうち）
+    ("バタフライ70", 5),
+    ("2FDの70", 5),
+    ("オサマリー64", 5),
+    ("バタフライ60", 2),
+    ("オサマリー56", 2),
+    ("2FDの50", 1),
+]
+
+
+def camp_chair_seat_table_gap_eyecatch(f):
+    """135通りのうち、差25〜30cmに入るのは20通り。天板70cmは各5通り。"""
+    f.header("差25〜30cmは20通り",
+             "135通りのうち。70cmの天板は各5通り",
+             key="20", key_label="入る組み合わせ", key_unit="通り")
+
+    x0, sc, top, rh = 400, 72, 176, 58
+    ys = f.rows(len(GAP_BARS), top=top, rh=rh, highlight=0)
+    for (name, n), y in zip(GAP_BARS, ys):
+        f.bar(x0, y + 16, n * sc, 22, NAVY2, NAVY, NAVY, 2, radius=0.3)
+        f.text(64, y + 14, 320, 28, name, 18, INK, bold=True)
+        f.text(x0 + n * sc + 12, y + 12, 180, 28, f"{n}通り", 18, NAVY, bold=True)
+
+    f.footer("41cm・38cm・82cmの天板は0通りです。")
+
+
 def tent_mat_floor_count_eyecatch(f):
     """幅80cmのマットで、定員の下限に届く向きがあるのは1機種。"""
     f.header("幅80cmで届くのは1機種",
@@ -1663,6 +1690,7 @@ def tent_mat_floor_count_eyecatch(f):
 
 
 ORDER = [
+    "camp-chair-seat-table-gap-eyecatch",
     "fridge-replace-outer-delta-eyecatch",
     "tent-mat-floor-count-eyecatch",
     "liter-nanpaku-eyecatch",
@@ -1723,6 +1751,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "camp-chair-seat-table-gap-eyecatch": camp_chair_seat_table_gap_eyecatch,
     "fridge-replace-outer-delta-eyecatch": fridge_replace_outer_delta_eyecatch,
     "tent-mat-floor-count-eyecatch": tent_mat_floor_count_eyecatch,
     "liter-nanpaku-eyecatch": liter_nanpaku_eyecatch,
