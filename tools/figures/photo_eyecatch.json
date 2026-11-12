@@ -1,4 +1,17 @@
 {
+ "camp-chair-seat-table-gap": {
+  "kicker": "チェアとテーブル",
+  "lines": [
+   "差25〜30cmは",
+   "20通り"
+  ],
+  "band": [
+   0,
+   360,
+   620,
+   610
+  ]
+ },
  "fridge-replace-outer-delta": {
   "kicker": "冷蔵庫の買い替え",
   "lines": [
