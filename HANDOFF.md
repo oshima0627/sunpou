@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-11-12**（記事45を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-11-16**（記事46を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **46本**。最新は **記事45 `/camp-chair/seat-table-gap/`（2026-11-12）** → `docs/article-45-camp-chair-seat-table-gap.md`。チェア座面15段×テーブル天板9段。コールマン公式の差25〜30cmに入るのは135通り中20通り。同社同士の21通りでは3通りで、いずれも天板70cm。Amazon直リンクは無し。写真のベースは `tools/figures/assets/camp-chair-seat-table-gap-base.jpg`（本栖湖・浩庵キャンプ場の湖畔、富士山）。直前は記事44 `/fridge/replace-outer-delta/` |
+| 記事 | **47本**。最新は **記事46 `/washer/pedestal-raise-shelf-fit/`（2026-11-16）** → `docs/article-46-washer-pedestal-raise-shelf-fit.md`。公式のかさ上げ（約15／20／40／50／77／215mm）を閉じた全高に足し、棚下1100／1200／1300mmで判定。約15・20mmなら5機種中4機種。外れるのは NA-FA12V6 の6mm。LXの必要高さは1338mm。Amazon直リンクは NA-FA12V6-W（B0GWCJYB7F）と NA-FA10K6-W（B0GWCXR3HR）。写真のベースは `tools/figures/assets/washer-pedestal-raise-shelf-fit-base.jpg`（マンション洗面所、防水パン、かさ上げ、上の棚）。直前は記事45 `/camp-chair/seat-table-gap/` |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）
@@ -398,7 +398,9 @@ cd site && npm run build    # dist/ に出力
 | `docs/article-21-donabe-ninzuu.md` | 記事21（2026-09-07）。銀峯陶器18製品の取り方／検算33件／他社が取れなかった記録 |
 | `docs/article-22-airline-fit-outer-dims.md` | 記事22（2026-09-15）。航空6社の規定と製品5つの外寸／○×の再計算 |
 | `docs/article-23-liter-nanpaku.md` | 記事23（2026-09-16）。6社の容量↔泊数の出典と原文／取れなかった社／`/article-check` の記録（ace の HTML コメントの罠） |
-| **`docs/article-44-fridge-replace-outer-delta.md`** | **最新の記事（2026-11-09）。** 冷蔵庫の買い替えで、公式が従来品と書いた5組の外形差。検算は `tools/check-article-44.py` |
+| **`docs/article-46-washer-pedestal-raise-shelf-fit.md`** | **最新の記事（2026-11-16）。** かさ上げを足した閉じた全高。検算は `tools/check-article-46.py` |
+| `docs/article-45-camp-chair-seat-table-gap.md` | 記事45（2026-11-12）。チェア座面とテーブル天板の差 |
+| `docs/article-44-fridge-replace-outer-delta.md` | 記事44（2026-11-09）。冷蔵庫の買い替えで、公式が従来品と書いた5組の外形差。検算は `tools/check-article-44.py` |
 | `docs/article-43-tent-mat-floor-count.md` | 記事43（2026-11-05）。テント床にマットが何枚並ぶか。検算は `tools/check-article-43.py` |
 | `docs/article-42-washer-outer-depth-limit-fit.md` | 記事42（2026-11-02）。閉めた外形奥行を上限600／650／700mmで判定。検算は `tools/check-article-42.py` |
 | `docs/article-41-fridge-niche-width-depth-fit.md` | 記事41（2026-10-29）。有効幅・有効奥行の上限に入る冷蔵庫11機種。検算は `tools/check-article-41.py` |
