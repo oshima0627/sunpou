@@ -172,6 +172,7 @@ lead: 特長ページの①は約78cm。外形930との換算差は150
 ## この記事で扱っていないこと
 
 - **フタ全開時・折れ時の上方スペース** — [フタ開け時の高さ](/washer/vertical-lid-open-height/)で扱っています
+- **かさ上げを足した閉じた全高** — [公式の上がりを足して棚下に入るか](/washer/pedestal-raise-shelf-fit/)です。手前の高さに足す公式のmmは、この記事では未掲載のままです
 - **防水パンの奥行内寸** — [縦型](/washer/vertical-waterproof-pan-fit/)と[ドラム式](/washer/drum-waterproof-pan-fit/)の記事です
 - **シャープ ES-GE7K・ES-GE5K・ES-TX6K の投入口高さ** — 見方に記号Eはあり、代替テキストにmmが無い（未掲載）
 - **パナソニック寸法図の記号Nのmm** — テキストでは未確定（未掲載）

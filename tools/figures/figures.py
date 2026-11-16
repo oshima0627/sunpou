@@ -1654,6 +1654,38 @@ GAP_BARS = [
 ]
 
 
+RAISE_BARS = [
+    # 製品, 約15mmまたは約20mmを足した閉じた全高, 棚下1100mmに入るか
+    ("TW-84GS5L", 990, True),
+    ("TW-127XP5L", 1075, True),
+    ("NA-LX129FL", 1080, True),
+    ("NA-FA10K6", 1091, True),
+    ("NA-FA12V6", 1106, False),
+]
+
+
+def washer_pedestal_raise_shelf_fit_eyecatch(f):
+    """約15mm・約20mmを足した閉じた全高で、棚下1100mmに入るのは4機種。"""
+    f.header("外形なら1100mmは4機種",
+             "LXの必要高さは1338mm",
+             key="4", key_label="1100mmに入る", key_unit="機種")
+
+    x0, origin, sc, top, rh = 420, 960, 3.2, 188, 62
+    mark = x0 + (1100 - origin) * sc
+    ys = f.rows(len(RAISE_BARS), top=top, rh=rh, highlight=4)
+    f.rect(mark, top - 6, 2, len(RAISE_BARS) * rh - 8, WARN)
+    f.text(mark - 70, top - 24, 120, 18, "1100mm", 12, WARN, bold=True)
+    for (name, height, ok), y in zip(RAISE_BARS, ys):
+        c1, c2 = (NAVY2, NAVY) if ok else (PALE2, PALE)
+        bw = (height - origin) * sc
+        f.bar(x0, y + 20, bw, 18, c1, c2, NAVY, 2, radius=0.3)
+        f.text(58, y + 14, 350, 28, name, 16, INK, bold=True)
+        tail = f"{height}mm" if ok else f"{height}mm 出る"
+        f.text(x0 + bw + 10, y + 12, 220, 28, tail, 16, NAVY, bold=True)
+
+    f.footer("棒は約15mmまたは約20mmを足した全高です。")
+
+
 def camp_chair_seat_table_gap_eyecatch(f):
     """135通りのうち、差25〜30cmに入るのは20通り。天板70cmは各5通り。"""
     f.header("差25〜30cmは20通り",
@@ -1690,6 +1722,7 @@ def tent_mat_floor_count_eyecatch(f):
 
 
 ORDER = [
+    "washer-pedestal-raise-shelf-fit-eyecatch",
     "camp-chair-seat-table-gap-eyecatch",
     "fridge-replace-outer-delta-eyecatch",
     "tent-mat-floor-count-eyecatch",
@@ -1751,6 +1784,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "washer-pedestal-raise-shelf-fit-eyecatch": washer_pedestal_raise_shelf_fit_eyecatch,
     "camp-chair-seat-table-gap-eyecatch": camp_chair_seat_table_gap_eyecatch,
     "fridge-replace-outer-delta-eyecatch": fridge_replace_outer_delta_eyecatch,
     "tent-mat-floor-count-eyecatch": tent_mat_floor_count_eyecatch,

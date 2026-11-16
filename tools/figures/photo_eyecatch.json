@@ -1,4 +1,17 @@
 {
+ "washer-pedestal-raise-shelf-fit": {
+  "kicker": "洗濯機のかさ上げ",
+  "lines": [
+   "棚下1100mmは",
+   "4機種"
+  ],
+  "band": [
+   0,
+   390,
+   520,
+   610
+  ]
+ },
  "camp-chair-seat-table-gap": {
   "kicker": "チェアとテーブル",
   "lines": [

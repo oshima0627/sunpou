@@ -1,8 +1,18 @@
 # 洗濯機を防水パン・フタの高さ・ドアの前方スペースで選ぶ
 
-ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>置き場の内のりに収まるかは閉めた外形奥行、家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さ、ドラム式のドアが前の壁や洗面台に当たるかはドア開け時の奥行で決まります。</strong>
+ドラム式・縦型洗濯機の通販ページでは容量kgや乾燥方式が中心ですが、<strong>置き場の内のりに収まるかは閉めた外形奥行、家の防水パンに置けるかは奥行内寸、上の棚に当たるかはフタ全開時の高さ、ドラム式のドアが前の壁や洗面台に当たるかはドア開け時の奥行、かさ上げ後に棚へ当たるかは閉じた全高に公式の上がりを足した数字で決まります。</strong>
 
 <div class="topic-stack">
+  <section class="topic">
+    <span class="topic__label">かさ上げ</span>
+    <h2 class="topic__title">約15mm・約20mmなら棚下1100mmは4機種。6mm出るのは1機種</h2>
+    <ul class="topic__points">
+      <li><strong>小さい公式の上がりで、棚下1100mmに入るのは4機種。</strong> 外れるのは NA-FA12V6 の6mm</li>
+      <li><strong>約40mm・約50mm・約77mmだと、1100mmに入るのは2機種。</strong> 余り0の NA-LX129FL と、余り48mmの TW-84GS5L</li>
+      <li><strong>LXの必要高さは、かさ上げ前でも1338mm。</strong> 本体1038mmに上方300mmを足した数字</li>
+    </ul>
+    <a class="topic__cta" href="/washer/pedestal-raise-shelf-fit/">かさ上げ後の全高の記事を読む</a>
+  </section>
   <section class="topic">
     <span class="topic__label">外形奥行</span>
     <h2 class="topic__title">上限600・650・700mmに入るドラムは5機種。716mmから先は外れる</h2>

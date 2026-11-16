@@ -145,7 +145,7 @@ lead: 全開1379。全開−閉じは302で、東芝12kgの431より小さい
 - **防水パンの奥行内寸・壁からの距離** — [縦型の防水パン条件](/washer/vertical-waterproof-pan-fit/)で扱っています
 - **ドラム式のドア全開に要る前方スペース** — [ドラム式のドア開け時の奥行](/washer/drum-door-open-front-space/)で扱っています
 - **投入口の高さ・開口の幅と奥行** — [投入口の高さ](/washer/vertical-opening-height/)で扱っています
-- **かさ上げ台・洗濯パンの底厚を足した実寸** — 公表の床面基準の数字だけを並べています
+- **かさ上げ台を足した閉じた全高** — [公式の上がりを足して棚下に入るか](/washer/pedestal-raise-shelf-fit/)です。本記事はフタを開けた高さです
 - **TOTO以外の防水パンの内寸** — [LIXILとパナソニックの内寸](/washer/lixil-panasonic-pan-inner-depth/)で整理しています
 - **金額・取扱状況・工事費** — 扱いません
 
