@@ -13,10 +13,11 @@
 
 // 近いカテゴリ（近い順）。ここに無いカテゴリは従来どおり新着で埋める。
 const RELATED_CATEGORIES = {
-  coolerbox: ['cassette-konro', 'tent', 'camp-chair'],
-  'cassette-konro': ['coolerbox', 'tent', 'camp-chair'],
-  tent: ['coolerbox', 'cassette-konro', 'camp-chair'],
-  'camp-chair': ['tent', 'coolerbox', 'cassette-konro'],
+  coolerbox: ['cassette-konro', 'tent', 'camp-chair', 'fire-pit'],
+  'cassette-konro': ['coolerbox', 'tent', 'camp-chair', 'fire-pit'],
+  tent: ['coolerbox', 'cassette-konro', 'camp-chair', 'fire-pit'],
+  'camp-chair': ['tent', 'coolerbox', 'cassette-konro', 'fire-pit'],
+  'fire-pit': ['tent', 'camp-chair', 'coolerbox', 'cassette-konro'],
   'cabin-bag': ['tire-chain'],
   'tire-chain': ['cabin-bag'],
   washer: ['fridge', 'dishwasher'],

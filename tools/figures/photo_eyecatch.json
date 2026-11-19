@@ -1,4 +1,17 @@
 {
+ "fire-pit-wood-length-fit": {
+  "kicker": "焚き火台と薪",
+  "lines": [
+   "40cmが短い辺に",
+   "収まるのは7機種"
+  ],
+  "band": [
+   620,
+   390,
+   1180,
+   610
+  ]
+ },
  "washer-pedestal-raise-shelf-fit": {
   "kicker": "洗濯機のかさ上げ",
   "lines": [

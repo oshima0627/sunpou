@@ -1686,6 +1686,32 @@ def washer_pedestal_raise_shelf_fit_eyecatch(f):
     f.footer("棒は約15mmまたは約20mmを足した全高です。")
 
 
+WOOD_BARS = [
+    ("焚火台S", 11.5),
+    ("ディスクソロ", 10),
+    ("ぺらもえ", 8),
+    ("焚火台M", 5),
+    ("ピラミッドM", 4),
+    ("ピラミッドL", 1),
+]
+
+
+def fire_pit_wood_length_fit_eyecatch(f):
+    """40cmの薪を長い辺に置くと、端が出るのは6機種。"""
+    f.header("40cmが出るのは6機種",
+             "長い辺のはみ出し。16機種中",
+             key="6", key_label="長い辺ではみ出す", key_unit="機種")
+
+    x0, sc, top, rh = 360, 28, 170, 60
+    ys = f.rows(len(WOOD_BARS), top=top, rh=rh, highlight=0)
+    for (name, n), y in zip(WOOD_BARS, ys):
+        f.bar(x0, y + 16, n * sc, 22, PALE2, PALE, NAVY, 2, radius=0.3)
+        f.text(58, y + 12, 280, 28, name, 16, INK, bold=True)
+        f.text(x0 + n * sc + 12, y + 12, 180, 28, f"{n:g}cm出る", 16, NAVY, bold=True)
+
+    f.footer("余り0cmの2機種は公式の書き方が分かれます。")
+
+
 def camp_chair_seat_table_gap_eyecatch(f):
     """135通りのうち、差25〜30cmに入るのは20通り。天板70cmは各5通り。"""
     f.header("差25〜30cmは20通り",
@@ -1722,6 +1748,7 @@ def tent_mat_floor_count_eyecatch(f):
 
 
 ORDER = [
+    "fire-pit-wood-length-fit-eyecatch",
     "washer-pedestal-raise-shelf-fit-eyecatch",
     "camp-chair-seat-table-gap-eyecatch",
     "fridge-replace-outer-delta-eyecatch",
@@ -1784,6 +1811,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "fire-pit-wood-length-fit-eyecatch": fire_pit_wood_length_fit_eyecatch,
     "washer-pedestal-raise-shelf-fit-eyecatch": washer_pedestal_raise_shelf_fit_eyecatch,
     "camp-chair-seat-table-gap-eyecatch": camp_chair_seat_table_gap_eyecatch,
     "fridge-replace-outer-delta-eyecatch": fridge_replace_outer_delta_eyecatch,
