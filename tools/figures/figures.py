@@ -1747,7 +1747,35 @@ def tent_mat_floor_count_eyecatch(f):
              "公表の約寸法からの計算です")
 
 
+FOOT640_BARS = [
+    # 呼び, 内寸640mm − 脚（または赤）の幅
+    ("パナソニック", 56),
+    ("ES-8・ES-10", 60),
+    ("東芝", 62),
+    ("日立", 64),
+    ("ES-X12C", 68),
+    ("ES-7S2", 71),
+]
+
+
+def washer_drum_foot_inner_640_eyecatch(f):
+    """内寸640mmから脚の幅を引いた余り。最小は56mm。11行とも幅は入る。"""
+    f.header("幅の最小余りは56mm",
+             "内寸640mmから引いた。11行とも入る",
+             key="56", key_label="幅の最小余り", key_unit="mm")
+
+    x0, sc, top, rh = 430, 8, 176, 58
+    ys = f.rows(len(FOOT640_BARS), top=top, rh=rh, highlight=0)
+    for (name, n), y in zip(FOOT640_BARS, ys):
+        f.bar(x0, y + 16, n * sc, 22, NAVY2, NAVY, NAVY, 2, radius=0.3)
+        f.text(64, y + 12, 340, 28, name, 18, INK, bold=True)
+        f.text(x0 + n * sc + 12, y + 12, 160, 28, f"{n}mm", 18, NAVY, bold=True)
+
+    f.footer("棒は内寸640mmから、公表の幅を引いた余りです。")
+
+
 ORDER = [
+    "washer-drum-foot-inner-640-eyecatch",
     "fire-pit-wood-length-fit-eyecatch",
     "washer-pedestal-raise-shelf-fit-eyecatch",
     "camp-chair-seat-table-gap-eyecatch",
@@ -1811,6 +1839,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "washer-drum-foot-inner-640-eyecatch": washer_drum_foot_inner_640_eyecatch,
     "fire-pit-wood-length-fit-eyecatch": fire_pit_wood_length_fit_eyecatch,
     "washer-pedestal-raise-shelf-fit-eyecatch": washer_pedestal_raise_shelf_fit_eyecatch,
     "camp-chair-seat-table-gap-eyecatch": camp_chair_seat_table_gap_eyecatch,

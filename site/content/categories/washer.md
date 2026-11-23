@@ -4,6 +4,16 @@
 
 <div class="topic-stack">
   <section class="topic">
+    <span class="topic__label">脚と内寸640</span>
+    <h2 class="topic__title">内寸640mm角なら、脚の幅は11行とも入る。最小余りは56mm</h2>
+    <ul class="topic__points">
+      <li><strong>脚の幅が公表された11行は、内寸640mmより全部短い。</strong> 余りは56mmから71mm</li>
+      <li><strong>奥行まで数字がある9行も、640mmより全部短い。</strong> 余りは101mmから157mm</li>
+      <li><strong>公式の内寸条件は、脚より2mmから57mm大きい。</strong> 条件そのものも640mmは上回る</li>
+    </ul>
+    <a class="topic__cta" href="/washer/drum-foot-inner-640/">脚の外寸と内寸640mmの記事を読む</a>
+  </section>
+  <section class="topic">
     <span class="topic__label">かさ上げ</span>
     <h2 class="topic__title">約15mm・約20mmなら棚下1100mmは4機種。6mm出るのは1機種</h2>
     <ul class="topic__points">
