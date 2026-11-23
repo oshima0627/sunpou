@@ -1,6 +1,6 @@
 # HANDOFF
 
-最終更新: **2026-11-19**（記事47を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
+最終更新: **2026-11-23**（記事48を追加。§2以降の測定は 2026-09-07、成長台帳のベースラインは 2026-10-28。⚠️ **測定そのものは古い**）（このファイルだけ読めば再開できる状態を保つ。**継ぎ足さず書き直す。履歴は git log。**）
 
 ---
 
@@ -17,7 +17,7 @@ Amazon の商品比較サイト「**寸法帳**」（旧称「寸法で選ぶ」
 | ソース | `site/`（Root directory は `/site`。これを指定しないと `package.json` を見つけられない） |
 | Search Console | ドメインプロパティ `sc-domain:sunpou.nexeed-lab.com` |
 | 運営者 | 大島 直孝 / info@nexeed-lab.com |
-| 記事 | **48本**。最新は **記事47 `/fire-pit/wood-length-fit/`（2026-11-19）** → `docs/article-47-fire-pit-wood-length-fit.md`。新カテゴリ「焚き火台」。公表の辺に40cmと15cmを当てた。16機種のうち、40cmが短い辺でも収まるのは7機種。長い辺でも出るのは6機種。余り0cmの2機種は、ヒコタンが35cm程度まで、UG-91が40cmは載ると書く。内寸は未掲載。Amazon直リンクは未掲載（商品ページを確認できず）。`afbody: none`、`bounty: outdoor`。写真のベースは `tools/figures/assets/fire-pit-wood-length-fit-base.jpg`（富士宮・ふもとっぱらの草原、富士山、焚き火台）。直前は記事46 `/washer/pedestal-raise-shelf-fit/` |
+| 記事 | **49本**。最新は **記事48 `/washer/drum-foot-inner-640/`（2026-11-23）** → `docs/article-48-washer-drum-foot-inner-640.md`。内のりを640mm角と置いたとき、ドラムの脚外幅・脚外奥行（日立は寸法図の赤）が収まるか。幅は11行とも入り余り56〜71mm。奥行の数字がある9行も入り余り101〜157mm。冷蔵庫の放熱すき間は既存の左右・上方・据付奥行と重なるため不採用。検索ボリュームは未取得（仮説）。Amazon直リンクは NA-LX129FL-W（B0HFYXTSLX）のみ。`afbody: none`。直前は記事47 `/fire-pit/wood-length-fit/` |
 | X | **@sunpou_lab**（予約は **2026-09-18** まで。**フォロワー0・流入0**） |
 
 ## 2. ★ 状態：**表示は6日で17倍になった。売上はゼロ**（測定は 09-07 が最新。**09-16 時点で9日間測っていない → 次は `/measure`**）
@@ -398,7 +398,8 @@ cd site && npm run build    # dist/ に出力
 | `docs/article-21-donabe-ninzuu.md` | 記事21（2026-09-07）。銀峯陶器18製品の取り方／検算33件／他社が取れなかった記録 |
 | `docs/article-22-airline-fit-outer-dims.md` | 記事22（2026-09-15）。航空6社の規定と製品5つの外寸／○×の再計算 |
 | `docs/article-23-liter-nanpaku.md` | 記事23（2026-09-16）。6社の容量↔泊数の出典と原文／取れなかった社／`/article-check` の記録（ace の HTML コメントの罠） |
-| **`docs/article-47-fire-pit-wood-length-fit.md`** | **最新の記事（2026-11-19）。** 焚き火台の辺と40cm・15cm。検算は `tools/check-article-47.py` |
+| **`docs/article-48-washer-drum-foot-inner-640.md`** | **最新の記事（2026-11-23）。** 内寸640mm角とドラムの脚。検算は `tools/check-article-48.py`。検索ボリュームは未取得（仮説） |
+| `docs/article-47-fire-pit-wood-length-fit.md` | 記事47（2026-11-19）。焚き火台の辺と40cm・15cm。検算は `tools/check-article-47.py` |
 | `docs/article-46-washer-pedestal-raise-shelf-fit.md` | 記事46（2026-11-16）。かさ上げを足した閉じた全高。検算は `tools/check-article-46.py` |
 | `docs/article-45-camp-chair-seat-table-gap.md` | 記事45（2026-11-12）。チェア座面とテーブル天板の差 |
 | `docs/article-44-fridge-replace-outer-delta.md` | 記事44（2026-11-09）。冷蔵庫の買い替えで、公式が従来品と書いた5組の外形差。検算は `tools/check-article-44.py` |

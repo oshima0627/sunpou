@@ -1,4 +1,17 @@
 {
+ "washer-drum-foot-inner-640": {
+  "kicker": "ドラムの脚",
+  "lines": [
+   "内寸640mmは",
+   "幅56mm余る"
+  ],
+  "band": [
+   24,
+   380,
+   540,
+   600
+  ]
+ },
  "fire-pit-wood-length-fit": {
   "kicker": "焚き火台と薪",
   "lines": [
