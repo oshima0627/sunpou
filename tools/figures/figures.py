@@ -1758,6 +1758,34 @@ FOOT640_BARS = [
 ]
 
 
+FOOT_BARS = [
+    # 呼び, 最短辺mm, 約190mm以下なら True
+    ("C300 DC", 120, True),
+    ("522", 144, True),
+    ("240 New", 153, True),
+    ("C300", 161, True),
+    ("535", 188, True),
+    ("DELTA 3", 202, False),
+]
+
+
+def portable_power_foot_gap_eyecatch(f):
+    """最短辺が約190mm以下なのは5機種。次のDELTA 3は202mm。"""
+    f.header("狭い足元に入るのは5機種",
+             "最短辺。約190mm以下。次は202mm",
+             key="5", key_label="約190mm以下", key_unit="機種")
+
+    x0, sc, top, rh = 340, 2.4, 170, 58
+    ys = f.rows(len(FOOT_BARS), top=top, rh=rh, highlight=4)
+    for (name, n, ok), y in zip(FOOT_BARS, ys):
+        c1, c2 = (NAVY2, NAVY) if ok else (PALE2, PALE)
+        f.bar(x0, y + 16, n * sc, 22, c1, c2, NAVY, 2, radius=0.3)
+        f.text(58, y + 12, 260, 28, name, 18, INK, bold=True)
+        f.text(x0 + n * sc + 12, y + 12, 150, 28, f"{n}mm", 18, NAVY, bold=True)
+
+    f.footer("535の余りは2mm。DELTA 3は12mm出ます。")
+
+
 def washer_drum_foot_inner_640_eyecatch(f):
     """内寸640mmから脚の幅を引いた余り。最小は56mm。11行とも幅は入る。"""
     f.header("幅の最小余りは56mm",
@@ -1775,6 +1803,7 @@ def washer_drum_foot_inner_640_eyecatch(f):
 
 
 ORDER = [
+    "portable-power-foot-gap-eyecatch",
     "washer-drum-foot-inner-640-eyecatch",
     "fire-pit-wood-length-fit-eyecatch",
     "washer-pedestal-raise-shelf-fit-eyecatch",
@@ -1839,6 +1868,7 @@ ORDER = [
 ]
 
 FIGURES = {
+    "portable-power-foot-gap-eyecatch": portable_power_foot_gap_eyecatch,
     "washer-drum-foot-inner-640-eyecatch": washer_drum_foot_inner_640_eyecatch,
     "fire-pit-wood-length-fit-eyecatch": fire_pit_wood_length_fit_eyecatch,
     "washer-pedestal-raise-shelf-fit-eyecatch": washer_pedestal_raise_shelf_fit_eyecatch,
